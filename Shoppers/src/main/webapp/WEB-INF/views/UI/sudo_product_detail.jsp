@@ -1,10 +1,22 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ 
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
+	<style>
+		.select1 {
+	   		 width: 90px;
+		}
+		.select2 {
+	   		 width: 180px;
+		}
+	</style>
 		<meta charset="utf-8">
-		<title>Bootstrap E-commerce Templates</title>
+		<title>H-Shopper : 특별함을 전하는</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
@@ -23,13 +35,16 @@
 		<script src="<c:url value='/resources/bootstrap/js/bootstrap.min.js' />"></script>				
 		<script src="<c:url value='/resources/themes/js/superfish.js' />"></script>	
 		<script src="<c:url value='/resources/themes/js/jquery.scrolltotop.js' />"></script>
-		<script src="<c:url value='/resources/themes/js/jquery.fancybox.js' />"></script>
+		<script src="<c:url value='/resources/themes/js/jquery.fancybox.js' />">
+		</script>
+		
 		<!--[if lt IE 9]>			
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 			<script src="js/respond.min.js"></script>
 		<![endif]-->
 	</head>
-    <body>		
+    <body>	
+    	
 		<div id="top-bar" class="container">
 			<div class="row">
 				<div class="span4">
@@ -41,38 +56,60 @@
 					<div class="account pull-right">
 						<ul class="user-menu">				
 							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.html">Login</a></li>		
+							<li><a href="cart">Your Cart</a></li>
+							<li><a href="checkout">Checkout</a></li>		
+						
+							<c:if test="${empty s_login_id && empty b_login_id }">
+								<c:url value="login" var="login" />
+								<li><a href="${login}">Login</a></li>	
+							</c:if>
+							<c:if test="${not empty s_login_id || not empty b_login_id }">
+								<!-- 세션에 로그인 정보가 있는 경우 -->
+								<c:url value="logout" var="logout" />
+								<li><a href="${logout }">로그아웃</a></li>		
+							</c:if>				
+	
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
+	
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="<c:url value='/resources/themes/images/logo.png' />" class="site_logo" alt=""></a>
+					<a href="./" class="logo pull-left"><img src="<c:url value='/resources/themes/images/logo.png' />" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="./products.html">Woman</a>					
+							<li><a href="./products">Home / Deco</a>					
 								<ul>
-									<li><a href="./products.html">Lacinia nibh</a></li>									
-									<li><a href="./products.html">Eget molestie</a></li>
-									<li><a href="./products.html">Varius purus</a></li>									
+									<li><a href="./products">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="./products">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="./products">lamp</a></li>			<!-- 조명 -->									
 								</ul>
 							</li>															
-							<li><a href="./products.html">Man</a></li>			
-							<li><a href="./products.html">Sport</a>
+							<li><a href="./products">Candle / Diffuser</a>
+								<ul>
+									<li><a href="./products">candle</a></li>			<!-- 양초 -->										
+									<li><a href="./products">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="./products">aromatic oils</a></li>	<!-- 아로마오일 -->									
+								</ul>		
+								</li>	
+							<li><a href="./products">Art / Fancy</a>
 								<ul>									
-									<li><a href="./products.html">Gifts and Tech</a></li>
-									<li><a href="./products.html">Ties and Hats</a></li>
-									<li><a href="./products.html">Cold Weather</a></li>
+									<li><a href="./products">picture</a></li>		<!-- 사진 -->
+									<li><a href="./products">fancy</a></li>		<!-- 문구 -->
+									<li><a href="./products">paper</a></li>		<!-- 페이퍼 -->
 								</ul>
 							</li>							
-							<li><a href="./products.html">Hangbag</a></li>
-							<li><a href="./products.html">Best Seller</a></li>
-							<li><a href="./products.html">Top Seller</a></li>
+							<li><a href="./products">Jewellery</a>
+								<ul>									
+									<li><a href="./products">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="./products">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="./products">ring</a></li>			<!-- 반지 -->
+								</ul>
+							</li>
+							<li><a href="./products">Event</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -81,13 +118,39 @@
 			<img class="pageBanner" src="<c:url value='/resources/themes/images/pageBanner.png' />" alt="New products" >
 				<h4><span>Product Detail</span></h4>
 			</section>
-			<section class="main-content">				
-				<div class="row">						
+			<section class="main-content">	
+					
+				<div class="row">	
+				
+				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+					<form id="frm">
+						<!-- 삭제하기 위한 정보 -->
+						<input type="hidden" name="p_no" value="${productVO.p_no }" />    
+    					<input type="hidden" name="s_id" value="${productVO.s_id }" />
+					
 					<div class="span9">
-						<div class="row">
-							<div class="span4">
-								<a href="<c:url value='resources/themes/images/ladies/1.jpg' />" class="thumbnail" data-fancybox-group="group1" title="Description 1"><img alt="" src="<c:url value='/resources/themes/images/ladies/1.jpg' />"></a>												
-								<ul class="thumbnails small">								
+				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+				
+						
+						<div class="row">	<!-- 저품 메인정보 : 제품 메인사진 / 제품명 / 제품 정보  -->
+						
+							<div class="span4">		<!-- 사진 보기  -->
+								
+								<!-- 큰 이미지 보여주기 -->
+								<a href="${productVO.p_img }" class="thumbnail" data-fancybox-group="group1" title="Description 1"><img alt="" src="${productVO.p_img }"></a>												
+								
+								<ul class="thumbnails small">	
+									<c:forEach var="imageList" items="${imageList }" begin="0" end="2">
+										<li class="span1">
+											<a href="${imageList.i_img }" class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="${imageList.i_img }" alt=""></a>
+										</li>
+									</c:forEach>
+								
+															
+									<%-- 
 									<li class="span1">
 										<a href="<c:url value='/resources/themes/images/ladies/2.jpg' />" class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="<c:url value='/resources/themes/images/ladies/2.jpg' />" alt=""></a>
 									</li>								
@@ -100,42 +163,80 @@
 									<li class="span1">
 										<a href="<c:url value='/resources/themes/images/ladies/5.jpg' />" class="thumbnail" data-fancybox-group="group1" title="Description 5"><img src="<c:url value='/resources/themes/images/ladies/5.jpg' />" alt=""></a>
 									</li>
+									 --%>
 								</ul>
 							</div>
-							<div class="span5">
+							
+							<div class="span5">		<!-- 제품 이름, 가격, 재고 -->
 								<address>
-									<strong>Brand:</strong> <span>Apple</span><br>
-									<strong>Product Code:</strong> <span>Product 14</span><br>
-									<strong>Reward Points:</strong> <span>0</span><br>
-									<strong>Availability:</strong> <span>Out Of Stock</span><br>								
+									<strong>Category : </strong> <span>${productVO.p_cate2 }</span><br>
+									<strong>Product Code : </strong> <span>${productVO.p_no }</span><br>
+									<strong>Product Name : </strong> <strong>${productVO.p_name }</strong><br>
+									<strong>Availability : </strong> <span>${productVO.p_stock }개</span><br>								
+									<strong>delivery : </strong> <span>업체조건배송 </span><br>
 								</address>									
-								<h4><strong>Price: $587.50</strong></h4>
+								<h4><strong><fmt:formatNumber value="${productVO.p_price }" groupingUsed="true"/> 원</strong></h4>
 							</div>
-							<div class="span5">
-								<form class="form-inline">
-									<label class="checkbox">
-										<input type="checkbox" value=""> Option one is this and that
-									</label>
-									<br/>
-									<label class="checkbox">
-									  <input type="checkbox" value=""> Be sure to include why it's great
-									</label>
+							
+							<div class="span5" >		<!-- 주문하기 -->
+								<br>
+								<div id="optionNullCheck" style="display:none;" >		<!-- ******** -->
+									<select class="select1">		<!-- 옵션 -->
+					    				<option value="none">--------</option>
+					    				<c:forEach var="optionList" items="${optionList}" end="0">
+					    					<option>${optionList.o_title }</option>
+					    				</c:forEach>
+					    			</select>
+					    			<select class="select2">
+					    				<option value="none">----------------</option>
+					    				<c:forEach var="optionList" items="${optionList }">
+					    					<option>${optionList.o_cont }</option>
+					    				</c:forEach>
+					    			</select>
+								</div>
+								<div class="form-inline">
+									<!-- 
+										<label class="checkbox">
+											<input type="checkbox" value=""> Option one is this and that
+										</label>
+										<br/>
+										<label class="checkbox">
+										  <input type="checkbox" value=""> Be sure to include why it's great
+										</label>
+									 -->
 									<p>&nbsp;</p>
-									<label>Qty:</label>
-									<input type="text" class="span1" placeholder="1">
-									<button class="btn btn-inverse" type="submit">Add to cart</button>
-								</form>
-							</div>							
+									<label>Quantity : </label>
+									<input type="number" name="buy_cnt" class="span1" placeholder="1">
+									<button class="btn btn-inverse" type="submit">Add to cart</button><!-- TODO  -->
+								</div>
+							</div>	
+								
+												
 						</div>
+						
 						<div class="row">
 							<div class="span9">
 								<ul class="nav nav-tabs" id="myTab">
-									<li class="active"><a href="#home">Description</a></li>
-									<li class=""><a href="#profile">Additional Information</a></li>
-								</ul>							 
+									<li class="active"><a href="#tab1">작품정보</a></li>		<!-- 먼저 탭이 열려 있어야 함 -->
+									<li class=""><a href="#tab2">구매후기</a></li>
+									<li class=""><a href="#tab3">Q&A</a></li>
+								</ul>	
+														 
 								<div class="tab-content">
-									<div class="tab-pane active" id="home">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem</div>
-									<div class="tab-pane" id="profile">
+								
+									<!-- 첫번째 탭 -->
+									<div class="tab-pane active" id="tab1">
+										<!-- Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem -->
+										<c:forEach var="imageList" items="${imageList }">
+								    		<div style="text-align: center;" id="contentList">
+								    			<img src="${imageList.i_img }" class="detailImg" /><br/><br/>
+								    			<span class="detailCont">${imageList.i_cont }</span><br/><br/><br/>
+								    		</div>
+								    	</c:forEach>
+									</div>
+									
+									<!-- 두번째 탭 -->
+									<div class="tab-pane" id="tab2">
 										<table class="table table-striped shop_attributes">	
 											<tbody>
 												<tr class="">
@@ -149,8 +250,17 @@
 											</tbody>
 										</table>
 									</div>
-								</div>							
-							</div>						
+									
+									<!-- 세번째 탭 -->
+									<div class="tab-pane" id="tab3">
+										123456789!@#$%^
+									</div>
+									
+								</div>	
+							</div>		
+							
+							
+							
 							<div class="span9">	
 								<br>
 								<h4 class="title">
@@ -159,73 +269,138 @@
 										<a class="left button" href="#myCarousel-1" data-slide="prev"></a><a class="right button" href="#myCarousel-1" data-slide="next"></a>
 									</span>
 								</h4>
+								
+								
+								
+					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->			
+					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->			
+								
+								
+								
 								<div id="myCarousel-1" class="carousel slide">
 									<div class="carousel-inner">
-										<div class="active item">
-											<ul class="thumbnails listing-products">
-												<li class="span3">
-													<div class="product-box">
-														<span class="sale_tag"></span>												
-														<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/6.jpg' />"></a><br/>
-														<a href="product_detail.html" class="title">Wuam ultrices rutrum</a><br/>
-														<a href="#" class="category">Suspendisse aliquet</a>
-														<p class="price">$341</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<span class="sale_tag"></span>												
-														<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/5.jpg' />"></a><br/>
-														<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-														<a href="#" class="category">Phasellus consequat</a>
-														<p class="price">$341</p>
-													</div>
-												</li>       
-												<li class="span3">
-													<div class="product-box">												
-														<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/4.jpg' />"></a><br/>
-														<a href="product_detail.html" class="title">Praesent tempor sem</a><br/>
-														<a href="#" class="category">Erat gravida</a>
-														<p class="price">$28</p>
-													</div>
-												</li>												
-											</ul>
-										</div>
-										<div class="item">
-											<ul class="thumbnails listing-products">
-												<li class="span3">
-													<div class="product-box">
-														<span class="sale_tag"></span>												
-														<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/1.jpg' />"></a><br/>
-														<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-														<a href="#" class="category">Phasellus consequat</a>
-														<p class="price">$341</p>
-													</div>
-												</li>       
-												<li class="span3">
-													<div class="product-box">												
-														<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/2.jpg' />"></a><br/>
-														<a href="product_detail.html">Praesent tempor sem</a><br/>
-														<a href="#" class="category">Erat gravida</a>
-														<p class="price">$28</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<span class="sale_tag"></span>												
-														<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/3.jpg' />"></a><br/>
-														<a href="product_detail.html" class="title">Wuam ultrices rutrum</a><br/>
-														<a href="#" class="category">Suspendisse aliquet</a>
-														<p class="price">$341</p>
-													</div>
-												</li>
-											</ul>
-										</div>
+					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->				
+										<!-- 첫번째 페이지 -->
+											<div class="active item">		
+												<ul class="thumbnails">	
+													<c:forEach begin="0" end="0" var="page">
+													<c:forEach begin="0" end="3" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
+															<li class="span3">
+															<div class="product-box">
+																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
+																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<%-- <p class="price">₩ ${productList[4 * page + status.index].p_price }</p>	  --%>
+																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p>	
+																</div>
+															</li>
+													</c:forEach>
+													</c:forEach> 
+												</ul>
+											</div>
+								
+									<c:if test="${numOfPage >= 2}">
+											<!-- 두번째 페이지 이상 ~ -->
+										<c:if test="${numOfPage >= 3}">
+												<c:forEach begin="1" end="${numOfPage-2 }" var="page">
+												<div class="item">		
+													<ul class="thumbnails">	
+														<%-- <c:forEach begin="0" end="4" var="i"> --%>
+															<%-- ${productList.list[4 * page + i] } --%>
+														<c:forEach begin="0" end="3" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
+															<li class="span3">
+															<div class="product-box">
+																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
+																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
+																	
+																</div>
+															</li>
+														</c:forEach>
+														
+													</ul>
+												</div>
+											</c:forEach>
+										</c:if>	
+							
+											<!-- 마지막 페이지 -->
+										<c:if test="${remainder != 0}">	
+											<c:forEach begin="${numOfPage-1}" end="${numOfPage-1}" var="page">
+												<div class="item">		
+													<ul class="thumbnails">	
+														<%-- <c:forEach begin="0" end="4" var="i"> --%>
+															<%-- ${productList.list[4 * page + i] } --%>
+														<c:forEach begin="0" end="${remainder-1}" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
+															<li class="span3">
+															<div class="product-box">
+																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
+																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
+																	
+																</div>
+															</li>
+														</c:forEach>
+													</ul>
+												</div>
+											</c:forEach> 
+										</c:if>		
+										<c:if test="${remainder == 0}">	
+											<c:forEach begin="${numOfPage-1}" end="${numOfPage-1}" var="page">
+												<div class="item">		
+													<ul class="thumbnails">	
+														<%-- <c:forEach begin="0" end="4" var="i"> --%>
+															<%-- ${productList.list[4 * page + i] } --%>
+														<c:forEach begin="0" end="3" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
+															<li class="span3">
+															<div class="product-box">
+																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
+																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
+																	
+																</div>
+															</li>
+														</c:forEach>
+													</ul>
+												</div>
+											</c:forEach> 
+										</c:if>	
+										
+										
+									</c:if>
+					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->					
 									</div>
 								</div>
+								
+								
+								
 							</div>
 						</div>
+						
+						
+						
+						<!--  삭제버튼  -->
+						<input class="btn btn-inverse" type="button" id="delProduct" value="Delete" />
+						<input class="btn btn-inverse" type="button" id="gotoList" value="Home" />
+						
+						
+					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
 					</div>
+					</form>
+					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
+					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+					
+					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
+					
+					
 					<div class="span3 col">
 						<div class="block">	
 							<ul class="nav nav-list">
@@ -308,8 +483,10 @@
 						</div>
 					</div>
 				</div>
+				
 			</section>			
 			<section id="footer-bar">
+			
 				<div class="row">
 					<div class="span3">
 						<h4>Navigation</h4>
@@ -328,6 +505,7 @@
 							<li><a href="#">Order History</a></li>
 							<li><a href="#">Wish List</a></li>
 							<li><a href="#">Newsletter</a></li>
+							<li><a href="seller/pRegister">pRegister</a></li>
 						</ul>
 					</div>
 					<div class="span5">
@@ -347,6 +525,7 @@
 				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
 			</section>
 		</div>
+
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
 		<script>
 			$(function () {
@@ -366,6 +545,30 @@
                     interval: 2500
                 });								
 			});
+		</script>
+		
+		<script>
+	    	// 게시글 삭제
+		    $('#delProduct').click(function() {
+		    	var result = confirm('정말 삭제하시겠습니까?');
+		    	if (result == true) {
+		    		$('#frm').attr('action', 'seller/pDelete');
+		    		$('#frm').attr('method', 'post');
+		    		$('#frm').submit();
+		    	}
+		    });
+		    
+	    	// 리스트
+		    $('#gotoList').click(function() {
+		    	location = './';
+		    });
+	    	
+	    	// 옵션 없을시 hidden
+	    	$(document).ready(function(){
+	    		if("${optionList}"!="[]"){
+	    			$('#optionNullCheck').show();
+	    		}
+	    	})
 		</script>
     </body>
 </html>

@@ -1,25 +1,200 @@
 @charset "utf-8";
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:regular,italic,bold");
-
 /* common
 ----------------------------------------------------------------------------- */
+/* 인터파크 폰트 M버전 */
+@font-face{
+	font-family: 'InterparkGothicOTFM';
+	src: url("/shop05/resources/themes/css/fonts/InterparkGothicOTFM.otf");	/* **** 수정 **** */
+}
+/* 인터파크 폰트 B버전 */ 
+@font-face{
+	font-family: 'InterparkGothicOTFB';
+	src: url("/shop05/resources/themes/css/fonts/InterparkGothicOTFB.otf");	/* **** 수정 **** */
+}
+/* 인터파크 폰트 L버전 */   
+@font-face{
+	font-family: 'InterparkGothicOTFL';
+	src: url("/shop05/resources/themes/css/fonts/InterparkGothicOTFL.otf");	/* **** 수정 **** */
+}  
 body{
 	font-size: 12px;
 	font-family: 'Open Sans', arial, tahoma, sans-serif;
 	background:url(../images/bg.png) repeat 0 0 fixed;
+	font-family: InterparkGothicOTFL;   
 }
-label, input, button, select, textarea{
+/* label, input, button, select, textarea{
 	font-size: 12px;
+} */
+.searchSelect{
+   border-color: #eb9999;
+   color : #eb9999;
+   font-family: InterparkGothicOTFM;
+   font-size: 12px;
+   width: 32%;  
 }
+/* 검색 input css  */
+.searchi{ 
+   font-family: InterparkGothicOTFM;
+   font-size: 12px;
+   width: 32%;  
+}
+/* 검색버튼 css
+------------------------------------------------------------- */
+#searchBtn {
+   border: 1px solid #eb9999;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+   background: -moz-linear-gradient(top, #ffffff, #ffffff);
+   background: -ms-linear-gradient(top, #ffffff, #ffffff);
+   background: -o-linear-gradient(top, #ffffff, #ffffff);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+   padding: 5px 10px;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #f5cee0 0 1px 0;
+   color: #eb9999;
+  font-family: InterparkGothicOTFL;   
+   font-size: 14px;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+#searchBtn:hover {
+    text-shadow: #914158 0 1px 0;
+   border: 1px solid #eb9999;
+   background: #f57575;
+   background: -webkit-gradient(linear, left top, left bottom, from(#eb9999), to(#ffffff));
+   background: -webkit-linear-gradient(top, #eb9999, #f57575);
+   background: -moz-linear-gradient(top, #eb9999, #f57575);
+   background: -ms-linear-gradient(top, #eb9999, #f57575);
+   background: -o-linear-gradient(top, #eb9999, #f57575);
+   background-image: -ms-linear-gradient(top, #eb9999 0%, #f57575 100%);
+   color: #fff;
+   }
+/*----------------------------------------여기까지 검색 버튼 css  */
 ul li a,a{
-	color:#333;
-	outline:0; 
-	-webkit-transition: all 0.2s linear;
+   color:#333;
+   outline:0; 
+   -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
     -o-transition: all 0.2s linear;
     -ms-transition: all 0.2s linear;
     transition: all 0.2s linear;
 }
+ul.pageLinks{
+	font-family: InterparkGothicOTFB; 
+	font-size: 16px;
+}
+/* 상세보기 창에서 보여지는 css 
+------------------------------------------------ */
+#detail {
+	width: 250px; 
+	height: 750px;  
+	background-color: #ea9999;
+	position: absolute; 
+	top: 10%; 
+	right: 5%;  
+	display: none; 
+	text-align: center;
+	border-radius: 15px;
+} 
+.detail_i{
+	text-align: center;  	
+	margin-left: 1%;  
+	color: #5f5f59;
+	font-family: InterparkGothicOTFL; 
+}
+
+/* 수용 */
+input, button, select, textarea{
+	/* text-align: center;   */	
+	margin-left: 1%;  
+	color: #5f5f59; /* 회색  */
+	font-family: InterparkGothicOTFL; 
+}
+/*--------------------------------여기까지  */
+/* 상세보기 창에서 닫음버튼 css */
+#detail #close{
+	font-family: InterparkGothicOTFL; 
+	font-size: 20px; 	
+}
+
+
+/* 페이징 링크 위치 css  */
+.pageLinks{
+	margin-left: 36%;
+	margin-top: 2%
+	
+} 
+/* 페이징 번호  */
+.pageLinks li {
+	list-style-type: none;
+	display: inline;
+	
+}
+.pageLinks #page{
+	
+	
+	border: 2px solid black;       	
+	border-left-width: 5px; 
+	border-right-width: 5px;
+	border-color: #ea9999; 
+	background-color: #ea9999;
+	
+}
+.pageLinks #page:hover{
+	border: 2px solid black;       	
+	border-left-width: 5px; 
+	border-right-width: 5px;
+	border-color: #393333; 
+	background-color: #393333;
+}
+/* 페이징 번호 링크 걸어진 색  */
+.pageLinks li a{
+	color: white;
+}
+/* 전체 화면에서 왼쪽 리스트 링크 css  */
+.control-label a{
+	color: #5f5f59;
+	font-size: 14px;
+}
+
+
+div.sp{
+	width: 25%;
+}
+/*  --------여기까지  */
+/* 오른쪽 상세 부분 너비  */
+div.span7{
+	width: 68%; 
+}
+/* 아래 2개 제외한 나머지 content 마진과 폰트 사이즈 */
+fieldset{
+	margin-left: 8%;
+	font-size: 15px;
+}
+/* 전체 주문 요청 내역, 전체 판매 내역 content부분 마진  */
+.fieldb{
+	margin-left: 0%; 
+	font-size: 15px;
+	
+}
+/* 쇼핑몰 현황 마진 */
+fieldset.cf {
+	margin-left: 15%; 
+}
+fieldset.bm {
+	margin-left: 19%; 
+}
+table{
+	border-spacing: 5px;
+}
+
 a{
 	color:#EA9999;
 }
@@ -463,6 +638,79 @@ section.navbar{
 	padding:10px 0;
 }
 /* end product box */
+/*  '관리자페이지' css 
+------------------------------------------------------------------------------*/
+h3.titlem{ 
+   padding-bottom:5px;
+   margin-bottom:15px;
+   overflow:hidden;
+   text-transform:uppercase;
+   font-family:  InterparkGothicOTFM;
+   font-size:26px;
+   min-height:27px;
+   width:100%;
+   
+} 
+h3.titlem strong{
+   color:#EA9999;/* 수정 */
+}
+h3.titlem a{
+   color: #333333; 
+}
+h3.titlem a:hover{
+	color:#E06666;/* 조금 진한 */
+}
+/* end '관리자페이지' style */
+
+/* title style for h3 tag
+----------------------------------------------------------------------------- */
+h3.title{
+   background: url(../images/line_bar.png) 0 8px repeat-x; 
+   padding-bottom:5px;
+   margin-bottom:15px;
+   overflow:hidden;
+   text-transform:uppercase;
+   font-family:  InterparkGothicOTFM;
+   font-size:23px;
+   min-height:27px;
+   width:100%;
+}
+h3.title.m{
+   margin-top:15px;   
+   overflow:hidden;
+   width:100%;
+}
+h3.title strong{
+   color:#EA9999;/* 수정 */
+}
+h3.title span.text{
+   background-color:#fff;
+   padding-right:10px;
+}
+h3.title .left{
+   background: url(../images/arrow-pleft.png) #eee no-repeat center center;   
+   margin-right:2px;   
+}
+h3.title .right{
+   background: url(../images/arrow-p.png) #eee no-repeat center center;   
+}
+h3.title .pull-right{
+   background-color:#fff;
+   padding-left:10px;   
+}
+h3.title .left,h3.title .right{
+   display: inline-block;
+   width: 22px;
+   height: 22px;
+   cursor: pointer;
+}
+h3.title .left:hover,h4.title .right:hover{
+   background-color:#EA9999;
+}
+h3.title .button:hover{
+   text-decoration: none;
+}
+/* end h3 title style */
 
 /* title style for h4 tag
 ----------------------------------------------------------------------------- */
@@ -777,3 +1025,168 @@ section.our_client .row{
 		border-bottom:1px solid #eee;
 	}
 }
+/* 상세보기 버튼 css */
+button.detail {
+   border: 1px solid #eb9999;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+   background: -moz-linear-gradient(top, #ffffff, #ffffff);
+   background: -ms-linear-gradient(top, #ffffff, #ffffff);
+   background: -o-linear-gradient(top, #ffffff, #ffffff);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+   padding: 5px 10px;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #f5cee0 0 1px 0;
+   color: #eb9999;
+  font-family: InterparkGothicOTFL;   
+   font-size: 14px;
+   text-decoration: none;
+   vertical-align: middle;
+   display: inline;
+   }
+button.detail:hover {
+    text-shadow: #914158 0 1px 0;
+   border: 1px solid #eb9999;
+   background: #f57575;
+   background: -webkit-gradient(linear, left top, left bottom, from(#eb9999), to(#ffffff));
+   background: -webkit-linear-gradient(top, #eb9999, #f57575);
+   background: -moz-linear-gradient(top, #eb9999, #f57575);
+   background: -ms-linear-gradient(top, #eb9999, #f57575);
+   background: -o-linear-gradient(top, #eb9999, #f57575);
+   background-image: -ms-linear-gradient(top, #eb9999 0%, #f57575 100%);
+   color: #fff;
+   }
+  
+/*  close버튼 css */
+#close {
+   border: 1px solid #eb9999;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+   background: -webkit-linear-gradient(top, #ffffff, #ffffff);
+   background: -moz-linear-gradient(top, #ffffff, #ffffff);
+   background: -ms-linear-gradient(top, #ffffff, #ffffff);
+   background: -o-linear-gradient(top, #ffffff, #ffffff);
+   background-image: -ms-linear-gradient(top, #ffffff 0%, #ffffff 100%);
+   padding: 5px 10px;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #f5cee0 0 1px 0;
+   color: #eb9999;
+  font-family: InterparkGothicOTFL;   
+   font-size: 14px;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+#close {
+    text-shadow: #914158 0 1px 0;
+   border: 1px solid #eb9999;
+   background: #f57575;
+   background: -webkit-gradient(linear, left top, left bottom, from(#eb9999), to(#ffffff));
+   background: -webkit-linear-gradient(top, #eb9999, #f57575);
+   background: -moz-linear-gradient(top, #eb9999, #f57575);
+   background: -ms-linear-gradient(top, #eb9999, #f57575);
+   background: -o-linear-gradient(top, #eb9999, #f57575);
+   background-image: -ms-linear-gradient(top, #eb9999 0%, #f57575 100%);
+   color: #fff;
+   }
+
+
+/* buyr, buyf의 테이블 정렬 부분  */
+
+
+ .tbl_price {
+
+	text-align: right; 
+}
+.buyrt th{
+	width: 100px; 
+}
+.buyrt td{
+	text-align: center;
+}
+.buyft th{
+	width: 100px; 
+}
+.buyft td{
+	text-align: center;
+}
+.buy_no{
+	width: 70px;
+}
+.buy_date{
+	width: 150px;
+}
+.p_name{
+	width: 140px;
+}
+  
+/* -------------------------------------------여기까지 */  
+/* 판매자 회원 목록 테이블 정렬 부분  */
+.sellert th{
+	width: 80px;
+}
+.sellert td{
+	text-align: center;
+}
+.s_reg, .s_acc{
+	width: 200px; 
+}
+
+/* ---------------------------------------------여기까지 */
+/* 판매물 승인 페이지 테이블 정렬 부분  */
+.productT th{
+	width: 90px;
+}
+.productT td{
+	text-align: center;
+}
+
+/* ---------------------------------------------요기요~  */
+/* 구매자 목록 페이지 테이블 정렬 부분  */
+.buyerT th{
+	width: 90px;
+}
+.buyerT td{
+	text-align: center;
+}
+.breg {
+	width: 200px;
+}
+.buyerT .detail{
+	width: 120px; 
+}
+/* ---------------------------------------------여기까지!  */
+
+/* 구매자 마이 페이지 CSS 
+.buyerlist:hover{	
+	color : '#EA9999';
+}
+.buyerlist{
+	color: '#5f5f59';
+	text-align: center;
+	text-decoration: underline;
+}
+ */
+.control-buyer{
+	margin-left: 12%;
+}
+#ordert{ 
+	text-align: center;
+
+}
+#completet{
+	text-align: center;
+	
+}
+ 
+

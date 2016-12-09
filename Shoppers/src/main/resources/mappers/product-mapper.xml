@@ -46,4 +46,24 @@
 	select * from s_tbl_product where p_cate2 = #{p_cate2}
 	</select>
 	
+	<!-- ***** 페이징 처리 ***** -->
+	
+	  <!-- 테이블의 전체 레코드 개수를 검색 -->
+	
+	<select id="ProductsTotalCount" resultType="Integer">
+		select count(*) from s_tbl_product
+	</select>
+	
+ 	<!-- 페이징 처리를 위한 SQL -->
+	<select id="ProductsListPage" resultType="com.online.shop.domain.ProductVO">
+		select b.*
+		from (
+			select rownum rn, a.*
+			from (
+				select * from s_tbl_product order by p_no desc 
+			) a
+		) b
+		where rn between #{start} and #{end}
+	</select>
+	
 </mapper>

@@ -14,7 +14,7 @@
 	width: 100%
 }
 
-.dropzone input[type=file] {
+ .dropzone input[type=file] {
 	height: 100%;
 	left: 0;
 	outline: 0;
@@ -22,7 +22,7 @@
 	position: absolute;
 	top: 0;
 	width: 100%
-}
+} 
 
 .dropzone+.status {
 	border-radius: 5px;

@@ -28,8 +28,8 @@ public class ProductController {
 	ProductService productService;
 	
 	@RequestMapping(value="pRegister", method=RequestMethod.GET)
-	public void registerGET() {
-		
+	public String pRegisterGET() {
+		return "seller/sudo_product_register";
 	} // end registerGET()
 	
 	@RequestMapping(value="pRegister", method=RequestMethod.POST)

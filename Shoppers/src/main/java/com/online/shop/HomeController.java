@@ -297,7 +297,7 @@ public class HomeController {
 	   
 	   /*----------------------------------------------------------------------------*/
 	   
-	   // TODO : ProductController로 이동
+	 /*  // TODO : ProductController로 이동
 	   
 	   @RequestMapping(value="pDetail2", method=RequestMethod.GET)
 	   public String product_Detail(int p_no, String s_id, String p_name, Model model) {
@@ -319,133 +319,135 @@ public class HomeController {
 	      return "UI/sudo_product_detail";
 	      
 	   } // end productDetail() -> 판매자 홈에서 상품 번호를 참조해 상품 상세 페이지로 넘겨주는 역할 
-	   
+*/	   
 	   /*----------------------------------------------------------------------------*/
 	   
 	   // 여기서부터 태훈이 코드.///////////////////////////////////////
 	   // ### 회원가입 메인
-	      @RequestMapping(value="seller/register", method=RequestMethod.GET)
-	      public String sellerMainRegister(Model model){
-	         
-	         logger.info("register_seller 실행");
-	      
-	      // return "sudo_checkout2";
-	         return "/login/register_seller";
-	      }   
+      @RequestMapping(value="seller/register", method=RequestMethod.GET)
+      public String sellerMainRegister(Model model){
+         
+         logger.info("register_seller 실행");
+      
+      // return "sudo_checkout2";
+         return "/login/register_seller";
+      }   
 
-	      /* ----------------------------------------------------------------------------------------------------- */
-	      
+      /* ----------------------------------------------------------------------------------------------------- */
+      
 
-	      // 판매자 login_register 아이디 중복체크 컨트롤러
-	      @RequestMapping(value="seller/s_checkid", method=RequestMethod.POST)
-	      public void s_checkid(@RequestBody String userid, HttpServletResponse response) throws IOException{
-	         
-	         logger.info("checkid 실행");
-	         // logger.info("userid : " + userid);
-	         
-	         // 필요없는 문자열을 제거
-	         String s_id = userid.substring(0, userid.length()-1);
-	         
-	         logger.info("s_id : " + s_id);
-	         
-	         // DB에서 입력한 문자열 검색
-	         SellerVO vo = sellerService.readCheckID(s_id);
-	      
-	         
-	         // DB에 있다면 중복...
-	         if (vo!=null){
-	            String selectedID = vo.getS_id();
-	            logger.info("[ " + selectedID + " ] 는 중복된 아이디 입니다...");
-	            response.getWriter().print(1);
-	         } else {
-	            logger.info("사용 가능한 아이디 입니다...^^");
-	         }
-	      }   
-	      /* ----------------------------------------------------------------------------------------------------- */
-	      
-	      // 이메일 인증번호 발송
-	      @RequestMapping(value = "seller/checkemail", method = RequestMethod.POST)
-	      public void sellerCheckEmail(@RequestBody String email, HttpServletResponse response) throws IOException {
-	         logger.info("email: " + email);
-	         
-	         // @ converted to %40 in HTTPPost request
-	         String convert_email = URLDecoder.decode(email, "UTF-8"); 
-	         
-	         // 필요없는 문자열을 제거
-	         String b_email = convert_email.substring(0, convert_email.length()-1);
-	         
-	         // 4자리 인증번호 생성
-	         // 1. 0~9999 까지의 난수를 발생시킨 후 1~3자리 수를 없애기위해 1000을 더해준다 (1000~10999)
-	         // 2. 다섯자리가 넘어가면 1000을 빼준다.         
-	         int code = (int) (Math.random() * 10000 + 1000); 
-	         if (code > 10000){
-	            code = code - 1000;
-	         }
-	         
-	         SimpleMailMessage message = new SimpleMailMessage();
-	         message.setTo(b_email); // 받는 이메일 등록
-	         
-	            logger.info("메일 주소 : " + b_email);
-	         
-	         message.setSubject("쇼핑몰 인증번호");  // 이메일 제목
-	         message.setText("본인인증번호는 [ " + code + " ] 입니다. 정확히 입력해주세요");  // 이메일 내용
-	         
-	         logger.info("보낸 코드 : " + code);
-	         mailSender.send(message);  // 이메일 전송
-	         // model.addAttribute("code", code);
-	         
-	         response.getWriter().print(code);
-	         //return "email_result";
-	      }
-	      
-	      /* ----------------------------------------------------------------------------------------------------- */
-	      
-	      // 판매자 가입완료 버튼 클릭
-	      @RequestMapping(value="seller/s_register_result", method=RequestMethod.POST)
-	      public String s_register_result(SellerVO vo, HttpServletRequest request){
-	         // login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
-	         // 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
-	         logger.info("판매자 회원가입 버튼 호출 ");
-	         sellerService.createSeller(vo);
-	         logger.info("판매자 회원가입 성공! ");
-	 		logger.info("구매자 회원가입 성공! ");
-			logger.info("회원 가입된 아이디 : "+vo.getS_id());
-			
-	         return "redirect:/seller/main"; // TODO: 성공시 메인화면으로 보내야 함.
-	      }
-	      
-	      /////////////////////// 판매자 로그인 관려 처리
-	      
-	      @RequestMapping(value="seller/login", method=RequestMethod.GET)
-	      public String openSellerRegister(){
-	         return "/sudo_loginSelect";
-	      }
-	      
-	      @RequestMapping(value="seller/login", method=RequestMethod.POST)
-	      public String sellerloginResult(String s_id, String s_pw, HttpServletRequest request, String query){   
-	         logger.info("login 컨트롤러 실행");
-	         logger.info("s_id : "+s_id+" , s_pw : "+s_pw);
-	         if (sellerService.isValidUser(s_id, s_pw)){
-	            logger.info("로그인 성공");
-	            HttpSession session = request.getSession();
-	            session.setAttribute("s_login_id", s_id);
-	            logger.info("세션 저장 성공! key:login_id, 값 : "+s_id);
-	            return "redirect:main";
-	         } else {
-	            logger.info("로그인 실패");
-	            return "redirect:../login";
-	         }
-	      }
-	      @RequestMapping(value="seller/logout", method=RequestMethod.GET)
-	      public String sellerlogout(HttpServletRequest request){
-	         HttpSession session = request.getSession();
-	         session.invalidate();   
-	         logger.info("세션 비우기 성공!");
-	         return "redirect:../"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
-	      }
-	      /////////////////////////////////////////////////////////////////////////////////////////비로그인 공통
-	      
-	      @RequestMapping(value="pDetail", method=RequestMethod.GET)
+      // 판매자 login_register 아이디 중복체크 컨트롤러
+      @RequestMapping(value="seller/s_checkid", method=RequestMethod.POST)
+      public void s_checkid(@RequestBody String userid, HttpServletResponse response) throws IOException{
+         
+         logger.info("checkid 실행");
+         // logger.info("userid : " + userid);
+         
+         // 필요없는 문자열을 제거
+         String s_id = userid.substring(0, userid.length()-1);
+         
+         logger.info("s_id : " + s_id);
+         
+         // DB에서 입력한 문자열 검색
+         SellerVO vo = sellerService.readCheckID(s_id);
+      
+         
+         // DB에 있다면 중복...
+         if (vo!=null){
+            String selectedID = vo.getS_id();
+            logger.info("[ " + selectedID + " ] 는 중복된 아이디 입니다...");
+            response.getWriter().print(1);
+         } else {
+            logger.info("사용 가능한 아이디 입니다...^^");
+         }
+      }   
+      /* ----------------------------------------------------------------------------------------------------- */
+      
+      // 이메일 인증번호 발송
+      @RequestMapping(value = "seller/checkemail", method = RequestMethod.POST)
+      public void sellerCheckEmail(@RequestBody String email, HttpServletResponse response) throws IOException {
+         logger.info("email: " + email);
+         
+         // @ converted to %40 in HTTPPost request
+         String convert_email = URLDecoder.decode(email, "UTF-8"); 
+         
+         // 필요없는 문자열을 제거
+         String b_email = convert_email.substring(0, convert_email.length()-1);
+         
+         // 4자리 인증번호 생성
+         // 1. 0~9999 까지의 난수를 발생시킨 후 1~3자리 수를 없애기위해 1000을 더해준다 (1000~10999)
+         // 2. 다섯자리가 넘어가면 1000을 빼준다.         
+         int code = (int) (Math.random() * 10000 + 1000); 
+         if (code > 10000){
+            code = code - 1000;
+         }
+         
+         SimpleMailMessage message = new SimpleMailMessage();
+         message.setTo(b_email); // 받는 이메일 등록
+         
+            logger.info("메일 주소 : " + b_email);
+         
+         message.setSubject("쇼핑몰 인증번호");  // 이메일 제목
+         message.setText("본인인증번호는 [ " + code + " ] 입니다. 정확히 입력해주세요");  // 이메일 내용
+         
+         logger.info("보낸 코드 : " + code);
+         mailSender.send(message);  // 이메일 전송
+         // model.addAttribute("code", code);
+         
+         response.getWriter().print(code);
+         //return "email_result";
+      }
+      
+      /* ----------------------------------------------------------------------------------------------------- */
+      
+      // 판매자 가입완료 버튼 클릭
+      @RequestMapping(value="seller/s_register_result", method=RequestMethod.POST)
+      public String s_register_result(SellerVO vo, HttpServletRequest request){
+         // login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
+         // 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
+         logger.info("판매자 회원가입 버튼 호출 ");
+         sellerService.createSeller(vo);
+         logger.info("판매자 회원가입 성공! ");
+ 		logger.info("구매자 회원가입 성공! ");
+		logger.info("회원 가입된 아이디 : "+vo.getS_id());
+		
+         return "redirect:/seller/main"; // TODO: 성공시 메인화면으로 보내야 함.
+      }
+      
+      /////////////////////// 판매자 로그인 관려 처리
+      
+      @RequestMapping(value="seller/login", method=RequestMethod.GET)
+      public String openSellerRegister(){
+         return "/sudo_loginSelect";
+      }
+      
+      @RequestMapping(value="seller/login", method=RequestMethod.POST)
+      public String sellerloginResult(String s_id, String s_pw, HttpServletRequest request, String query){   
+         logger.info("login 컨트롤러 실행");
+         logger.info("s_id : "+s_id+" , s_pw : "+s_pw);
+         if (sellerService.isValidUser(s_id, s_pw)){
+            logger.info("로그인 성공");
+            HttpSession session = request.getSession();
+            session.setAttribute("s_login_id", s_id);
+            logger.info("세션 저장 성공! key:login_id, 값 : "+s_id);
+            return "redirect:main";
+         } else {
+            logger.info("로그인 실패");
+            return "redirect:../login";
+         }
+      }
+      @RequestMapping(value="seller/logout", method=RequestMethod.GET)
+      public String sellerlogout(HttpServletRequest request){
+         HttpSession session = request.getSession();
+         session.invalidate();   
+         logger.info("세션 비우기 성공!");
+         return "redirect:../"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+      }
+      /////////////////////////////////////////////////////////////////////////////////////////비로그인 공통
+      
+      
+      
+/*	      @RequestMapping(value="pDetail", method=RequestMethod.GET)
 	  	public String productDetail(int p_no, String s_id, String p_name, Integer page, QnaVO vo, Model model, HttpServletRequest request) {
 	  		// 상품 번호에 의한 각 상품의 전체 정보 받아오기
 	  		ProductVO pVo = sellerService.readItemByPno(p_no);
@@ -512,32 +514,107 @@ public class HomeController {
 	  				model.addAttribute("relativeList", relativelist);
 	  		return "visitor/pDetail";
 	  	} // end productDetail() -> 판매자 홈에서 상품 번호를 참조해 상품 상세 페이지로 넘겨주는 역할 
-	      
-	      @RequestMapping(value="logout", method=RequestMethod.GET)
-	      public String logoutt(HttpServletRequest request){
-	         HttpSession session = request.getSession();
-	         session.invalidate();   
-	         logger.info("세션 비우기 성공!");
-	         return "redirect:/"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
-	      }
-	  	@RequestMapping(value="pList", method=RequestMethod.GET) // 맵핑 판매자 홈으로 바꾸고 나중에 쿼리 스트링 넘겨서 각각의 판매자 홈으로 넘어가게 해줘야함
-		public String sellerHome(Model model, String s_id, HttpServletRequest request) {
-			
-			SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
-			
-			// 전체 상품 리스트
-			List<ProductVO> productList = sellerService.readProductBySid(s_id);
-			logger.info("productList size: " + productList.size());
-			// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
-			model.addAttribute("productList", productList);
+*/	      
+      
+    /*-- 수용 --------------------------------------------------------------------------*/
+      
+  	@RequestMapping(value="pDetail", method=RequestMethod.GET)
+  	public String product_Detail(int p_no, String s_id, String p_name, Model model) {
+  		
+  		ProductVO pVo = sellerService.readItemByPno(p_no);	// 상품 번호에 의한 각 상품의 전체 정보 받아오기
+  		List<OptionVO> optionList = sellerService.readOpByPno(p_no);	// 옵션 정보를 받아오기
+  		List<ImageVO> imageList = sellerService.readImgByPno(p_no);	// 이미지 정보를 받아오기
+  		List<ProductVO> cateCheck = productService.selectCate2(pVo.getP_cate2());	// 카테고리가 연관된 작품 리스트
+  		
+  		// 판매자 정보 받아오기
+  		s_id = "seller1";
+  		SellerVO sVo = sellerService.readSellerInfo(s_id);
+  		
+  		int length = cateCheck.size();
+  		int numOfPage =  length / 4;
+  		if (length % 4 > 0) {
+  			numOfPage++; // 나머지가 있으면 올림 	 
+  		}
+  		int remainder = length % 4;
+  		
+  		model.addAttribute("productVO", pVo);	// 전체 정보를 Model 객체에 넣어서 View(jsp)에 전달
+  		model.addAttribute("optionList", optionList);	// 받아온 옵션 정보를 Model 객체에 넣어서 View(jsp)에 전달
+  		model.addAttribute("imageList", imageList);	// 받아온 이미지 정보를  Model 객체에 넣어서 View(jsp)에 전달
+  		
+  		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
+  	//	model.addAttribute("productList", productList);
+  		model.addAttribute("numOfPage", numOfPage);
+  		model.addAttribute("remainder", remainder);
+  		model.addAttribute("relativeList", cateCheck);	// 카테고리 검색해서 연관상품 보여주기
+  		model.addAttribute("sVo", sVo);
 
-			// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
-			model.addAttribute("sellerInfo", sellerInfo);
-			
-			return "/visitor/pList";
-		} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
-	      
-	      
+  		
+  		return "UI/sudo_product_detail";
+  		
+  	} // end productDetail() -> 판매자 홈에서 상품 번호를 참조해 상품 상세 페이지로 넘겨주는 역할 
+      
+	/*-- 수용 --------------------------------------------------------------------------*/
+	
+	@RequestMapping(value="/products", method=RequestMethod.GET)
+	public String product(Model model) {
+		logger.info("main 컨트롤러 실행");
+		// 전체 상품 리스트
+		List<ProductVO> productList = sellerService.readAllProduct();
+		
+		int length = productList.size();
+		int numOfPage =  length / 4;
+		if (length % 4 > 0) {
+			numOfPage++; // 나머지가 있으면 올림 	 
+			// 뷰페이저로 한 페이지에 4개씩 출력 !
+			// ex) (9/4 = 2.X )=> 3페이지 필요
+		}
+		int remainder = length % 4;
+		
+		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
+		model.addAttribute("productList", productList);
+		model.addAttribute("numOfPage", numOfPage);
+		model.addAttribute("remainder", remainder);
+		logger.info("length : " + length);
+		logger.info("numOfPage : "+numOfPage);
+		logger.info("remainder : "+remainder);
+		/*logger.info(productList.get(0).getP_name());*/
+		
+		return "UI/sudo_products";
+		
+	} // end product
+  	
+  	
+  	
+  	
+  	/*----------------------------------------------------------------------------*/  
+      
+      @RequestMapping(value="logout", method=RequestMethod.GET)
+      public String logoutt(HttpServletRequest request){
+         HttpSession session = request.getSession();
+         session.invalidate();   
+         logger.info("세션 비우기 성공!");
+         return "redirect:/"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+      }
+      
+      /*----------------------------------------------------------------------------*/
+  	@RequestMapping(value="pList", method=RequestMethod.GET) // 맵핑 판매자 홈으로 바꾸고 나중에 쿼리 스트링 넘겨서 각각의 판매자 홈으로 넘어가게 해줘야함
+	public String sellerHome(Model model, String s_id, HttpServletRequest request) {
+		
+		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
+		
+		// 전체 상품 리스트
+		List<ProductVO> productList = sellerService.readProductBySid(s_id);
+		logger.info("productList size: " + productList.size());
+		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
+		model.addAttribute("productList", productList);
+
+		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
+		model.addAttribute("sellerInfo", sellerInfo);
+		
+		return "/visitor/pList";
+	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
+      
+      
 
 	
 	
