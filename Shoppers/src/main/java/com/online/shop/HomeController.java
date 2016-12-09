@@ -210,12 +210,16 @@ public class HomeController {
 
 	// 구매자 가입완료 버튼 클릭
 	@RequestMapping(value="buyer/b_register_result", method=RequestMethod.POST)
-	public String b_register_result(BuyerVO vo){ // default 객체로 생성하고 name 정보들을  set 한다.
+	public String b_register_result(BuyerVO vo, HttpServletRequest request){ // default 객체로 생성하고 name 정보들을  set 한다.
 		// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
 		// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
 		buyerService.insert(vo);
 		logger.info("구매자 회원가입 성공! ");
-		return "UI/sudo_index"; // TODO: 성공시 메인화면으로 보내야 함.
+		logger.info("회원 가입된 아이디 : "+vo.getB_id());
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("b_login_id", vo.getB_id());
+		return "redirect:/buyer/main"; // TODO: 성공시 메인화면으로 보내야 함.
 	}
 	
 	/* ----------------------------------------------------------------------------------------------------- */
@@ -256,7 +260,7 @@ public class HomeController {
 		session.removeAttribute("login_id");
 		session.invalidate();	
 		logger.info("세션 비우기 성공!");
-		return "redirect:../"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+		return "redirect:../buyer/main"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
 	}
 	
 	/////////////////////////////////////////////// 셀러
@@ -398,13 +402,16 @@ public class HomeController {
 	      
 	      // 판매자 가입완료 버튼 클릭
 	      @RequestMapping(value="seller/s_register_result", method=RequestMethod.POST)
-	      public String s_register_result(SellerVO vo){
+	      public String s_register_result(SellerVO vo, HttpServletRequest request){
 	         // login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
 	         // 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
 	         logger.info("판매자 회원가입 버튼 호출 ");
 	         sellerService.createSeller(vo);
 	         logger.info("판매자 회원가입 성공! ");
-	         return "UI/sudo_index"; // TODO: 성공시 메인화면으로 보내야 함.
+	 		logger.info("구매자 회원가입 성공! ");
+			logger.info("회원 가입된 아이디 : "+vo.getS_id());
+			
+	         return "redirect:/seller/main"; // TODO: 성공시 메인화면으로 보내야 함.
 	      }
 	      
 	      /////////////////////// 판매자 로그인 관려 처리
