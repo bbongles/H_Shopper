@@ -120,25 +120,25 @@ $(function() {
 		temp.children().remove();
 		temp.append('<option value="none">--------</option>');
 		
-		if (p_cate1 == 'Home / Deco') {
+		if (p_cate1 == 'home_deco') {
 			temp.append('<option value="furniture">가구</option>');
 			temp.append('<option value="pottery">도자기</option>');
 			temp.append('<option value="lamp">조명</option>');
 		}
 
-		if (p_cate1 == 'Candle / Diffuser') {
+		if (p_cate1 == 'candle_diffuser') {
 			temp.append('<option value="candle">캔들</option>');
 			temp.append('<option value="diffuser">디퓨저</option>');
 			temp.append('<option value="aromatic oils">아로마오일</option>');
 		}
 
-		if (p_cate1 == 'Art / Fancy') {
+		if (p_cate1 == 'art_fancy') {
 			temp.append('<option value="picture">사진</option>');
 			temp.append('<option value="fancy">문구</option>');
 			temp.append('<option value="paper">페이퍼</option>');
 		}
 
-		if (p_cate1 == 'Jewellery') {
+		if (p_cate1 == 'jewellery') {
 			temp.append('<option value="earring">귀걸이</option>');
 			temp.append('<option value="necklace">목걸이</option>');
 			temp.append('<option value="ring">반지</option>');
@@ -340,25 +340,15 @@ var x=0;
 				</form>
 			</div>
 			<div class="span8">
-					<div class="account pull-right">
-						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart">Your Cart</a></li>
-							<li><a href="checkout">Checkout</a></li>		
-						
-							<c:if test="${empty s_login_id && empty b_login_id }">
-								<c:url value="login" var="login" />
-								<li><a href="${login}">Login</a></li>	
-							</c:if>
-							<c:if test="${not empty s_login_id || not empty b_login_id }">
-								<!-- 세션에 로그인 정보가 있는 경우 -->
-								<c:url value="logout" var="logout" />
-								<li><a href="${logout }">로그아웃</a></li>		
-							</c:if>				
-	
-						</ul>
-					</div>
+				<div class="account pull-right">
+					<ul class="user-menu">
+						<li><a href="#">My Account</a></li>
+						<li><a href="cart.html">Your Cart</a></li>
+						<li><a href="checkout.html">Checkout</a></li>
+						<li><a href="register.html">Login</a></li>
+					</ul>
 				</div>
+			</div>
 		</div>
 	</div>
 	<div id="wrapper" class="container">
@@ -458,10 +448,10 @@ var x=0;
 												<div class="controls">
 													<select name="p_cate1" class="input-xlarge">
 														<option value="none">--------</option>
-														<option value="homedeco">홈/데코</option>
-														<option value="candlediffu">캔들/디퓨저</option>
-														<option value="artfancy">아트/팬시</option>
-														<option value="jewelry">쥬얼리</option>
+														<option value="home_deco">홈/데코</option>
+														<option value="candle_diffuser">캔들/디퓨저</option>
+														<option value="art_fancy">아트/팬시</option>
+														<option value="jewellry">쥬얼리</option>
 													</select> <br/>
 													<select name="p_cate2" class="input-xlarge">
 														<option value="none">--------</option>
