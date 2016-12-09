@@ -31,7 +31,7 @@
   
   <!-- 전체 상품 목록 검색 -->
   <select id="selectAllProduct" resultType="ProductVO">
-  select * from s_tbl_product
+  select * from s_tbl_product order by p_no desc
   </select>
   
   <!-- 해당 상품번호(p_no)의 상세페이지 검색 -->
