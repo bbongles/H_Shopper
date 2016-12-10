@@ -105,8 +105,12 @@ public class HomeController {
 	
 	@RequestMapping(value="buyer/main", method=RequestMethod.GET)
 	public String mainHome(Model model, HttpServletRequest request) {
+		
 		HttpSession session = request.getSession();
+		// 주문 중복시, 메인으로 올때 주문된 정보를 지움(orderInterceptor, orerdercontroller)
 		session.removeAttribute("ordered");
+		// 셀러로 회원가입시, 로그인된 상태로 메인으로 넘어옴
+		session.getAttribute("s_login_id");
 		logger.info("main 컨트롤러 실행");
 		// 전체 상품 리스트
 		List<ProductVO> productList = sellerService.readAllProduct();
@@ -222,7 +226,7 @@ public class HomeController {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("b_login_id", vo.getB_id());
-		return "redirect:/buyer/main"; // TODO: 성공시 메인화면으로 보내야 함.
+		 return "redirect:/buyer/main"; 
 	}
 	
 	/* ----------------------------------------------------------------------------------------------------- */
@@ -268,8 +272,13 @@ public class HomeController {
 	/////////////////////////////////////////////// 셀러
 	
 	 @RequestMapping(value="seller/main", method=RequestMethod.GET)
-	   public String sellerMainHome(Model model) {
-	      logger.info("main 컨트롤러 실행");
+	   public String sellerMainHome(Model model, HttpServletRequest request) {
+		 // 셀러로 회원가입시, 로그인된 상태로 메인으로 넘어옴
+		 
+		 HttpSession session = request.getSession();
+		 session.getAttribute("s_login_id");
+		 
+		 logger.info("main 컨트롤러 실행");
 	      // 전체 상품 리스트
 	      List<ProductVO> productList = sellerService.readAllProduct();
 	      
@@ -413,7 +422,9 @@ public class HomeController {
  		logger.info("구매자 회원가입 성공! ");
 		logger.info("회원 가입된 아이디 : "+vo.getS_id());
 		
-         return "redirect:/seller/main"; // TODO: 성공시 메인화면으로 보내야 함.
+		HttpSession session = request.getSession();
+		session.setAttribute("s_login_id", vo.getS_id());
+         return "redirect:/seller/main"; 
       }
       
       /////////////////////// 판매자 로그인 관려 처리

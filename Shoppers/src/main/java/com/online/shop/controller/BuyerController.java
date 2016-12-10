@@ -66,7 +66,7 @@ public class BuyerController {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@RequestMapping(value="pDetail", method=RequestMethod.GET)
-	public void productDetail(int p_no, String s_id, String p_name, Integer page, QnaVO vo, Model model) {
+	public String productDetail(int p_no, String s_id, String p_name, Integer page, QnaVO vo, Model model) {
 		// 상품 번호에 의한 각 상품의 전체 정보 받아오기
 		ProductVO pVo = sellerService.readItemByPno(p_no);
 		// 전체 정보를 Model 객체에 넣어서 View(jsp)에 전달
@@ -131,6 +131,8 @@ public class BuyerController {
 				// 카테고리 검색해서 연관상품 보여주기
 				List<ProductVO> relativelist = productService.selectCate2(pVo.getP_cate2());
 				model.addAttribute("relativeList", relativelist);
+				
+				return "/buyer/sudo_product_detail";
 		
 	} // end productDetail() -> 판매자 홈에서 상품 번호를 참조해 상품 상세 페이지로 넘겨주는 역할 
 	

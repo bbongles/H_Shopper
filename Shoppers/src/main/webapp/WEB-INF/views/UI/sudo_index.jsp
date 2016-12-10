@@ -44,10 +44,27 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart">Your Cart</a></li>
-							<li><a href="checkout">Checkout</a></li>		
-						
+
+ <!-- 김태훈 코드 시작, 로그인한 사용자별 상단 메뉴 정렬--><!-- TODO: 마이페이지, 장바구니 링크 걸고, 인터셉터 걸어야함 -->
+							<!-- ---------------visitor 입장----------------------------- -->
+							<c:if test="${empty s_login_id && empty b_login_id }">
+							<li><a href="">My Page</a></li>
+							<li><a href="">Cart</a></li>
+							</c:if>
+							<!-- ------------바이어 입장 시작-------------------------- -->
+							<c:if test="${not empty b_login_id }">
+							<li><a href="">My Page</a></li>	
+							<li><a href="">Cart</a></li>
+							</c:if>
+							<!-- ------------------셀러 입장시작------------------------------- -->
+							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+							<li><a href="">My Page</a></li>
+							<li><a href="pList?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
+							</c:if>
+							<!-- ----------------어드민 입장 시작--------------------------------------->	
+							<c:if test="${s_login_id eq 'admin'}">
+							<li><a href="">My Page</a></li>
+							</c:if>
 							<c:if test="${empty s_login_id && empty b_login_id }">
 								<c:url value="login" var="login" />
 								<li><a href="${login}">Login</a></li>	
@@ -55,8 +72,9 @@
 							<c:if test="${not empty s_login_id || not empty b_login_id }">
 								<!-- 세션에 로그인 정보가 있는 경우 -->
 								<c:url value="logout" var="logout" />
-								<li><a href="${logout }">로그아웃</a></li>		
-							</c:if>				
+								<li><a href="${logout }">Logout</a></li>		
+							</c:if>
+<!-- 김태훈 코드 끝 -------------------------------------------------------------------> 	
 	
 						</ul>
 					</div>

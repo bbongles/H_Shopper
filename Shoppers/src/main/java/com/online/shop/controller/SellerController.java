@@ -1,26 +1,21 @@
 package com.online.shop.controller;
 
-import java.io.IOException;
-import java.net.URLDecoder;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.online.shop.domain.BuyerVO;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -90,7 +85,7 @@ public class SellerController {
 	/*----------------------------------------------------------------------------*/
 	
 	@RequestMapping(value="pDetail", method=RequestMethod.GET)
-	public void productDetail(int p_no, String s_id, String p_name, Integer page, QnaVO vo, Model model, HttpServletRequest request) {
+	public String productDetail(int p_no, String s_id, String p_name, Integer page, QnaVO vo, Model model, HttpServletRequest request) {
 		
 //		// 로그인 한 판매자의 세션 유지
 //		HttpSession session = request.getSession();
@@ -160,6 +155,8 @@ public class SellerController {
 				// 카테고리 검색해서 연관상품 보여주기
 				List<ProductVO> relativelist = productService.selectCate2(pVo.getP_cate2());
 				model.addAttribute("relativeList", relativelist);
+				
+				return "/seller/sudo_product_detail";
 		
 	} // end productDetail() -> 판매자 홈에서 상품 번호를 참조해 상품 상세 페이지로 넘겨주는 역할 
 

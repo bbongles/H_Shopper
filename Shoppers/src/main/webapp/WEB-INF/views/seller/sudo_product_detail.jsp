@@ -84,7 +84,7 @@
 								<c:url value="logout" var="logout" />
 								<li><a href="${logout }">Logout</a></li>		
 							</c:if>
-<!-- 김태훈 코드 끝 -------------------------------------------------------------------> 						
+<!-- 김태훈 코드 끝 -------------------------------------------------------------------> 					
 	
 						</ul>
 					</div>
@@ -222,9 +222,11 @@
 										</label>
 									 -->
 									<p>&nbsp;</p>
-									<label>Quantity : </label>
-									<input type="number" name="buy_cnt" class="span1" placeholder="1">
-									<button class="btn btn-inverse" type="submit">Add to cart</button><!-- TODO  -->
+									<!-- 김태훈 코드...............1 셀러 로그인시 수량 및 카트담기 기능 삭제-->
+
+
+
+									<!-- 김태훈 코드...............1 -->
 								</div>
 							</div>	
 								
@@ -403,7 +405,11 @@
 						
 						
 						<!--  삭제버튼  -->
+						<!-- 김태훈 코드2............ 로그인한 아이디랑 상품등록 아이디가 같을때만 보임-->
+						<c:if test="${s_login_id eq productVO.s_id}">
 						<input class="btn btn-inverse" type="button" id="delProduct" value="Delete" />
+						</c:if>
+						<!-- 김태훈 코드2............ -->
 						<input class="btn btn-inverse" type="button" id="gotoList" value="Home" />
 						
 						
@@ -575,11 +581,11 @@
 		    	}
 		    });
 		    
-	    	 // 리스트
-		    $('#gotoList').click(function() {
-		    	location = 'main';
-		    });
-	    	 
+	    	// 리스트
+		     $('#gotoList').click(function() {
+    			location = 'main';
+   			 });
+	    	
 	    	// 옵션 없을시 hidden
 	    	$(document).ready(function(){
 	    		if("${optionList}"!="[]"){

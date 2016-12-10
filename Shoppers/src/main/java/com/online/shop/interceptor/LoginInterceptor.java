@@ -78,9 +78,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 
 			
 		} else {
-
-			response.sendRedirect("/shop/login");
-
+			response.sendRedirect("../");
 		}
 		
 

@@ -55,7 +55,7 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
- <!-- 김태훈 코드 시작, 로그인한 사용자별 상단 메뉴 정렬--><!-- TODO: 마이페이지, 장바구니 링크 걸고, 인터셉터 걸어야함 -->
+  <!-- 김태훈 코드 시작, 로그인한 사용자별 상단 메뉴 정렬--><!-- TODO: 마이페이지, 장바구니 링크 걸고, 인터셉터 걸어야함 -->
 							<!-- ---------------visitor 입장----------------------------- -->
 							<c:if test="${empty s_login_id && empty b_login_id }">
 							<li><a href="">My Page</a></li>
@@ -84,8 +84,7 @@
 								<c:url value="logout" var="logout" />
 								<li><a href="${logout }">Logout</a></li>		
 							</c:if>
-<!-- 김태훈 코드 끝 -------------------------------------------------------------------> 						
-	
+<!-- 김태훈 코드 끝 -------------------------------------------------------------------> 					
 						</ul>
 					</div>
 				</div>
@@ -575,11 +574,11 @@
 		    	}
 		    });
 		    
-	    	 // 리스트
+	    	// 리스트
 		    $('#gotoList').click(function() {
 		    	location = 'main';
-		    });
-	    	 
+		    }); 
+	    	
 	    	// 옵션 없을시 hidden
 	    	$(document).ready(function(){
 	    		if("${optionList}"!="[]"){
