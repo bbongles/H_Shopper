@@ -92,7 +92,6 @@ public class HomeController {
 		logger.info("remainder : "+remainder);
 		/*logger.info(productList.get(0).getP_name());*/
 		
-		//return "home";
 		return "UI/sudo_index";
 	}
 	
@@ -299,7 +298,6 @@ public class HomeController {
 	      logger.info("numOfPage : "+numOfPage);
 	      logger.info("remainder : "+remainder);
 	      /*logger.info(productList.get(0).getP_name());*/
-	      
 	      
 	      return "UI/sudo_index";
 	      

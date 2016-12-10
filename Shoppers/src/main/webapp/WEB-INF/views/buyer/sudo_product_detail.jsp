@@ -224,6 +224,9 @@
 									<label>Quantity : </label>
 									<input type="number" name="buy_cnt" class="span1" placeholder="1">
 									<button class="btn btn-inverse" type="submit">Add to cart</button><!-- TODO  -->
+									<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로, 셀러 로그인시 수량 및 카트담기 기능 코드를 삭제했음-->
+									<a href="pList?s_id=${productVO.s_id}"><img src="${sVo.s_logo}"></a>
+									<!-- 김태훈 코드 추가 끝 -->
 								</div>
 							</div>	
 								
@@ -402,7 +405,9 @@
 						
 						
 						<!--  삭제버튼  -->
-						<input class="btn btn-inverse" type="button" id="delProduct" value="Delete" />
+						<!-- 김태훈 코드시작,  바이어로 로그인했을때 디테일에서 상품 삭제버튼 안보이게함(코드를 지우지는 안았음) -->
+						<!-- <input class="btn btn-inverse" type="button" id="delProduct" value="Delete" /> -->
+						<!-- 김태훈 코드끝 -->
 						<input class="btn btn-inverse" type="button" id="gotoList" value="Home" />
 						
 						
