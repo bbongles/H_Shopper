@@ -538,7 +538,7 @@ public class HomeController {
   		List<ProductVO> cateCheck = productService.selectCate2(pVo.getP_cate2());	// 카테고리가 연관된 작품 리스트
   		
   		// 판매자 정보 받아오기
-  		s_id = "seller1";
+  		/*s_id = "seller1";*/
   		SellerVO sVo = sellerService.readSellerInfo(s_id);
   		
   		int length = cateCheck.size();
