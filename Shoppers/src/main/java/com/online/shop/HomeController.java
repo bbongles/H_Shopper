@@ -69,7 +69,8 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpServletRequest request) {
+
 		logger.info("Welcome home! The client locale is {}.", locale);
 		List<ProductVO> productList = sellerService.readAllProduct();
 		
@@ -103,7 +104,9 @@ public class HomeController {
 	/* ----------------------------------------------------------------------------------------------------- */
 	
 	@RequestMapping(value="buyer/main", method=RequestMethod.GET)
-	public String mainHome(Model model) {
+	public String mainHome(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("ordered");
 		logger.info("main 컨트롤러 실행");
 		// 전체 상품 리스트
 		List<ProductVO> productList = sellerService.readAllProduct();
@@ -227,7 +230,6 @@ public class HomeController {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 
-	
 	@RequestMapping(value="buyer/login", method=RequestMethod.POST)
 	public void login(String b_id, String b_pw, HttpServletRequest request, String query, Model model){	
 		logger.info("login 컨트롤러 실행");
@@ -260,7 +262,7 @@ public class HomeController {
 		session.removeAttribute("login_id");
 		session.invalidate();	
 		logger.info("세션 비우기 성공!");
-		return "redirect:../buyer/main"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+		return "redirect:../"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
 	}
 	
 	/////////////////////////////////////////////// 셀러

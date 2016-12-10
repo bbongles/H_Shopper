@@ -12,6 +12,8 @@
 
 <div>주문번호 : ${buyNO }</div>
 <div>상태 : 입금대기중</div>
-
+<div>
+<a href="/shop/buyer/main">메인페이지로</a>
+</div>
 </body>
 </html>
