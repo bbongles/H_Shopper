@@ -1,10 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>sellerHome</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -122,7 +123,7 @@ p {
 	<div id="wrapper" class="container">
 		<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="./" class="logo pull-left"><img src="<c:url value='/resources/themes/images/logo.png' />" class="site_logo" alt=""></a>
+					<a href="../buyer/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images/logo.png' />" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="./products">Home / Deco</a>					
@@ -198,137 +199,242 @@ p {
 			</div>
 		</section>
 		
+		<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+								
 		<section class="main-content">
-				<div class="row">
-					<div class="span12">													
-						<div class="row">
-							<div class="span12">
-								<h4 class="title">
-									<span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
-									<span class="pull-right">
-										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
-									</span>
-								</h4>
-								
-								
-								<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
-								
-								<!-- 1번째 리스트 라인 -->
-								<div id="myCarousel" class="myCarousel carousel slide">
-									<div class="carousel-inner">
-	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->	
-	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-		
-								
-				 <!-- ** 마지막 페이지 다음에 오는 페이지는 다시 첫번째 페이지 ** -->			
-					 
-				<!-- 첫번째 페이지 -->
-				<div class="active item">		
-					<ul class="thumbnails">	
-						<c:forEach begin="0" end="0" var="page">
-						<c:forEach begin="0" end="3" varStatus="status" items="${productList }"><!-- 1번째 // 4 개씩 출력 -->
-								<li class="span3">
-								<div class="product-box">
-									<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-										<p><a href="pDetail?p_no=${productList[4 * page + status.index].p_no }"><img src="${productList[4 * page + status.index].p_img }" /></a></p>
-										<a href="pDetail?p_no=${productList[4 * page + status.index].p_no }" class="title">${productList[4 * page + status.index].p_name }</a><br>
-										<a href="pDetail?p_no=${productList[4 * page + status.index].p_no }" class="category">${productList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
-										<%-- <p class="price">₩ ${productList[4 * page + status.index].p_price }</p>	  --%>
-										<p class="price"><fmt:formatNumber value="${productList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p>	
+			<div class="row">
+				<div class="span12">
+
+					<div class="row">
+						<div class="span12">
+							<h4 class="title">
+								<span class="pull-left"><span class="text"><span
+										class="line">Feature <strong>Products</strong></span></span></span> <span
+									class="pull-right"> <a class="left button"
+									href="#myCarousel" data-slide="prev"></a><a
+									class="right button" href="#myCarousel" data-slide="next"></a>
+								</span>
+							</h4>
+
+
+							<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+
+							<!-- 1번째 리스트 라인 -->
+							<div id="myCarousel" class="myCarousel carousel slide">
+								<div class="carousel-inner">
+									<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+									<!-- ** 마지막 페이지 다음에 오는 페이지는 다시 첫번째 페이지 ** -->
+
+									<!-- 첫번째 페이지 -->
+									<div class="active item">
+										<ul class="thumbnails">
+											<c:forEach begin="0" end="0" var="page">
+												<c:forEach begin="0" end="7" varStatus="status"
+													items="${productList }">
+													<!-- 1번째 // 4 개씩 출력 -->
+													<li class="span3">
+														<div class="product-box">
+															<span class="sale_tag">
+																<%--  #index : ${4 * page + status.index} --%>
+															</span>
+															<p>
+																<a
+																	href="pDetail?p_no=${productList[8 * page + status.index].p_no }"><img
+																	src="${productList[8 * page + status.index].p_img }" /></a>
+															</p>
+															<a
+																href="pDetail?p_no=${productList[8 * page + status.index].p_no }"
+																class="title">${productList[8 * page + status.index].p_name }</a><br>
+															<a
+																href="pDetail?p_no=${productList[8 * page + status.index].p_no }"
+																class="category">${productList[8 * page + status.index].p_cate1}</a>
+															<!-- 카테고리 -->
+															<%-- <p class="price">₩ ${productList[4 * page + status.index].p_price }</p>	  --%>
+															<p class="price">
+																<fmt:formatNumber
+																	value="${productList[4 * page + status.index].p_price}"
+																	groupingUsed="true" />
+																원
+															</p>
+														</div>
+													</li>
+												</c:forEach>
+											</c:forEach>
+										</ul>
 									</div>
-								</li>
-						</c:forEach>
-						</c:forEach> 
-					</ul>
+
+
+
+									<c:if test="${numOfPage >= 2}">
+										<!-- 두번째 페이지 이상 ~ -->
+
+										<c:if test="${numOfPage >= 3}">
+											<%-- <c:forEach begin="1" end="${numOfPage-1 }" var="page"> --%>
+											<c:forEach begin="1" end="${numOfPage-2 }" var="page">
+												<div class="item">
+													<ul class="thumbnails">
+														<%-- <c:forEach begin="0" end="4" var="i"> --%>
+														<%-- ${productList.list[4 * page + i] } --%>
+														<c:forEach begin="0" end="7" varStatus="status"
+															items="${productList }">
+															<!-- 2번째 // 4 개씩 출력 -->
+															<li class="span3">
+																<div class="product-box">
+																	<span class="sale_tag">
+																		<%--  #index : ${4 * page + status.index} --%>
+																	</span>
+																	<p>
+																		<a
+																			href="pDetail?p_no=${productList[8 * page + status.index].p_no }"><img
+																			src="${productList[8 * page + status.index].p_img }" /></a>
+																	</p>
+																	<a
+																		href="pDetail?p_no=${productList[8 * page + status.index].p_no }"
+																		class="title">${productList[8 * page + status.index].p_name }</a><br>
+																	<a
+																		href="pDetail?p_no=${productList[8 * page + status.index].p_no }"
+																		class="category">${productList[8 * page + status.index].p_cate1}</a>
+																	<!-- 카테고리 -->
+																	<p class="price">
+																		<fmt:formatNumber
+																			value="${productList[8 * page + status.index].p_price}"
+																			groupingUsed="true" />
+																		원
+																	</p>
+
+																</div>
+															</li>
+														</c:forEach>
+
+													</ul>
+												</div>
+											</c:forEach>
+										</c:if>
+
+
+										<!-- 마지막 페이지 -->
+										<c:if test="${remainder != 0}">
+											<c:forEach begin="${numOfPage-1}" end="${numOfPage-1}"
+												var="page">
+												<div class="item">
+													<ul class="thumbnails">
+														<%-- <c:forEach begin="0" end="4" var="i"> --%>
+														<%-- ${productList.list[4 * page + i] } --%>
+														<c:forEach begin="0" end="${remainder-1}"
+															varStatus="status" items="${productList }">
+															<!-- 3번째 // 4 개씩 출력 -->
+															<li class="span3">
+																<div class="product-box">
+																	<span class="sale_tag">
+																		<%--  #index : ${4 * page + status.index} --%>
+																	</span>
+																	<p>
+																		<a
+																			href="pDetail?p_no=${productList[8 * page + status.index].p_no }"><img
+																			src="${productList[8 * page + status.index].p_img }" /></a>
+																	</p>
+																	<a
+																		href="pDetail?p_no=${productList[8 * page + status.index].p_no }"
+																		class="title">${productList[8 * page + status.index].p_name }</a><br>
+																	<a
+																		href="pDetail?p_no=${productList[8 * page + status.index].p_no }"
+																		class="category">${productList[8 * page + status.index].p_cate1}</a>
+																	<!-- 카테고리 -->
+																	<p class="price">
+																		<fmt:formatNumber
+																			value="${productList[8 * page + status.index].p_price}"
+																			groupingUsed="true" />
+																		원
+																	</p>
+
+																</div>
+															</li>
+														</c:forEach>
+
+													</ul>
+												</div>
+											</c:forEach>
+										</c:if>
+										<c:if test="${remainder == 0}">
+											<c:forEach begin="${numOfPage-1}" end="${numOfPage-1}"
+												var="page">
+												<div class="item">
+													<ul class="thumbnails">
+														<%-- <c:forEach begin="0" end="4" var="i"> --%>
+														<%-- ${productList.list[4 * page + i] } --%>
+														<c:forEach begin="0" end="7" varStatus="status"
+															items="${productList }">
+															<!-- 3번째 // 4 개씩 출력 -->
+															<li class="span3">
+																<div class="product-box">
+																	<span class="sale_tag">
+																		<%--  #index : ${4 * page + status.index} --%>
+																	</span>
+																	<p>
+																		<a
+																			href="pDetail?p_no=${productList[8 * page + status.index].p_no }"><img
+																			src="${productList[8 * page + status.index].p_img }" /></a>
+																	</p>
+																	<a
+																		href="pDetail?p_no=${productList[8 * page + status.index].p_no }"
+																		class="title">${productList[8 * page + status.index].p_name }</a><br>
+																	<a
+																		href="pDetail?p_no=${productList[8 * page + status.index].p_no }"
+																		class="category">${productList[8 * page + status.index].p_cate1}</a>
+																	<!-- 카테고리 -->
+																	<p class="price">
+																		<fmt:formatNumber
+																			value="${productList[8 * page + status.index].p_price}"
+																			groupingUsed="true" />
+																		원
+																	</p>
+
+																</div>
+															</li>
+														</c:forEach>
+
+													</ul>
+												</div>
+											</c:forEach>
+										</c:if>
+
+									</c:if>
+
+
+
+									<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<br />
+
+
 				</div>
-	
-	
-	
-				<c:if test="${numOfPage >= 2}">
-				<!-- 두번째 페이지 이상 ~ -->
-				
-					<c:if test="${numOfPage >= 3}">
-					<%-- <c:forEach begin="1" end="${numOfPage-1 }" var="page"> --%>
-						<c:forEach begin="1" end="${numOfPage-2 }" var="page">
-						<div class="item">		
-							<ul class="thumbnails">	
-								<%-- <c:forEach begin="0" end="4" var="i"> --%>
-									<%-- ${productList.list[4 * page + i] } --%>
-								<c:forEach begin="0" end="3" varStatus="status" items="${productList }"><!-- 2번째 // 4 개씩 출력 -->
-									<li class="span3">
-									<div class="product-box">
-										<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-											<p><a href="pDetail?p_no=${productList[4 * page + status.index].p_no }"><img src="${productList[4 * page + status.index].p_img }" /></a></p>
-											<a href="pDetail?p_no=${productList[4 * page + status.index].p_no }" class="title">${productList[4 * page + status.index].p_name }</a><br>
-											<a href="pDetail?p_no=${productList[4 * page + status.index].p_no }" class="category">${productList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
-											<p class="price"><fmt:formatNumber value="${productList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
-											
-									</div>
-									</li>
-								</c:forEach>
-								
-								</ul>
-							</div>
-						</c:forEach>
-					</c:if>
-					
-					
-				<!-- 마지막 페이지 -->
-					<c:if test="${remainder != 0}">
-						<c:forEach begin="${numOfPage-1}" end="${numOfPage-1}" var="page">
-							<div class="item">		
-								<ul class="thumbnails">	
-									<%-- <c:forEach begin="0" end="4" var="i"> --%>
-										<%-- ${productList.list[4 * page + i] } --%>
-									<c:forEach begin="0" end="${remainder-1}" varStatus="status" items="${productList }"><!-- 3번째 // 4 개씩 출력 -->
-										<li class="span3">
-										<div class="product-box">
-											<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-												<p><a href="pDetail?p_no=${productList[4 * page + status.index].p_no }"><img src="${productList[4 * page + status.index].p_img }" /></a></p>
-												<a href="pDetail?p_no=${productList[4 * page + status.index].p_no }" class="title">${productList[4 * page + status.index].p_name }</a><br>
-												<a href="pDetail?p_no=${productList[4 * page + status.index].p_no }" class="category">${productList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
-												<p class="price"><fmt:formatNumber value="${productList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
-												
-											</div>
-										</li>
-									</c:forEach>
-									
-								</ul>
-							</div>
-						</c:forEach> 
-					</c:if>
-					<c:if test="${remainder == 0}">
-						<c:forEach begin="${numOfPage-1}" end="${numOfPage-1}" var="page">
-							<div class="item">		
-								<ul class="thumbnails">	
-									<%-- <c:forEach begin="0" end="4" var="i"> --%>
-										<%-- ${productList.list[4 * page + i] } --%>
-									<c:forEach begin="0" end="3" varStatus="status" items="${productList }"><!-- 3번째 // 4 개씩 출력 -->
-										<li class="span3">
-										<div class="product-box">
-											<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-												<p><a href="pDetail?p_no=${productList[4 * page + status.index].p_no }"><img src="${productList[4 * page + status.index].p_img }" /></a></p>
-												<a href="pDetail?p_no=${productList[4 * page + status.index].p_no }" class="title">${productList[4 * page + status.index].p_name }</a><br>
-												<a href="pDetail?p_no=${productList[4 * page + status.index].p_no }" class="category">${productList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
-												<p class="price"><fmt:formatNumber value="${productList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
-												
-											</div>
-										</li>
-									</c:forEach>
-									
-								</ul>
-							</div>
-						</c:forEach> 
-					</c:if>
-				
-				</c:if>		
-									
-			</section>
-	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->	
-	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-				
+			</div>
+		</section>
+
+		<hr />
+		<!-- 김태훈 코드2............ 로그인한 아이디랑 상품등록 아이디가 같을때만 보임-->
+		<%-- <c:if test="${s_login_id eq sellerInfo.s_id}">
+			<input class="btn btn-inverse" type="button" id="btnPRegister"
+				value="Register" />
+		</c:if> --%>
+		<!-- 김태훈 코드2............ -->
+		<input class="btn btn-inverse" type="button" id="gotoList"
+			value="Home" />
 									
 		
 		
@@ -381,6 +487,11 @@ p {
     if(e.value=="no")e.value="yes";
     else{e.value="no";location.reload();}
     }
+	
+   	// 리스트
+    $('#gotoList').click(function() {
+		location = '../buyer/main';
+	});
 	</script>
 	
 </body>
