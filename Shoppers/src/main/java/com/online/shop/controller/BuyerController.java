@@ -138,8 +138,8 @@ public class BuyerController {
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////// 판매자홈
 	
-	@RequestMapping(value="/pList", method=RequestMethod.GET) // 맵핑 판매자 홈으로 바꾸고 나중에 쿼리 스트링 넘겨서 각각의 판매자 홈으로 넘어가게 해줘야함
-	public void sellerHome(Model model, String s_id, HttpServletRequest request) {
+	@RequestMapping(value="/sellerHome", method=RequestMethod.GET) // 맵핑 판매자 홈으로 바꾸고 나중에 쿼리 스트링 넘겨서 각각의 판매자 홈으로 넘어가게 해줘야함
+	public String sellerHome(Model model, String s_id, HttpServletRequest request) {
 		
 		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
 		
@@ -152,6 +152,7 @@ public class BuyerController {
 		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("sellerInfo", sellerInfo);
 		
+		return "/buyer/sudo_seller_home";
 		
 	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
 	
