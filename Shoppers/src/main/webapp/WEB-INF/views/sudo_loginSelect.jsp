@@ -51,36 +51,38 @@
 			<div class="span8">
 				<div class="account pull-right">
 					<ul class="user-menu">
- <!-- 김태훈 코드 시작, 로그인한 사용자별 상단 메뉴 정렬--><!-- TODO: 마이페이지, 장바구니 링크 걸고, 인터셉터 걸어야함 -->
-							<!-- ---------------visitor 입장----------------------------- -->
-							<c:if test="${empty s_login_id && empty b_login_id }">
+						<!-- 김태훈 코드 시작, 로그인한 사용자별 상단 메뉴 정렬-->
+						<!-- TODO: 마이페이지, 장바구니 링크 걸고, 인터셉터 걸어야함 -->
+						<!-- ---------------visitor 입장----------------------------- -->
+						<c:if test="${empty s_login_id && empty b_login_id }">
 							<li><a href="">My Page</a></li>
 							<li><a href="">Cart</a></li>
-							</c:if>
-							<!-- ------------바이어 입장 시작-------------------------- -->
-							<c:if test="${not empty b_login_id }">
-							<li><a href="">My Page</a></li>	
+						</c:if>
+						<!-- ------------바이어 입장 시작-------------------------- -->
+						<c:if test="${not empty b_login_id }">
+							<li><a href="">My Page</a></li>
 							<li><a href="">Cart</a></li>
-							</c:if>
-							<!-- ------------------셀러 입장시작------------------------------- -->
-							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+						</c:if>
+						<!-- ------------------셀러 입장시작------------------------------- -->
+						<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
 							<li><a href="">My Page</a></li>
-							<li><a href="pList?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
-							</c:if>
-							<!-- ----------------어드민 입장 시작--------------------------------------->	
-							<c:if test="${s_login_id eq 'admin'}">
+							<li><a href="pList?s_id=${s_login_id}">My Home</a></li>
+							<!-- 마이홈은 판매자홈 말하는거임 -->
+						</c:if>
+						<!-- ----------------어드민 입장 시작--------------------------------------->
+						<c:if test="${s_login_id eq 'admin'}">
 							<li><a href="">My Page</a></li>
-							</c:if>
-							<c:if test="${empty s_login_id && empty b_login_id }">
-								<c:url value="login" var="login" />
-								<li><a href="${login}">Login</a></li>	
-							</c:if>
-							<c:if test="${not empty s_login_id || not empty b_login_id }">
-								<!-- 세션에 로그인 정보가 있는 경우 -->
-								<c:url value="logout" var="logout" />
-								<li><a href="${logout }">Logout</a></li>		
-							</c:if>
-<!-- 김태훈 코드 끝 -------------------------------------------------------------------> 				
+						</c:if>
+						<c:if test="${empty s_login_id && empty b_login_id }">
+							<c:url value="login" var="login" />
+							<li><a href="${login}">Login</a></li>
+						</c:if>
+						<c:if test="${not empty s_login_id || not empty b_login_id }">
+							<!-- 세션에 로그인 정보가 있는 경우 -->
+							<c:url value="logout" var="logout" />
+							<li><a href="${logout }">Logout</a></li>
+						</c:if>
+						<!-- 김태훈 코드 끝 ------------------------------------------------------------------->
 					</ul>
 				</div>
 			</div>
@@ -124,6 +126,8 @@
 		</section>
 		<section class="main-content">
 			<div class="row">
+
+				<!-- *************** -->
 				<div class="span5">
 					<h4 class="title">
 						<span class="text"><strong>Login</strong> Form</span>
@@ -156,9 +160,8 @@
 									</div>
 									<div class="control-group">
 										<input tabindex="3" class="btn btn-inverse large"
-											type="submit" value="구매자 로그인">
-											<input type="hidden" name="query" 
-value="<%=request.getQueryString() %>" />
+											type="submit" value="구매자 로그인"> <input type="hidden"
+											name="query" value="<%=request.getQueryString()%>" />
 										<hr>
 										<p class="reset">
 											구매자 <a tabindex="4" href="#"
@@ -199,60 +202,71 @@ value="<%=request.getQueryString() %>" />
 								</fieldset>
 							</form>
 						</div>
+						<!-- class = tab-pane -->
 					</div>
+					<!-- myTabContent -->
 
-				</div> <!-- end span5 -->
-			<div class="span7">
-<h4 class="title"><span class="text"><strong>Register</strong> Select</span></h4>
-<a href="buyer/register"><img alt="구매자 회원가입" src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_buyer.gif" style="width: 150px"></a>
-<a href="seller/register"><img alt="판매자 회원가입" src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_seller.gif" style="width: 150px"></a>
+				</div><!-- end span5 -->
+
+				<div class="span7">
+					<h4 class="title">
+						<span class="text"><strong>Register</strong> Select</span>
+					</h4>
+					<a href="buyer/register"><img alt="구매자 회원가입"
+						src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_buyer.gif"
+						style="width: 150px"></a> <a href="seller/register"><img
+						alt="판매자 회원가입"
+						src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_seller.gif"
+						style="width: 150px"></a>
 
 
-</div>
-	</div>
+				</div><!-- span7 -->
 			</div><!-- end row -->
-			
-	
-	</section>
-	<section id="footer-bar">
-		<div class="row">
-			<div class="span3">
-				<h4>Navigation</h4>
-				<ul class="nav">
-					<li><a href="./index.html">Homepage</a></li>
-					<li><a href="./about.html">About Us</a></li>
-					<li><a href="./contact.html">Contac Us</a></li>
-					<li><a href="./cart.html">Your Cart</a></li>
-					<li><a href="./register.html">Login</a></li>
-				</ul>
+		</section>
+
+
+
+
+		<section id="footer-bar">
+			<div class="row">
+				<div class="span3">
+					<h4>Navigation</h4>
+					<ul class="nav">
+						<li><a href="./index.html">Homepage</a></li>
+						<li><a href="./about.html">About Us</a></li>
+						<li><a href="./contact.html">Contac Us</a></li>
+						<li><a href="./cart.html">Your Cart</a></li>
+						<li><a href="./register.html">Login</a></li>
+					</ul>
+				</div>
+				<div class="span4">
+					<h4>My Account</h4>
+					<ul class="nav">
+						<li><a href="#">My Account</a></li>
+						<li><a href="#">Order History</a></li>
+						<li><a href="#">Wish List</a></li>
+						<li><a href="#">Newsletter</a></li>
+					</ul>
+				</div>
+				<div class="span5">
+					<p class="logo">
+						<img src="<c:url value='resources/themes/images/logo.png' />"
+							class="site_logo" alt="">
+					</p>
+					<p>Lorem Ipsum is simply dummy text of the printing and
+						typesetting industry. the Lorem Ipsum has been the industry's
+						standard dummy text ever since the you.</p>
+					<br /> <span class="social_icons"> <a class="facebook"
+						href="#">Facebook</a> <a class="twitter" href="#">Twitter</a> <a
+						class="skype" href="#">Skype</a> <a class="vimeo" href="#">Vimeo</a>
+					</span>
+				</div>
 			</div>
-			<div class="span4">
-				<h4>My Account</h4>
-				<ul class="nav">
-					<li><a href="#">My Account</a></li>
-					<li><a href="#">Order History</a></li>
-					<li><a href="#">Wish List</a></li>
-					<li><a href="#">Newsletter</a></li>
-				</ul>
-			</div>
-			<div class="span5">
-				<p class="logo">
-					<img src="<c:url value='resources/themes/images/logo.png' />"
-						class="site_logo" alt="">
-				</p>
-				<p>Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry. the Lorem Ipsum has been the industry's
-					standard dummy text ever since the you.</p>
-				<br /> <span class="social_icons"> <a class="facebook"
-					href="#">Facebook</a> <a class="twitter" href="#">Twitter</a> <a
-					class="skype" href="#">Skype</a> <a class="vimeo" href="#">Vimeo</a>
-				</span>
-			</div>
-		</div>
-	</section>
-	<section id="copyright">
-		<span>Copyright 2013 bootstrappage template All right reserved.</span>
-	</section>
+		</section>
+		<section id="copyright">
+			<span>Copyright 2013 bootstrappage template All right
+				reserved.</span>
+		</section>
 	</div>
 	<script src="<c:url value='/resources/themes/js/common.js' />"></script>
 	<script>
