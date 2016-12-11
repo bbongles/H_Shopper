@@ -69,7 +69,7 @@
 							<!-- ------------------셀러 입장시작------------------------------- -->
 							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
 							<li><a href="">My Page</a></li>
-							<li><a href="pList?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
+							<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
 							</c:if>
 							<!-- ----------------어드민 입장 시작--------------------------------------->	
 							<c:if test="${s_login_id eq 'admin'}">
@@ -225,7 +225,7 @@
 				
 									<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로-->
 									<br/><br/>
-									<a href="pList?s_id=${productVO.s_id}"><img src="${sVo.s_logo}" style="width:100px;, height:100px;"></a>
+									<a href="sellerHome?s_id=${productVO.s_id}"><img src="${sVo.s_logo}" style="width:100px;, height:100px;"></a>
 									<!-- 김태훈 코드 추가 끝 -->
 								</div>
 							</div>	
@@ -575,7 +575,7 @@
 		    $('#delProduct').click(function() {
 		    	var result = confirm('정말 삭제하시겠습니까?');
 		    	if (result == true) {
-		    		$('#frm').attr('action', 'seller/pDelete');
+		    		$('#frm').attr('action', 'pDelete');
 		    		$('#frm').attr('method', 'post');
 		    		$('#frm').submit();
 		    	}

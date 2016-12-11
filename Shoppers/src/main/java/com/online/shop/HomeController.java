@@ -287,6 +287,14 @@ public class HomeController {
 
 		}
 	}
+	
+	@RequestMapping(value = "buyer/login", method = RequestMethod.GET)
+	public String loginOpen() {
+		return "redirect:../login";
+	}
+	
+	
+	
 
 // ** 구매자 로그아웃
 

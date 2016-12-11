@@ -78,7 +78,7 @@ public class ProductController {
 			int iResult = productService.createImage(iVo);
 		}
 		
-		return "redirect:pList?s_id=" + pVo.getS_id();
+		return "redirect:sellerHome?s_id=" + pVo.getS_id();
 		
 	} // end registerPOST()
 	
@@ -102,7 +102,7 @@ public class ProductController {
 //		}
 		attr.addFlashAttribute("p_no", p_no);
 		
-		return "redirect:pList?s_id=" +s_id;
+		return "redirect:sellerHome?s_id=" +s_id;
 	}
 
 } // end class ProductController 
