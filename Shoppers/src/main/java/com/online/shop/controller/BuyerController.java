@@ -155,4 +155,32 @@ public class BuyerController {
 		
 	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
 	
+	@RequestMapping(value = "/products", method = RequestMethod.GET)
+	public String product(Model model) {
+		logger.info("main 컨트롤러 실행");
+		// 전체 상품 리스트
+		List<ProductVO> productList = sellerService.readAllProduct();
+
+		int length = productList.size();
+		int numOfPage = length / 4;
+		if (length % 4 > 0) {
+			numOfPage++; // 나머지가 있으면 올림
+			// 뷰페이저로 한 페이지에 4개씩 출력 !
+			// ex) (9/4 = 2.X )=> 3페이지 필요
+		}
+		int remainder = length % 4;
+
+		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
+		model.addAttribute("productList", productList);
+		model.addAttribute("numOfPage", numOfPage);
+		model.addAttribute("remainder", remainder);
+		logger.info("length : " + length);
+		logger.info("numOfPage : " + numOfPage);
+		logger.info("remainder : " + remainder);
+		/* logger.info(productList.get(0).getP_name()); */
+
+		return "UI/sudo_products";
+
+	} // end product
+	
 } // end class

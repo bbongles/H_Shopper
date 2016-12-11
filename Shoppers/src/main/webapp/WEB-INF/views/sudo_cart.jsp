@@ -42,10 +42,36 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.html">Login</a></li>			
+  <!-- 김태훈 코드 시작, 로그인한 사용자별 상단 메뉴 정렬--><!-- TODO: 마이페이지, 장바구니 링크 걸고, 인터셉터 걸어야함 -->
+							<!-- ---------------visitor 입장----------------------------- -->
+							<c:if test="${empty s_login_id && empty b_login_id }">
+							<li><a href="">My Page</a></li>
+							<li><a href="">Cart</a></li>
+							</c:if>
+							<!-- ------------바이어 입장 시작-------------------------- -->
+							<c:if test="${not empty b_login_id }">
+							<li><a href="">My Page</a></li>	
+							<li><a href="">Cart</a></li>
+							</c:if>
+							<!-- ------------------셀러 입장시작------------------------------- -->
+							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+							<li><a href="">My Page</a></li>
+							<li><a href="pList?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
+							</c:if>
+							<!-- ----------------어드민 입장 시작--------------------------------------->	
+							<c:if test="${s_login_id eq 'admin'}">
+							<li><a href="">My Page</a></li>
+							</c:if>
+							<c:if test="${empty s_login_id && empty b_login_id }">
+								<c:url value="login" var="login" />
+								<li><a href="${login}">Login</a></li>	
+							</c:if>
+							<c:if test="${not empty s_login_id || not empty b_login_id }">
+								<!-- 세션에 로그인 정보가 있는 경우 -->
+								<c:url value="logout" var="logout" />
+								<li><a href="${logout }">Logout</a></li>		
+							</c:if>
+<!-- 김태훈 코드 끝 -------------------------------------------------------------------> 					
 						</ul>
 					</div>
 				</div>
@@ -54,27 +80,38 @@
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="<c:url value='/resources/themes/images/logo.png" class="site_logo' />" alt=""></a>
+					<a href="../" class="logo pull-left"><img src="<c:url value='/resources/themes/images/logo.png" class="site_logo' />" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="./products.html">Woman</a>					
+							<li><a href="../buyer/products">Home / Deco</a>					
 								<ul>
-									<li><a href="./products.html">Lacinia nibh</a></li>									
-									<li><a href="./products.html">Eget molestie</a></li>
-									<li><a href="./products.html">Varius purus</a></li>									
+									<li><a href="../buyer/products">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="../buyer/products">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="../buyer/products">lamp</a></li>			<!-- 조명 -->									
 								</ul>
 							</li>															
-							<li><a href="./products.html">Man</a></li>			
-							<li><a href="./products.html">Sport</a>
+							<li><a href="../buyer/products">Candle / Diffuser</a>
+								<ul>
+									<li><a href="../buyer/products">candle</a></li>			<!-- 양초 -->										
+									<li><a href="../buyer/products">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="../buyer/products">aromatic oils</a></li>	<!-- 아로마오일 -->									
+								</ul>		
+								</li>	
+							<li><a href="../buyer/products">Art / Fancy</a>
 								<ul>									
-									<li><a href="./products.html">Gifts and Tech</a></li>
-									<li><a href="./products.html">Ties and Hats</a></li>
-									<li><a href="./products.html">Cold Weather</a></li>
+									<li><a href="../buyer/products">picture</a></li>		<!-- 사진 -->
+									<li><a href="../buyer/products">fancy</a></li>		<!-- 문구 -->
+									<li><a href="../buyer/products">paper</a></li>		<!-- 페이퍼 -->
 								</ul>
 							</li>							
-							<li><a href="./products.html">Hangbag</a></li>
-							<li><a href="./products.html">Best Seller</a></li>
-							<li><a href="./products.html">Top Seller</a></li>
+							<li><a href="../buyer/products">Jewellery</a>
+								<ul>									
+									<li><a href="../buyer/products">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="../buyer/products">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="../buyer/products">ring</a></li>			<!-- 반지 -->
+								</ul>
+							</li>
+							<li><a href="../buyer/products">Event</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -103,7 +140,7 @@
 							<thead><!-- 표의 머리글 역할 -->
 								<tr>
 									<!-- <th>Remove</th> -->
-									<th><input type="checkbox" class="checkall" 
+									<th><input type="checkbox" id="checkall" 
 										onclick="allChk(this);" checked="checked"></th>
 									<th>Image</th>
 									<th>Product Name</th>
@@ -123,9 +160,9 @@
 												class="checkbox" checked="checked">
 										</td>
 										
-										<td><img src="${vo.p_img}" style="width: 50px" /></td>
+										<td><a href="../buyer/pDetail?p_no=${vo.p_no }"><img src="${vo.p_img}" style="width: 50px" /></a></td>
 										
-										<td>${vo.p_name }</td>
+										<td><a href="../buyer/pDetail?p_no=${vo.p_no }">${vo.p_name }</a></td>
 							            <!-- 이름 -->
 							            
 							            <td>${vo.o_cont }</td>
@@ -134,7 +171,7 @@
 							            <td>${vo.p_price }</td>
 							            <!--  가격 -->
 							            
-										<td class="form_inline">
+										<td class="form-inline">
 										<!-- 수량 -->
 						                  <input style="width: 40px;" value="${vo.buy_cnt }"  class="buy_cnt" type="number">
 						                  <%-- <input type="hidden" value="${vo.c_no}" name="c_no"> <span> --%>
@@ -244,7 +281,7 @@
 							<strong>Eco Tax (-2.00)</strong>: $2.00<br>
 							<strong>VAT (17.5%)</strong>: $17.50<br> -->
 							<strong>Total </strong>: 
-							<input value="0" id="newtotal" readonly="readonly" style="width: 70px;background-color: transparent" type="number" step="100" dir="rtl"><br>
+							<input value="0" id="newtotal" readonly="readonly" style="width: 70px;background-color: transparent" type="number" step="100" dir="rtl"> <br>
 						</p>
 						<hr/>
 						<!-- <p class="buttons center">				
@@ -252,12 +289,14 @@
 							<button class="btn" type="button">Continue</button>
 							<button class="btn btn-inverse" type="submit" id="checkout">Checkout</button>
 						</p> -->
-					<input type="button" value="장바구니에서 삭제" class="deleteall btn">
-					<form action="/shop/order/cartTossOrder" method="post" id="toOrder">	
+					
+					<form action="/shop/order/cartTossOrder" method="post" id="toOrder" class="right">	
 							<!-- 주문하기  -->
+							<input type="button" value="장바구니에서 삭제" class="deleteall btn">
 							<input type="hidden" value="" id="hiddenCartNums" name="c_no">
-							<input type="button" class="btn" value="전체 주문하기" id="CartToController" />
-							<input type="button" class="btn" value="쇼핑 계속하기" id="backToList" />
+							<input type="button" class="btn " value="쇼핑 계속하기" id="backToList" />
+							<input type="button" class="btn btn-inverse" value="선택 주문하기" id="CartToController" /> <!-- 이것만 form 영향을 받는다. -->
+							
 					</form>
 											
 					</div>
