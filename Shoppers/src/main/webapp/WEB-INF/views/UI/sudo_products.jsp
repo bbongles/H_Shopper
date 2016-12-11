@@ -126,7 +126,7 @@
 						<c:forEach begin="0" end="8" varStatus="status" items="${productList }"><!-- 4 개씩 출력 -->
 								<li class="span3">
 								<div class="product-box">
-									<span class="sale_tag"> #index : ${4 * page + status.index} </span>
+									<%-- <span class="sale_tag"> #index : ${4 * page + status.index} </span> --%>
 										<p><a href="pDetail?p_no=${productList[4 * page + status.index].p_no }"><img src="${productList[4 * page + status.index].p_img }" /></a></p>
 										<a href="pDetail?p_no=${productList[4 * page + status.index].p_no }" class="title">${productList[4 * page + status.index].p_name }</a><br>
 										<a href="pDetail?p_no=${productList[4 * page + status.index].p_no }" class="category">${productList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
