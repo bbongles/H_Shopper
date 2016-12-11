@@ -203,14 +203,14 @@
 							<div class="span5" >		<!-- 주문하기 -->
 								<br>
 								<div id="optionNullCheck" style="display:none;">		<!-- ******** -->
-									<select class="select1" required="required">		<!-- 옵션 -->
-					    				<!-- <option value="">--------</option>  -->
+									<select class="select1">		<!-- 옵션 -->
+					    				<option value="">--------</option>
 					    				<c:forEach var="optionList" items="${optionList}" end="0">
 					    					<option>${optionList.o_title }</option>
 					    				</c:forEach>
 					    			</select>
-					    			<select class="select2" name="o_cont" required="required">
-					    				<!-- <option value="">----------------</option> -->
+					    			<select class="select2" name="o_cont">
+					    				<option value="">----------------</option>
 					    				<c:forEach var="optionList" items="${optionList }">
 					    					<option>${optionList.o_cont }</option>
 					    				</c:forEach>
