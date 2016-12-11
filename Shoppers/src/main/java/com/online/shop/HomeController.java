@@ -272,6 +272,7 @@ public class HomeController {
 			model.addAttribute("login_result", buyerService.isValidUser(b_id, b_pw));
 			
 			session.setAttribute("b_login_id", b_id);
+			session.removeAttribute("s_login_id");
 			session.setAttribute("login_result", buyerService.isValidUser(b_id, b_pw));
 			logger.info("세션 저장 성공! key:login_id, 값 : " + b_id);
 			
@@ -497,6 +498,7 @@ public class HomeController {
 			
 			session.setAttribute("s_login_id", s_id);
 			logger.info("세션 저장 성공! key:login_id, 값 : " + s_id);
+			session.removeAttribute("b_login_id");
 			return "redirect:main";
 		} else {
 			logger.info("로그인 실패");

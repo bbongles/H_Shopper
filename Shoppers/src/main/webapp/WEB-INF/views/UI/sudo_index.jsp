@@ -49,7 +49,7 @@
 							<!-- ---------------visitor 입장----------------------------- -->
 							<c:if test="${empty s_login_id && empty b_login_id }">
 							<li><a href="">My Page</a></li>
-							<li><a href="">Cart</a></li>
+							<li><a href="cart/selectCart">Cart</a></li>
 							</c:if>
 							<!-- ------------바이어 입장 시작-------------------------- -->
 							<c:if test="${not empty b_login_id }">
@@ -399,8 +399,8 @@
 								<div class="service">
 									<div class="responsive">	
 										<img src=<c:url value='/resources/themes/images/feature_img_2.png'/> alt="" />
-										<h4>MODERN <strong>DESIGN</strong></h4>
-										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>									
+										<h4>SPECIAL <strong>DESIGN</strong></h4>
+										<!-- <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p> -->									
 									</div>
 								</div>
 							</div>
@@ -409,7 +409,7 @@
 									<div class="customize">			
 										<img src=<c:url value='/resources/themes/images/feature_img_1.png'/> alt="" />
 										<h4>FREE <strong>SHIPPING</strong></h4>
-										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+										<!-- <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p> -->
 									</div>
 								</div>
 							</div>
@@ -418,7 +418,7 @@
 									<div class="support">	
 										<img src=<c:url value='/resources/themes/images/feature_img_3.png'/> alt="" />
 										<h4>24/7 LIVE <strong>SUPPORT</strong></h4>
-										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+										<!-- <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p> -->
 									</div>
 								</div>
 							</div>	
@@ -475,7 +475,7 @@
 					</div>
 					<div class="span5">
 						<p class="logo"><img src=<c:url value='/resources/themes/images/logo.png'/> class="site_logo" alt=""></p>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p> -->
 						<br/>
 						<span class="social_icons">
 							<a class="facebook" href="#">Facebook</a>
@@ -487,7 +487,7 @@
 				</div>	
 			</section>
 			<section id="copyright">
-				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
+				<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 			</section>
 		</div>
 		<!-- 김태훈 백버튼 리프레시 -->
