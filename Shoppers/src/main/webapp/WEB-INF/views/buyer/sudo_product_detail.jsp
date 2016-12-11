@@ -142,10 +142,16 @@
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
-					<form id="frm">
-						<!-- 삭제하기 위한 정보 -->
+					<form id="frm" action="/shop/cart/insertCart"> <!-- 태훈 수정 -->
+						<!-- 김태훈 -->
 						<input type="hidden" name="p_no" value="${productVO.p_no }" />    
     					<input type="hidden" name="s_id" value="${productVO.s_id }" />
+    					<input type="hidden" name="p_price" value="${productVO.p_price }">
+    					<input type="hidden" name="p_name" value="${productVO.p_name }">
+    					<input type="hidden" name="p_no" value="${productVO.p_no }">
+    					<input type="hidden" name="p_cate2" value="${productVO.p_cate2}">
+    					<input type="hidden" value="${b_login_id}" name="b_id">
+    					<input type="hidden" value="${productVO.p_img}" name="p_img">
 					
 					<div class="span9">
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
@@ -203,7 +209,7 @@
 					    					<option>${optionList.o_title }</option>
 					    				</c:forEach>
 					    			</select>
-					    			<select class="select2">
+					    			<select class="select2" name="o_cont">
 					    				<option value="none">----------------</option>
 					    				<c:forEach var="optionList" items="${optionList }">
 					    					<option>${optionList.o_cont }</option>
@@ -222,11 +228,13 @@
 									 -->
 									<p>&nbsp;</p>
 									<label>Quantity : </label>
-									<input type="number" name="buy_cnt" class="span1" placeholder="1">
+									<input type="number" name="buy_cnt" class="span1" value="1">
 									<button class="btn btn-inverse" type="submit">Add to cart</button><!-- TODO  -->
+									<input type="button" class="btn btn-inverse" value="Check out" id="directOrder"/><!-- 태훈 수정 -->
 									<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로-->
 									<br/><br/>
 									<a href="pList?s_id=${productVO.s_id}"><img src="${sVo.s_logo}" style="width:100px;, height:100px;"></a>
+									
 									<!-- 김태훈 코드 추가 끝 -->
 								</div>
 							</div>	
@@ -591,6 +599,13 @@
 	    			$('#optionNullCheck').show();
 	    		}
 	    	})
+	    	
+	    	 // 김태훈 바로주문 코드
+		    $('#directOrder').click(function(){
+				$('#frm').attr('action', '/shop/cart/insertCertForDirect');
+				$('#frm').attr('method', 'get');
+				$('#frm').submit();
+		    });
 		</script>
     </body>
 </html>
