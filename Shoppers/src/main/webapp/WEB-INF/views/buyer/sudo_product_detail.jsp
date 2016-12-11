@@ -312,15 +312,15 @@
 											<div class="active item">		
 												<ul class="thumbnails">	
 													<c:forEach begin="0" end="0" var="page">
-													<c:forEach begin="0" end="3" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
+													<c:forEach begin="0" end="2" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
 															<li class="span3">
 															<div class="product-box">
 																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p><a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }"><img src="${relativeList[3 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="title">${relativeList[3 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="category">${relativeList[3 * page + status.index].p_cate1}</a><!-- 카테고리 -->
 																	<%-- <p class="price">₩ ${productList[4 * page + status.index].p_price }</p>	  --%>
-																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p>	
+																	<p class="price"><fmt:formatNumber value="${relativeList[3 * page + status.index].p_price}" groupingUsed="true"/> 원</p>	
 																</div>
 															</li>
 													</c:forEach>
@@ -336,14 +336,14 @@
 													<ul class="thumbnails">	
 														<%-- <c:forEach begin="0" end="4" var="i"> --%>
 															<%-- ${productList.list[4 * page + i] } --%>
-														<c:forEach begin="0" end="3" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
+														<c:forEach begin="0" end="2" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
 															<li class="span3">
 															<div class="product-box">
 																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
-																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
+																	<p><a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }"><img src="${relativeList[3 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="title">${relativeList[3 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="category">${relativeList[3 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p class="price"><fmt:formatNumber value="${relativeList[3 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
 																	
 																</div>
 															</li>
@@ -365,10 +365,10 @@
 															<li class="span3">
 															<div class="product-box">
 																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
-																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
+																	<p><a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }"><img src="${relativeList[3 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="title">${relativeList[3 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="category">${relativeList[3 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p class="price"><fmt:formatNumber value="${relativeList[3 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
 																	
 																</div>
 															</li>
@@ -383,14 +383,14 @@
 													<ul class="thumbnails">	
 														<%-- <c:forEach begin="0" end="4" var="i"> --%>
 															<%-- ${productList.list[4 * page + i] } --%>
-														<c:forEach begin="0" end="3" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
+														<c:forEach begin="0" end="2" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
 															<li class="span3">
 															<div class="product-box">
 																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
-																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
+																	<p><a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }"><img src="${relativeList[3 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="title">${relativeList[3 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="category">${relativeList[3 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p class="price"><fmt:formatNumber value="${relativeList[3 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
 																	
 																</div>
 															</li>

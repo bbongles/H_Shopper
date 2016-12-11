@@ -592,11 +592,11 @@ public class HomeController {
 		SellerVO sVo = sellerService.readSellerInfo(s_id);
 
 		int length = cateCheck.size();
-		int numOfPage = length / 4;
-		if (length % 4 > 0) {
+		int numOfPage = length / 3;
+		if (length % 3 > 0) {
 			numOfPage++; // 나머지가 있으면 올림
 		}
-		int remainder = length % 4;
+		int remainder = length % 3;
 
 		model.addAttribute("productVO", pVo); // 전체 정보를 Model 객체에 넣어서 View(jsp)에
 												// 전달
