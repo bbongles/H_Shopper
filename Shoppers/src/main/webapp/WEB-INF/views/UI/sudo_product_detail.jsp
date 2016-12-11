@@ -595,7 +595,7 @@
 		    
 	    	 // 리스트
 		    $('#gotoList').click(function() {
-		    	location = 'main';
+		    	location = './';
 		    });
 	    	 
 	    	 // 김태훈 바로주문 코드
