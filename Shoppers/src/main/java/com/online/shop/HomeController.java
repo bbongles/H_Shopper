@@ -72,6 +72,11 @@ public class HomeController {
 	/*---------------------------------------------------------------------------------*/
 // ** 비회원 메인 화면
 	
+	@RequestMapping(value="template_form", method=RequestMethod.GET)
+	public void openTemplete(){
+		
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 
