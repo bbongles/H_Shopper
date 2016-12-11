@@ -5,17 +5,17 @@
 /* 인터파크 폰트 M버전 */
 @font-face{
 	font-family: 'InterparkGothicOTFM';
-	src: url("/shop05/resources/themes/css/fonts/InterparkGothicOTFM.otf");	/* **** 수정 **** */
+	src: url("/shop/resources/themes/css/fonts/InterparkGothicOTFM.otf");	/* **** 수정 **** */
 }
 /* 인터파크 폰트 B버전 */ 
 @font-face{
 	font-family: 'InterparkGothicOTFB';
-	src: url("/shop05/resources/themes/css/fonts/InterparkGothicOTFB.otf");	/* **** 수정 **** */
+	src: url("/shop/resources/themes/css/fonts/InterparkGothicOTFB.otf");	/* **** 수정 **** */
 }
 /* 인터파크 폰트 L버전 */   
 @font-face{
 	font-family: 'InterparkGothicOTFL';
-	src: url("/shop05/resources/themes/css/fonts/InterparkGothicOTFL.otf");	/* **** 수정 **** */
+	src: url("/shop/resources/themes/css/fonts/InterparkGothicOTFL.otf");	/* **** 수정 **** */
 }  
 body{
 	font-size: 12px;
@@ -171,7 +171,7 @@ div.sp{
 /*  --------여기까지  */
 /* 오른쪽 상세 부분 너비  */
 div.span7{
-	width: 68%; 
+	width: 670px; /* 고정 */
 }
 /* 아래 2개 제외한 나머지 content 마진과 폰트 사이즈 */
 fieldset{

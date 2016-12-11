@@ -8,9 +8,9 @@
   <!-- 태훈 -->
  	<insert id="seller-insert">
 	insert into s_tbl_seller(s_id, s_pw, s_name, s_gender, s_birth, s_phone,
-	s_email, s_zip, s_addr1, s_addr2)
+	s_email, s_zip, s_addr1, s_addr2, s_logo)
 	values(#{s_id}, #{s_pw}, #{s_name}, #{s_gender}, #{s_birth}, #{s_phone}, #{s_email},
-	#{s_zip}, #{s_addr1}, #{s_addr2})
+	#{s_zip}, #{s_addr1}, #{s_addr2}, 'http://i.imgur.com/hDe41D0.png')
 	</insert>
 
 	<select id="select-by-s_id" resultType="SellerVO">
