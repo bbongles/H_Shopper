@@ -223,8 +223,9 @@
 									 -->
 									<p>&nbsp;</p>
 				
-									<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로, 셀러 로그인시 수량 및 카트담기 기능 코드를 삭제했음-->
-									<a href="pList?s_id=${productVO.s_id}"><img src="${sVo.s_logo}"></a>
+									<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로-->
+									<br/><br/>
+									<a href="pList?s_id=${productVO.s_id}"><img src="${sVo.s_logo}" style="width:100px;, height:100px;"></a>
 									<!-- 김태훈 코드 추가 끝 -->
 								</div>
 							</div>	

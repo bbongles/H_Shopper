@@ -226,7 +226,8 @@
 									<input type="number" name="buy_cnt" class="span1" placeholder="1">
 									<button class="btn btn-inverse" type="submit">Add to cart</button><!-- TODO  -->
 									<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로-->
-									<a href="pList?s_id=${productVO.s_id}"><img src="${sVo.s_logo}"></a>
+									<br/><br/>
+									<a href="pList?s_id=${productVO.s_id}"><img src="${sVo.s_logo}" style="width:100px;, height:100px;"></a>
 									<!-- 김태훈 코드 추가 끝 -->
 								</div>
 							</div>	
