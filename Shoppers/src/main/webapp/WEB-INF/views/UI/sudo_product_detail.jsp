@@ -213,13 +213,13 @@
 								<br>
 								<div id="optionNullCheck" style="display:none;" >		<!-- ******** -->
 									<select class="select1">		<!-- 옵션 -->
-					    				<!-- <option value="none">--------</option> -->
+					    				<option value="">Select</option>
 					    				<c:forEach var="optionList" items="${optionList}" end="0">
 					    					<option>${optionList.o_title }</option>
 					    				</c:forEach>
 					    			</select>
 					    			<select class="select2" name="o_cont">
-					    				<!-- <option value="none">----------------</option> -->
+					    				<option value="">Select</option>
 					    				<c:forEach var="optionList" items="${optionList }">
 					    					<option>${optionList.o_cont }</option>
 					    				</c:forEach>
