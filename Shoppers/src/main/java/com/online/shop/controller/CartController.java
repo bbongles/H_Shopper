@@ -108,7 +108,7 @@ public class CartController {
 	
 	/*----------------------------------------------------------------------------------------*/
 	
-	@RequestMapping(value="selectCart", method=RequestMethod.GET)
+/*	@RequestMapping(value="selectCart", method=RequestMethod.GET)
 	public String selectCart(Model model, HttpServletRequest request){
 		logger.info("selectCart 컨트롤러 실행");
 		// TODO: 로그인 세션으로 b_id 줘야함.. 임시로 aaaa해놈
@@ -126,10 +126,10 @@ public class CartController {
 		}
 		
 		
-	}
+	}*/
 	
 	////////////////////////////////////////////////////////////////
-	@RequestMapping(value="selectCart2", method=RequestMethod.GET)
+	@RequestMapping(value="selectCart", method=RequestMethod.GET)
 	public String selectCart2(Model model, HttpServletRequest request){
 		logger.info("selectCart 컨트롤러 실행");
 		// TODO: 로그인 세션으로 b_id 줘야함.. 임시로 aaaa해놈
