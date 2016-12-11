@@ -154,7 +154,8 @@
 			</section>
 			<section class="main-content">
 				<div class="row">
-					<div class="span12">													
+					<div class="span12">
+																		
 						<div class="row">
 							<div class="span12">
 								<h4 class="title">
@@ -292,6 +293,7 @@
 								</div>
 							</div>						
 						</div>
+						
 						<br/>
 						<div class="row">
 							<div class="span12">
@@ -488,6 +490,8 @@
 				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
 			</section>
 		</div>
+		<!-- 김태훈 백버튼 리프레시 -->
+		<input type="hidden" id="refreshed" value="no" style="display: none">
 		<script src=<c:url value='/resources/themes/js/common.js'/>></script>
 		<script src=<c:url value='/resources/themes/js/jquery.flexslider-min.js'/>></script>
 		<script type="text/javascript">
@@ -503,6 +507,14 @@
 					});
 				});
 			});
+			
+			// 김태훈 백버튼 리프레시 코드
+			onload=function(){
+			var e=document.getElementById("refreshed");
+			if(e.value=="no")e.value="yes";
+			else{e.value="no";location.reload();}
+			}
+			
 		</script>
     </body>
 </html>

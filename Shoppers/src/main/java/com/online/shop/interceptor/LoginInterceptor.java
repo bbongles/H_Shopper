@@ -59,7 +59,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		// 로그인 정보를 세션에 저장하기 위해서 미리정의
 		HttpSession session = request.getSession();
 		
-
+		if (modelAndView.getModel().get("login_result")!=null){
+			
+		
 		boolean result = (boolean) modelAndView.getModel().get("login_result");
 		
 		if (result!=false){
@@ -81,7 +83,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			response.sendRedirect("../");
 		}
 		
-
+		}
 	} // end postHandle()
 	
 } // end class loginInterceptor
