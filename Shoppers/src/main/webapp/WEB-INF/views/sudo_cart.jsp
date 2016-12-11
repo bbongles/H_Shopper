@@ -51,7 +51,7 @@
 							<!-- ------------바이어 입장 시작-------------------------- -->
 							<c:if test="${not empty b_login_id }">
 							<li><a href="">My Page</a></li>	
-							<li><a href="">Cart</a></li>
+							<li><a href="../cart/selectCart">Cart</a></li>
 							</c:if>
 							<!-- ------------------셀러 입장시작------------------------------- -->
 							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
@@ -69,7 +69,7 @@
 							<c:if test="${not empty s_login_id || not empty b_login_id }">
 								<!-- 세션에 로그인 정보가 있는 경우 -->
 								<c:url value="logout" var="logout" />
-								<li><a href="${logout }">Logout</a></li>		
+								<li><a href="../${logout }">Logout</a></li>		
 							</c:if>
 <!-- 김태훈 코드 끝 -------------------------------------------------------------------> 					
 						</ul>
@@ -80,7 +80,7 @@
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="../" class="logo pull-left"><img src="<c:url value='/resources/themes/images/logo.png" class="site_logo' />" alt=""></a>
+					<a href="../buyer/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images/logo.png" class="site_logo' />" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="../buyer/products">Home / Deco</a>					
