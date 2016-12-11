@@ -39,7 +39,7 @@ public class OrderController {
 	BuyerService buyerService;
 	
 	// 체크박스로 모든 아이템들 주문할때
-	@RequestMapping(value="cartTossOrder", method=RequestMethod.POST)
+	@RequestMapping(value="cartTossOrder", method=RequestMethod.GET)
 	public String tossToOrder(String c_no, Model model, HttpServletRequest request) throws IOException{
 		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
 		int shippingCharge = 3000; // 배송비(임의로 정함 나중에 수정 필요)
@@ -80,11 +80,11 @@ public class OrderController {
 		model.addAttribute("buyerHP", vo.getB_phone());
 		model.addAttribute("buyerEmail", vo.getB_email());
 		model.addAttribute("b_id", vo.getB_id());
-		return "test_order";	
+		return "sudo_order";	
 	}
 	
 	// 체크박스 상관없이 아이템 하나 주문할때
-	@RequestMapping(value="OneCartTossOrder", method=RequestMethod.POST)
+	@RequestMapping(value="OneCartTossOrder", method=RequestMethod.GET)
 	public String OneTossToOrder(int c_no, Model model, HttpServletRequest request) throws IOException{
 		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
 		int shippingCharge = 3000; // 배송비(임의로 정함 나중에 수정 필요)
@@ -121,10 +121,10 @@ public class OrderController {
 		model.addAttribute("buyerHP", voo.getB_phone());
 		model.addAttribute("buyerEmail", voo.getB_email());
 		model.addAttribute("b_id", voo.getB_id());
-		return "test_order";	
+		return "sudo_order";	
 	}
 	
-	@RequestMapping(value="readyForBill", method=RequestMethod.POST)
+	@RequestMapping(value="readyForBill", method=RequestMethod.GET)
 	public String openBill(String c_no, Model model, OrderVO vo, HttpServletRequest request) throws IOException{
 	int buyNO = 0;
 	// 뒤로가기 버튼 누르고 다시 submit 해서 중복 주문 방지하는거 방지용 session

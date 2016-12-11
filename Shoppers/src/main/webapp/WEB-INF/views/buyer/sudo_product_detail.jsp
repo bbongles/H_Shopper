@@ -555,7 +555,9 @@
 				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
 			</section>
 		</div>
-
+		
+		<!-- 김태훈 백버튼 리프레시 -->
+		<input type="hidden" id="refreshed" value="no" style="display: none">
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
 		<script>
 			$(function () {
@@ -606,6 +608,13 @@
 				$('#frm').attr('method', 'get');
 				$('#frm').submit();
 		    });
+	    	
+	    	// 김태훈 백버튼 리프레시 코드
+			onload=function(){
+			var e=document.getElementById("refreshed");
+			if(e.value=="no")e.value="yes";
+			else{e.value="no";location.reload();}
+			}
 		</script>
     </body>
 </html>

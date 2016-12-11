@@ -189,7 +189,7 @@
 										</td>
 										
 										<td>
-											<form action="/shop/order/OneCartTossOrder" method="post">
+											<form action="/shop/order/OneCartTossOrder" method="get">
 									         	<input type="hidden" name="c_no" value="${vo.c_no}">
 									         	<input type="submit" value="주문하기">
 								         	</form>
@@ -290,7 +290,7 @@
 							<button class="btn btn-inverse" type="submit" id="checkout">Checkout</button>
 						</p> -->
 					
-					<form action="/shop/order/cartTossOrder" method="post" id="toOrder" class="right">	
+					<form action="/shop/order/cartTossOrder" method="get" id="toOrder" class="right">	
 							<!-- 주문하기  -->
 							<input type="button" value="장바구니에서 삭제" class="deleteall btn">
 							<input type="hidden" value="" id="hiddenCartNums" name="c_no">
@@ -398,6 +398,9 @@
 				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
 			</section>
 		</div>
+		
+		<!-- 김태훈 백버튼 리프레시 -->
+		<input type="hidden" id="refreshed" value="no" style="display: none">
 		<script src="resources/themes/js/common.js"></script>
 		<script>
 			$(document).ready(function() {
@@ -598,6 +601,13 @@
       $('#backToList').click(function() {
     	 location = '../buyer/main' 
       });
+      
+   // 김태훈 백버튼 리프레시 코드
+  	onload=function(){
+  	var e=document.getElementById("refreshed");
+  	if(e.value=="no")e.value="yes";
+  	else{e.value="no";location.reload();}
+  	}
 
    </script>
 		
