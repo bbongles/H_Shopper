@@ -239,7 +239,7 @@
 									
 									<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로-->
 									<br/><br/>
-									<a href="pList?s_id=${productVO.s_id}"><img src="${sVo.s_logo}" style="width:100px;, height:100px;"></a>
+									<a href="sellerHome?s_id=${productVO.s_id}"><img src="${sVo.s_logo}" style="width:100px;, height:100px;"></a>
 									<!-- 김태훈 코드 추가 끝 -->
 								</div>
 							</div>	
