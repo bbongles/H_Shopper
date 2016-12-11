@@ -112,7 +112,7 @@ public class HomeController {
 	public String openRegister() {
 		return "/sudo_loginSelect";
 	}
-
+	
 	
 	/*---------------------------------------------------------------------------------*/
 	
@@ -263,16 +263,18 @@ public class HomeController {
 // ** 구매자 로그인
 
 	@RequestMapping(value = "buyer/login", method = RequestMethod.POST)
-	public void login(String b_id, String b_pw, HttpServletRequest request, String query, Model model) {
+	public void login(String b_id, String b_pw, HttpServletRequest request, String query, Model model, HttpServletResponse response) throws IOException {
 		logger.info("login 컨트롤러 실행");
 		logger.info("b_id : " + b_id + " , b_pw : " + b_pw);
+		HttpSession session = request.getSession();
 		if (buyerService.isValidUser(b_id, b_pw)) {
 			logger.info("로그인 성공");
 			model.addAttribute("login_result", buyerService.isValidUser(b_id, b_pw));
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("b_login_id", b_id);
+			session.setAttribute("login_result", buyerService.isValidUser(b_id, b_pw));
 			logger.info("세션 저장 성공! key:login_id, 값 : " + b_id);
-
+			
 			// login-post 요청을 보낸 주소를 저장
 			logger.info("query: " + query);
 			if (query != null && !query.equals("null")) {
@@ -284,7 +286,10 @@ public class HomeController {
 
 		} else {
 			logger.info("로그인 실패");
-
+			session.setAttribute("login_result", false);
+			session.setAttribute("loginFail", "fail");
+			response.sendRedirect("login");
+			
 		}
 	}
 	
@@ -486,14 +491,16 @@ public class HomeController {
 	public String sellerloginResult(String s_id, String s_pw, HttpServletRequest request, String query) {
 		logger.info("login 컨트롤러 실행");
 		logger.info("s_id : " + s_id + " , s_pw : " + s_pw);
+		HttpSession session = request.getSession();
 		if (sellerService.isValidUser(s_id, s_pw)) {
 			logger.info("로그인 성공");
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("s_login_id", s_id);
 			logger.info("세션 저장 성공! key:login_id, 값 : " + s_id);
 			return "redirect:main";
 		} else {
 			logger.info("로그인 실패");
+			session.setAttribute("loginFail", "fail");
 			return "redirect:../login";
 		}
 	}
