@@ -145,12 +145,31 @@ public class BuyerController {
 		
 		// 전체 상품 리스트
 		List<ProductVO> productList = sellerService.readProductBySid(s_id);
+		
+		int length = productList.size();
+		int numOfPage = length / 8;
+		if (length % 8 > 0) {
+			numOfPage++; // 나머지가 있으면 올림
+			// 뷰페이저로 한 페이지에 4개씩 출력 !
+			// ex) (9/4 = 2.X )=> 3페이지 필요
+		}
+		int remainder = length % 8;
+		
+		
 		logger.info("productList size: " + productList.size());
 		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("productList", productList);
 
 		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("sellerInfo", sellerInfo);
+		
+		model.addAttribute("numOfPage", numOfPage);
+		model.addAttribute("remainder", remainder);
+		
+		logger.info("length : " + length);
+		logger.info("numOfPage : " + numOfPage);
+		logger.info("remainder : " + remainder);
+		
 		
 		return "/buyer/sudo_seller_home";
 		
