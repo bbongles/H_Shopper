@@ -395,7 +395,7 @@ input.radio {
 							<!-- ------------------셀러 입장시작------------------------------- -->
 							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
 							<li><a href="">My Page</a></li>
-							<li><a href="pList?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
+							<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
 							</c:if>
 							<!-- ----------------어드민 입장 시작--------------------------------------->	
 							<c:if test="${s_login_id eq 'admin'}">
@@ -418,32 +418,43 @@ input.radio {
 	</div>
 	<div id="wrapper" class="container">
 		<section class="navbar main-menu">
-			<div class="navbar-inner main-menu">
-				<a href="index.html" class="logo pull-left">
-				<img src="<c:url value='/resources/themes/images/logo.png' />"
-					class="site_logo" alt=""></a>
-				<nav id="menu" class="pull-right">
-					<ul>
-						<li><a href="./products.html">Woman</a>
-							<ul>
-								<li><a href="./products.html">Lacinia nibh</a></li>
-								<li><a href="./products.html">Eget molestie</a></li>
-								<li><a href="./products.html">Varius purus</a></li>
-							</ul></li>
-						<li><a href="./products.html">Man</a></li>
-						<li><a href="./products.html">Sport</a>
-							<ul>
-								<li><a href="./products.html">Gifts and Tech</a></li>
-								<li><a href="./products.html">Ties and Hats</a></li>
-								<li><a href="./products.html">Cold Weather</a></li>
-							</ul></li>
-						<li><a href="./products.html">Hangbag</a></li>
-						<li><a href="./products.html">Best Seller</a></li>
-						<li><a href="./products.html">Top Seller</a></li>
-					</ul>
-				</nav>
-			</div>
-		</section>
+				<div class="navbar-inner main-menu">				
+					<a href="./" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					<nav id="menu" class="pull-right">
+						<ul>
+							<li><a href="./products">Home / Deco</a>					
+								<ul>
+									<li><a href="./products">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="./products">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="./products">lamp</a></li>			<!-- 조명 -->									
+								</ul>
+							</li>															
+							<li><a href="./products">Candle / Diffuser</a>
+								<ul>
+									<li><a href="./products">candle</a></li>			<!-- 양초 -->										
+									<li><a href="./products">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="./products">aromatic oils</a></li>	<!-- 아로마오일 -->									
+								</ul>		
+								</li>	
+							<li><a href="./products">Art / Fancy</a>
+								<ul>									
+									<li><a href="./products">picture</a></li>		<!-- 사진 -->
+									<li><a href="./products">fancy</a></li>		<!-- 문구 -->
+									<li><a href="./products">paper</a></li>		<!-- 페이퍼 -->
+								</ul>
+							</li>							
+							<li><a href="./products">Jewellery</a>
+								<ul>									
+									<li><a href="./products">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="./products">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="./products">ring</a></li>			<!-- 반지 -->
+								</ul>
+							</li>
+							<li><a href="./products">Event</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
 		<section class="header_text sub">
 			<img class="pageBanner"
 				src="<c:url value='/resources/themes/images/pageBanner.png' />"

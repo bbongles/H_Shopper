@@ -477,7 +477,7 @@ var x=0;
 														<option value="home_deco">홈/데코</option>
 														<option value="candle_diffuser">캔들/디퓨저</option>
 														<option value="art_fancy">아트/팬시</option>
-														<option value="jewellry">쥬얼리</option>
+														<option value="jewellery">쥬얼리</option>
 													</select> <br/>
 													<select name="p_cate2" class="input-xlarge">
 														<option value="none">--------</option>

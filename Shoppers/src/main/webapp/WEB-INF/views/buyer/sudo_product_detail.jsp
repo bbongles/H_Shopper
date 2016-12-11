@@ -14,6 +14,10 @@
 		.select2 {
 	   		 width: 180px;
 		}
+		#sellerLogo {
+			width: 100px;
+			height: 100px;
+		}
 	</style>
 		<meta charset="utf-8">
 		<title>H-Shopper : 특별함을 전하는</title>
@@ -204,13 +208,13 @@
 								<br>
 								<div id="optionNullCheck" style="display:none;">		<!-- ******** -->
 									<select class="select1">		<!-- 옵션 -->
-					    				<option value="">--------</option>
+					    				<!-- <option value="">--------</option> -->
 					    				<c:forEach var="optionList" items="${optionList}" end="0">
 					    					<option>${optionList.o_title }</option>
 					    				</c:forEach>
 					    			</select>
 					    			<select class="select2" name="o_cont">
-					    				<option value="">----------------</option>
+					    				<!-- <option value="">----------------</option> -->
 					    				<c:forEach var="optionList" items="${optionList }">
 					    					<option>${optionList.o_cont }</option>
 					    				</c:forEach>
@@ -231,11 +235,7 @@
 									<input type="number" name="buy_cnt" class="span1" value="1">
 									<button class="btn btn-inverse" type="submit">Add to cart</button><!-- TODO  -->
 									<input type="button" class="btn btn-inverse" value="Check out" id="directOrder"/><!-- 태훈 수정 -->
-									<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로-->
-									<br/><br/>
-									<a href="sellerHome?s_id=${productVO.s_id}"><img src="${sVo.s_logo}" style="width:100px;, height:100px;"></a>
 									
-									<!-- 김태훈 코드 추가 끝 -->
 								</div>
 							</div>	
 								
@@ -432,7 +432,15 @@
 					
 					
 					<div class="span3 col">
+						<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로-->
 						<div class="block">	
+						<h4 class="title"><strong>Seller</strong> Home</h4>
+						<a href="sellerHome?s_id=${productVO.s_id}"><img id="sellerLogo" src="${sVo.s_logo}"></a>
+						</div>
+						<!-- 김태훈 코드 추가 끝 -->
+						
+						<!-- 현 시점(최종 프로젝트 발표)에서는 필요 없을듯하여 주석처리.... 나중에 사용하게 되면 수정하여 사용하기로.... -->
+						<!-- <div class="block">	
 							<ul class="nav nav-list">
 								<li class="nav-header">SUB CATEGORIES</li>
 								<li><a href="products.html">Nullam semper elementum</a></li>
@@ -450,7 +458,7 @@
 								<li><a href="products.html">Dunlop</a></li>
 								<li><a href="products.html">Yamaha</a></li>
 							</ul>
-						</div>
+						</div> -->
 						<div class="block">
 							<h4 class="title">
 								<span class="pull-left"><span class="text">Randomize</span></span>
