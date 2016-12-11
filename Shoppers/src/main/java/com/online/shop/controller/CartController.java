@@ -105,6 +105,9 @@ public class CartController {
 		return "test_order";
 	}
 	
+	
+	/*----------------------------------------------------------------------------------------*/
+	
 	@RequestMapping(value="selectCart", method=RequestMethod.GET)
 	public String selectCart(Model model, HttpServletRequest request){
 		logger.info("selectCart 컨트롤러 실행");
@@ -134,10 +137,17 @@ public class CartController {
 		Object id = session.getAttribute("b_login_id");
 		String b_id= (String) id;
 		List<CartVO> list = cartService.read(b_id);
-		list.get(0).getBuy_cnt();
-		model.addAttribute("cartList", list);
-	//	return "test_cart";
-		return "sudo_cart2";
+		
+		/*list.get(0).getBuy_cnt();*/
+		
+		if (list.size()!=0){
+			model.addAttribute("cartList", list);
+			return "sudo_cart";	
+		} else {
+			logger.info("장바구니빔... 예외처리 추가 필요함");
+			return "test_emptyCart";
+		}
+	
 	}
 	/////////////////////////////////////////////////////////////////
 
