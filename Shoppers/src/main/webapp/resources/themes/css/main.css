@@ -113,7 +113,7 @@ ul.pageLinks{
 /* 수용 */
 input, button, select, textarea{
 	/* text-align: center;   */	
-	margin-left: 1%;  
+	/* margin-left: 1%;   */
 	color: #5f5f59; /* 회색  */
 	font-family: InterparkGothicOTFL; 
 }
@@ -170,15 +170,15 @@ div.sp{
 }
 /*  --------여기까지  */
 /* 오른쪽 상세 부분 너비  */
-div.span7{
-	width: 670px; /* 고정 */
-}
+/* div.span7{
+	width: 670px; 고정
+} */
 /* 아래 2개 제외한 나머지 content 마진과 폰트 사이즈 */
-fieldset{
+/* fieldset{
 	margin-left: 8%;
 	font-size: 15px;
-}
-/* 전체 주문 요청 내역, 전체 판매 내역 content부분 마진  */
+} */											
+/* 전체 주문 요청 내역, 전체 판매 내역 content부분 마진               건드리면 안되요~!!  */
 .fieldb{
 	margin-left: 0%; 
 	font-size: 15px;

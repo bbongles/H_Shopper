@@ -83,7 +83,7 @@ public class OrderController {
 		return "sudo_order";	
 	}
 	
-	// 체크박스 상관없이 아이템 하나 주문할때
+	// 체크박스 상관없이 아이템 하나 주문할때_ 
 	@RequestMapping(value="OneCartTossOrder", method=RequestMethod.GET)
 	public String OneTossToOrder(int c_no, Model model, HttpServletRequest request) throws IOException{
 		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
