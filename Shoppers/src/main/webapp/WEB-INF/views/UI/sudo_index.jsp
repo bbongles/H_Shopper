@@ -425,25 +425,25 @@
 				</div>
 			</section>
 			<section class="our_client">
-				<h4 class="title"><span class="text">Manufactures</span></h4>
+				<h4 class="title"><span class="text">Cooperator</span></h4>
 				<div class="row">					
 					<div class="span2">
-						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/14.png'/>></a>
+						<a href="http://localhost:8181/shop/pList?s_id=s1"><img alt="" src=<c:url value='/resources/themes/images/clients/co1.png'/>></a>
 					</div>
 					<div class="span2">
-						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/35.png'/>></a>
+						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/co2.png'/>></a>
 					</div>
 					<div class="span2">
-						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/1.png'/>></a>
+						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/co3.png'/>></a>
 					</div>
 					<div class="span2">
-						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/2.png'/>></a>
+						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/co4.png'/>></a>
 					</div>
 					<div class="span2">
-						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/3.png'/>></a>
+						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/co5.png'/>></a>
 					</div>
 					<div class="span2">
-						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/4.png'/>></a>
+						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/co6.png'/>></a>
 					</div>
 				</div>
 			</section>
