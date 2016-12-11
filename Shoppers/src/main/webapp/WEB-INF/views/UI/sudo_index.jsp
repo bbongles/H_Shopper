@@ -154,7 +154,8 @@
 			</section>
 			<section class="main-content">
 				<div class="row">
-					<div class="span12">													
+					<div class="span12">
+																		
 						<div class="row">
 							<div class="span12">
 								<h4 class="title">
@@ -292,6 +293,7 @@
 								</div>
 							</div>						
 						</div>
+						
 						<br/>
 						<div class="row">
 							<div class="span12">

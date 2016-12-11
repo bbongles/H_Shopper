@@ -91,7 +91,7 @@
 	<div id="wrapper" class="container">
 		<section class="navbar main-menu">
 			<div class="navbar-inner main-menu">
-				<a href="index" class="logo pull-left"><img
+				<a href="./" class="logo pull-left"><img
 					src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>"
 					alt=""></a>
 				<nav id="menu" class="pull-right">
