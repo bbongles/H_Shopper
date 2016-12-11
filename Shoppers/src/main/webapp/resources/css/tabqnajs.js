@@ -21,7 +21,7 @@ $(document).ready(function() {
 			    var s_id = $('#s_id'+x).val();
 			    var p_no = $('#p_no'+x).val();
 			    var qna_no = $('#qna_no'+x).val();
-			    
+
 				  $.ajax({
 			          type:'post',
 			          url : url,
@@ -52,7 +52,7 @@ $(document).ready(function() {
 			$('.updateReply').click(function () {
 				/* $('#replyCont').attr("readonly",false); */
 				var x = $(this).parent().attr('modData');
-				alert("답변 내용 수정 가능! 완료 버튼 활성화")
+				alert("답변 내용 수정 가능! 완료 버튼 활성화 ")
 				$('#qna_r_cont'+x).attr("readonly", false);
 				$('#qna_r_cont'+x).attr("required", true);
 				$('#updateReply1'+x).show();
@@ -68,7 +68,7 @@ $(document).ready(function() {
 			    var s_id = $('#s_id'+x).val();
 			    var p_no = $('#p_no'+x).val();
 			    var qna_no = $('#qna_no'+x).val();
-			    
+
 				  $.ajax({
 			          type:'post',
 			          url : url,
@@ -99,7 +99,6 @@ $(document).ready(function() {
 			
 			$('.qnaDetail').click(function () {
 				var x = $(this).attr('modData');
-				
 				$('.modify'+x).toggle();
 					
 			});

@@ -34,6 +34,7 @@ public class QnRController {
 	@Autowired
 	private RevDAO daoR;
 	
+	
 	//최초화면에서 qna와 review 리스트를 가져와 화면에 출력
 	@RequestMapping(value="qnr", method=RequestMethod.GET)
 	public void qaMain(Integer page, QnaVO vo, Model model) {
@@ -83,6 +84,7 @@ public class QnRController {
 	//구매자가 qna를 등록하기위한 페이지 띄움
 	@RequestMapping(value="insertQnA", method=RequestMethod.GET)
 	public void insertQnA(int p_no, String b_id, Model model) {
+		System.out.println("insertQnA GET");
 		model.addAttribute("p_no", p_no);
 		model.addAttribute("b_id", b_id);
 	}
@@ -106,10 +108,10 @@ public class QnRController {
 	@RequestMapping(value="insertReply", method=RequestMethod.POST)
 	public void insertReplyPost(@RequestBody QnaRVO vo, HttpServletResponse response) throws IOException {
 		int result=0;
-		//System.out.println("/////////////////"+vo.getQna_r_cont()+vo.getQna_no());
+		System.out.println("/////"+vo.getP_no()+"//"+vo.getQna_r_cont()+"//"+vo.getQna_no());
 		if(!(vo.getQna_r_cont().equals(""))) {
 			result = dao.insertQnAR(vo);
-			//System.out.println("result cont:"+result);
+			System.out.println("result cont:"+result);
 			
 			if(result == 1) {
 				response.getWriter().print(1);
