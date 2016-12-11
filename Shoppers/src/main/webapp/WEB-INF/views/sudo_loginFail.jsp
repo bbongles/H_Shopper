@@ -40,6 +40,7 @@
 		<![endif]-->
 </head>
 <body>
+	<div style="width: 3000px" id="mydiv">로그인 실패!!!</div>
 	<div id="top-bar" class="container">
 		<div class="row">
 			<div class="span4">
@@ -268,19 +269,17 @@
 				reserved.</span>
 		</section>
 	</div>
-	<input type="hidden" value="${loginFail}" id="failCheck">
 	<script src="<c:url value='/resources/themes/js/common.js' />"></script>
 	<script>
 		$(document).ready(function() {
 			$('#checkout').click(function(e) {
 				document.location.href = "checkout.html";
 			})
-			var fail = $("#failCheck").val();
-			if (fail=="fail"){
-				alert("아이디/비밀번호가 일치하지 않습니다.")
-				<%request.getSession().removeAttribute("loginFail");%>
-				$("#failCheck").val("");
-			}
+			
+			setTimeout(function() {
+    $('#mydiv').fadeOut('fast');
+}, 1000); // <-- time in milliseconds
+			
 		});
 	</script>
 </body>
