@@ -452,15 +452,10 @@
 													</p>
 													</th>
 													<td><b>${list.rev_cont }</b></td>
-													<td>${list.b_id }</td>
+													<td>${list.b_id }(구매)</td>
 													<td><fmt:formatDate value="${list.rev_reg }"
 														pattern="yyyy년 MM월 dd일" />&emsp;&emsp;</td>
 												</tr>		
-<%-- 												<tr class="alt">
-													<th></th>
-													<td><b>${list.rev_cont }</b></td>
-													<td></td>
-												</tr> --%>
 												
 												<tr class ="revReply" modData="${state.index }">
 													<th style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
@@ -779,8 +774,8 @@
 		</div>
 
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121623' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121623' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121647' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121647' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');

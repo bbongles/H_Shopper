@@ -420,7 +420,7 @@
 											</tbody>
 										</table>
  									<input type="hidden" name="pno" id="detail_p_no" value="${productVO.p_no}">
-									<button type="button" id="btnInsert">상품 문의 하기</button>
+									<button type="button" id="btnInsert" class="btn">상품 문의 하기</button>
 										
 								</div><!-- tab qna -->
 									
@@ -442,7 +442,7 @@
 													</p>
 													</th>
 													<td><b>${list.rev_cont }</b></td>
-													<td>${list.b_id }</td>
+													<td>${list.b_id }(구매)</td>
 													<td><fmt:formatDate value="${list.rev_reg }"
 														pattern="yyyy년 MM월 dd일" />&emsp;&emsp;</td>
 												</tr>		

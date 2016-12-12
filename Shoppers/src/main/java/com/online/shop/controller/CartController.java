@@ -102,7 +102,7 @@ public class CartController {
 		
 		////////////////////////////////
 		
-		return "test_order";
+		return "sudo_order";
 	}
 	
 	
