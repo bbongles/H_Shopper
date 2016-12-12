@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Bootstrap E-commerce Templates</title>
+<title>H-Shopper : 특별함을 전하는</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
@@ -140,12 +140,12 @@
 						<!-- -------------------------------------------------------------- -->
 						
 						
-						<h1>주문 리스트***</h1>
+						<h1>주문 리스트</h1>
 						
 						
 						<form action="/shop/order/readyForBill" method="get" name="frm">
 							<table>
-								<tr>
+								<tr> 
 									<th>제품번호</th>
 									<th>그림</th>
 									<th>제품</th>
@@ -178,7 +178,7 @@
 									</dt>
 									<dd>
 
-										<p>
+											<p>
 											<span>주문 갯수 : </span><strong>${totalCountForOrder}</strong><span>개
 												/ </span> <span>마일리지 적립 : </span><strong>${miledTobeAdded}</strong><span>Point
 												/ </span> <span>총 배송비 : </span><strong>${Shipping}</strong><span>원
@@ -199,23 +199,28 @@
 
 									</dd>
 								</dl>
+								
 								<hr>
 							</div>
+							
+							
 							<h2>주문고객 정보</h2>
 							주문자 : <input type="text" value="${buyerNAME}" name="b_name"><br>
 							핸드폰 : <input type="number" value="${buyerHP}" name="b_phone"><br>
 							이메일 : <input type="email" value="${buyerEmail }" name="b_email"><br>
-
 							<hr>
-							<h2>배송지 정보</h2>
+							<h2>받는사람 정보</h2>
 							<div>
 								<input type="radio" checked="checked" name="juso"
-									id="showExistingAddr">기존 정보 불러오기 <input type="radio"
-									name="juso" id="showNewAddr">새 배송지 입력
+									id="showExistingAddr">주문자와 같음 <input type="radio"
+									name="juso" id="showNewAddr">새로 입력
 							</div>
 							<br>
 							<!--  -->
 							<div>
+								받는분 : <input type="text" value="${buyerNAME}" name="client_name" id="newClientName"><br>
+								핸드폰 : <input type="number" value="${buyerHP}" name="client_phone" id="newClientHP"><br>
+								<hr>
 								우편번호 : <input type="number" id="sample6_postcode"
 									placeholder="우편번호" name="delivery_zip" value="${registedZip }">
 								<input type="button" value="우편번호 찾기"
@@ -307,12 +312,16 @@
 			$("#sample6_postcode").val("");
 			$("#sample6_address").val("");
 			$("#sample6_address2").val("");
+			$("#newClientName").val("");
+			$("#newClientHP").val("");
 		});
 
 		$("#showExistingAddr").click(function() {
 			$("#sample6_postcode").val("${registedZip }");
 			$("#sample6_address").val("${registedAddr1 }");
 			$("#sample6_address2").val("${registedAddr2 }");
+			$("#newClientName").val("${buyerNAME}");
+			$("#newClientHP").val("${buyerHP}");
 		});
 
 		// 새 배송 주소 우편번호 찾기

@@ -478,8 +478,8 @@
 											</tbody>
 										</table>
 								<input type="hidden" id="pno" value="${productVO.p_no }">
-								<input type="hidden" id="bno" value="aaaa">
-								<button type="button" id="btnReviewInsert">후기 작성</button>
+								<input type="hidden" id="bno" value="${b_login_id}">
+								<input type="button" id="btnReviewInsert" value="후기작성"></input>
 									</div><!-- tab review -->
 									
 								</div>	
@@ -765,8 +765,8 @@
 		<!-- 김태훈 백버튼 리프레시 -->
 		<input type="hidden" id="refreshed" value="no" style="display: none">
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121555' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121555' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');

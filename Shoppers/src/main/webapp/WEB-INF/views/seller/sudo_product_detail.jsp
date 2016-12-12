@@ -141,6 +141,7 @@
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
+
 					<!-- 방문객 입장 -->
 					<c:if test="${empty s_login_id && empty b_login_id }">
 					<a href="./" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
@@ -153,6 +154,9 @@
 					<c:if test="${not empty b_login_id }">
 					<a href="../buyer/main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
 					</c:if>
+
+					<%-- <a href="../seller/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images/logo.png' />" class="site_logo" alt=""></a> --%>
+
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="./products?p_cate1=home_deco">Home / Deco</a>					

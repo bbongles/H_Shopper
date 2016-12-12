@@ -14,8 +14,10 @@ $(document).ready(function() {
 			});
 			
 			$('#btnVisitorInsert').click(function() {
-				alert('로그인필요');
-				loaction = "/login.jsp";				
+				var p_no = $('#detail_p_no').val();
+				//var b_id = $('#b_id').val();
+				var b_id = 'test';
+				window.open("seller/insertQnA?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
 			})
 			
 			$('.insertReply').click(function() {

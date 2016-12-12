@@ -102,6 +102,16 @@
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
+ 		<interceptor>
+			<mapping path="/seller/insertQnA"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		 <interceptor>
+			<mapping path="/buyer/pDetail"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
 	</interceptors>
 	
 </beans:beans>

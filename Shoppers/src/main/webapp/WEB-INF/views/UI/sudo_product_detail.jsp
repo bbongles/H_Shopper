@@ -429,7 +429,8 @@
 											</tbody>
 										</table>
  									<input type="hidden" name="pno" id="detail_p_no" value="${productVO.p_no}">
-									<button type="button" id="btnVisitorInsert">상품 문의 하기</button>
+ 									
+									<button type="button" id="btnVisitorInsert">상품 문의</button>
 										
 									</div>
 									
@@ -778,8 +779,8 @@
 		</div>
 
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121623' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121623' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');
