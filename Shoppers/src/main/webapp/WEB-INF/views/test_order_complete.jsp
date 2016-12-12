@@ -124,13 +124,18 @@
 			</h4>
 		</section>
 		<section class="main-content">
+		<div style="text-align: center">
+													주문번호 : ${buyNO} <br> <br>
+											주문상태 : 입금대기중<br>
+											<a href="../buyer/main">메인으로 가기</a>
+											</div>
 			<div class="row">
 				<div class="span12">
-					<div class="accordion" id="accordion2" style="text-align: cetner">
+					<div class="accordion" id="accordion2">
 					
 						<!-- -------------------------------------------------------------- -->
-					
-											주문상태 : 입금대기중
+
+
 
 						<!-- -------------------------------------------------------------- -->
 									
