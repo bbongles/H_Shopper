@@ -35,12 +35,12 @@
 p {
 	color: gray;
 }
-
 #coverBox {
+	width: 100%;
 	display: inline-block;
-	margin-left: 320px;
+	background-color: #FAECC5;
+	border-radius: 5px;
 }
-
 #sellerLogo {
 	width: 200px;
 	height: 200px;
@@ -48,19 +48,30 @@ p {
 	border: none;
 	margin: 30px;
 }
-
 #logoImg {
 	width: 200px;
 	height: 200px;
+	border-radius: 5px;
 }
-
 #sellerInfo {
 	width: 300px;
 	height: 200px;
 	float: left;
 	border: none;
 	margin: 30px;
+	background-color: white;
+	border-radius: 5px;
 }
+
+#google_map {
+	width: 473px;
+	height: 200px;
+	float: left;
+	border: none;
+	margin: 30px;
+	border-radius: 5px;
+}
+
 </style>
 
 </head>
@@ -186,22 +197,29 @@ p {
 					<div class="accordion" id="accordion2">
 						<!-- -------------------------------------------------------------- -->
 						<hr />
-
+						
+						<div class="block">
 						<div id="coverBox">
 							<div id="sellerLogo">
 								<img id="logoImg" src="${sellerInfo.s_logo }" />
 							</div>
-
+							
 							<div id="sellerInfo">
-								<br /> <label>판매자</label>
+								<br/>
+								<label>판매자</label>
 								<p>${sellerInfo.s_name }</p>
 								<label>이메일</label>
 								<p>${sellerInfo.s_email }</p>
 								<label>개인 쇼핑몰 / SNS</label>
 								<p>${sellerInfo.s_info }</p>
 							</div>
+							
+							<div id="google_map">
+								<iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=74%2F6+Nguy%E1%BB%85n+V%C4%83n+Tho%E1%BA%A1i,+S%C6%A1n+Tr%C3%A0,+%C4%90%C3%A0+N%E1%BA%B5ng,+Vi%E1%BB%87t+Nam&amp;aq=0&amp;oq=74%2F6+Nguyen+Van+Thoai+Da+Nang,+Viet+Nam&amp;sll=37.0625,-95.677068&amp;sspn=41.546728,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=74+Nguy%E1%BB%85n+V%C4%83n+Tho%E1%BA%A1i,+Ng%C5%A9+H%C3%A0nh+S%C6%A1n,+Da+Nang,+Vietnam&amp;t=m&amp;ll=16.064537,108.24151&amp;spn=0.032992,0.039396&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+							</div>
 						</div>
-
+						</div>
+						
 						<hr />
 
 						<!-- -------------------------------------------------------------- -->
