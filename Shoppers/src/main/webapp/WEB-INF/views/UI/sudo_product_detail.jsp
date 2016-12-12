@@ -2,11 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
- 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 
 <!DOCTYPE html>
 <html>
 	<head>
+	<link href="<c:url value='/resources/css/tabqr.css' />" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<style>
 		.select1 {
 	   		 width: 90px;
@@ -14,6 +17,41 @@
 		.select2 {
 	   		 width: 180px;
 		}
+.modify {
+	display: none;
+}
+
+.qnaDetail {
+	border: none;
+	
+}
+.pageLinks li {
+	display: inline;
+}
+
+.star_rating {font-size:0; letter-spacing:0px;}
+.star_rating a {
+    font-size:22px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#ccc;
+}
+
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:rgb(238, 11, 51);}
+
+.star_rating {font-size:0; letter-spacing:0px;}
+.star_rating a {
+    font-size:22px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#ccc;
+}
+
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:rgb(238, 11, 51);}
 	</style>
 		<meta charset="utf-8">
 		<title>H-Shopper : 특별함을 전하는</title>
@@ -251,8 +289,8 @@
 							<div class="span9">
 								<ul class="nav nav-tabs" id="myTab">
 									<li class="active"><a href="#tab1">작품정보</a></li>		<!-- 먼저 탭이 열려 있어야 함 -->
-									<li class=""><a href="#tab2">구매후기</a></li>
-									<li class=""><a href="#tab3">Q&A</a></li>
+									<li class=""><a href="#tab2">Q&A</a></li>
+									<li class=""><a href="#tab3">구매후기</a></li>
 								</ul>	
 														 
 								<div class="tab-content">
@@ -270,23 +308,179 @@
 									
 									<!-- 두번째 탭 -->
 									<div class="tab-pane" id="tab2">
-										<table class="table table-striped shop_attributes">	
+									<table class="table table-striped shop_attributes">	
 											<tbody>
-												<tr class="">
-													<th>Size</th>
-													<td>Large, Medium, Small, X-Large</td>
-												</tr>		
-												<tr class="alt">
-													<th>Colour</th>
-													<td>Orange, Yellow</td>
-												</tr>
+												<c:forEach var="list" items="${listQnA }" varStatus="state">
+												
+					<tr>
+						<c:if test="${list.qna_type eq 0 }">
+							<td>상품</td>
+						</c:if>
+						<c:if test="${list.qna_type eq 1 }">
+							<td>배송</td>
+						</c:if>
+						<c:if test="${list.qna_type eq 2 }">
+							<td>반품/취소</td>
+						</c:if>
+						<c:if test="${list.qna_type eq 3 }">
+							<td>교환/변경</td>
+						</c:if>
+						<c:if test="${list.qna_type eq 4 }">
+							<td>기타</td>
+						</c:if>
+						
+						<td class="replies" repData="${state.index }">
+						
+						<c:if test="${list.qna_reply eq 0 }">
+							답변 대기&emsp;
+							<span class ="qnaDetail" modData="${state.index }" onMouseover="this.style.color='blue'; this.style.textDecoration='underline';" 
+	 						onMouseout="this.style.color='black'; this.style.textDecoration='none';">${fn:substring(list.qna_cont,0,9) }...</span>
+						</c:if>
+						
+						<c:if test="${list.qna_reply eq 1 }">
+							<Strong style="text-decoration: underline;">답변 완료</Strong>&emsp;
+							<span class ="qnaDetail" modData="${state.index }" onMouseover="this.style.color='blue'; this.style.textDecoration='underline';" 
+	 						onMouseout="this.style.color='black'; this.style.textDecoration='none';"><b>${fn:substring(list.qna_cont,0,9) }...</b></span>
+						</c:if>
+														
+<%-- 						<input type="text" class ="qnaDetail" value= "${fn:substring(list.qna_cont,0,9) }..." modData="${state.index }" 
+	 						onMouseover="this.style.color='blue'; this.style.textDecoration='underline';" 
+	 						onMouseout="this.style.color='black'; this.style.textDecoration='none';" readonly/> --%>
+	 						
+	 						<%-- <span class ="qnaDetail" modData="${state.index }" onMouseover="this.style.color='blue'; this.style.textDecoration='underline';" 
+	 						onMouseout="this.style.color='black'; this.style.textDecoration='none';">${fn:substring(list.qna_cont,0,9) }...</span> --%>
+						</td>
+												
+						<td>${list.b_id }</td>
+						<td><fmt:formatDate value="${list.qna_reg }"
+								pattern="yyyy년 MM월 dd일" />&emsp;&emsp;</td>
+						<tr><tr/>
+						<tr/>
+						
+						<c:if test="${list.qna_reply eq 0 }">
+						
+						<tr style="background-color: inherit;">
+							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
+							
+							<td class="modify${state.index }" style="display: none; text-align: center;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
+							
+							<td colspan ="3" class="modify${state.index }" style="display: none;">${list.qna_cont }</td>
+						</tr>
+
+<!-- 							</div> -->
+						</c:if>
+						
+						<c:if test="${list.qna_reply eq 1 }">
+						<c:forEach var="listr" items="${listQnAR }" >
+						<c:if test="${list.qna_no eq listr.qna_no }">
+							
+						<tr style="background-color: #dcdcdc;">
+							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
+							
+							<td class="modify${state.index }" style="display: none; text-align: center;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
+							
+							<td colspan ="3" class="modify${state.index }" style="display: none;">
+								 ${list.qna_cont }</td>
+						</tr>
+							
+						<tr>
+							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
+							<td class="modify${state.index }" style="display: none; text-align: center;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
+							
+							<td colspan ="3" class="modify${state.index }" style="display: none; height: 100%" modData="${state.index }">
+							
+							<form id = "updatefrm${state.index }" method="post">
+<%-- 								<textarea cols="25" rows="3" id = "qna_r_cont${state.index }" 
+								name = "qna_r_cont" class="qna_r_cont"
+								style="width: 100%; background-color: inherit;
+								resize:none; box-sizing: border-box; 
+								-moz-box-sizing: border-box; 
+								-webkit-box-sizing: border-box; border: none;" readonly>${listr.qna_r_cont }</textarea> --%>
+								
+								<pre id = "qna_r_cont${state.index }" 
+								name = "qna_r_cont" class="qna_r_cont" style="border: none; background-color: inherit;" contenteditable="false">${listr.qna_r_cont }</pre>
+								
+								<input type="hidden" name="qna_r_no" id="qna_r_no${state.index }" value="${listr.qna_r_no }"/>
+								<input type="hidden" name="s_id" id="s_id${state.index }" value="${listr.s_id }" /> 
+								<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
+								<input type="hidden" name="qna_no" id="qna_no${state.index }" value="${listr.qna_no }" />
+							</form>
+							</td>
+							</tr>
+							
+							<!-- </div> -->
+								</c:if>
+							</c:forEach>
+						</c:if>
+											</c:forEach>
 											</tbody>
 										</table>
+ 									<input type="hidden" name="pno" id="detail_p_no" value="${productVO.p_no}">
+									<button type="button" id="btnVisitorInsert">상품 문의 하기</button>
+										
 									</div>
 									
 									<!-- 세번째 탭 -->
 									<div class="tab-pane" id="tab3">
-										123456789!@#$%^
+									<table class="table table-striped shop_attributes">	
+											<tbody>
+											<c:forEach var="list" items="${listRev }" varStatus="state">
+												<tr class="">
+													<th>
+													<p class="star_rating" >
+														 <c:forEach begin="1" end="${list.rev_score }" var="item">
+														 <a class="on" name = "rev_score">★</a>
+														 </c:forEach>
+														 
+														 <c:forEach begin="${list.rev_score }" end="4" var="item2">
+														 <a name = "rev_score">★</a>
+														 </c:forEach>
+													</p>
+													</th>
+													<td><b>${list.rev_cont }</b></td>
+													<td>${list.b_id }</td>
+													<td><fmt:formatDate value="${list.rev_reg }"
+														pattern="yyyy년 MM월 dd일" />&emsp;&emsp;</td>
+												</tr>		
+<%-- 												<tr class="alt">
+													<th></th>
+													<td><b>${list.rev_cont }</b></td>
+													<td></td>
+												</tr> --%>
+												
+												<tr class ="revReply" modData="${state.index }">
+													<th style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
+														onMouseout="this.style.color='black';">한줄답글</th>
+				
+				<c:if test="${list.rev_reply eq 1 }">
+					<td>
+						<c:forEach var="listr" items="${listReply}">
+						<c:if test="${list.rev_no eq listr.rev_no }">
+						
+						<div modData="${state.index }">
+						<form id = "updaterevfrm${state.index }" method="post">
+							<input type="text" id="rev_r_cont${state.index }" name="rev_r_cont" 
+							maxlength="100" value="${listr.rev_r_cont }" 
+							readonly style="border: none; color:maroon;"/>
+							<input type="hidden" name="rev_r_no" id="rev_r_no${state.index }" value="${listr.rev_r_no }"/>
+							<input type="hidden" name="s_id" id="s_id${state.index }" value="${listr.s_id }" /> 
+							<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
+							<input type="hidden" name="rev_no" id="rev_no${state.index }" value="${listr.rev_no }" />
+						</form>
+						</div>
+						</c:if>
+						</c:forEach>
+					
+				</td>
+				</c:if>
+												</tr>
+												
+												</c:forEach>
+											</tbody>
+										</table>
+								<input type="hidden" id="pno" value="${productVO.p_no }">
+								<input type="hidden" id="bno" value="aaaa">
+								<button type="button" id="btnVisitorReviewInsert">후기 작성</button>
 									</div>
 									
 								</div>	
@@ -562,6 +756,8 @@
 		</div>
 
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');

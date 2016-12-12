@@ -359,7 +359,7 @@
 						<tr style="background-color: inherit;">
 							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
 							
-							<td class="modify${state.index }" style="display: none; text-align: center;">Q</td>
+							<td class="modify${state.index }" style="display: none; "><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />'></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none;">${list.qna_cont }</td>
 						</tr>
@@ -374,7 +374,7 @@
 						<tr style="background-color: #dcdcdc;">
 							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
 							
-							<td class="modify${state.index }" style="display: none; text-align: center;">Q</td>
+							<td class="modify${state.index }" style="display: none;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none;">
 								 ${list.qna_cont }</td>
@@ -382,7 +382,7 @@
 							
 						<tr>
 							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
-							<td class="modify${state.index }" style="display: none; text-align: center;">A</td>
+							<td class="modify${state.index }" style="display: none;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none; height: 100%" modData="${state.index }">
 							

@@ -361,14 +361,14 @@
 						<tr style="background-color: #dcdcdc;">
 							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
 							
-							<td class="modify${state.index }" style="display: none; text-align: center;">Q</td>
+							<td class="modify${state.index }" style="display: none; text-align: center;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none;">${list.qna_cont }</td>
 						</tr>
 						
 						<%-- 판매자,관리자에서만 보이게 해야함.--%>
 						<tr>
-							<td class="modify${state.index }" style=" text-align: center; display: none;">A</td>
+							<td class="modify${state.index }" style=" text-align: center; display: none;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none; 
 							text-align: center; width: 250px; height: 50px;" modData="${state.index }">
@@ -398,7 +398,7 @@
 						<tr style="background-color: #dcdcdc;">
 							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
 							
-							<td class="modify${state.index }" style="display: none; text-align: center;">Q</td>
+							<td class="modify${state.index }" style="display: none; text-align: center;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none;">
 								 ${list.qna_cont }</td>
@@ -406,7 +406,7 @@
 							
 						<tr>
 							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
-							<td class="modify${state.index }" style="display: none; text-align: center;">A</td>
+							<td class="modify${state.index }" style="display: none; text-align: center;">img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none; height: 100%" modData="${state.index }">
 							
