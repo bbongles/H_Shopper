@@ -10,16 +10,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.online.shop.domain.CartandBuy;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
 import com.online.shop.domain.SellerVO;
+import com.online.shop.pageutil.PageCriteria;
+import com.online.shop.pageutil.SearchPageCriteria;
 
 @Repository // 스프링에서 persistence Layer(DAO) 콤포넌트 빈 객체로 관리
 public class SellerDAOImpl implements SellerDAO {
 
 	private static final String NAMESPACE = 
 			"com.online.shop.SellerMapper";
+	private static final String NAMESPACEM = "com.online.shop.ShopMapper";
+	private static final String NAMESPACES = "com.online.shop.MypageMapper";
 	
 	private static final Logger logger = 
 			LoggerFactory.getLogger(SellerDAOImpl.class);
@@ -131,6 +136,98 @@ public class SellerDAOImpl implements SellerDAO {
 			
 			return productList;
 		}
+		
+		// 관리자 페이지 관련
+		@Override
+		public List<SellerVO> select() {
+			List<SellerVO> list =  sqlSession.selectList(NAMESPACEM + ".sellerSelectAll");
+			logger.info("select() 호출: " + list.size());
+					
+			return list;
+		}
+		
+		@Override
+		public int getNumOfRecords() {
+			return sqlSession.selectOne(NAMESPACEM + ".sellerTotalCount") ;
+		}
+			
+		@Override
+		public List<SellerVO> select(PageCriteria cri) {
+			return sqlSession.selectList(NAMESPACEM + ".sellerListPage", cri);
+		}
+		
+		@Override
+		public List<SellerVO> listSearch(SearchPageCriteria cri) { 
+//			List<SellerVO> list = sqlSession.selectList(NAMESPACE + ".searchListSearch", cri);
+//			System.out.println("list: "+ list.get(0).getS_id());
+			return sqlSession.selectList(NAMESPACEM + ".searchListSearch", cri);
+		}
+		
+		@Override
+		public int listSearchCount(SearchPageCriteria cri) {
+			return sqlSession.selectOne(NAMESPACEM + ".sellerListSearchCount", cri);
+		}
+		
+		@Override
+		public List<SellerVO> selectAccess() {
+			return sqlSession.selectList(NAMESPACEM + ".selectAccess");
+		}
+
+		@Override
+		public int update(int sno) {
+			return sqlSession.update(NAMESPACEM + ".sellerAccept", sno);
+		}
+		//-------------------------------여기까지
+		
+		// 판매자 마이 페이지 --------------------------------------------------
+		// 주문 요청 내역 갯수
+		@Override
+		public List<CartandBuy> selectBySellerOrderCount(String s_id) {
+			return sqlSession.selectList(NAMESPACES + ".selectBySellerOrderCount", s_id);
+		}
+
+		// 최근 5건 주문 내역
+		@Override
+		public List<CartandBuy> selectBySellerOrder(String s_id) {
+			return sqlSession.selectList(NAMESPACES + ".selectBySellerOrder", s_id);
+		}
+		
+		// 전체 주문 요청 내역
+		@Override
+		public List<CartandBuy> selectBySellerAllOrder(String s_id) {
+			return sqlSession.selectList(NAMESPACES +".selectBySellerAllOrder", s_id);
+		}
+		
+		// 판매물 요청 갯수
+		@Override
+		public List<ProductVO> selectByProductAccCount(String s_id) {
+			return sqlSession.selectList(NAMESPACES + ".selectBySellerProductAccessCount", s_id);
+		}
+
+		// 최근 5건 판매 완료 내역
+		@Override
+		public List<CartandBuy> selectBySellerComplete(String s_id) {
+			return sqlSession.selectList(NAMESPACES + ".selectBySellerComplete", s_id);
+		}
+		
+		// 모든 판매 완료 내역
+		@Override
+		public List<CartandBuy> selectBySellerAllComplete(String s_id) {
+			return sqlSession.selectList(NAMESPACES + ".selectBySellerAllComplete", s_id);
+		}
+		
+		@Override
+		public List<ProductVO> selectByProdcutAccList(String s_id) {
+			return sqlSession.selectList(NAMESPACES + ".selectBySellerProductAccessList", s_id);
+		}
+		
+		@Override
+		public List<ProductVO> selectByProductAccAllList(String s_id) {
+			return sqlSession.selectList(NAMESPACES + ".selectBySellerProductAccessAllList", s_id);
+		}
+		
+		// ---------------------------------------------------여기까지
+
 
 		@Override
 		public List<ProductVO> selectAllProductByPcate1(String p_cate1) {
@@ -149,4 +246,5 @@ public class SellerDAOImpl implements SellerDAO {
 			
 			return productListByPcate2;
 		}
+
 } // end class SellerDAOImpl

@@ -100,6 +100,10 @@ public class HomeController {
 		logger.info("numOfPage : " + numOfPage);
 		logger.info("remainder : " + remainder);
 		/* logger.info(productList.get(0).getP_name()); */
+		
+		for(int i = 0; i<productList.size() ; i++ ) {
+			logger.info("p_acc: " + productList.get(i).getP_acc());
+		}
 
 		return "UI/sudo_index";
 	}
@@ -511,6 +515,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "seller/logout", method = RequestMethod.GET)
 	public String sellerlogout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		logger.info("세션 비우기 성공!");
+		return "redirect:../"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+	}
+	
+	@RequestMapping(value = "admin/logout", method = RequestMethod.GET)
+	public String adminlogout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		logger.info("세션 비우기 성공!");

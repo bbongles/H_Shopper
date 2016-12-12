@@ -26,12 +26,12 @@
   <!-- 상품 정보 검색 -->
   <!-- 판매자 별 상품 검색 -->
   <select id="selectProductBySid" resultType="ProductVO">
-  select * from s_tbl_product where s_id = #{s_id} order by p_no desc
+  select * from s_tbl_product where s_id = #{s_id} and p_acc = 1 order by p_no desc
   </select>
   
   <!-- 전체 상품 목록 검색 -->
   <select id="selectAllProduct" resultType="ProductVO">
-  select * from s_tbl_product order by p_no desc
+  select * from s_tbl_product where p_acc = 1 order by p_no desc
   </select>
   
   <!-- 해당 상품번호(p_no)의 상세페이지 검색 -->
@@ -70,12 +70,12 @@
   
   <!-- 카티고리 1로 상품 리스트 받아오기 -->
   <select id="selectAllProductByPcate1" resultType="ProductVO">
-  select * from s_tbl_product where p_cate1 = #{p_cate1}
+  select * from s_tbl_product where p_cate1 = #{p_cate1} and p_acc = 1 order by p_no desc 
   </select>
   
   <!-- 카티고리 2로 상품 리스트 받아오기 -->
   <select id="selectAllProductByPcate2" resultType="ProductVO">
-  select * from s_tbl_product where p_cate2 = #{p_cate2}
+  select * from s_tbl_product where p_cate2 = #{p_cate2} and p_acc = 1 order by p_no desc
   </select>
    
   </mapper>
