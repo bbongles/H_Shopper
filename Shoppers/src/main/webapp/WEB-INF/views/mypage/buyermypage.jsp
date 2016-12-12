@@ -41,8 +41,10 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
+								<c:if test="${not empty b_login_id }">
+							<li><a href="../mypage/buyermypage">My Page</a></li>	
+							<li><a href="../cart/selectCart">Cart</a></li>
+							</c:if>
 							<li><a href="checkout.html">Checkout</a></li>					
 							<li><a href="register.jsp">Login</a></li>		
 						</ul>

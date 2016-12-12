@@ -3,7 +3,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+  
  <mapper namespace="com.online.shop.AdminMapper">
 	<select id="selectByBuy" resultType="com.online.shop.domain.BuyVO">
 	select * from s_tbl_Buy where buy_status = 5  and rownum between 1 and 5 order by buy_date desc
@@ -24,9 +24,18 @@
 	<select id = "selectByBuyr" resultType="com.online.shop.domain.BuyVO">
 	select * from s_tbl_Buy where buy_status between 0 and 3 order by buy_date desc
 	</select>
+	
+	
 	<select id = "selectBysubr" resultType="com.online.shop.domain.CartandBuy">
-	select * from s_tbl_buy b1, s_tbl_cart c1 where b1.BUY_STATUS between 0 and 3 and b1.buy_no = c1.buy_no
-	order by buy_date desc
+	select b.*
+		from (
+			select rownum rn, a.*
+			from (
+				select b1.BUY_NO, b1.BUY_DATE, c1.P_NAME, c1.O_CONT, c1.S_ID, b1.BUY_STATUS, b1.b_id, c1.P_PRICE  from s_tbl_buy b1, s_tbl_cart c1 where b1.BUY_STATUS between 0 and 3 and b1.buy_no = c1.buy_no
+				order by buy_date desc
+			) a
+		) b
+		where rn between #{start} and #{end}
 	</select>
     
     <select id = "selectByBuyf" resultType="com.online.shop.domain.BuyVO">

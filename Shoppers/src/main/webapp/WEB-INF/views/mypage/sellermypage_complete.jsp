@@ -32,7 +32,7 @@
 	</head>
     <body>		
 		<div id="top-bar" class="container">
-			<div class="row">
+			<div class="row">	
 				<div class="span4">
 					<form method="POST" class="search_form">
 						<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
@@ -41,7 +41,9 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
+							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+							<li><a href="../mypage/sellermypage">My Page</a></li>
+							</c:if>
 							<li><a href="cart.html">Your Cart</a></li>
 							<li><a href="checkout.html">Checkout</a></li>					
 							<li><a href="register.jsp">Login</a></li>		
