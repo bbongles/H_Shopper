@@ -207,12 +207,12 @@
 			</section>
 	</div>
 	
-
+<input type="hidden" value="${b_login_id}" id="b_login_id">
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-	var b_id = 'buyerId';
+	var b_id = $("#b_login_id").val();
 
 	getCompleteList();
 	

@@ -112,6 +112,23 @@
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
+		<interceptor>
+			<mapping path="/admin/admin_mypage"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/mypage/buyermypage"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/mypage/sellermypage"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		
+		
 	</interceptors>
 	
 </beans:beans>

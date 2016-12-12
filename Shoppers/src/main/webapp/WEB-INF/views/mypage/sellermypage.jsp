@@ -246,12 +246,14 @@
 			</section>
 	</div>
 	
+	<input type="hidden" value="${s_login_id}" id="s_login_id">
+	
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-	var s_id = 'sId2';
+	var s_id = $("#s_login_id");
 	
 	getOrderCount();
 	getProductAccCount();
