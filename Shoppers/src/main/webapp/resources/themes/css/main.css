@@ -137,7 +137,7 @@ input, button, select, textarea{
 	display: inline;
 	
 }
-.pageLinks #page{
+.pageLinks #page, #main{
 	
 	
 	border: 2px solid black;       	
@@ -147,7 +147,7 @@ input, button, select, textarea{
 	background-color: #ea9999;
 	
 }
-.pageLinks #page:hover{
+.pageLinks #page:hover, #main:hover{
 	border: 2px solid black;       	
 	border-left-width: 5px; 
 	border-right-width: 5px;
@@ -172,8 +172,8 @@ div.sp{
 /* 오른쪽 상세 부분 너비  */
 /* div.span7{
 	width: 670px; 고정
-} */
-/* 아래 2개 제외한 나머지 content 마진과 폰트 사이즈 */
+}  */
+/* 아래 2개 제외한 나머지 content  마진과 폰트 사이즈 */
 /* fieldset{
 	margin-left: 8%;
 	font-size: 15px;
@@ -1180,6 +1180,9 @@ button.detail:hover {
 .control-buyer{
 	margin-left: 12%;
 }
+.control-group.cg{
+	margin-left: 8%;
+}
 #ordert{ 
 	text-align: center;
 
@@ -1188,5 +1191,11 @@ button.detail:hover {
 	text-align: center;
 	
 }
- 
+#maindi{
+	width: 820px; 고정
+}
 
+#maincontent{
+	margin-left: 20%;
+	font-size: 15px;
+}

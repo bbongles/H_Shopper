@@ -53,17 +53,17 @@
 							</c:if>
 							<!-- ------------바이어 입장 시작-------------------------- -->
 							<c:if test="${not empty b_login_id }">
-							<li><a href="">My Page</a></li>	
+							<li><a href="../mypage/buyermypage">My Page</a></li>	
 							<li><a href="../cart/selectCart">Cart</a></li>
 							</c:if>
 							<!-- ------------------셀러 입장시작------------------------------- -->
 							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
-							<li><a href="">My Page</a></li>
+							<li><a href="../mypage/sellermypage">My Page</a></li>
 							<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
 							</c:if>
 							<!-- ----------------어드민 입장 시작--------------------------------------->	
 							<c:if test="${s_login_id eq 'admin'}">
-							<li><a href="">My Page</a></li>
+							<li><a href="../admin/admin_mypage">My Page</a></li>
 							</c:if>
 							<c:if test="${empty s_login_id && empty b_login_id }">
 								<c:url value="login" var="login" />
@@ -83,8 +83,22 @@
 		</div>
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
-				<div class="navbar-inner main-menu">				
+				<div class="navbar-inner main-menu">	
+				
+				<!-- 로고 클릭시 메인으로 가는 코드  -->
+				<c:if test="${empty s_login_id && empty b_login_id }">			
 					<a href="./" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					</c:if>
+					<c:if test="${not empty b_login_id }">
+					<a href="main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					</c:if>
+					<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+					<a href="main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					</c:if>
+					<c:if test="${s_login_id eq 'admin'}">
+					<a href="main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					</c:if>
+					
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="./products">Home / Deco</a>					
