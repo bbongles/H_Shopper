@@ -418,7 +418,8 @@
 											</tbody>
 										</table>
  									<input type="hidden" name="pno" id="detail_p_no" value="${productVO.p_no}">
-									<button type="button" id="btnVisitorInsert">상품 문의 하기</button>
+ 									
+									<button type="button" id="btnVisitorInsert">상품 문의</button>
 										
 									</div>
 									
@@ -790,6 +791,14 @@
 		</script>
 		
 		<script>
+		
+		$('#btnVisitorInsert').click(function() {
+			alert('asdasdasdasdasdasd');
+			var p_no = $('#detail_p_no').val();
+			//var b_id = $('#b_id').val();
+			var b_id = 'test';
+			window.open("seller/insertQnA?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
+		})
 	    	// 게시글 삭제
 		    $('#delProduct').click(function() {
 		    	var result = confirm('정말 삭제하시겠습니까?');

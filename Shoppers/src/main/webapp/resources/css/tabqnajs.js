@@ -14,9 +14,8 @@ $(document).ready(function() {
 			});
 			
 			$('#btnVisitorInsert').click(function() {
-				alert('로그인필요');
-				loaction = "/login.jsp";				
-			})
+				alert('test');
+			});
 			
 			$('.insertReply').click(function() {
 				var x = $(this).parent().attr('modData');
