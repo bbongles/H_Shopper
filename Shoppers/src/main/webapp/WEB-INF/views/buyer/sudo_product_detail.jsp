@@ -18,7 +18,7 @@
 		.select2 {
 	   		 width: 180px;
 		}
-<<<<<<< HEAD
+
 		
 		.modify {
 	display: none;
@@ -44,23 +44,11 @@
 .star_rating a:first-child {margin-left:0;}
 .star_rating a.on {color:rgb(238, 11, 51);}
 
-.star_rating {font-size:0; letter-spacing:0px;}
-.star_rating a {
-    font-size:22px;
-    letter-spacing:0;
-    display:inline-block;
-    margin-left:5px;
-    color:#ccc;
-}
-
-.star_rating a:first-child {margin-left:0;}
-.star_rating a.on {color:rgb(238, 11, 51);}
-=======
 		#sellerLogo {
 			width: 100px;
 			height: 100px;
 		}
->>>>>>> branch 'master' of https://github.com/bbongles/H_Shopper
+		
 	</style>
 		<meta charset="utf-8">
 		<title>H-Shopper : 특별함을 전하는</title>
