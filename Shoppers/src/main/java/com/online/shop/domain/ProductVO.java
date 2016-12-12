@@ -17,8 +17,10 @@ public class ProductVO {
 	private int p_favo;
 	private int p_sale_cnt;
 	private String p_img;
+
 	private int p_acc; // 상품 승인
 	private int count;
+
 	
 	// 생성자
 	public ProductVO() {}
@@ -128,6 +130,7 @@ public class ProductVO {
 		this.p_acc = p_acc;
 	}
 
+
 	public int getCount() {
 		return count;
 	}
@@ -136,6 +139,6 @@ public class ProductVO {
 		this.count = count;
 	}
 	
-	
+
 	
 } // end class ProductVO

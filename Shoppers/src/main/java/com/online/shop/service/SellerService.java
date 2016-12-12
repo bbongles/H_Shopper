@@ -35,6 +35,10 @@ public interface SellerService {
 	public abstract SellerVO readSellerInfo(String s_id);
 	// 판매자의 정보를 추가하는 기능
 	public abstract int updateInfo(SellerVO sVo, String s_id);
+	// 상위 카테고리로 상품 리스트 받아오기
+	public abstract List<ProductVO> readAllProductByPcate1(String p_cate1);
+	// 하위 카테고리로 상품 리스트 받아오기
+	public abstract List<ProductVO> readAllProductByPcate2(String p_cate2);
 	
 	// 관리자 페이지 관련
 		// 판매자 목록을 불러오기 위한 service

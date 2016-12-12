@@ -65,5 +65,12 @@ public class CartDAOImpl implements CartDAO {
 	public int selectMaxCNoForDirectOrder() {
 		return sqlSession.selectOne(NAMESPACE+".get-c_no");
 	}
+	
+	@Override
+	public List<CartVO> selectCartBuyer(CartVO vo) {
+		List<CartVO> list = sqlSession.selectList(NAMESPACE+".select-cart-b_id",vo);
+		System.out.println(list.size());
+		return list;
+	}
 
 }

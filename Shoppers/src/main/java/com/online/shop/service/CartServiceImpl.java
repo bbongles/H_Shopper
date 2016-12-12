@@ -49,5 +49,10 @@ public class CartServiceImpl implements CartService{
 	public int selectMaxCNO() {
 		return dao.selectMaxCNoForDirectOrder();
 	}
+	
+	@Override
+	public List<CartVO> selectCartBuyer(CartVO vo) {
+		return dao.selectCartBuyer(vo);
+	}
 
 }

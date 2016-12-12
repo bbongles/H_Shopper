@@ -25,7 +25,7 @@ public class OrderInterceptor extends HandlerInterceptorAdapter{
 		} else {
 			logger.info("중복 submit 방지 Interceptor- 이미 주문했음! ");
 			response.sendRedirect("../buyer/main");
-			return true;
+			return false;
 		}
 		
 	}

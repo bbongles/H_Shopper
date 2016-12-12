@@ -14,4 +14,6 @@ public interface CartService {
 	public abstract int updateBuyNo(int buy_no, int c_no);
 	public abstract ProductVO cartImageByPno(int p_no);
 	public abstract int selectMaxCNO();
+	//정훈 코드
+	public abstract List<CartVO> selectCartBuyer(CartVO vo);
 }
