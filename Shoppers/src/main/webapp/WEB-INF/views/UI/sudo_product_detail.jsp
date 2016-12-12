@@ -774,8 +774,8 @@
 		</div>
 
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121623' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121623' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121647' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121647' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');
