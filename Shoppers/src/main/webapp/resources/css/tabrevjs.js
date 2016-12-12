@@ -27,8 +27,6 @@ $(document).ready(function() {
 		            }), 
 		           success: function(result) {
 		        	   if(result == 1) {
-		       				var p_no = $('#pno').val();
-		       				var b_id = $('#bno').val();
 		        		  window.open("../seller/insertReview?p_no="+p_no+"&b_id="+b_id,"newWindow","width=600, height=300, left=150, top=150");
 		        	   } else{
 		        		  location.reload();
@@ -37,6 +35,14 @@ $(document).ready(function() {
 		           }
 		       });
 		});
+		
+		$('#btnVisitorReviewInsert').click(function() {
+			var p_no = $('#pno').val();
+   			//alert('pno: '+p_no);
+   			//window.open("../seller/insertReview?p_no="+p_no+"&b_id="+b_id,"newWindow","width=600, height=300, left=150, top=150");
+   			location = "buyer/pDetail?p_no="+p_no;
+		})
+		
 		
 		$('.insertrevReply').click(function() {
 			var x = $(this).parent().attr('modData');
