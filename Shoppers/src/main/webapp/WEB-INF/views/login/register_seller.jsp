@@ -419,35 +419,35 @@ input.radio {
 	<div id="wrapper" class="container">
 		<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="./" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					<a href="../" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="./products">Home / Deco</a>					
+							<li><a href="./products?p_cate1=home_deco">Home / Deco</a>					
 								<ul>
-									<li><a href="./products">furniture</a></li>	<!-- 가구 -->									
-									<li><a href="./products">pottery</a></li>		<!-- 도자기 -->		
-									<li><a href="./products">lamp</a></li>			<!-- 조명 -->									
+									<li><a href="./products?p_cate2=furniture">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="./products?p_cate2=pottery">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="./products?p_cate2=lamp">lamp</a></li>			<!-- 조명 -->									
 								</ul>
 							</li>															
-							<li><a href="./products">Candle / Diffuser</a>
+							<li><a href="./products?p_cate1=candle_diffuser">Candle / Diffuser</a>
 								<ul>
-									<li><a href="./products">candle</a></li>			<!-- 양초 -->										
-									<li><a href="./products">diffuser</a></li>			<!-- 디퓨저 -->
-									<li><a href="./products">aromatic oils</a></li>	<!-- 아로마오일 -->									
+									<li><a href="./products?p_cate2=candle">candle</a></li>			<!-- 양초 -->										
+									<li><a href="./products?p_cate2=diffuser">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="./products?p_cate2=aromatic oils">aromatic oils</a></li>	<!-- 아로마오일 -->									
 								</ul>		
 								</li>	
-							<li><a href="./products">Art / Fancy</a>
+							<li><a href="./products?p_cate1=art_fancy">Art / Fancy</a>
 								<ul>									
-									<li><a href="./products">picture</a></li>		<!-- 사진 -->
-									<li><a href="./products">fancy</a></li>		<!-- 문구 -->
-									<li><a href="./products">paper</a></li>		<!-- 페이퍼 -->
+									<li><a href="./products?p_cate2=picture">picture</a></li>		<!-- 사진 -->
+									<li><a href="./products?p_cate2=fancy">fancy</a></li>		<!-- 문구 -->
+									<li><a href="./products?p_cate2=paper">paper</a></li>		<!-- 페이퍼 -->
 								</ul>
 							</li>							
-							<li><a href="./products">Jewellery</a>
+							<li><a href="./products?p_cate1=jewellery">Jewellery</a>
 								<ul>									
-									<li><a href="./products">earring</a></li>		<!-- 귀걸이 -->
-									<li><a href="./products">necklace</a></li>		<!-- 목걸이 -->
-									<li><a href="./products">ring</a></li>			<!-- 반지 -->
+									<li><a href="./products?p_cate2=earring">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="./products?p_cate2=necklace">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="./products?p_cate2=ring">ring</a></li>			<!-- 반지 -->
 								</ul>
 							</li>
 							<li><a href="./products">Event</a></li>
