@@ -38,8 +38,107 @@
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 			<script src="js/respond.min.js"></script>
 		<![endif]-->
+		
+<style>
+/* The Modal (background) */
+.modal {
+	 margin: auto;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+    position: fixed;
+    bottom: 0;
+    background-color: #fefefe;
+    width: 100%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #ff6666;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+</style>		
+		
 </head>
 <body>
+
+	<!-- The Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 style="text-align: center">로그인 실패</h2>
+    </div>
+    <div class="modal-body">
+      <p style="text-align: center">아이디 또는 비밀번호가 일치하지 않습니다</p>
+    </div>
+  </div>
+</div>
+<!-- modal end -->
+
 	<div id="top-bar" class="container">
 		<div class="row">
 			<div class="span4">
@@ -229,15 +328,9 @@
 						alt="판매자 회원가입"
 						src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_seller.gif"
 						style="width: 150px"></a>
-
-
 				</div><!-- span7 -->
 			</div><!-- end row -->
 		</section>
-
-
-
-
 		<section id="footer-bar">
 			<div class="row">
 				<div class="span3">
@@ -279,19 +372,37 @@
 		</section>
 	</div>
 	<input type="hidden" value="${loginFail}" id="failCheck">
+	
+
+	
+	<!-- --------------------Alert------------- -->
 	<script src="<c:url value='/resources/themes/js/common.js' />"></script>
 	<script>
 		$(document).ready(function() {
+			var modal = document.getElementById('myModal');
+			var span = document.getElementsByClassName("close")[0];
+			var btn = document.getElementById("myBtn");
+			
 			$('#checkout').click(function(e) {
 				document.location.href = "checkout.html";
 			})
 			var fail = $("#failCheck").val();
 			if (fail=="fail"){
-				alert("아이디/비밀번호가 일치하지 않습니다.")
+				modal.style.display = "block";
+				span.onclick = function() {
+				    modal.style.display = "none";
+				}
 				<%request.getSession().removeAttribute("loginFail");%>
 				$("#failCheck").val("");
 			}
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			    }
+			}
 		});
 	</script>
+	
+	
 </body>
 </html>
