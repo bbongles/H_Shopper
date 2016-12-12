@@ -317,7 +317,7 @@
 							<input value="0" id="newtotal" readonly="readonly" style="width: 70px;background-color: transparent" type="number" step="100" dir="rtl"> <br>
 						</p> --%>
 						
-						<hr>
+						
 						<!-- TODO -->
 						<div class="contBox4">
 							<dl class="registConfirmBox">
@@ -453,14 +453,16 @@
 							<tr>
 								<th><span>주문자명</span></th>
 								<td><span><input name="buyname" maxlength="16" type="text" class="txtBasic tblInput" style="width:200px" value="방수용"></span></td>
-								<th><span>전화번호</span></th>
+								<!-- <th><span>전화번호</span></th>
 								<td>
 								    <span>
 								    <input type="text" name="buyphone1" class="txtBasic tblInput" style="width:40px" maxlength="4" value=""> 
 									- <input type="text" name="buyphone2" class="txtBasic tblInput" style="width:50px" maxlength="4" value=""> 
 									- <input type="text" name="buyphone3" class="txtBasic tblInput" style="width:50px" maxlength="4" value="">
 									</span>
-								</td>
+								</td> -->
+								<th></th>
+								<td></td>
 							</tr>
 							<tr>
 								<th><span>핸드폰</span></th>
@@ -548,12 +550,14 @@
 									- <input type="text" name="reqhp2" class="txtBasic tblInput" style="width:50px" value=""> 
 									- <input type="text" name="reqhp3" class="txtBasic tblInput" style="width:50px" value="">
 								    </span></td>
-								<th><span>전화번호</span></th>
+								<!-- <th><span>전화번호</span></th>
 								<td><span>
 								    <input type="text" name="reqphone1" class="txtBasic tblInput" style="width:40px" value=""> 
 									- <input type="text" name="reqphone2" class="txtBasic tblInput" style="width:50px" value=""> 
 									- <input type="text" name="reqphone3" class="txtBasic tblInput" style="width:50px" value="">
-									</span></td>
+									</span></td> -->
+								<th></th>
+								<td></td>
 							</tr>
 							<tr>
 								<th><span>주소</span></th>
@@ -660,10 +664,12 @@
 								</tbody>
 							</table>
 						</div>
+						
+						<br>
 						<input type="hidden" name="availitemcouponlist" value="">
 						<input type="hidden" name="checkitemcouponlist" value="">
 						<div class="payPriceWrap">
-							<h2 class="tMar30"><img src="http://image.thefingers.co.kr/academy2012/common/title/subtit_pay_price.gif" alt="결제 금액"></h2>
+							 <h4 class="title"><span class="text"><strong>결제</strong> 금액</span></h4>
 							<table class="boardType viewStyle01 tMar10 table table-striped">
 								<caption>결제 금액</caption>
 								<colgroup>
@@ -698,8 +704,8 @@
 							</table>
 						</div>
 					</div>
-
-					<h2 class="tMar30"><img src="http://image.thefingers.co.kr/academy2012/common/title/subtit_pay_method.gif" alt="결제 수단"></h2>
+					<br>
+					 <h4 class="title"><span class="text"><strong>결제</strong> 수단</span></h4>
 					
 					<table class="boardType viewStyle01 tMar10 table table-striped" id="i_paymethod" name="i_paymethod">
 						<caption>결제정보 내역</caption>
@@ -722,7 +728,7 @@
 									<span>
 										<ul class="infoList01 tMar10">
 											<li>신용카드 결제시 화면 아래 '결제하기'버튼을 클릭하시면 신용카드 결제 창이 나타납니다. 신용카드 결제 창을 통해 입력되는 고객님의 카드 정보는 128bit로 안전하게 암호화되어 전송되며 승인 처리 후 카드 정보는 승인 성공/ 실패 여부에 상관없이 자동으로 폐기되므로, 안전합니다.</li>
-											<li>신용카드 결제 신청시 승인 진행에 다소 시간이 소요될 수 있으므로 '중지', '새로고침'을 누르지 마시고 결과 화면이 나타 날때까지 기다려 주십시오. (결제하기 버튼 클릭시 결제창이 나타나지 않을 경우나 안전결제 모듈이 설치 되지 않을경우 <a href="http://pay.kcp.co.kr/plugin_new/file/KCPUXWizard.exe"><strong class="colorOr">[여기]</strong></a> 를 눌러 수동으로 플러그인을 설치하십시요.)</li>
+											<li>신용카드 결제 신청시 승인 진행에 다소 시간이 소요될 수 있으므로 '중지',	 '새로고침'을 누르지 마시고 결과 화면이 나타 날때까지 기다려 주십시오. (결제하기 버튼 클릭시 결제창이 나타나지 않을 경우나 안전결제 모듈이 설치 되지 않을경우 <a href="http://pay.kcp.co.kr/plugin_new/file/KCPUXWizard.exe"><strong class="colorOr">[여기]</strong></a> 를 눌러 수동으로 플러그인을 설치하십시요.)</li>
 										</ul>
 
 										<ul class="infoList03 tMar15 colorBk">
@@ -954,21 +960,8 @@
 					<!-- //개인 수강신청 일때 -->
                     
                     
-					<input type="hidden" name="ierrmsg" value="">
-					<input type="hidden" name="mobileprdtnm" value="[상상꽃 윈터에디션]목화 드라이플라워 미니...">
-					<input type="hidden" name="mobileprdprice" value="17900">
-					<input type="hidden" name="mobileprdtnm_tmp" value="[상상꽃 윈터에디션]목화 드라이플라워 미니 다발">
-
-
-					<input type="hidden" name="M_No" value="">
-					<input type="hidden" name="M_Socialno" value="">
-					<input type="hidden" name="M_Email" value="">
-					<input type="hidden" name="M_Tradeid" value="">
-					<input type="hidden" name="M_Remainamt" value="">
-					<input type="hidden" name="M_Phoneid" value="">
-					<input type="hidden" name="M_Commid" value="">
-					<input type="hidden" name="M_Emailflag" value="">
-					<input type="hidden" name="M_Smsval" value="">
+					<br>
+					<hr>
 					
 					<div class="btnWrap tMar30" id="nextbutton1" name="nextbutton1" style="display: block;">
 					    <p class="ct">
