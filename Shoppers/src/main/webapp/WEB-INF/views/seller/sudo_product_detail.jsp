@@ -12,6 +12,21 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	
 	<style>
+	/* ///////////////////////////////test// */
+	.wrap {
+          max-width: 95.6%;
+    }
+    .wrap textarea {
+      width: 100%;
+      resize: none;
+      overflow-y: hidden; /* prevents scroll bar flash */
+      padding: 1.1em; /* prevents text jump on Enter keypress */
+      padding-bottom: 0.2em;
+      line-height: 1.6;
+      /* border-color: #fff; */
+    }
+    /* ///////////////////////////////////// */
+	
 		.select1 {
 	   		 width: 90px;
 		}
@@ -291,7 +306,27 @@
 										<c:forEach var="imageList" items="${imageList }">
 								    		<div style="text-align: center;" id="contentList">
 								    			<img src="${imageList.i_img }" class="detailImg" /><br/><br/>
-								    			<span class="detailCont">${imageList.i_cont }</span><br/><br/><br/>
+								    			
+								    			
+								    			<%-- <span class="detailCont">${imageList.i_cont }</span><br/><br/><br/> --%>
+								    			<%-- <textarea style="width:80%;overflow:visible;" class="detailCont">${imageList.i_cont }</textarea><br/><br/><br/> --%>
+								    			<%-- <textarea class="detailCont autosize">${imageList.i_cont }</textarea><br/><br/><br/> --%>
+								    			<div class="wrap" style="text-align:center">
+								    				<textarea style="border:none;text-align:center" class="detailCont" >${imageList.i_cont }</textarea>
+								    			</div>
+								    <script>
+									    $(document).ready(function() {
+									        $('.wrap').on( 'keyup', 'textarea', function (e){
+									          $(this).css('height', 'auto' );
+									          $(this).height( this.scrollHeight );
+									        });
+									        $('.wrap').find( 'textarea' ).keyup();
+									      });
+								    </script>	
+								    
+								    
+								    
+								    		
 								    		</div>
 								    	</c:forEach>
 									</div>
