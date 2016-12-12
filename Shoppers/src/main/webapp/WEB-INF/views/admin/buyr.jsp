@@ -153,7 +153,7 @@
 					
 				
 						<fieldset class="fieldb">
-							<div class="control-group cg">
+							<div class="control-group">
 								<select name="searchType" class="searchSelect">
 									<option value="n"
 										<c:out value="${cri.searchType == null?'selected':'' }"/>>---</option>

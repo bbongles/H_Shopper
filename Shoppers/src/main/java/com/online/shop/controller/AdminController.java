@@ -83,7 +83,9 @@ public class AdminController {
 		
 		//전체주문요청내역 뽑아옴
 		//List<BuyVO> list3 = dao.selectByBuyRequest();
-		List<CartandBuy> list3 =dao.selectBysubr();
+		PageCriteria c = new PageCriteria();
+		c.setPage(1);
+		List<CartandBuy> list3 =dao.selectBysubr(c);
 		
 		List<BuyVO> list4 = dao.selecyByBuyToday(today);
 		
@@ -118,7 +120,7 @@ public class AdminController {
 			c.setPage(page);
 		}
 		
-		List<CartandBuy> list =dao.selectBysubr();
+		List<CartandBuy> list =dao.selectBysubr(c);
 		model.addAttribute("list", list);
 		
 		PageMaker maker = new PageMaker();

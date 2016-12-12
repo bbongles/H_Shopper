@@ -41,10 +41,19 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.jsp">Login</a></li>		
+								<c:if test="${not empty b_login_id }">
+							<li><a href="../mypage/buyermypage">My Page</a></li>	
+							<li><a href="../cart/selectCart">Cart</a></li>
+							</c:if>
+							<c:if test="${empty s_login_id && empty b_login_id }">
+								<c:url value="login" var="login" />
+								<li><a href="${login}">Login</a></li>	
+							</c:if>
+							<c:if test="${not empty s_login_id || not empty b_login_id }">
+								<!-- 세션에 로그인 정보가 있는 경우 -->
+								<c:url value="../logout" var="logout" />
+								<li><a href="${logout }">Logout</a></li>		
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -232,7 +241,6 @@
 			</section>
 	</div>
 	<input type="hidden" value="${b_login_id}" id="b_login_id">
-	
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

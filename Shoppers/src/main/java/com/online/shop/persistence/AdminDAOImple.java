@@ -46,8 +46,8 @@ public class AdminDAOImple implements AdminDAO {
 	}
 	
 	@Override
-	public List<CartandBuy> selectBysubr() {
-		return sqlSession.selectList(NAMEPACE+".selectBysubr");
+	public List<CartandBuy> selectBysubr(PageCriteria cri) {
+		return sqlSession.selectList(NAMEPACE+".selectBysubr", cri);
 	}
 	
 	@Override
