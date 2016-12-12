@@ -153,6 +153,35 @@ public class OrderController {
 		return "test_order_complete";
 	}
 	
+	@RequestMapping(value="readyForBill", method=RequestMethod.POST)
+	public String openBill2(String c_no, Model model, OrderVO vo, HttpServletRequest request) throws IOException{
+	int buyNO = 0;
+	// 뒤로가기 버튼 누르고 다시 submit 해서 중복 주문 방지하는거 방지용 session
+	// 참고 - OrderInterceptor 클래스
+	
+	logger.info("주문 받은 c_no (여러개일수있음) : " +c_no);
+		// 주문번호를 생성하기위해 OrderVO객체를 s_tbl_order 테이블에 넣음
+		int result = orderService.insertOrder(vo);
+		logger.info("Order 테이블에 insert 성공!");
+		if (result == 1){ // 성공하면
+			// (로그인했다고 가정한)사용자의 아이디를 이용해서 s_tbl_order 테이블에서 생성된 buyNO를 얻음
+			buyNO = orderService.getBuyNo(vo.getB_id());
+			logger.info("Order 테이블에서 buyNO 불러오기 성공! 불러온 주문번호(buy_no) : "+buyNO );
+			if (buyNO>=0){ // 성공하면
+				String[] listCNO = c_no.split(","); // 주문정보에서 얻은 c_no배열을 쪼개고 배열화
+				for (int i=0; i<listCNO.length; i++){ // 배열의 길이만큼
+					cartService.updateBuyNo(buyNO, Integer.parseInt(listCNO[i])); // 장바구니에 주문번호를넣음
+					logger.info("Cart 테이블에 buy_no 업데이트 성공!");
+				}
+			}
+		}
+		HttpSession session = request.getSession();
+		session.setAttribute("ordered", "ordered");
+		logger.info("주문 성공!, 주문번호 : "+buyNO );
+		model.addAttribute("buyNO", buyNO);
+		return "test_order_complete";
+	}
+	
 	// 중복 주문 검사
 	@RequestMapping(value="test_bill", method=RequestMethod.GET)
 	public String billPop(HttpServletRequest request) {
