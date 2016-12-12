@@ -14,6 +14,7 @@ public interface SellerService {
 	public abstract int createSeller(SellerVO vo);
 	public abstract SellerVO readCheckID(String s_id);
 	public abstract boolean isValidUser(String s_id, String s_pw);
+	public abstract boolean isAccConf(String s_id, String s_pw);
 	
 	// 용훈
 	// 전체 상품 정보 검색

@@ -20,6 +20,10 @@
 	<select id="seller-login" resultType="Integer">
 		select count(1) from s_tbl_seller where s_id = #{s_id} and s_pw = #{s_pw}
 	</select>
+	
+	<select id="seller-login-s_acc" resultType="Integer">
+		select count(1) from s_tbl_seller where s_id = #{s_id} and s_pw = #{s_pw}  and s_acc = 1
+	</select>
   
   <!-- 용훈 -->
   <!-- Read(select): 상품 목록  전체 검색 -->

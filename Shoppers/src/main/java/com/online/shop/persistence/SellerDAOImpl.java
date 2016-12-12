@@ -122,6 +122,20 @@ public class SellerDAOImpl implements SellerDAO {
 				return false;
 			}
 		}
+		
+		@Override
+		public boolean isAccConf(String s_id, String s_pw) {
+			Map<String, String> map = new HashMap<>();
+			map.put("s_id", s_id);
+			map.put("s_pw", s_pw);
+			int result = sqlSession.selectOne(NAMESPACE + ".seller-login-s_acc", map);
+			if (result == 1){
+				return true;
+			} else {
+				return false;
+			}
+			
+		}
 
 		@Override
 		public List<ProductVO> selectAllProduct() {

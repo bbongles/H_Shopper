@@ -96,7 +96,7 @@
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #ff6666;
     color: white;
 }
 
@@ -134,6 +134,23 @@
     </div>
     <div class="modal-body">
       <p style="text-align: center">아이디 또는 비밀번호가 일치하지 않습니다</p>
+    </div>
+  </div>
+</div>
+<!-- modal end -->
+
+<!-- The Modal -->
+<div id="accModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 style="text-align: center">승인 되지 않은 회원</h2>
+    </div>
+    <div class="modal-body">
+      <p style="text-align: center">관리자가 승인하기 전까지 로그인 할 수 없습니다.</p>
+    </div>
+        <div class="modal-footer">
+    	<p style="text-align: center">관리자에게 문의하세요.</p>
     </div>
   </div>
 </div>
@@ -391,6 +408,7 @@
 	<script>
 		$(document).ready(function() {
 			var modal = document.getElementById('myModal');
+			var accmodal = document.getElementById('accModal');
 			var span = document.getElementsByClassName("close")[0];
 			var btn = document.getElementById("myBtn");
 			
@@ -402,6 +420,13 @@
 				modal.style.display = "block";
 				span.onclick = function() {
 				    modal.style.display = "none";
+			}
+				<%request.getSession().removeAttribute("loginFail");%>
+				$("#failCheck").val("");
+			} else if (fail=="acc") {
+				accmodal.style.display = "block";
+				span.onclick = function() {
+				    modal.style.display = "none";
 				}
 				<%request.getSession().removeAttribute("loginFail");%>
 				$("#failCheck").val("");
@@ -409,6 +434,9 @@
 			window.onclick = function(event) {
 			    if (event.target == modal) {
 			        modal.style.display = "none";
+			    }
+			    if (event.target == accmodal){
+			    	accmodal.style.display = "none";
 			    }
 			}
 		});
