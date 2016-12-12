@@ -12,12 +12,15 @@ import com.online.shop.controller.ProductController;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
+import com.online.shop.pageutil.PageCriteria;
+import com.online.shop.pageutil.SearchPageCriteria;
 
 @Repository // 스프링에서 persistence Layer(DAO) 콤포넌트 빈 객체로 관리
 public class ProductDAOImpl implements ProductDAO {
 	
 	private static final String NAMESPACE = 
 			"com.online.shop.ProductMapper";
+	private static final String NAMESPACEM = "com.online.shop.ShopMapper";
 	
 	private static final Logger logger = 
 			LoggerFactory.getLogger(ProductController.class);
@@ -86,5 +89,45 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductVO> selectProductCate(String p_cate2) {
 	return sqlSession.selectList(NAMESPACE+".selectCate2", p_cate2);
 	}
+	// 관리자 페이지 관련
+		@Override
+		public List<ProductVO> select() {
+			List<ProductVO> list = sqlSession.selectList(NAMESPACEM + ".productSelectAll");
+			logger.info("select() 호출:" + list.size());
+			
+			return list;
+		}
+		
+		// product 승인문
+		@Override
+		public int update(int pno) {
+			return sqlSession.update(NAMESPACEM + ".productAccept", pno);
+		}
+		
+		@Override
+
+		public List<ProductVO> selectAcc() {
+			return sqlSession.selectList(NAMESPACEM + ".productAccess");
+		}
+
+		public int getNumOfRecords() {
+			return sqlSession.selectOne(NAMESPACEM + ".productTotalCount");
+		}
+		
+		@Override
+		public List<ProductVO> select(PageCriteria cri) {
+			return sqlSession.selectList(NAMESPACEM + ".productListPage", cri);
+		}
+		
+		@Override
+		public int listSearchCount(SearchPageCriteria cri) {
+			return sqlSession.selectOne(NAMESPACEM + ".productListSearchCount", cri);
+		}
+		
+		@Override
+		public List<ProductVO> select(SearchPageCriteria cri) {
+			return sqlSession.selectList(NAMESPACEM + ".productListSearch", cri);
+		}
+		// 여기까지
 	
 } // end class ProductDAOImpl

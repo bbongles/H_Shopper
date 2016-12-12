@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
+import com.online.shop.pageutil.PageCriteria;
+import com.online.shop.pageutil.SearchPageCriteria;
 import com.online.shop.persistence.ProductDAO;
 
 @Service // 스프링 프레임워크에 Service 계층 콤포넌트 bean 객체로 등록
@@ -62,6 +64,42 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> selectCate2(String p_cate2) {
 		return productDao.selectProductCate(p_cate2);
 	}
+	
+	// 관리자 페이지 관련 Service
+		@Override
+		public List<ProductVO> read() {
+			return productDao.select();
+		}
+		
+		@Override
+		public List<ProductVO> selectAcc() {
+			return productDao.selectAcc();
+		}
+
+		public int getNumOfRecords() {
+			return productDao.getNumOfRecords();
+		}
+		
+		@Override
+		public List<ProductVO> read(PageCriteria cri) {
+			return productDao.select(cri);
+		}
+		
+		@Override
+		public int listSearchCount(SearchPageCriteria cri) {
+			return productDao.listSearchCount(cri);
+		}
+		
+		@Override
+		public List<ProductVO> listSearchCriteria(SearchPageCriteria cri) {
+			return productDao.select(cri);
+		}
+
+		// 승인 요청 처리
+		@Override
+		public int productAcc(int pno) {
+			return productDao.update(pno);
+		}
 
 
 
