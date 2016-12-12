@@ -22,6 +22,8 @@ public class OrderVO {
 	int b_phone;
 	String b_email;
 	Date buy_comp;
+	String client_name;
+	int client_phone;
 	
 	// 주문
 	public OrderVO(int buy_no, String b_id, Date buy_date, String delivery_zip, String delivery_addr1, String delivery_addr2, int buy_status,
@@ -165,6 +167,23 @@ public class OrderVO {
 	public void setBuy_comp(Date buy_comp) {
 		this.buy_comp = buy_comp;
 	}
+
+	public String getClient_name() {
+		return client_name;
+	}
+
+	public void setClient_name(String client_name) {
+		this.client_name = client_name;
+	}
+
+	public int getClient_phone() {
+		return client_phone;
+	}
+
+	public void setClient_phone(int client_phone) {
+		this.client_phone = client_phone;
+	}
+	
 	
 	
 	
