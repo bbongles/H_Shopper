@@ -1,10 +1,12 @@
 package com.online.shop.controller;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -226,14 +229,21 @@ public class SellerController {
 	}
 	
 	@RequestMapping(value="logoPop", method=RequestMethod.POST)
-	public void logoPopPost(SellerVO sVo, String s_id, HttpServletRequest request) {
+	public void logoPopPost(@RequestBody SellerVO sVo, String s_id, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		Object id = session.getAttribute("s_login_id");
 		s_id = (String) id;
-		logger.info("infoPop 로고 s_id........"+s_id);
+		logger.info("infoPop 로고 s_id........"+s_id + "/"+sVo.getS_logo());
 		// 서비스 객체를 사용하여 로고 이미지 update
 		int LUpResult = sellerService.updateLogo(sVo, s_id);
-		logger.info("결과: " + LUpResult);
+		//logger.info("결과: " + LUpResult);
+		//int LUpResult = 1;
+		if(LUpResult == 1) {
+			response.getWriter().print(1);
+		}else {
+			response.getWriter().print(0);
+		}
+			
 	}
 	
 	@RequestMapping(value="infoPop", method=RequestMethod.GET)
@@ -242,15 +252,21 @@ public class SellerController {
 	}
 	
 	@RequestMapping(value="infoPop", method=RequestMethod.POST)
-	public void infoPopPost(SellerVO sVo, String s_id, HttpServletRequest request) {
+	public void infoPopPost(@RequestBody SellerVO sVo, String s_id, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 	    Object id = session.getAttribute("s_login_id");
 		s_id = (String) id;
-		logger.info("infoPop 로고 s_id........"+s_id);
+		logger.info("infoPop 로고 s_id........"+s_id+"//"+sVo.getS_info());
 		
 		// 서비스 객체를 사용하여 판매자 정보 update
+		//int IUpResult = 1;
 		int IUpResult = sellerService.updateInfo(sVo, s_id);
 		logger.info("결과: " + IUpResult);
+		if(IUpResult == 1) {
+			response.getWriter().print(1);
+		}else {
+			response.getWriter().print(0);
+		}
 	}
 
 	/*----------------------------------------------------------------------------*/
