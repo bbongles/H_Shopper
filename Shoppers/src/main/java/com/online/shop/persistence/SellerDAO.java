@@ -23,5 +23,7 @@ public interface SellerDAO {
 	public abstract int updateLogo(SellerVO sVo, String s_id);
 	public abstract SellerVO selectSellerInfo(String s_id);
 	public abstract int updateInfo(SellerVO sVo, String s_id);
+	public abstract List<ProductVO> selectAllProductByPcate1(String p_cate1);
+	public abstract List<ProductVO> selectAllProductByPcate2(String p_cate2);
 	
 } // end interface SellerDAO

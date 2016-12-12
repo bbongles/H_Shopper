@@ -67,5 +67,15 @@
   set s_info = #{s_info}
   where s_id = #{s_id} <!-- 로그인 합치고 s_id 받아와서 찾아야함. -->
   </update>
+  
+  <!-- 카티고리 1로 상품 리스트 받아오기 -->
+  <select id="selectAllProductByPcate1" resultType="ProductVO">
+  select * from s_tbl_product where p_cate1 = #{p_cate1}
+  </select>
+  
+  <!-- 카티고리 2로 상품 리스트 받아오기 -->
+  <select id="selectAllProductByPcate2" resultType="ProductVO">
+  select * from s_tbl_product where p_cate2 = #{p_cate2}
+  </select>
    
   </mapper>
