@@ -467,8 +467,8 @@
 											</tbody>
 										</table>
 								<input type="hidden" id="pno" value="${productVO.p_no }">
-								<input type="hidden" id="bno" value="aaaa">
-								<button type="button" id="btnReviewInsert">후기 작성</button>
+								<input type="hidden" id="bno" value="${b_login_id}">
+								<input type="button" id="btnReviewInsert" value="후기작성"></input>
 									</div><!-- tab review -->
 									
 								</div>	

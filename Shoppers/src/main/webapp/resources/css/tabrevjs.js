@@ -10,15 +10,16 @@ $(document).ready(function() {
 			//var b_id = $('#bno').val();
 			//window.open("../seller/insertReview?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
 			
-			var url = '../seller/insertReview';
 			var p_no = $('#pno').val();
 			var b_id = $('#bno').val();
+			var url = 'seller/insertReview'+p_no;
+
 			  $.ajax({
-		          type:'get',
+		          type:'put',
 		          url : url,
 		          headers:{
 		             'Content-Type': 'application/json',
-		             'X-HTTP-Method-Override': 'GET'
+		             'X-HTTP-Method-Override': 'PUT'
 		          },
 		           data: JSON.stringify({
 		        	   p_no: p_no,
@@ -27,7 +28,7 @@ $(document).ready(function() {
 		           success: function(result) {
 		        	   if(result == 1) {
 		        		  location.reload();
-		        		  window.open("../seller/insertReview?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
+		        		  //window.open("../seller/insertReview?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
 		        	   } else{
 		        		  location.reload();
 		        		  alert('제품을 구매해야 합니다.');
