@@ -346,12 +346,6 @@
 	 						onMouseout="this.style.color='black'; this.style.textDecoration='none';"><b>${fn:substring(list.qna_cont,0,9) }...</b></span>
 						</c:if>
 														
-<%-- 						<input type="text" class ="qnaDetail" value= "${fn:substring(list.qna_cont,0,9) }..." modData="${state.index }" 
-	 						onMouseover="this.style.color='blue'; this.style.textDecoration='underline';" 
-	 						onMouseout="this.style.color='black'; this.style.textDecoration='none';" readonly/> --%>
-	 						
-	 						<%-- <span class ="qnaDetail" modData="${state.index }" onMouseover="this.style.color='blue'; this.style.textDecoration='underline';" 
-	 						onMouseout="this.style.color='black'; this.style.textDecoration='none';">${fn:substring(list.qna_cont,0,9) }...</span> --%>
 						</td>
 												
 						<td>${list.b_id }</td>
@@ -363,11 +357,33 @@
 						<c:if test="${list.qna_reply eq 0 }">
 						
 						<tr style="background-color: inherit;">
-							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
-							
-							<td class="modify${state.index }" style="display: none; text-align: center;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
+														
+							<td class="modify${state.index }" style="display: none; "><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none;">${list.qna_cont }</td>
+						</tr>
+						
+												<%-- 판매자,관리자에서만 보이게 해야함.--%>
+						<tr style="display: none;">
+							<td class="modify${state.index }" style=" text-align: center; display: none;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
+							
+							<td colspan ="3" class="modify${state.index }" style="display: none; 
+							text-align: center; width: 250px; height: 50px;" modData="${state.index }">
+							
+							<form id = "frm${state.index }" method="post">
+								<textarea cols="25" rows="3" name="qna_r_cont" class="qna_r_cont"  id="qna_r_cont${state.index }"
+								style="width: 100%;	height:100%; background-color: inherit;
+								resize:none; box-sizing: border-box; 
+								-moz-box-sizing: border-box; 
+								-webkit-box-sizing: border-box; border: none;" placeholder="답변을 작성해 주세요." required></textarea>
+							
+								<input type="hidden" name="s_id" id="s_id${state.index }" value="sellerId" />
+								<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
+								<input type="hidden" name="qna_no" id="qna_no${state.index }" value="${list.qna_no }" />
+								</form>						
+									<button type="button" class="insertReply">저장</button>
+							</td>
+							
 						</tr>
 
 <!-- 							</div> -->
@@ -377,28 +393,21 @@
 						<c:forEach var="listr" items="${listQnAR }" >
 						<c:if test="${list.qna_no eq listr.qna_no }">
 							
-						<tr style="background-color: #dcdcdc;">
-							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
-							
-							<td class="modify${state.index }" style="display: none; text-align: center;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
+						<tr style="background-color: inherit;">
+														
+							<td class="modify${state.index }" style="display: none; "><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none;">
 								 ${list.qna_cont }</td>
 						</tr>
 							
 						<tr>
-							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
-							<td class="modify${state.index }" style="display: none; text-align: center;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
+							
+							<td class="modify${state.index }" style="display: none; "><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none; height: 100%" modData="${state.index }">
 							
 							<form id = "updatefrm${state.index }" method="post">
-<%-- 								<textarea cols="25" rows="3" id = "qna_r_cont${state.index }" 
-								name = "qna_r_cont" class="qna_r_cont"
-								style="width: 100%; background-color: inherit;
-								resize:none; box-sizing: border-box; 
-								-moz-box-sizing: border-box; 
-								-webkit-box-sizing: border-box; border: none;" readonly>${listr.qna_r_cont }</textarea> --%>
 								
 								<pre id = "qna_r_cont${state.index }" 
 								name = "qna_r_cont" class="qna_r_cont" style="border: none; background-color: inherit;" contenteditable="false">${listr.qna_r_cont }</pre>

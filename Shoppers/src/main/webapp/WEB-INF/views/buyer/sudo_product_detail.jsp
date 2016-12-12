@@ -365,9 +365,8 @@
 						<c:forEach var="listr" items="${listQnAR }" >
 						<c:if test="${list.qna_no eq listr.qna_no }">
 							
-						<tr style="background-color: #dcdcdc;">
-							<%-- <div class="modify${state.index }" modData="${state.index }" style="display: none;"> --%>
-							
+						<tr style="background-color: inherit;">
+														
 							<td class="modify${state.index }" style="display: none;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none;">
