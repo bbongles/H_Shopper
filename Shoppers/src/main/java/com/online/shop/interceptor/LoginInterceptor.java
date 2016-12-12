@@ -58,11 +58,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		logger.info("Logininterceptor postHandle() 호출...");
 		// 로그인 정보를 세션에 저장하기 위해서 미리정의
 		HttpSession session = request.getSession();
+		Object result = session.getAttribute("login_result");
+		if(result!=null){
+			
 		
-
-		boolean result = (boolean) modelAndView.getModel().get("login_result");
-		
-		if (result!=false){
+		if ((boolean)result!=false){
 			logger.info("새로운 로그인 성공");
 
 			Object dest = session.getAttribute("dest");
@@ -75,13 +75,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 				response.sendRedirect("/shop/buyer/main"); // 메인페이지로 리다이렉트	
 			}
 
-
-			
 		} else {
-			response.sendRedirect("../");
+			
 		}
 		
-
+		}
 	} // end postHandle()
 	
 } // end class loginInterceptor

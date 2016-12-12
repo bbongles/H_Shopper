@@ -68,6 +68,26 @@
 		</interceptor>
 		
 		<interceptor>
+			<mapping path="/order/readyForBill"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/order/OneCartTossOrder"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/order/cartTossOrder"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/cart/selectCart"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
 			<mapping path="/buyer/login"/>
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>

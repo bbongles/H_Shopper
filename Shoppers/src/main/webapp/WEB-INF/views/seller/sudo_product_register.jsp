@@ -356,7 +356,7 @@ var x=0;
 							<!-- ------------------셀러 입장시작------------------------------- -->
 							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
 							<li><a href="">My Page</a></li>
-							<li><a href="pList?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
+							<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
 							</c:if>
 							<!-- ----------------어드민 입장 시작--------------------------------------->	
 							<c:if test="${s_login_id eq 'admin'}">
@@ -477,7 +477,7 @@ var x=0;
 														<option value="home_deco">홈/데코</option>
 														<option value="candle_diffuser">캔들/디퓨저</option>
 														<option value="art_fancy">아트/팬시</option>
-														<option value="jewellry">쥬얼리</option>
+														<option value="jewellery">쥬얼리</option>
 													</select> <br/>
 													<select name="p_cate2" class="input-xlarge">
 														<option value="none">--------</option>

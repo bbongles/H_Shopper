@@ -49,17 +49,17 @@
 							<!-- ---------------visitor 입장----------------------------- -->
 							<c:if test="${empty s_login_id && empty b_login_id }">
 							<li><a href="">My Page</a></li>
-							<li><a href="">Cart</a></li>
+							<li><a href="cart/selectCart">Cart</a></li>
 							</c:if>
 							<!-- ------------바이어 입장 시작-------------------------- -->
 							<c:if test="${not empty b_login_id }">
 							<li><a href="">My Page</a></li>	
-							<li><a href="">Cart</a></li>
+							<li><a href="../cart/selectCart">Cart</a></li>
 							</c:if>
 							<!-- ------------------셀러 입장시작------------------------------- -->
 							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
 							<li><a href="">My Page</a></li>
-							<li><a href="pList?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
+							<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
 							</c:if>
 							<!-- ----------------어드민 입장 시작--------------------------------------->	
 							<c:if test="${s_login_id eq 'admin'}">
@@ -154,7 +154,8 @@
 			</section>
 			<section class="main-content">
 				<div class="row">
-					<div class="span12">													
+					<div class="span12">
+																		
 						<div class="row">
 							<div class="span12">
 								<h4 class="title">
@@ -292,6 +293,7 @@
 								</div>
 							</div>						
 						</div>
+						
 						<br/>
 						<div class="row">
 							<div class="span12">
@@ -397,8 +399,8 @@
 								<div class="service">
 									<div class="responsive">	
 										<img src=<c:url value='/resources/themes/images/feature_img_2.png'/> alt="" />
-										<h4>MODERN <strong>DESIGN</strong></h4>
-										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>									
+										<h4>SPECIAL <strong>DESIGN</strong></h4>
+										<!-- <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p> -->									
 									</div>
 								</div>
 							</div>
@@ -407,7 +409,7 @@
 									<div class="customize">			
 										<img src=<c:url value='/resources/themes/images/feature_img_1.png'/> alt="" />
 										<h4>FREE <strong>SHIPPING</strong></h4>
-										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+										<!-- <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p> -->
 									</div>
 								</div>
 							</div>
@@ -416,7 +418,7 @@
 									<div class="support">	
 										<img src=<c:url value='/resources/themes/images/feature_img_3.png'/> alt="" />
 										<h4>24/7 LIVE <strong>SUPPORT</strong></h4>
-										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+										<!-- <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p> -->
 									</div>
 								</div>
 							</div>	
@@ -473,7 +475,7 @@
 					</div>
 					<div class="span5">
 						<p class="logo"><img src=<c:url value='/resources/themes/images/logo.png'/> class="site_logo" alt=""></p>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p> -->
 						<br/>
 						<span class="social_icons">
 							<a class="facebook" href="#">Facebook</a>
@@ -485,9 +487,11 @@
 				</div>	
 			</section>
 			<section id="copyright">
-				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
+				<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 			</section>
 		</div>
+		<!-- 김태훈 백버튼 리프레시 -->
+		<input type="hidden" id="refreshed" value="no" style="display: none">
 		<script src=<c:url value='/resources/themes/js/common.js'/>></script>
 		<script src=<c:url value='/resources/themes/js/jquery.flexslider-min.js'/>></script>
 		<script type="text/javascript">
@@ -503,6 +507,14 @@
 					});
 				});
 			});
+			
+			// 김태훈 백버튼 리프레시 코드
+			onload=function(){
+			var e=document.getElementById("refreshed");
+			if(e.value=="no")e.value="yes";
+			else{e.value="no";location.reload();}
+			}
+			
 		</script>
     </body>
 </html>

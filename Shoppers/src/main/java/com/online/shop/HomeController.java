@@ -72,6 +72,11 @@ public class HomeController {
 	/*---------------------------------------------------------------------------------*/
 // ** 비회원 메인 화면
 	
+	@RequestMapping(value="template_form", method=RequestMethod.GET)
+	public void openTemplete(){
+		
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 
@@ -107,7 +112,7 @@ public class HomeController {
 	public String openRegister() {
 		return "/sudo_loginSelect";
 	}
-
+	
 	
 	/*---------------------------------------------------------------------------------*/
 	
@@ -258,16 +263,19 @@ public class HomeController {
 // ** 구매자 로그인
 
 	@RequestMapping(value = "buyer/login", method = RequestMethod.POST)
-	public void login(String b_id, String b_pw, HttpServletRequest request, String query, Model model) {
+	public void login(String b_id, String b_pw, HttpServletRequest request, String query, Model model, HttpServletResponse response) throws IOException {
 		logger.info("login 컨트롤러 실행");
 		logger.info("b_id : " + b_id + " , b_pw : " + b_pw);
+		HttpSession session = request.getSession();
 		if (buyerService.isValidUser(b_id, b_pw)) {
 			logger.info("로그인 성공");
 			model.addAttribute("login_result", buyerService.isValidUser(b_id, b_pw));
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("b_login_id", b_id);
+			session.removeAttribute("s_login_id");
+			session.setAttribute("login_result", buyerService.isValidUser(b_id, b_pw));
 			logger.info("세션 저장 성공! key:login_id, 값 : " + b_id);
-
+			
 			// login-post 요청을 보낸 주소를 저장
 			logger.info("query: " + query);
 			if (query != null && !query.equals("null")) {
@@ -279,9 +287,20 @@ public class HomeController {
 
 		} else {
 			logger.info("로그인 실패");
-
+			session.setAttribute("login_result", false);
+			session.setAttribute("loginFail", "fail");
+			response.sendRedirect("login");
+			
 		}
 	}
+	
+	@RequestMapping(value = "buyer/login", method = RequestMethod.GET)
+	public String loginOpen() {
+		return "redirect:../login";
+	}
+	
+	
+	
 
 // ** 구매자 로그아웃
 
@@ -473,14 +492,17 @@ public class HomeController {
 	public String sellerloginResult(String s_id, String s_pw, HttpServletRequest request, String query) {
 		logger.info("login 컨트롤러 실행");
 		logger.info("s_id : " + s_id + " , s_pw : " + s_pw);
+		HttpSession session = request.getSession();
 		if (sellerService.isValidUser(s_id, s_pw)) {
 			logger.info("로그인 성공");
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("s_login_id", s_id);
 			logger.info("세션 저장 성공! key:login_id, 값 : " + s_id);
+			session.removeAttribute("b_login_id");
 			return "redirect:main";
 		} else {
 			logger.info("로그인 실패");
+			session.setAttribute("loginFail", "fail");
 			return "redirect:../login";
 		}
 	}
@@ -570,11 +592,11 @@ public class HomeController {
 		SellerVO sVo = sellerService.readSellerInfo(s_id);
 
 		int length = cateCheck.size();
-		int numOfPage = length / 4;
-		if (length % 4 > 0) {
+		int numOfPage = length / 3;
+		if (length % 3 > 0) {
 			numOfPage++; // 나머지가 있으면 올림
 		}
-		int remainder = length % 4;
+		int remainder = length % 3;
 		
 		List<QnaVO> list = dao.selectQna(p_no);
 
@@ -602,6 +624,7 @@ public class HomeController {
 		model.addAttribute("listRev", list1);
 		model.addAttribute("listReply", list2);
 
+		
 		model.addAttribute("productVO", pVo); // 전체 정보를 Model 객체에 넣어서 View(jsp)에
 												// 전달
 		model.addAttribute("optionList", optionList); // 받아온 옵션 정보를 Model 객체에
@@ -661,26 +684,43 @@ public class HomeController {
 	}
 
 	/*----------------------------------------------------------------------------*/
-	@RequestMapping(value = "pList", method = RequestMethod.GET) // 맵핑 판매자 홈으로
-																	// 바꾸고 나중에
-																	// 쿼리 스트링
-																	// 넘겨서 각각의
-																	// 판매자 홈으로
-																	// 넘어가게 해줘야함
+	
+	// 맵핑 판매자 홈으로 바꾸고 나중에 쿼리 스트링 넘겨서 각각의 판매자 홈으로 넘어가게 해줘야함
+	@RequestMapping(value = "sellerHome", method = RequestMethod.GET) 
 	public String sellerHome(Model model, String s_id, HttpServletRequest request) {
 
 		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
-
+		
 		// 전체 상품 리스트
 		List<ProductVO> productList = sellerService.readProductBySid(s_id);
+		
+		int length = productList.size();
+		int numOfPage = length / 8;
+		if (length % 8 > 0) {
+			numOfPage++; // 나머지가 있으면 올림
+			// 뷰페이저로 한 페이지에 4개씩 출력 !
+			// ex) (9/4 = 2.X )=> 3페이지 필요
+		}
+		int remainder = length % 8;
+		
+		
 		logger.info("productList size: " + productList.size());
 		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("productList", productList);
 
 		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("sellerInfo", sellerInfo);
+		
+		model.addAttribute("numOfPage", numOfPage);
+		model.addAttribute("remainder", remainder);
+		
+		logger.info("length : " + length);
+		logger.info("numOfPage : " + numOfPage);
+		logger.info("remainder : " + remainder);
+		
 
-		return "/visitor/pList";
+
+		return "/visitor/sudo_seller_home";
 	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
 
 } // end class HomeController

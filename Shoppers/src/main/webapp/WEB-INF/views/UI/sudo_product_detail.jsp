@@ -17,6 +17,7 @@
 		.select2 {
 	   		 width: 180px;
 		}
+<<<<<<< HEAD
 .modify {
 	display: none;
 }
@@ -52,6 +53,12 @@
 
 .star_rating a:first-child {margin-left:0;}
 .star_rating a.on {color:rgb(238, 11, 51);}
+=======
+		#sellerLogo {
+			width: 100px;
+			height: 100px;
+		}
+>>>>>>> branch 'master' of https://github.com/bbongles/H_Shopper
 	</style>
 		<meta charset="utf-8">
 		<title>H-Shopper : 특별함을 전하는</title>
@@ -97,17 +104,17 @@
 							<!-- ---------------visitor 입장----------------------------- -->
 							<c:if test="${empty s_login_id && empty b_login_id }">
 							<li><a href="">My Page</a></li>
-							<li><a href="">Cart</a></li>
+							<li><a href="cart/selectCart">Cart</a></li>
 							</c:if>
 							<!-- ------------바이어 입장 시작-------------------------- -->
 							<c:if test="${not empty b_login_id }">
 							<li><a href="">My Page</a></li>	
-							<li><a href="">Cart</a></li>
+							<li><a href="../cart/selectCart">Cart</a></li>
 							</c:if>
 							<!-- ------------------셀러 입장시작------------------------------- -->
 							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
 							<li><a href="">My Page</a></li>
-							<li><a href="pList?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
+							<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li><!-- 마이홈은 판매자홈 말하는거임 -->
 							</c:if>
 							<!-- ----------------어드민 입장 시작--------------------------------------->	
 							<c:if test="${s_login_id eq 'admin'}">
@@ -247,13 +254,13 @@
 								<br>
 								<div id="optionNullCheck" style="display:none;" >		<!-- ******** -->
 									<select class="select1">		<!-- 옵션 -->
-					    				<option value="none">--------</option>
+					    				<option value="">Select</option>
 					    				<c:forEach var="optionList" items="${optionList}" end="0">
 					    					<option>${optionList.o_title }</option>
 					    				</c:forEach>
 					    			</select>
 					    			<select class="select2" name="o_cont">
-					    				<option value="none">----------------</option>
+					    				<option value="">Select</option>
 					    				<c:forEach var="optionList" items="${optionList }">
 					    					<option>${optionList.o_cont }</option>
 					    				</c:forEach>
@@ -275,10 +282,6 @@
 									<button class="btn btn-inverse" type="submit">Add to cart</button><!-- 태훈 수정  -->
 									<input type="button" class="btn btn-inverse" value="Check out" id="directOrder"/><!-- 태훈 수정 -->
 									
-									<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로-->
-									<br/><br/>
-									<a href="pList?s_id=${productVO.s_id}"><img src="${sVo.s_logo}" style="width:100px;, height:100px;"></a>
-									<!-- 김태훈 코드 추가 끝 -->
 								</div>
 							</div>	
 								
@@ -511,15 +514,15 @@
 											<div class="active item">		
 												<ul class="thumbnails">	
 													<c:forEach begin="0" end="0" var="page">
-													<c:forEach begin="0" end="3" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
+													<c:forEach begin="0" end="2" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
 															<li class="span3">
 															<div class="product-box">
 																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p><a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }"><img src="${relativeList[3 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="title">${relativeList[3 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="category">${relativeList[3 * page + status.index].p_cate1}</a><!-- 카테고리 -->
 																	<%-- <p class="price">₩ ${productList[4 * page + status.index].p_price }</p>	  --%>
-																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p>	
+																	<p class="price"><fmt:formatNumber value="${relativeList[3 * page + status.index].p_price}" groupingUsed="true"/> 원</p>	
 																</div>
 															</li>
 													</c:forEach>
@@ -535,14 +538,14 @@
 													<ul class="thumbnails">	
 														<%-- <c:forEach begin="0" end="4" var="i"> --%>
 															<%-- ${productList.list[4 * page + i] } --%>
-														<c:forEach begin="0" end="3" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
+														<c:forEach begin="0" end="2" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
 															<li class="span3">
 															<div class="product-box">
 																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
-																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
+																	<p><a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }"><img src="${relativeList[3 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="title">${relativeList[3 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="category">${relativeList[3 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p class="price"><fmt:formatNumber value="${relativeList[3 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
 																	
 																</div>
 															</li>
@@ -564,10 +567,10 @@
 															<li class="span3">
 															<div class="product-box">
 																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
-																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
+																	<p><a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }"><img src="${relativeList[3 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="title">${relativeList[3 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="category">${relativeList[3 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p class="price"><fmt:formatNumber value="${relativeList[3 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
 																	
 																</div>
 															</li>
@@ -582,14 +585,14 @@
 													<ul class="thumbnails">	
 														<%-- <c:forEach begin="0" end="4" var="i"> --%>
 															<%-- ${productList.list[4 * page + i] } --%>
-														<c:forEach begin="0" end="3" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
+														<c:forEach begin="0" end="2" varStatus="status" items="${relativeList }"><!-- 4 개씩 출력 -->
 															<li class="span3">
 															<div class="product-box">
 																<span class="sale_tag"><%--  #index : ${4 * page + status.index} --%> </span>
-																	<p><a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }"><img src="${relativeList[4 * page + status.index].p_img }" /></a></p>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="title">${relativeList[4 * page + status.index].p_name }</a><br>
-																	<a href="pDetail?p_no=${relativeList[4 * page + status.index].p_no }" class="category">${relativeList[4 * page + status.index].p_cate1}</a><!-- 카테고리 -->
-																	<p class="price"><fmt:formatNumber value="${relativeList[4 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
+																	<p><a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }"><img src="${relativeList[3 * page + status.index].p_img }" /></a></p>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="title">${relativeList[3 * page + status.index].p_name }</a><br>
+																	<a href="pDetail?p_no=${relativeList[3 * page + status.index].p_no }" class="category">${relativeList[3 * page + status.index].p_cate1}</a><!-- 카테고리 -->
+																	<p class="price"><fmt:formatNumber value="${relativeList[3 * page + status.index].p_price}" groupingUsed="true"/> 원</p> 
 																	
 																</div>
 															</li>
@@ -631,7 +634,15 @@
 					
 					
 					<div class="span3 col">
+						<!-- 김태훈 코드 추가 로고 눌러서 판매자 홈으로-->
 						<div class="block">	
+						<h4 class="title"><strong>Seller</strong> Home</h4>
+						<a href="sellerHome?s_id=${productVO.s_id}"><img id="sellerLogo" src="${sVo.s_logo}"></a>
+						</div>
+						<!-- 김태훈 코드 추가 끝 -->
+						
+						<!-- 현 시점(최종 프로젝트 발표)에서는 필요 없을듯하여 주석처리.... 나중에 사용하게 되면 수정하여 사용하기로.... -->
+						<!-- <div class="block">	
 							<ul class="nav nav-list">
 								<li class="nav-header">SUB CATEGORIES</li>
 								<li><a href="products.html">Nullam semper elementum</a></li>
@@ -649,7 +660,8 @@
 								<li><a href="products.html">Dunlop</a></li>
 								<li><a href="products.html">Yamaha</a></li>
 							</ul>
-						</div>
+						</div> -->
+						
 						<div class="block">
 							<h4 class="title">
 								<span class="pull-left"><span class="text">Randomize</span></span>
@@ -791,7 +803,7 @@
 		    
 	    	 // 리스트
 		    $('#gotoList').click(function() {
-		    	location = 'main';
+		    	location = './';
 		    });
 	    	 
 	    	 // 김태훈 바로주문 코드
