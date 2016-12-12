@@ -5,6 +5,8 @@ import java.util.List;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
+import com.online.shop.pageutil.PageCriteria;
+import com.online.shop.pageutil.SearchPageCriteria;
 
 // CRUD: Create, Read, Update, Delete
 public interface ProductService {
@@ -25,5 +27,24 @@ public interface ProductService {
 	
 	// 카테고리 검색 추가 by 김태훈
 	public abstract List<ProductVO> selectCate2(String p_cate2);
+	
+	// 관리자페이지 관련
+		// 판매물 목록을 불러오는 service
+			public abstract List<ProductVO> read();
+
+			public abstract List<ProductVO> selectAcc();
+
+			// 판매물 목록을 페이징 처리를 위한 service
+			public abstract List<ProductVO> read(PageCriteria cri);
+			// 판매물 목록의 총 갯수를 세는 service
+			public abstract int getNumOfRecords ();
+			// 판매물 검색 처리를 위한 service
+			public abstract List<ProductVO> listSearchCriteria(SearchPageCriteria cri);
+			// 판매물 검색 목록의 갯수를 세는 service
+			public abstract int listSearchCount(SearchPageCriteria cri);
+			// 승인 요청 처리 service
+			public abstract int productAcc(int pno);
+		
+		
 	
 } // end interface ProductService

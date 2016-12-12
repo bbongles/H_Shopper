@@ -100,6 +100,10 @@ public class HomeController {
 		logger.info("numOfPage : " + numOfPage);
 		logger.info("remainder : " + remainder);
 		/* logger.info(productList.get(0).getP_name()); */
+		
+		for(int i = 0; i<productList.size() ; i++ ) {
+			logger.info("p_acc: " + productList.get(i).getP_acc());
+		}
 
 		return "UI/sudo_index";
 	}
@@ -494,15 +498,24 @@ public class HomeController {
 		logger.info("s_id : " + s_id + " , s_pw : " + s_pw);
 		HttpSession session = request.getSession();
 		if (sellerService.isValidUser(s_id, s_pw)) {
-			logger.info("로그인 성공");
-			
-			session.setAttribute("s_login_id", s_id);
-			logger.info("세션 저장 성공! key:login_id, 값 : " + s_id);
-			session.removeAttribute("b_login_id");
-			return "redirect:main";
+			logger.info("인증 성공! ACC 확인 중");
+			if (sellerService.isAccConf(s_id, s_pw)){
+				logger.info("ACC 확인 성공 ! 로그인 성공!");
+				session.setAttribute("s_login_id", s_id);
+				logger.info("세션 저장 성공! key:login_id, 값 : " + s_id);
+				session.removeAttribute("b_login_id");
+				logger.info("seller/main 으로 이동~");
+				return "redirect:main";
+			} else {
+				logger.info("ACC 확인 실패");
+				session.setAttribute("loginFail", "acc");
+				logger.info("login 화면 다시 로드");
+				return "redirect:../login";
+			}
 		} else {
 			logger.info("로그인 실패");
 			session.setAttribute("loginFail", "fail");
+			logger.info("login 화면 다시 로드");
 			return "redirect:../login";
 		}
 	}
@@ -511,6 +524,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "seller/logout", method = RequestMethod.GET)
 	public String sellerlogout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		logger.info("세션 비우기 성공!");
+		return "redirect:../"; // requestMapping에 login으로 다시 돌아감.. 로그인페이지 열림
+	}
+	
+	@RequestMapping(value = "admin/logout", method = RequestMethod.GET)
+	public String adminlogout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		logger.info("세션 비우기 성공!");
@@ -646,28 +667,60 @@ public class HomeController {
 	/*-- 수용 --------------------------------------------------------------------------*/
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
-	public String product(Model model) {
+	public String product(Model model, String p_cate1, String p_cate2) {
 		logger.info("main 컨트롤러 실행");
-		// 전체 상품 리스트
-		List<ProductVO> productList = sellerService.readAllProduct();
-
-		int length = productList.size();
-		int numOfPage = length / 4;
-		if (length % 4 > 0) {
+		
+		logger.info("p_cate1=" + p_cate1);
+		if (p_cate1 != null && p_cate2 == null) {
+		
+		// 카테고리 1로 상품 받아오기
+		List<ProductVO> productListByPcate = sellerService.readAllProductByPcate1(p_cate1);
+		
+		int length = productListByPcate.size();
+		int numOfPage = length / 9;
+		if (length % 9 > 0) {
 			numOfPage++; // 나머지가 있으면 올림
 			// 뷰페이저로 한 페이지에 4개씩 출력 !
 			// ex) (9/4 = 2.X )=> 3페이지 필요
 		}
-		int remainder = length % 4;
-
+		int remainder = length % 9;
+		
 		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
-		model.addAttribute("productList", productList);
+		model.addAttribute("productListByPcate", productListByPcate);
 		model.addAttribute("numOfPage", numOfPage);
 		model.addAttribute("remainder", remainder);
 		logger.info("length : " + length);
 		logger.info("numOfPage : " + numOfPage);
 		logger.info("remainder : " + remainder);
-		/* logger.info(productList.get(0).getP_name()); */
+//		logger.info(productList.get(0).getP_name()); 
+		
+		}
+		
+		logger.info("p_cate2=" + p_cate2);
+		if (p_cate1 == null && p_cate2 != null) {
+		
+		// 카테고리 2로 상품 받아오기
+		List<ProductVO> productListByPcate = sellerService.readAllProductByPcate2(p_cate2);
+		
+		int length = productListByPcate.size();
+		int numOfPage = length / 9;
+		if (length % 9 > 0) {
+			numOfPage++; // 나머지가 있으면 올림
+			// 뷰페이저로 한 페이지에 4개씩 출력 !
+			// ex) (9/4 = 2.X )=> 3페이지 필요
+		}
+		int remainder = length % 9;
+		
+		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
+		model.addAttribute("productListByPcate", productListByPcate);
+		model.addAttribute("numOfPage", numOfPage);
+		model.addAttribute("remainder", remainder);
+		logger.info("length : " + length);
+		logger.info("numOfPage : " + numOfPage);
+		logger.info("remainder : " + remainder);
+//		logger.info(productList.get(0).getP_name());
+		
+		}
 
 		return "UI/sudo_products";
 

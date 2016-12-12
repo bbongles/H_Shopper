@@ -14,8 +14,10 @@ $(document).ready(function() {
 			});
 			
 			$('#btnVisitorInsert').click(function() {
-				alert('test');
-			});
+				var p_no = $('#detail_p_no').val();
+				//var b_id = $('#b_id').val();
+				location = "buyer/pDetail?p_no="+p_no;
+			})
 			
 			$('.insertReply').click(function() {
 				var x = $(this).parent().attr('modData');

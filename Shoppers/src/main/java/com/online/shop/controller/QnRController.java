@@ -25,6 +25,7 @@ import com.online.shop.pageutil.PageCriteria;
 import com.online.shop.pageutil.PageMaker;
 import com.online.shop.persistence.QnADAO;
 import com.online.shop.persistence.RevDAO;
+import com.online.shop.service.CartService;
 
 @Controller
 @RequestMapping(value="/seller")
@@ -36,7 +37,8 @@ public class QnRController {
 	@Autowired
 	private RevDAO daoR;
 	
-	
+	@Autowired
+	private CartService cartservice;
 	//최초화면에서 qna와 review 리스트를 가져와 화면에 출력
 	@RequestMapping(value="qnr", method=RequestMethod.GET)
 	public void qaMain(Integer page, QnaVO vo, Model model) {
@@ -158,20 +160,27 @@ public class QnRController {
 	
 	//구매자가 후기를 등록하기위한 페이지
 	@RequestMapping(value="insertReview", method=RequestMethod.GET)
-	public void insertReview(int p_no, String b_id, @RequestBody CartVO vo, Model model, HttpServletResponse response) {
-		//System.out.println("vovovovovovvovovo");
+	public void insertReview(int p_no, String b_id, Model model) {
+		System.out.println("vovovovovovvovovo");
+		CartVO vo = new CartVO();
+		vo.setB_id(b_id);
+		vo.setP_no(p_no);
+		List<CartVO> list = cartservice.selectCartBuyer(vo);
 		model.addAttribute("p_no", p_no);
 		model.addAttribute("b_id", b_id);
+		model.addAttribute("cartlist", list);
 		
 	}
 	
 	//구매자가 후기를 등록하기위한 페이지
-	@RequestMapping(value="insertReview{p_no}", method=RequestMethod.PUT)
-	public void insertReviewPut(@PathVariable("p_no") Integer p_no,@RequestBody CartVO vo, HttpServletResponse response) throws IOException {
-		System.out.println("vo: "+ vo.getB_id()+"vo: " +vo.getP_no());
+	@RequestMapping(value="insertReview", method=RequestMethod.PUT)
+	public void insertReviewPut(@RequestBody CartVO vo, HttpServletResponse response) throws IOException {
+		//System.out.println("vo: "+ vo.getB_id()+"vo: " +vo.getP_no());
 		
-		int result =0;
-		if(result == 1) {
+		//int result =1;
+		List<CartVO> list = cartservice.selectCartBuyer(vo);
+		
+		if(list.size() > 0) {
 			response.getWriter().print(1);
 		}else {
 			response.getWriter().print(0);

@@ -96,7 +96,7 @@
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #ff6666;
     color: white;
 }
 
@@ -134,6 +134,23 @@
     </div>
     <div class="modal-body">
       <p style="text-align: center">아이디 또는 비밀번호가 일치하지 않습니다</p>
+    </div>
+  </div>
+</div>
+<!-- modal end -->
+
+<!-- The Modal -->
+<div id="accModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 style="text-align: center">승인 되지 않은 회원</h2>
+    </div>
+    <div class="modal-body">
+      <p style="text-align: center">관리자가 승인하기 전까지 로그인 할 수 없습니다.</p>
+    </div>
+        <div class="modal-footer">
+    	<p style="text-align: center">관리자에게 문의하세요.</p>
     </div>
   </div>
 </div>
@@ -190,35 +207,46 @@
 	<div id="wrapper" class="container">
 		<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
+					<!-- 방문객 입장 -->
+					<c:if test="${empty s_login_id && empty b_login_id }">
 					<a href="./" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					</c:if>
+					<!-- 셀러 입장 -->
+					<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+					<a href="../seller/main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					</c:if>
+					<!-- 바이어 입장 -->
+					<c:if test="${not empty b_login_id }">
+					<a href="../buyer/main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					</c:if>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="./products">Home / Deco</a>					
+							<li><a href="./products?p_cate1=home_deco">Home / Deco</a>					
 								<ul>
-									<li><a href="./products">furniture</a></li>	<!-- 가구 -->									
-									<li><a href="./products">pottery</a></li>		<!-- 도자기 -->		
-									<li><a href="./products">lamp</a></li>			<!-- 조명 -->									
+									<li><a href="./products?p_cate2=furniture">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="./products?p_cate2=pottery">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="./products?p_cate2=lamp">lamp</a></li>			<!-- 조명 -->									
 								</ul>
 							</li>															
-							<li><a href="./products">Candle / Diffuser</a>
+							<li><a href="./products?p_cate1=candle_diffuser">Candle / Diffuser</a>
 								<ul>
-									<li><a href="./products">candle</a></li>			<!-- 양초 -->										
-									<li><a href="./products">diffuser</a></li>			<!-- 디퓨저 -->
-									<li><a href="./products">aromatic oils</a></li>	<!-- 아로마오일 -->									
+									<li><a href="./products?p_cate2=candle">candle</a></li>			<!-- 양초 -->										
+									<li><a href="./products?p_cate2=diffuser">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="./products?p_cate2=aromatic oils">aromatic oils</a></li>	<!-- 아로마오일 -->									
 								</ul>		
 								</li>	
-							<li><a href="./products">Art / Fancy</a>
+							<li><a href="./products?p_cate1=art_fancy">Art / Fancy</a>
 								<ul>									
-									<li><a href="./products">picture</a></li>		<!-- 사진 -->
-									<li><a href="./products">fancy</a></li>		<!-- 문구 -->
-									<li><a href="./products">paper</a></li>		<!-- 페이퍼 -->
+									<li><a href="./products?p_cate2=picture">picture</a></li>		<!-- 사진 -->
+									<li><a href="./products?p_cate2=fancy">fancy</a></li>		<!-- 문구 -->
+									<li><a href="./products?p_cate2=paper">paper</a></li>		<!-- 페이퍼 -->
 								</ul>
 							</li>							
-							<li><a href="./products">Jewellery</a>
+							<li><a href="./products?p_cate1=jewellery">Jewellery</a>
 								<ul>									
-									<li><a href="./products">earring</a></li>		<!-- 귀걸이 -->
-									<li><a href="./products">necklace</a></li>		<!-- 목걸이 -->
-									<li><a href="./products">ring</a></li>			<!-- 반지 -->
+									<li><a href="./products?p_cate2=earring">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="./products?p_cate2=necklace">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="./products?p_cate2=ring">ring</a></li>			<!-- 반지 -->
 								</ul>
 							</li>
 							<li><a href="./products">Event</a></li>
@@ -380,6 +408,7 @@
 	<script>
 		$(document).ready(function() {
 			var modal = document.getElementById('myModal');
+			var accmodal = document.getElementById('accModal');
 			var span = document.getElementsByClassName("close")[0];
 			var btn = document.getElementById("myBtn");
 			
@@ -391,6 +420,13 @@
 				modal.style.display = "block";
 				span.onclick = function() {
 				    modal.style.display = "none";
+			}
+				<%request.getSession().removeAttribute("loginFail");%>
+				$("#failCheck").val("");
+			} else if (fail=="acc") {
+				accmodal.style.display = "block";
+				span.onclick = function() {
+				    modal.style.display = "none";
 				}
 				<%request.getSession().removeAttribute("loginFail");%>
 				$("#failCheck").val("");
@@ -398,6 +434,9 @@
 			window.onclick = function(event) {
 			    if (event.target == modal) {
 			        modal.style.display = "none";
+			    }
+			    if (event.target == accmodal){
+			    	accmodal.style.display = "none";
 			    }
 			}
 		});
