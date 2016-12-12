@@ -8,6 +8,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+.shakeimage
+{ 
+position:relative 
+} 
+</style>
 		<title>H-Shopper : 특별함을 전하는</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
@@ -441,10 +447,10 @@
 				<h4 class="title"><span class="text">Cooperator</span></h4>
 				<div class="row">					
 					<div class="span2">
-						<a href="./sellerHome?s_id=s1"><img alt="" src=<c:url value='/resources/themes/images/clients/co1.png'/>></a>
+						<a href="./sellerHome?s_id=s1"><img  onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" alt="" src=<c:url value='/resources/themes/images/clients/co1.png'/>></a>
 					</div>
 					<div class="span2">
-						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/co2.png'/>></a>
+						<a href="#"><img class="shakeimage" onMouseover="init(this);rattleimage()" onMouseout="stoprattle(this)" src=<c:url value='/resources/themes/images/clients/co2.png'/>></a>
 					</div>
 					<div class="span2">
 						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/co3.png'/>></a>
@@ -525,6 +531,43 @@
 			if(e.value=="no")e.value="yes";
 			else{e.value="no";location.reload();}
 			}
+			
+			///////////////
+			var rector=3 
+			var stopit=0 
+			var a=1
+			function init(which){ 
+			stopit=0 
+			shake=which 
+			shake.style.left=0 
+			shake.style.top=0 
+			}
+			function rattleimage(){ 
+			if ((!document.all&&!document.getElementById)||stopit==1) 
+			return 
+			if (a==1){ 
+			shake.style.top=parseInt(shake.style.top)+rector 
+			} 
+			else if (a==2){ 
+			shake.style.left=parseInt(shake.style.left)+rector 
+			} 
+			else if (a==3){ 
+			shake.style.top=parseInt(shake.style.top)-rector 
+			} 
+			else{ 
+			shake.style.left=parseInt(shake.style.left)-rector 
+			} 
+			if (a<4) 
+			a++ 
+			else 
+			a=1 
+			setTimeout("rattleimage()",50) 
+			} 
+			function stoprattle(which){ 
+			stopit=1 
+			which.style.left=0 
+			which.style.top=0 
+			} 
 			
 		</script>
     </body>
