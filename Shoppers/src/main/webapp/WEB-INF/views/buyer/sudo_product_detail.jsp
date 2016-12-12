@@ -358,7 +358,29 @@
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none;">${list.qna_cont }</td>
 						</tr>
-
+						
+						<tr style="display: none;">
+							<td class="modify${state.index }" style=" text-align: center; display: none;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
+							
+							<td colspan ="3" class="modify${state.index }" style="display: none; 
+							text-align: center; width: 250px; height: 50px;" modData="${state.index }">
+							
+							<form id = "frm${state.index }" method="post">
+								<textarea cols="25" rows="3" name="qna_r_cont" class="qna_r_cont"  id="qna_r_cont${state.index }"
+								style="width: 100%;	height:100%; background-color: inherit;
+								resize:none; box-sizing: border-box; 
+								-moz-box-sizing: border-box; 
+								-webkit-box-sizing: border-box; border: none;" placeholder="답변을 작성해 주세요." required></textarea>
+							
+								<input type="hidden" name="s_id" id="s_id${state.index }" value="sellerId" />
+								<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
+								<input type="hidden" name="qna_no" id="qna_no${state.index }" value="${list.qna_no }" />
+								</form>						
+									<button type="button" class="insertReply">저장</button>
+							</td>
+							
+						</tr>
+						
 						</c:if>
 						
 						<c:if test="${list.qna_reply eq 1 }">
