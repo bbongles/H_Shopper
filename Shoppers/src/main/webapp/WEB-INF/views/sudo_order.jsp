@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Bootstrap E-commerce Templates</title>
+<title>H-Shopper : 특별함을 전하는</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
@@ -145,7 +145,7 @@
 						
 						<form action="/shop/order/readyForBill" method="get" name="frm">
 							<table>
-								<tr>
+								<tr> 
 									<th>제품번호</th>
 									<th>그림</th>
 									<th>제품</th>
@@ -178,7 +178,7 @@
 									</dt>
 									<dd>
 
-										<p>
+											<p>
 											<span>주문 갯수 : </span><strong>${totalCountForOrder}</strong><span>개
 												/ </span> <span>마일리지 적립 : </span><strong>${miledTobeAdded}</strong><span>Point
 												/ </span> <span>총 배송비 : </span><strong>${Shipping}</strong><span>원
@@ -199,8 +199,11 @@
 
 									</dd>
 								</dl>
+								
 								<hr>
 							</div>
+							
+							
 							<h2>주문고객 정보</h2>
 							주문자 : <input type="text" value="${buyerNAME}" name="b_name"><br>
 							핸드폰 : <input type="number" value="${buyerHP}" name="b_phone"><br>
