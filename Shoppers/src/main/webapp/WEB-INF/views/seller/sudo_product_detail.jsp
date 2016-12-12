@@ -442,15 +442,11 @@
 													</p>
 													</th>
 													<td><b>${list.rev_cont }</b></td>
-													<td>${list.b_id }</td>
+													<td>${list.b_id }(구매)</td>
 													<td><fmt:formatDate value="${list.rev_reg }"
 														pattern="yyyy년 MM월 dd일" />&emsp;&emsp;</td>
 												</tr>		
-<%-- 												<tr class="alt">
-													<th></th>
-													<td><b>${list.rev_cont }</b></td>
-													<td></td>
-												</tr> --%>
+
 												
 												<tr class ="revReply" modData="${state.index }">
 													<th style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
