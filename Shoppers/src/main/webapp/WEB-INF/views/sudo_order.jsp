@@ -655,7 +655,7 @@
 								<tbody>
 									<tr>
 										<th class="bgNone"><span>구매총액</span></th>
-										<td class="rt"><span class="colorBk "><strong><fmt:formatNumber value="${totalCountForOrder}" groupingUsed="true"/></strong> 원</span></td>
+										<td class="rt"><span class="colorBk "><strong><fmt:formatNumber value="${totalProductPriceForOrder}" groupingUsed="true"/></strong> 원</span></td>
 									</tr>
 									<tr>
 										<th class="bgNone"><span>배송료</span></th>
