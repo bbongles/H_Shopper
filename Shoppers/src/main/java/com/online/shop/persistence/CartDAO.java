@@ -22,4 +22,7 @@ public interface CartDAO {
 	public abstract ProductVO cartImageByPno(int p_no);
 	// Auto Incre 값 얻기
 	public abstract int selectMaxCNoForDirectOrder();
+	
+	//b_id,p_no를 이용 cart에서 주문된 구매자인지 확인
+	public abstract List<CartVO> selectCartBuyer(CartVO vo);
 }

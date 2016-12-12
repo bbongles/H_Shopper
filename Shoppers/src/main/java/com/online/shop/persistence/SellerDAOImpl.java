@@ -131,4 +131,22 @@ public class SellerDAOImpl implements SellerDAO {
 			
 			return productList;
 		}
+
+		@Override
+		public List<ProductVO> selectAllProductByPcate1(String p_cate1) {
+			List<ProductVO> productListByPcate1 = sqlSession.selectList(NAMESPACE + ".selectAllProductByPcate1", p_cate1);
+			
+			logger.info("selectA;;ProductByPcate1() 호출: product size = " + productListByPcate1.size());
+			
+			return productListByPcate1;
+		}
+
+		@Override
+		public List<ProductVO> selectAllProductByPcate2(String p_cate2) {
+			List<ProductVO> productListByPcate2 = sqlSession.selectList(NAMESPACE + ".selectAllProductByPcate2", p_cate2);
+			
+			logger.info("selectA;;ProductByPcate2() 호출: product size = " + productListByPcate2.size());
+			
+			return productListByPcate2;
+		}
 } // end class SellerDAOImpl

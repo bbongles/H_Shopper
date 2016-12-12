@@ -80,4 +80,16 @@ public class SellerServiceImpl implements SellerService {
 		return sellerDao.selectAllProduct();
 	}
 
+	@Override
+	public List<ProductVO> readAllProductByPcate1(String p_cate1) {
+		
+		return sellerDao.selectAllProductByPcate1(p_cate1);
+	}
+
+	@Override
+	public List<ProductVO> readAllProductByPcate2(String p_cate2) {
+		
+		return sellerDao.selectAllProductByPcate2(p_cate2);
+	}
+
 } // end class SellerServiceImpl

@@ -42,5 +42,7 @@
 	select * from s_tbl_product where p_no = (select p_no from s_tbl_cart where c_no = #{c_no})
 	</select>
 
-	
+	<select id="select-cart-b_id" resultType="CartVO">
+	select * from S_TBL_CART where B_ID = #{b_id} and P_NO = #{p_no} and buy_no is not NULL
+	</select>
 </mapper>
