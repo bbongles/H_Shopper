@@ -768,8 +768,8 @@
 		</div>
 
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=20161212' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=20161212' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');
@@ -791,14 +791,6 @@
 		</script>
 		
 		<script>
-		
-		$('#btnVisitorInsert').click(function() {
-			alert('asdasdasdasdasdasd');
-			var p_no = $('#detail_p_no').val();
-			//var b_id = $('#b_id').val();
-			var b_id = 'test';
-			window.open("seller/insertQnA?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
-		})
 	    	// 게시글 삭제
 		    $('#delProduct').click(function() {
 		    	var result = confirm('정말 삭제하시겠습니까?');

@@ -754,8 +754,8 @@
 		<!-- 김태훈 백버튼 리프레시 -->
 		<input type="hidden" id="refreshed" value="no" style="display: none">
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121555' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121555' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');

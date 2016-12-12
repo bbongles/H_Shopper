@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,6 +40,7 @@ th {
 	background-color: #f5f5f5;
 	border-top: 0.1px solid gray;
 	border-collapse: collapse;
+	width: 100px;
 }
 
 td {
@@ -49,17 +52,19 @@ td {
 <body>
 
 	<form id="frm" method="POST">
-		<table>
+		<table style="width: 730px; height: 320px; ">
 			<tr>
 				<th scope="row">구매 상품</th>
 				<td>
-				<label>상품대표이미지 &emsp; &emsp; &emsp;</label>
-				<label>구매한상품명과 옵션출력</label>
+				<c:forEach var="list" items="${cartlist }">
+				<label><img style="width: 200px; height: 100px;" src=" ${list.p_img }"/></label>
+				<label>${list.o_cont }</label>
+				</c:forEach>
 				</td>
 			</tr>
 			
 			<tr>
-				<th scope="row">상품 평가 &emsp;</th>
+				<th scope="row">상품 평가</th>
 
 				<td class="star_rating" >
 				
@@ -87,8 +92,8 @@ td {
 			</tr>
 
 			<tr>
-				<th style="border-bottom: 0.1px solid lightgray;" scope="row">후기 내용 &emsp;</th>
-				<td><textarea rows="5" cols="60" id = "rev_cont" name="rev_cont" required
+				<th style="border-bottom: 0.1px solid lightgray;" scope="row">후기 내용</th>
+				<td><textarea rows="6" cols="100" id = "rev_cont" name="rev_cont" required
 				placeholder="제품 후기 내용을 작성해주세요." ></textarea></td>
 			</tr>
 
@@ -99,7 +104,7 @@ td {
 			<input type="hidden" name="p_no" id="p_no" value="${p_no}" />
 <!-- 		<input type="hidden" name="qna_reply" value = "0" /> -->
 		
-			<input style="float: right; margin-right: 290px;" type="submit" id="btn_submit" value="등록">
+			<input style="float: right; margin-right: 20px; " type="submit" id="btn_submit" value="등록">
 	</form>
 	
 	<script
