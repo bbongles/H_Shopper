@@ -43,8 +43,10 @@ p {
 	color: gray;
 }
 #coverBox {
+	width: 100%;
 	display: inline-block;
-	margin-left: 320px;
+	background-color: #FAECC5;
+	border-radius: 5px;
 }
 #sellerLogo {
 	width: 200px;
@@ -56,6 +58,7 @@ p {
 #logoImg {
 	width: 200px;
 	height: 200px;
+	border-radius: 5px;
 }
 #sellerInfo {
 	width: 300px;
@@ -63,6 +66,17 @@ p {
 	float: left;
 	border: none;
 	margin: 30px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+#google_map {
+	width: 473px;
+	height: 200px;
+	float: left;
+	border: none;
+	margin: 30px;
+	border-radius: 5px;
 }
 
 </style>
@@ -174,6 +188,7 @@ p {
 						<!-- -------------------------------------------------------------- -->
 						<hr/>
 						
+						<div class="block">
 						<div id="coverBox">
 							<div id="sellerLogo">
 								<img id="logoImg" src="${sellerInfo.s_logo }" />
@@ -188,6 +203,11 @@ p {
 								<label>개인 쇼핑몰 / SNS</label>
 								<p>${sellerInfo.s_info }</p>
 							</div>
+							
+							<div id="google_map">
+								<iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=74%2F6+Nguy%E1%BB%85n+V%C4%83n+Tho%E1%BA%A1i,+S%C6%A1n+Tr%C3%A0,+%C4%90%C3%A0+N%E1%BA%B5ng,+Vi%E1%BB%87t+Nam&amp;aq=0&amp;oq=74%2F6+Nguyen+Van+Thoai+Da+Nang,+Viet+Nam&amp;sll=37.0625,-95.677068&amp;sspn=41.546728,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=74+Nguy%E1%BB%85n+V%C4%83n+Tho%E1%BA%A1i,+Ng%C5%A9+H%C3%A0nh+S%C6%A1n,+Da+Nang,+Vietnam&amp;t=m&amp;ll=16.064537,108.24151&amp;spn=0.032992,0.039396&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+							</div>
+						</div>
 						</div>
 						
 						<hr/>				
@@ -458,9 +478,9 @@ p {
 						<img src="<c:url value='/resources/themes/images/logo.png' />"
 							class="site_logo" alt="">
 					</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and
+					<!-- <p>Lorem Ipsum is simply dummy text of the printing and
 						typesetting industry. the Lorem Ipsum has been the industry's
-						standard dummy text ever since the you.</p>
+						standard dummy text ever since the you.</p> -->
 					<br /> <span class="social_icons"> <a class="facebook"
 						href="#">Facebook</a> <a class="twitter" href="#">Twitter</a> <a
 						class="skype" href="#">Skype</a> <a class="vimeo" href="#">Vimeo</a>
@@ -469,7 +489,7 @@ p {
 			</div>
 		</section>
 		<section id="copyright">
-			<span>December 2016 Web Project All right.</span>
+			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
 	<!-- <script src="/shop01/resources/themes/js/common.js"/></script> -->

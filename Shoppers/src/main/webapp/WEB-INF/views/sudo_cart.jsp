@@ -301,7 +301,7 @@
 											
 					</div>
 					<div class="span3 col">
-						<div class="block">	
+						<!-- <div class="block">	
 							<ul class="nav nav-list">
 								<li class="nav-header">SUB CATEGORIES</li>
 								<li><a href="products.html">Nullam semper elementum</a></li>
@@ -319,7 +319,7 @@
 								<li><a href="products.html">Dunlop</a></li>
 								<li><a href="products.html">Yamaha</a></li>
 							</ul>
-						</div>
+						</div> -->
 						<div class="block">
 							<h4 class="title">
 								<span class="pull-left"><span class="text">Randomize</span></span>
@@ -383,7 +383,7 @@
 					</div>
 					<div class="span5">
 						<p class="logo"><img src="<c:url value='/resources/themes/images/logo.png" class="site_logo' />" alt=""></p>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p> -->
 						<br/>
 						<span class="social_icons">
 							<a class="facebook" href="#">Facebook</a>
@@ -395,7 +395,7 @@
 				</div>	
 			</section>
 			<section id="copyright">
-				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
+				<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 			</section>
 		</div>
 		

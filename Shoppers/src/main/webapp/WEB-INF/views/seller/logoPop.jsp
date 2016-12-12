@@ -33,14 +33,12 @@
 	<form method="post">
 	
 	<div class="col-md">
-		<div class="dropzone"></div>
+		<div class="dropzone" id="zoneurl"></div>
 	</div>
 	
-	<input type="text" id="s_logo" name="s_logo" placeholder="로고로 등록할 이미지 URL을 넣어주세요." /><br/>
-	
 	<input type="submit" id="logoSubmit" value="등 록" />
-	<input type="button" id="closeSubmit" value="닫 기" />
-	
+	<input type="hidden" id="s_logo" name="s_logo" placeholder="로고로 등록할 이미지 URL을 넣어주세요." /><br/>
+
 	</form>
 	
 	<script>
@@ -49,6 +47,7 @@
 		if (res.success === true) {
 			document.querySelector('.status').classList.add('bg-success');
 			document.querySelector('.status').innerHTML = res.data.link;
+			$('#s_logo').val(res.data.link);
 		}
 	};
 
@@ -59,14 +58,33 @@
 	});
 	
 	$('#logoSubmit').click(function() {
-		/* window.close();
-		window.opener.location.reload(); */
+		event.preventDefault();
+		var url = 'logoPop';
+	    var s_logo = $('#s_logo').val();
+		  $.ajax({
+	          type:'post',
+	          url : url,
+	          headers:{
+	             'Content-Type': 'application/json',
+	               'X-HTTP-Method-Override': 'POST'
+	          },
+	           data: JSON.stringify({
+	        	   s_logo: s_logo,
+	        	   
+	            }), 
+	           success: function(result) {
+	        	   if(result == 1) {
+	        		  window.close();
+	        		  window.opener.location.reload();
+	        		  alert('이미지 등록 성공!');
+	        	   } else{
+	        		   location.reload();
+	        		   alert('이미지 등록 실패.');
+	        	   }
+	           }
+	       });   
 	});
 	
-	$('#closeSubmit').click(function() {
-		window.close();
-		window.opener.location.reload();
-	});
 	
 	</script>
 	

@@ -102,38 +102,38 @@ public class BuyerController {
 		model.addAttribute("relativeList", cateCheck); // 카테고리 검색해서 연관상품 보여주기
 		model.addAttribute("sVo", sVo);
 
-		/*
-		 * //System.out.println("qnrController"); // 페이지 criteria 생성자 만들기
-		 * PageCriteria c = new PageCriteria(); if (page != null){
-		 * c.setPage(page); }
-		 * 
-		 * List<QnaVO> list = dao.selectQna(p_no);
-		 * 
-		 * List<QnaRVO> listR = new ArrayList<>(); for(QnaVO volist : list) {
-		 * if(volist.getQna_reply() == 1) { QnaRVO rvo = dao.selectQnaR(volist);
-		 * listR.add(rvo); } }
-		 * 
-		 * List<ReviewVO>list1 = daoR.selectRev(p_no); List<ReviewRVO> list2 =
-		 * new ArrayList<>(); for(ReviewVO volist : list1) {
-		 * if(volist.getRev_reply() == 1) { ReviewRVO vo1 =
-		 * daoR.selectRevReply(volist.getRev_no()); list2.add(vo1);
-		 * 
-		 * } }
-		 * 
-		 * model.addAttribute("listQnA", list); model.addAttribute("listQnAR",
-		 * listR);
-		 * 
-		 * model.addAttribute("listRev", list1); model.addAttribute("listReply",
-		 * list2);
-		 * 
-		 * // 페이지 메이커 생성 PageMaker maker = new PageMaker(); maker.setCrieria(c);
-		 * maker.setTotalCount(dao.getNumOfRecordsQna()); maker.setPageData();
-		 * model.addAttribute("pageMaker", maker);
-		 * 
-		 * // 카테고리 검색해서 연관상품 보여주기 List<ProductVO> relativelist =
-		 * productService.selectCate2(pVo.getP_cate2());
-		 * model.addAttribute("relativeList", relativelist);
-		 */
+		
+		 //System.out.println("qnrController"); // 페이지 criteria 생성자 만들기
+		  PageCriteria c = new PageCriteria(); if (page != null){
+		  c.setPage(page); }
+		  
+		  List<QnaVO> list = dao.selectQna(p_no);
+		  
+		  List<QnaRVO> listR = new ArrayList<>(); for(QnaVO volist : list) {
+		  if(volist.getQna_reply() == 1) { QnaRVO rvo = dao.selectQnaR(volist);
+		  listR.add(rvo); } }
+		  
+		  List<ReviewVO>list1 = daoR.selectRev(p_no); List<ReviewRVO> list2 =
+		  new ArrayList<>(); for(ReviewVO volist : list1) {
+		  if(volist.getRev_reply() == 1) { ReviewRVO vo1 =
+		  daoR.selectRevReply(volist.getRev_no()); list2.add(vo1);
+		  
+		  } }
+		  
+		  model.addAttribute("listQnA", list); model.addAttribute("listQnAR",
+		  listR);
+		  
+		  model.addAttribute("listRev", list1); model.addAttribute("listReply",
+		  list2);
+		  
+		  // 페이지 메이커 생성 PageMaker maker = new PageMaker(); maker.setCrieria(c);
+/*		  maker.setTotalCount(dao.getNumOfRecordsQna()); maker.setPageData();
+		  model.addAttribute("pageMaker", maker);
+		  
+		  // 카테고리 검색해서 연관상품 보여주기 List<ProductVO> relativelist =
+		  productService.selectCate2(pVo.getP_cate2());
+		  model.addAttribute("relativeList", relativelist);*/
+		 
 		return "/buyer/sudo_product_detail";
 
 	} // end productDetail() -> 판매자 홈에서 상품 번호를 참조해 상품 상세 페이지로 넘겨주는 역할
