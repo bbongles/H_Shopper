@@ -30,6 +30,20 @@
 	display: none;
 }
 
+tr,th,td {
+
+	border-collapse: collapse;
+}
+th {
+	background-color: #f5f5f5;
+	border-top: 0.1px solid gray;
+	border-collapse: collapse;
+}
+
+td {
+	border-top: 0.1px solid lightgray;
+}
+
 </style>
 </head>
 <body>
@@ -73,8 +87,9 @@
 			</tr>
 
 			<tr>
-				<th scope="row">후기 내용 &emsp;</th>
-				<td><textarea rows="5" cols="60" id = "rev_cont" name="rev_cont" required></textarea></td>
+				<th style="border-bottom: 0.1px solid lightgray;" scope="row">후기 내용 &emsp;</th>
+				<td><textarea rows="5" cols="60" id = "rev_cont" name="rev_cont" required
+				placeholder="제품 후기 내용을 작성해주세요." ></textarea></td>
 			</tr>
 
 		</table>
@@ -84,7 +99,7 @@
 			<input type="hidden" name="p_no" id="p_no" value="${p_no}" />
 <!-- 		<input type="hidden" name="qna_reply" value = "0" /> -->
 		
-			<input type="submit" id="btn_submit" value="등록">
+			<input style="float: right; margin-right: 290px;" type="submit" id="btn_submit" value="등록">
 	</form>
 	
 	<script

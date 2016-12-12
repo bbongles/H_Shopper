@@ -574,7 +574,7 @@ public class HomeController {
 	/*-- 수용 --------------------------------------------------------------------------*/
 
 	@RequestMapping(value = "pDetail", method = RequestMethod.GET)
-	public String product_Detail(int p_no, String s_id, String p_name, Model model) {
+	public String product_Detail(int p_no, String s_id, String p_name,QnaVO vo, Model model) {
 
 		ProductVO pVo = sellerService.readItemByPno(p_no); // 상품 번호에 의한 각 상품의 전체
 															// 정보 받아오기
@@ -597,7 +597,34 @@ public class HomeController {
 			numOfPage++; // 나머지가 있으면 올림
 		}
 		int remainder = length % 3;
+		
+		List<QnaVO> list = dao.selectQna(p_no);
 
+		List<QnaRVO> listR = new ArrayList<>();
+		for(QnaVO volist : list) {
+			if(volist.getQna_reply() == 1) {
+			QnaRVO rvo = dao.selectQnaR(volist);
+			listR.add(rvo);
+			}
+		}
+		
+		List<ReviewVO>list1 = daoR.selectRev(p_no);
+		List<ReviewRVO> list2 = new ArrayList<>();
+		for(ReviewVO volist : list1) {
+			if(volist.getRev_reply() == 1) {
+			ReviewRVO vo1 = daoR.selectRevReply(volist.getRev_no());
+			list2.add(vo1);
+			
+			}
+		}
+		
+		model.addAttribute("listQnA", list);
+		model.addAttribute("listQnAR", listR);
+				
+		model.addAttribute("listRev", list1);
+		model.addAttribute("listReply", list2);
+
+		
 		model.addAttribute("productVO", pVo); // 전체 정보를 Model 객체에 넣어서 View(jsp)에
 												// 전달
 		model.addAttribute("optionList", optionList); // 받아온 옵션 정보를 Model 객체에

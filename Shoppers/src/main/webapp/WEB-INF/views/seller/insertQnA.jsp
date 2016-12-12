@@ -5,7 +5,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert QnA</title>
+<style>
+tr,th,td {
+
+	border-collapse: collapse;
+}
+th {
+	background-color: #f5f5f5;
+	border-top: 0.1px solid gray;
+	border-collapse: collapse;
+}
+
+td {
+	border-top: 0.1px solid lightgray;
+}
+
+</style>
 </head>
+
 <body>
 
 	<form id="qnafrm" name="frmNm" method="POST" >
@@ -38,13 +55,13 @@
 
 			<tr>
 				<th scope="row">문의 내용 &emsp;</th>
-				<td><textarea rows="10" cols="80" id = "qna_cont" name="qna_cont" required></textarea></td>
+				<td><textarea rows="10" cols="80" id = "qna_cont" name="qna_cont" placeholder="문의하실 내용을 입력해주세요." required ></textarea></td>
 			</tr>
 
 			<tr>
-				<th scope="row">답변수신 메일 &emsp;</th>
-				<td><input type="text" id="b_email" name="b_email"
-					placeholder="이메일주소 입력" value="test@test.com"/>b_id를 이용해 email주소를 select받아와 자동입력기능..구현해야함</td>
+				<th scope="row" style="border-bottom: 0.1px solid gray;">답변수신 메일 &emsp;</th>
+				<td style="border-bottom: 0.1px solid lightgray;" >
+				<input type="text" id="b_email" name="b_email" placeholder="이메일주소 입력" value="test@test.com"/></td>
 					
 			</tr>
 
@@ -53,7 +70,7 @@
 		<input type="hidden" name="b_id" value="${b_id}" id = "b_id" />
 		<input type="hidden" name="p_no" value="${p_no}" id = "p_no"/>
 		
-		<input type="submit" id="submitQnA" value="등록">
+		<input style="float: right; margin-right: 130px;" type="submit" id="submitQnA" value="등록">
 
 	</form>
 		

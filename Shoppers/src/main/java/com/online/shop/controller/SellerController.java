@@ -171,7 +171,7 @@ public class SellerController {
 		model.addAttribute("sVo", sVo);
 
 		
-		/*//System.out.println("qnrController");
+		//System.out.println("qnrController");
 		// 페이지 criteria 생성자 만들기
 		PageCriteria c = new PageCriteria();
 		if (page != null){
@@ -213,7 +213,7 @@ public class SellerController {
 		
 		// 카테고리 검색해서 연관상품 보여주기
 		List<ProductVO> relativelist = productService.selectCate2(pVo.getP_cate2());
-		model.addAttribute("relativeList", relativelist);*/
+		model.addAttribute("relativeList", relativelist);
 		
 		return "/seller/sudo_product_detail";
 		
