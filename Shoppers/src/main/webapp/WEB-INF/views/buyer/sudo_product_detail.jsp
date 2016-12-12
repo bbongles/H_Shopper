@@ -420,7 +420,7 @@
 											</tbody>
 										</table>
  									<input type="hidden" name="pno" id="detail_p_no" value="${productVO.p_no}">
-									<button type="button" id="btnInsert">상품 문의 하기</button>
+									<button type="button" id="btnInsert" class="btn">상품 문의 하기</button>
 										
 								</div><!-- tab qna -->
 									

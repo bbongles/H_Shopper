@@ -121,102 +121,13 @@ public class OrderController {
 		model.addAttribute("buyerHP", voo.getB_phone());
 		model.addAttribute("buyerEmail", voo.getB_email());
 		model.addAttribute("b_id", voo.getB_id());
+		
+		
 		return "sudo_order";	
 	}
 	
 	
-	@RequestMapping(value="cartTossOrder2", method=RequestMethod.GET)
-	public String tossToOrder2(String c_no, Model model, HttpServletRequest request) throws IOException{
-		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
-		int shippingCharge = 3000; // 배송비(임의로 정함 나중에 수정 필요)
-		logger.info("분리될 C_NO들 : "+c_no);
-		String[] listCNO = c_no.split(",");
-		for (String x : listCNO){
-			logger.info("분리된 값 : "+x);
-		}
-		// 카트에서 선택된 아이템들을 리스트로 넘김
-		List<CartVO> cartList = new ArrayList<>();
-		for (int i = 0; i<listCNO.length; i++){
-			CartVO vo = cartService.readCart(Integer.parseInt(listCNO[i])); // 인트로변환
-			totalPriceForOrder +=  vo.getBuy_cnt()*vo.getP_price(); // 총계산
-			if (vo != null) {
-				cartList.add(vo);
-			}
-		} 
-		
-		// 주문자 정보 가져옴 ( 임시로 asdf 아이디로 해놓음, 나중에 세션으로 바꾸기)
-		HttpSession session = request.getSession();
-		Object id = session.getAttribute("b_login_id");
-		String buyerID = (String) id;
-		BuyerVO vo = buyerService.read(buyerID);
-		String registedZipCode = vo.getB_zip();
-		String registedAddr1 = vo.getB_addr1();
-		String registedAddr2 = vo.getB_addr2();
-		
-		model.addAttribute("ListForOrder", cartList);
-		model.addAttribute("totalCountForOrder", cartList.size());
-		model.addAttribute("totalProductPriceForOrder", totalPriceForOrder);
-		model.addAttribute("miledTobeAdded", totalPriceForOrder*0.01);
-		model.addAttribute("Shipping", shippingCharge);
-		model.addAttribute("FinalPriceForOrder", shippingCharge+totalPriceForOrder);
-		model.addAttribute("registedZip", registedZipCode);
-		model.addAttribute("registedAddr1", registedAddr1);
-		model.addAttribute("registedAddr2", registedAddr2);
-		model.addAttribute("buyerNAME", vo.getB_name());
-		model.addAttribute("buyerHP", vo.getB_phone());
-		model.addAttribute("buyerEmail", vo.getB_email());
-		model.addAttribute("b_id", vo.getB_id());
-		return "sudo_order2";	
-		
-		
-	}
-	
-	// 체크박스 상관없이 아이템 하나 주문할때_ 
-	@RequestMapping(value="OneCartTossOrder2", method=RequestMethod.GET)
-	public String OneTossToOrder2(int c_no, Model model, HttpServletRequest request) throws IOException{
-		int totalPriceForOrder = 0; // 리스트 합계금액 저장하는변수
-		int shippingCharge = 3000; // 배송비(임의로 정함 나중에 수정 필요)
 
-		// 카트에서 선택된 아이템들을 리스트로 넘김
-		List<CartVO> cartList = new ArrayList<>();
-
-			CartVO vo = cartService.readCart(c_no); 
-			totalPriceForOrder +=  vo.getBuy_cnt()*vo.getP_price(); // 총계산
-			if (vo != null) {
-				cartList.add(vo);
-			}
-		
-		
-		// 주문자 정보 가져옴 ( 임시로 asdf 아이디로 해놓음, 나중에 세션으로 바꾸기)
-			HttpSession session = request.getSession();
-			Object id = session.getAttribute("b_login_id");
-		String buyerID =(String) id;
-		BuyerVO voo = buyerService.read(buyerID);
-		String registedZipCode = voo.getB_zip();
-		String registedAddr1 = voo.getB_addr1();
-		String registedAddr2 = voo.getB_addr2();
-		
-		model.addAttribute("ListForOrder", cartList);
-		model.addAttribute("totalCountForOrder", cartList.size());
-		model.addAttribute("totalProductPriceForOrder", totalPriceForOrder);
-		model.addAttribute("miledTobeAdded", totalPriceForOrder*0.01);
-		model.addAttribute("Shipping", shippingCharge);
-		model.addAttribute("FinalPriceForOrder", shippingCharge+totalPriceForOrder);
-		model.addAttribute("registedZip", registedZipCode);
-		model.addAttribute("registedAddr1", registedAddr1);
-		model.addAttribute("registedAddr2", registedAddr2);
-		model.addAttribute("buyerNAME", voo.getB_name());
-		model.addAttribute("buyerHP", voo.getB_phone());
-		model.addAttribute("buyerEmail", voo.getB_email());
-		model.addAttribute("b_id", voo.getB_id());
-		return "sudo_order2";	
-	}
-	
-	
-	
-	
-	
-	
 	
 	
 	
