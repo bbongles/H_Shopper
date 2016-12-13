@@ -140,7 +140,7 @@
 			</section>	
 			<section class="header_text sub">
 			<img class="pageBanner" src="<c:url value='/resources/themes/images/pageBanner.png' />" alt="New products" >
-				<h4><span>New products</span></h4>
+				<h4><span>Products</span></h4>
 			</section>
 			
 			

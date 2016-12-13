@@ -558,7 +558,7 @@ input.radio {
 													<input required name="b_pw_check"
 														type="password" class="input-xlarge" minlength="4"
 														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="b_pass2"
-														onkeyup="b_checkPass(); return false;" /> 
+														onkeyup="b_checkPass(); return false;" style="font-family: verdana"/> 
 												</div> <!-- TODO :  -->
 											 </div><!-- ### 완료 ###-->
 
@@ -589,15 +589,6 @@ input.radio {
 											
 											
 										</div>
-
-
-
-
-
-
-
-
-
 
 										<!-- ######################################## -->
 										<!-- 오른쪽 -->
@@ -790,14 +781,7 @@ input.radio {
 									</div>
 								</div>
 							</div>
-						</div><!-- End 구매자 회원가입 -->
-						
-						
-						
-						
-						
-						
-						
+						</div><!-- End 구매자 회원가입 -->						
 						
 						<div class="accordion-group">
 							<div class="accordion-heading">

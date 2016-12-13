@@ -184,7 +184,7 @@
 
 	<table class="productT">
 		<tr>
-			<th>회원번호</th>
+			
 			<th>판매자 ID</th>
 			<th>상품번호</th>
 			<th>상품명(옵션)</th>
@@ -192,10 +192,10 @@
 		</tr>
 
 			<c:forEach var="pvo" items="${productList }">
-			<c:forEach var="svo" items="${sellerList }">
+			<%-- <c:forEach var="svo" items="${sellerList }"> --%>
 
 				<tr>
-				<c:if test="${pvo.s_id == svo.s_id }">
+				
 					<td>${svo.s_no}</td>
 					<td>${pvo.s_id}</td>
 					<td>${pvo.p_no }</td>
@@ -209,9 +209,9 @@
 							승인
 						</c:if>
 					</td>
-				</c:if>
+				
 				</tr>
-			</c:forEach>
+			<%-- </c:forEach> --%>
 			</c:forEach>
 	</table>
 	

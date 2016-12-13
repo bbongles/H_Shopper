@@ -361,6 +361,7 @@ a:hover, a:focus {
 }
 
 .row-fluid {
+	width: 100%;
 	*zoom: 1
 }
 
@@ -2868,7 +2869,6 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 }
 
 .collapse {
-	position: relative;
 	height: 0;
 	overflow: hidden;
 	-webkit-transition: height .35s ease;
@@ -5615,7 +5615,6 @@ to {
 }
 
 .accordion-inner {
-	padding: 9px 15px;
 	border-top: 1px solid #e5e5e5
 }
 
