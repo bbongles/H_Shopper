@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>sellerHome</title>
+<title>H-Shopper : 특별함을 전하는</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
@@ -243,7 +243,7 @@ p {
 						<div class="span12">
 							<h4 class="title">
 								<span class="pull-left"><span class="text"><span
-										class="line">Feature <strong>Products</strong></span></span></span> <span
+										class="line">Total <strong>Products</strong></span></span></span> <span
 									class="pull-right"> <a class="left button"
 									href="#myCarousel" data-slide="prev"></a><a
 									class="right button" href="#myCarousel" data-slide="next"></a>
