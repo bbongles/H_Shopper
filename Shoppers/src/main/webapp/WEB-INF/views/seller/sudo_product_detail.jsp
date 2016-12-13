@@ -503,12 +503,11 @@
 
 												
 												<tr class ="revReply" modData="${state.index }">
-													<th style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
-														onMouseout="this.style.color='black';">한줄답글</th>
+													<th class="revReplytest" style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
+													 onMouseout="this.style.color='black';" modData="${state.index }">한줄답글</th>
 					<c:if test="${list.rev_reply eq 0 }">									
-				<td class="modify" id="revmodify${state.index }" >				
-					
-						<div modData="${state.index }" modData="${state.index }">
+				<td >		
+						<div class="modify" id="revmodifytest${state.index }" modData="${state.index }" >
 						<form id="revfrmmodify${state.index }" method="post" >
 							<input type="text" name="rev_r_cont" id="rev_r_cont${state.index }" 
 							placeholder="답글작성" maxlength="100" required
@@ -844,8 +843,8 @@
 		</div>
 
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=124' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=124' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');
