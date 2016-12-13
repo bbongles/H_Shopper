@@ -357,11 +357,10 @@
 										<ul class="thumbnails listing-products">
 											<li class="span3">
 												<div class="product-box">
-													<span class="sale_tag"></span>												
-													<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/2.jpg' />"></a><br/>
-													<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-													<a href="#" class="category">Suspendisse aliquet</a>
-													<p class="price">$261</p>
+													<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008040.jpg"/></a></p>
+													<a href="product_detail.html" class="title">홀리데이 밍크 드롭 귀걸이</a><br/>
+													<a href="products.html" class="category">Sara and Rosa</a>
+													<p class="price">15,900 원</p>
 												</div>
 											</li>
 										</ul>
@@ -369,11 +368,12 @@
 									<div class="item">
 										<ul class="thumbnails listing-products">
 											<li class="span3">
-												<div class="product-box">												
-													<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/4.jpg'/>"></a><br/>
-													<a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-													<a href="#" class="category">Urna nec lectus mollis</a>
-													<p class="price">$134</p>
+												<div class="product-box">
+													<span class="sale_tag"></span>
+													<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008255.jpg"/></a></p>
+													<a href="product_detail.html" class="title">크리스마스 드라이플라워박스</a><br/>
+													<a href="products.html" class="category">SANSANGGOT</a>
+													<p class="price">34,900원</p>
 												</div>
 											</li>
 										</ul>
