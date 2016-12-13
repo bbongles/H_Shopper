@@ -404,15 +404,16 @@
 						</tr>
 						
 						<%-- 판매자,관리자에서만 보이게 해야함.--%>
-						<tr>
-							<td class="modify${state.index }" style=" text-align: center; display: none;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
+						<tr style="height: 100%;">
+							<td class="modify${state.index }" style=" text-align: center; display: none;">
+							<img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none; 
-							text-align: center; width: 250px; height: 50px;" modData="${state.index }">
+							text-align: center; width: 250px; height: 100%;" modData="${state.index }">
 							
 							<form id = "frm${state.index }" method="post">
 								<textarea cols="25" rows="3" name="qna_r_cont" class="qna_r_cont"  id="qna_r_cont${state.index }"
-								style="width: 100%;	height:100%; background-color: inherit;
+								style="width: 100%;	height:100px; background-color: inherit;
 								resize:none; box-sizing: border-box; 
 								-moz-box-sizing: border-box; 
 								-webkit-box-sizing: border-box; border: none;" placeholder="답변을 작성해 주세요." required></textarea>
@@ -423,7 +424,6 @@
 								</form>						
 									<button type="button" class="insertReply">저장</button>
 							</td>
-							
 						</tr>
 <!-- 							</div> -->
 						</c:if>
