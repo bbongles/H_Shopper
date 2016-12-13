@@ -420,6 +420,7 @@
 											</tbody>
 										</table>
  									<input type="hidden" name="pno" id="detail_p_no" value="${productVO.p_no}">
+ 									<input type="hidden" name="b_id" id="b_id" value="${b_login_id }" />
 									<button type="button" id="btnInsert" class="btn">상품 문의 하기</button>
 										
 								</div><!-- tab qna -->
@@ -769,8 +770,8 @@
 		<!-- 김태훈 백버튼 리프레시 -->
 		<input type="hidden" id="refreshed" value="no" style="display: none">
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121557' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121558' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121558' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121559' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');
