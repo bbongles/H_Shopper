@@ -167,7 +167,7 @@ input.radio {
 											
 						<label for="b_pw_first">비밀번호 입력</label> 
 						<input required name="b_pw_first" type="password" class="input-xlarge"
-						minlength="4" maxlength="16" id="b_pw_first" placeholder="비밀번호" />
+						minlength="4" maxlength="16" id="b_pw_first" style="font-family: verdana" placeholder="비밀번호" />
 						<br/>
 						
 						<input type="hidden" id="firstpw" value="${buyerInfo.b_pw}"/>
@@ -227,7 +227,7 @@ input.radio {
 												</label> 
 												 	<div class="controls">
 													 	<input required type="text" class="input-xlarge" value="${buyerInfo.b_pw }"
-															minlength="4" maxlength="16" id="origin_b_pwd" placeholder="기존 비밀번호" />
+															minlength="4" maxlength="16" id="origin_b_pwd" placeholder="기존 비밀번호" style="font-family: verdana" />
 													</div>
 												 </div><!-- ### 완료 ###-->
 												
@@ -235,7 +235,7 @@ input.radio {
 												 	<label for="b_pw">새 비밀번호 입력</label> 
 												 	<div class="controls">
 													 	<input required name="b_pw" type="password" class="input-xlarge"
-															minlength="4" maxlength="16" id="b_pass1" placeholder="비밀번호" readonly />
+															minlength="4" maxlength="16" id="b_pass1" placeholder="비밀번호" readonly style="font-family: verdana" />
 													</div>
 												 </div><!-- ### 완료 ###-->
 	
@@ -247,7 +247,7 @@ input.radio {
 														<input required name="b_pw_check"
 															type="password" class="input-xlarge" minlength="4"
 															maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="b_pass2"
-															onkeyup="b_checkPass(); return false;" readonly /> 
+															onkeyup="b_checkPass(); return false;" readonly style="font-family: verdana" /> 
 													</div> <!-- TODO :  -->
 												 </div><!-- ### 완료 ###-->
 												 </div>
