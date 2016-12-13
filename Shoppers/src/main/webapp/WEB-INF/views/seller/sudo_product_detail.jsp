@@ -14,7 +14,8 @@
 	<style>
 	/* ///////////////////////////////test// */
 	.wrap {
-          max-width: 95.6%;
+          max-width: 94.5%;
+       
     }
     .wrap textarea {
       width: 100%;
@@ -327,7 +328,7 @@
 								    			<%-- <textarea style="width:80%;overflow:visible;" class="detailCont">${imageList.i_cont }</textarea><br/><br/><br/> --%>
 								    			<%-- <textarea class="detailCont autosize">${imageList.i_cont }</textarea><br/><br/><br/> --%>
 								    			<div class="wrap" style="text-align:center">
-								    				<textarea style="border:none;text-align:center" class="detailCont" >${imageList.i_cont }</textarea>
+								    				<textarea style="border:none;text-align:center;background-color:white" class="detailCont" readonly>${imageList.i_cont }</textarea>
 								    			</div>
 								    <script>
 									    $(document).ready(function() {
