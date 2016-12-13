@@ -535,7 +535,7 @@ input.radio {
 											 	<label for="b_pw">비밀번호 </label> 
 											 	<div class="controls">
 												 	<input required name="b_pw" type="password" class="input-xlarge"
-														minlength="4" maxlength="16" id="b_pass1" placeholder="비밀번호" />
+														minlength="4" maxlength="16" id="b_pass1" placeholder="비밀번호" style="font-family: verdana"/>
 												</div>
 											 </div><!-- ### 완료 ###-->
 											 

@@ -293,7 +293,7 @@
 										<label class="control-label">비밀번호</label>
 										<div class="controls">
 											<input type="password" name="b_pw" placeholder="비밀번호 입력"
-												id="password" class="input-xlarge">
+												id="password" class="input-xlarge" style="font-family: verdana">
 										</div>
 									</div>
 									<div class="control-group">
@@ -325,7 +325,7 @@
 										<label class="control-label">비밀번호</label>
 										<div class="controls">
 											<input type="password" name="s_pw" placeholder="비밀번호 입력"
-												id="password" class="input-xlarge">
+												id="password" class="input-xlarge" style="font-family: verdana">
 										</div>
 									</div>
 									<div class="control-group">
