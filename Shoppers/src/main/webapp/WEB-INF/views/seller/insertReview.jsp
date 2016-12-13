@@ -40,7 +40,7 @@ th {
 	background-color: #f5f5f5;
 	border-top: 0.1px solid gray;
 	border-collapse: collapse;
-	width: 100px;
+	width: 150px;
 }
 
 td {
@@ -52,7 +52,7 @@ td {
 <body>
 
 	<form id="frm" method="POST">
-		<table style="width: 730px; height: 320px; ">
+		<table style="width: 750px; height: 320px; ">
 			<tr>
 				<th scope="row">구매 상품</th>
 				<td>

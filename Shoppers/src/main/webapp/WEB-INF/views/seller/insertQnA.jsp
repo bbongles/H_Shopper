@@ -61,7 +61,7 @@ td {
 			<tr>
 				<th scope="row" style="border-bottom: 0.1px solid gray;">답변수신 메일 &emsp;</th>
 				<td style="border-bottom: 0.1px solid lightgray;" >
-				<input type="text" id="b_email" name="b_email" placeholder="이메일주소 입력" value="test@test.com"/></td>
+				<input type="text" id="b_email" name="b_email" placeholder="이메일주소를 입력해 주세요"/></td>
 					
 			</tr>
 
