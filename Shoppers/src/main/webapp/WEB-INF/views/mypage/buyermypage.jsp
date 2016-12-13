@@ -238,7 +238,7 @@
 					</div>
 					<div class="span5">
 						<p class="logo"><img src="<c:url value='../resources/themes/images/logo.png' />" class="site_logo" alt=""></p>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p> -->
 						<br/>
 						<span class="social_icons">
 							<a class="facebook" href="#">Facebook</a>
@@ -250,7 +250,7 @@
 				</div>	
 			</section>
 			<section id="copyright">
-				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
+				<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 			</section>
 	</div>
 	<input type="hidden" value="${b_login_id}" id="b_login_id">
