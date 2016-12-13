@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Bootstrap E-commerce Templates</title>
+<title>H-Shopper : 특별함을 전하는</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
@@ -302,9 +302,9 @@
 						<img src="<c:url value='../resources/themes/images/logo.png' />"
 							class="site_logo" alt="">
 					</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and
+					<!-- <p>Lorem Ipsum is simply dummy text of the printing and
 						typesetting industry. the Lorem Ipsum has been the industry's
-						standard dummy text ever since the you.</p>
+						standard dummy text ever since the you.</p> -->
 					<br /> <span class="social_icons"> <a class="facebook"
 						href="#">Facebook</a> <a class="twitter" href="#">Twitter</a> <a
 						class="skype" href="#">Skype</a> <a class="vimeo" href="#">Vimeo</a>
@@ -313,8 +313,7 @@
 			</div>
 		</section>
 		<section id="copyright">
-			<span>Copyright 2013 bootstrappage template All right
-				reserved.</span>
+			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
 	<script src="<c:url value='/resources/themes/js/common.js' />"></script>
