@@ -227,7 +227,7 @@ $(document).ready(function() {
 	getCompleteList();
 	
 	function getCompleteList() {
-		var url = '/shop05/userid/all6/' + b_id;
+		var url = '/shop/userid/all6/' + b_id;
 		$.getJSON(url, function(data) {
 			var td = '';  	  	
 			

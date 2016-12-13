@@ -181,8 +181,10 @@
 									</tr>
 								</table>
 							</div>
+							</fieldset>
+							<fieldset class="tabelfieldset">
 							<div id="maindiv" class="control-group">
-								<table id="totalReq">
+								<table id="totalReq" class="adminmaintable">
 									<caption>
 										<b>주문 요청 내역(최근 5건)</b>
 									</caption>
@@ -218,7 +220,7 @@
 									</c:forEach>
 								</table>
 
-								<table id="newTotalReq" style="display: none;">
+								<table id="newTotalReq" class="adminmaintable" style="display: none;">
 									<caption>
 										<b>[새로운 주문 요청 내역]</b>
 									</caption>
@@ -257,7 +259,7 @@
 								<br /> <br />
 
 
-								<table id="buySuc">
+								<table id="buySuc" class="adminmaintable">
 									<caption>
 										<b>최근 판매 완료 내역(최근 5건)</b>
 									</caption>
@@ -282,7 +284,7 @@
 									</c:forEach>
 								</table>
 
-								<table id="buyToday" style="display: none;">
+								<table id="buyToday" class="adminmaintable" style="display: none;">
 									<caption>
 										<b>[오늘의 판매 내역]</b>
 									</caption>
@@ -309,7 +311,7 @@
 									</c:forEach>
 								</table>
 
-								<table id="sellerAccess" style="display: none;">
+								<table id="sellerAccess" class="adminmaintable" style="display: none;">
 									<caption>
 										<b>[판매자 승인 요청]</b>
 									</caption>
@@ -333,7 +335,7 @@
 									</c:forEach>
 								</table>
 
-								<table id="productAccess" style="display: none;">
+								<table id="productAccess" class="adminmaintable" style="display: none;">
 									<caption>
 										<b>[판매물 승인 요청]</b>
 									</caption>
@@ -360,11 +362,12 @@
 									</c:forEach>
 								</table>
 							</div>
+							</fieldset>
 
 
 							
 
-						</fieldset>
+						
 					</form>
 					<hr>
 				</div>
