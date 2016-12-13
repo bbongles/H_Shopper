@@ -114,7 +114,7 @@
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">개인 정보 수정</a></label>
+									href="buyermypage_updateinfo?b_id=${b_login_id }">개인 정보 수정</a></label>
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a

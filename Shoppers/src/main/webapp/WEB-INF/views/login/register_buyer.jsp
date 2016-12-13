@@ -590,15 +590,6 @@ input.radio {
 											
 										</div>
 
-
-
-
-
-
-
-
-
-
 										<!-- ######################################## -->
 										<!-- 오른쪽 -->
 										<div class="span6">
@@ -790,14 +781,7 @@ input.radio {
 									</div>
 								</div>
 							</div>
-						</div><!-- End 구매자 회원가입 -->
-						
-						
-						
-						
-						
-						
-						
+						</div><!-- End 구매자 회원가입 -->						
 						
 						<div class="accordion-group">
 							<div class="accordion-heading">

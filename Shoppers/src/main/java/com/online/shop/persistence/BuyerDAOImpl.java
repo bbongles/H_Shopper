@@ -123,4 +123,12 @@ public class BuyerDAOImpl implements BuyerDAO{
 		return sqlSession.selectList(NAMESPACEM + ".selectByBuyCompleteMain2", b_id);
 	}
 	
+	@Override
+	public int updateBuyerInfo(BuyerVO vo) {
+		System.out.println("imple vo");
+		int result = sqlSession.update(NAMESPACEM+".update-buyerInfo", vo);
+		System.out.println("imple 결과:"+result);
+		return result;
+	}
+	
 }

@@ -42,5 +42,7 @@ public interface BuyerDAO {
 	public abstract List<CartandBuy> selectByBuyCompleteMain2(String b_id);
 	// --------------------
 	
+	//구매자 마이페이지 정보수정
+	public abstract int updateBuyerInfo(BuyerVO vo);
 	
 }
