@@ -184,10 +184,13 @@ public class AdminController {
 		}
 		
 		List<ProductVO> list = productservice.read(c);
-		List<SellerVO> list1 = sellerservice.read(c);
+		/*List<SellerVO> list1 = sellerservice.read(c);*/
+		
+		logger.info("list size: " + list.size());
+		/*logger.info("list1 size: " + list1.size());*/
 		
 		model.addAttribute("productList", list);
-		model.addAttribute("sellerList", list1);
+//		model.addAttribute("sellerList", list1);
 		
 		PageMaker maker = new PageMaker();
 		maker.setCrieria(c);
