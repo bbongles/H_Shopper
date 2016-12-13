@@ -112,10 +112,10 @@
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
-		<interceptor>
+		<!-- <interceptor>
 			<mapping path="/admin/admin_mypage"/>
 			<beans:ref bean="AuthInterceptor"/>
-		</interceptor>
+		</interceptor> -->
 		
 		<interceptor>
 			<mapping path="/mypage/buyermypage"/>

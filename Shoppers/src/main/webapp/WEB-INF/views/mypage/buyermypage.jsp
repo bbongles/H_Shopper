@@ -169,13 +169,15 @@
 
 									</tr>
 								</table>
-								
+						
 							</div> 
+							</fieldset>
+							<fieldset class="bmypagetable">
 							<div id="maindiv" class="control-group">
 							
 							
 							
-							<table id="ordert">
+							<table id="ordert" class="bmytable">
 									<caption><b>[주문 배송 내역] (최근 5건)</b></caption>
 									<tr>
 										<th>주문번호</th>
@@ -185,7 +187,7 @@
 										<th>주문상태</th>
 									</tr>		
 							</table>
-							<table id="completet">
+							<table id="completet" class="bmytable">
 									<caption>
 										<b>[구매 내역] (최근 5건)</b>
 									</caption>
