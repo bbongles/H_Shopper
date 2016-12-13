@@ -43,6 +43,7 @@ import com.online.shop.service.SellerService;
 /**
  * Handles requests for the application home page.
  */
+
 @Controller
 public class HomeController {
 
@@ -505,6 +506,8 @@ public class HomeController {
 				logger.info("세션 저장 성공! key:login_id, 값 : " + s_id);
 				session.removeAttribute("b_login_id");
 				logger.info("seller/main 으로 이동~");
+				logger.info("로그인 결과를 세션에 저장합니다.. ");
+				session.setAttribute("login_result", sellerService.isValidUser(s_id, s_pw));
 				return "redirect:main";
 			} else {
 				logger.info("ACC 확인 실패");

@@ -51,8 +51,8 @@
 			<div class="span8">
 				<div class="account pull-right">
 					<ul class="user-menu">
-											<c:if test="${s_login_id eq 'admin'}">
-							<li><a href="../admin/admin_mypage">My Page</a></li>
+							<c:if test="${s_login_id eq 'admin'}">
+							<li><a href="admin/admin_mypage">My Page</a></li>
 							</c:if>
 							<c:if test="${empty s_login_id && empty b_login_id }">
 								<c:url value="login" var="login" />
