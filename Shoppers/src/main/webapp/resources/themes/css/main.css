@@ -186,10 +186,10 @@ div.sp{
 }
 /* 쇼핑몰 현황 마진 */
 fieldset.cf {
-	margin-left: 15%; 
+	margin-left: 20%; 
 }
 fieldset.bm {
-	margin-left: 19%; 
+	margin-left: 25%; 
 }
 table{
 	border-spacing: 5px;
@@ -1195,7 +1195,47 @@ button.detail:hover {
 	width: 820px; 고정
 }
 
-#maincontent{
+#maincontent{ 
 	margin-left: 20%;
-	font-size: 15px;
+	font-size: 15px; 
+}
+.adminmaintable th{
+	
+	width: 100px;
+}
+.tabelfieldset{
+	margin-left: 7%;
+}
+
+.bmytable th{
+	width: 150px;
+}
+.ordertd{
+	width: 450px; 
+}
+.om{
+	margin-left: 20%;
+} 
+.completetd{  
+	width: 450px;
+}
+.cm{
+	margin-left: 20%;
+} 
+.producttd{ 
+	width: 450px;
+	text-align: center;
+}
+.pm{
+	margin-left: 20%; 
+}
+.ordertd{
+	width: 450px;
+	text-align: center;
+}
+.omd{
+	margin-left: 20%;
+}
+.completetd{
+	width: 450px;
 }

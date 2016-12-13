@@ -19,7 +19,7 @@ public interface AdminDAO {
 	
 	//전체주문요청내역
 	public abstract List<BuyVO> selectByBuyr();
-	public abstract List<CartandBuy> selectBysubr();
+	public abstract List<CartandBuy> selectBysubr(PageCriteria cri);
 	
 	//전체판매완료내역
 	public abstract List<BuyVO> selectByBuyf();

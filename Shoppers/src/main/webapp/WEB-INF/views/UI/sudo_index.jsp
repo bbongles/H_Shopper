@@ -51,7 +51,7 @@
  <!-- 김태훈 코드 시작, 로그인한 사용자별 상단 메뉴 정렬--><!-- TODO: 마이페이지, 장바구니 링크 걸고, 인터셉터 걸어야함 -->
 							<!-- ---------------visitor 입장----------------------------- -->
 							<c:if test="${empty s_login_id && empty b_login_id }">
-							<li><a href="">My Page</a></li>
+							<li><a href="mypage/buyermypage">My Page</a></li>
 							<li><a href="cart/selectCart">Cart</a></li>
 							</c:if>
 							<!-- ------------바이어 입장 시작-------------------------- -->
@@ -102,7 +102,6 @@
 					<a href="main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
 					</c:if>
 					
-
 					<!-- 셀러 입장 -->
 					<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
 					<a href="../seller/main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>

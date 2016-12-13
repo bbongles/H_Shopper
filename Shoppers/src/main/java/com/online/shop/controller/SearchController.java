@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.online.shop.domain.BuyVO;
+import com.online.shop.domain.CartandBuy;
 import com.online.shop.domain.SellerVO;
 import com.online.shop.pageutil.PageCriteria;
 import com.online.shop.pageutil.PageMaker;
@@ -143,7 +144,7 @@ public class SearchController {
 			c.setPage(page);
 		} 
 				
-		List<BuyVO> list = buyrdao.selectByBuyr(cri);
+		List<CartandBuy> list = buyrdao.selectBysubr(cri);
 		model.addAttribute("list", list);
 		
 		PageMaker maker = new PageMaker();

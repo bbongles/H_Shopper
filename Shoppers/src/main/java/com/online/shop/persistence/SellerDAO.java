@@ -16,6 +16,7 @@ public interface SellerDAO {
 	public abstract int insertSeller(SellerVO vo);
 	public abstract SellerVO selectCheckID(String s_id);
 	public abstract boolean isValidUser(String s_id, String s_pw);
+	public abstract boolean isAccConf(String s_id, String s_pw);
 	
 	// 용훈 코드
 	public abstract List<ProductVO> selectAllProduct();

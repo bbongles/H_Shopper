@@ -33,9 +33,9 @@
 	
 	<!-- 태훈 -->
 	<!-- 인터셉터 클래스를 스프링프레임워크에 bean으로 등록 -->
-	<beans:bean id="Interceptor" class="com.online.shop.interceptor.Interceptor">
-	</beans:bean>
 	<beans:bean id="LoginInterceptor" class="com.online.shop.interceptor.LoginInterceptor">
+	</beans:bean>
+	<beans:bean id="Interceptor" class="com.online.shop.interceptor.Interceptor">
 	</beans:bean>
 	<beans:bean id="AuthInterceptor" class="com.online.shop.interceptor.AuthInterceptor">
 	</beans:bean>
@@ -111,6 +111,23 @@
 			<mapping path="/buyer/pDetail"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
+		
+		<!-- <interceptor>
+			<mapping path="/admin/admin_mypage"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor> -->
+		
+		<interceptor>
+			<mapping path="/mypage/buyermypage"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/mypage/sellermypage"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
+		
 		
 	</interceptors>
 	

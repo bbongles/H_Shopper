@@ -179,5 +179,10 @@ public class SellerServiceImpl implements SellerService {
 		
 		return sellerDao.selectAllProductByPcate2(p_cate2);
 	}
+	
+	@Override
+	public boolean isAccConf(String s_id, String s_pw) {
+		return sellerDao.isAccConf(s_id, s_pw);
+	}
 
 } // end class SellerServiceImpl

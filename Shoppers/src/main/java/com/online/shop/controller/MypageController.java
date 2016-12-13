@@ -30,7 +30,7 @@ public class MypageController {
 	
 	
 	@RequestMapping(value="buyermypage", method=RequestMethod.GET)
-	public void BuyerMypage(){
+	public void BuyerMypage(String b_id){
 		
 	}
 	

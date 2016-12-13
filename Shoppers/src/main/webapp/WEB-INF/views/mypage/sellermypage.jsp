@@ -41,10 +41,18 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.jsp">Login</a></li>		
+								<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+							<li><a href="../mypage/sellermypage">My Page</a></li>
+							</c:if>	
+							<c:if test="${empty s_login_id && empty b_login_id }">
+								<c:url value="login" var="login" />
+								<li><a href="${login}">Login</a></li>	
+							</c:if>
+							<c:if test="${not empty s_login_id || not empty b_login_id }">
+								<!-- 세션에 로그인 정보가 있는 경우 -->
+								<c:url value="../logout" var="logout" />
+								<li><a href="${logout }">Logout</a></li>		
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -53,27 +61,38 @@
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
+					<a href="../seller/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="./products.html">Woman</a>					
+							<li><a href="../products?p_cate1=home_deco">Home / Deco</a>					
 								<ul>
-									<li><a href="./products.html">Lacinia nibh</a></li>									
-									<li><a href="./products.html">Eget molestie</a></li>
-									<li><a href="./products.html">Varius purus</a></li>									
+									<li><a href="../products?p_cate2=furniture">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="../products?p_cate2=pottery">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="../products?p_cate2=lamp">lamp</a></li>			<!-- 조명 -->									
 								</ul>
 							</li>															
-							<li><a href="./products.html">Man</a></li>			
-							<li><a href="./products.html">Sport</a>
+							<li><a href="../products?p_cate1=candle_diffuser">Candle / Diffuser</a>
+								<ul>
+									<li><a href="../products?p_cate2=candle">candle</a></li>			<!-- 양초 -->										
+									<li><a href="../products?p_cate2=diffuser">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="../products?p_cate2=aromatic oils">aromatic oils</a></li>	<!-- 아로마오일 -->									
+								</ul>		
+								</li>	
+							<li><a href="../products?p_cate1=art_fancy">Art / Fancy</a>
 								<ul>									
-									<li><a href="./products.html">Gifts and Tech</a></li>
-									<li><a href="./products.html">Ties and Hats</a></li>
-									<li><a href="./products.html">Cold Weather</a></li>
+									<li><a href="../products?p_cate2=picture">picture</a></li>		<!-- 사진 -->
+									<li><a href="../products?p_cate2=fancy">fancy</a></li>		<!-- 문구 -->
+									<li><a href="../products?p_cate2=paper">paper</a></li>		<!-- 페이퍼 -->
 								</ul>
 							</li>							
-							<li><a href="./products.html">Hangbag</a></li>
-							<li><a href="./products.html">Best Seller</a></li>
-							<li><a href="./products.html">Top Seller</a></li>
+							<li><a href="../products?p_cate1=jewellery">Jewellery</a>
+								<ul>									
+									<li><a href="../products?p_cate2=earring">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="../products?p_cate2=necklace">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="../products?p_cate2=ring">ring</a></li>			<!-- 반지 -->
+								</ul>
+							</li>
+							<li><a href="../products">Event</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -230,7 +249,7 @@
 					</div>
 					<div class="span5">
 						<p class="logo"><img src="<c:url value='../resources/themes/images/logo.png' />" class="site_logo" alt=""></p>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p> -->
 						<br/>
 						<span class="social_icons">
 							<a class="facebook" href="#">Facebook</a>
@@ -242,16 +261,18 @@
 				</div>	
 			</section>
 			<section id="copyright">
-				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
+				<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 			</section>
 	</div>
+	
+	<input type="hidden" value="${s_login_id}" id="s_login_id">
 	
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-	var s_id = 'sId2';
+	var s_id = $("#s_login_id").val();
 	
 	getOrderCount();
 	getProductAccCount();
@@ -260,7 +281,7 @@ $(document).ready(function() {
 	getProductAcclist();
 	
 	function getOrderCount() {
-		var url = '/shop05/sellerid/all/' + s_id;
+		var url = '/shop/sellerid/all/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';  	 
 			$(data).each(function(){  
@@ -271,7 +292,7 @@ $(document).ready(function() {
 	};
 	
 	function getProductAccCount() {
-		var url = '/shop05/sellerid/all4/' + s_id;
+		var url = '/shop/sellerid/all4/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';  	 
 			$(data).each(function(){  
@@ -282,7 +303,7 @@ $(document).ready(function() {
 	};
 	
 	function getOrderlist() {
-		var url = '/shop05/sellerid/all2/' + s_id;
+		var url = '/shop/sellerid/all2/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';
 			
@@ -321,7 +342,7 @@ $(document).ready(function() {
 	};  
 	
 	function getCompletelist() {
-		var url = '/shop05/sellerid/all5/' + s_id;
+		var url = '/shop/sellerid/all5/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';
 			
@@ -356,7 +377,7 @@ $(document).ready(function() {
 	};  
 	
 	function getProductAcclist() {
-		var url = '/shop05/sellerid/all7/' + s_id;
+		var url = '/shop/sellerid/all7/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';
 			
