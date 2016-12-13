@@ -196,7 +196,7 @@
 
 				<tr>
 				
-					<td>${svo.s_no}</td>
+					
 					<td>${pvo.s_id}</td>
 					<td>${pvo.p_no }</td>
 					<td>${pvo.p_name}<!--옵션정보 추가해줘야함 정훈이 코드 참고 --></td>

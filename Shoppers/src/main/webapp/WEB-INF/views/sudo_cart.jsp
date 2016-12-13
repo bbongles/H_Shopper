@@ -584,6 +584,7 @@
                         if (!sel)
                            alert('체크박스를 선택하세요');
                      }
+                     
                      return false;
                   });
 
