@@ -20,7 +20,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 			
 			// 세션에 로그인 정보가 있는 지 확인
 			HttpSession session = request.getSession();
-			Object loginId = session.getAttribute("b_login_id");
+			Object loginId = session.getAttribute("login_result");
 			if (loginId == null) {
 				logger.info("로그인 되어 있지 않음.. 콘트롤러 실행 막음.. 로그인페이지로 이동");
 				

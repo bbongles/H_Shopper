@@ -27,11 +27,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		Object result = session.getAttribute("login_result");
 		if(result!=null){
-			
-		
 		if ((boolean)result!=false){
 			logger.info("새로운 로그인 성공");
-
 			Object dest = session.getAttribute("dest");
 			if (dest != null) {
 				logger.info("dest 있음");
