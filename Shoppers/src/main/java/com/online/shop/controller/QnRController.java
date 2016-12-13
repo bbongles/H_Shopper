@@ -88,7 +88,7 @@ public class QnRController {
 	//구매자가 qna를 등록하기위한 페이지 띄움
 	@RequestMapping(value="insertQnA", method=RequestMethod.GET)
 	public void insertQnA(int p_no, String b_id, Model model) {
-		System.out.println("insertQnA GET");
+		System.out.println("insertQnA GET/"+b_id);
 		model.addAttribute("p_no", p_no);
 		model.addAttribute("b_id", b_id);
 	}
