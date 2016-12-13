@@ -545,9 +545,7 @@
       }
 
       // 장바구니 삭제 이벤트
-      $('.deleteall')
-            .on(
-                  "click",
+      $('.deleteall') .on("click",
                   function(event) {
                      var tb = $(this).attr('title');
                      var sel = false;
@@ -566,15 +564,28 @@
                                                                'Accept' : 'application/json',
                                                                'Content-Type' : 'application/json'
                                                             },
-                                                            data : $(
-                                                                  'input[name="RowCheck"]:checked').val(),
+                                                            data : $('input[name="RowCheck"]:checked').val(),
                                                             success : function(result) {
                                                                if (result == 1) {
                                                                   $("#price").val(0)
+                                                                 							// 장바구니 삭제시 Total 금액 수정
+																							         finalCartPrice = 0;
+																							         var chkObj = document.getElementsByName("RowCheck");
+																							
+																							         var rowCnt = chkObj.length - 1;
+																							         for (var i = 0; i <= rowCnt; i++) {
+																							            var text1 = chkObj[i].parentNode.parentNode.children[6].innerText * 1;// String 에서 숫자로 변환
+																							            finalCartPrice += text1;
+																							         }
+																							         $("#newtotal").val(finalCartPrice);
+																							      
+								                                                                
+                                                                  
                                                                } else {
 
                                                                }
                                                             }
+                                                            
                                                          });
                                                   $this
                                                          .remove(); //remove row when animation is finished
