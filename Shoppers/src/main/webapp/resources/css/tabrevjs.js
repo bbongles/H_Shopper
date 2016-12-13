@@ -80,9 +80,9 @@ $(document).ready(function() {
 			
 		});
 		
-		$('.revReply').click(function () {
+		$('.revReplytest').click(function () {
 			var x = $(this).attr('modData');
-			$('#revmodify'+x).toggle();
+			$('#revmodifytest'+x).toggle();
 				
 		});
 		
