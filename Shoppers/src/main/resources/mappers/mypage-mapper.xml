@@ -105,7 +105,10 @@
 	</select>
 	<!-- 여기까지 판매자 마이페이지 -->
 	
-	
+	<!-- 구매자 마이페이지에서 정보수정 -->
+	<update id="update-buyerInfo">
+		update s_tbl_buyer set b_pw = #{b_pw}, b_phone = #{b_phone}, b_email = #{b_email}, b_zip=#{b_zip}, b_addr1 = #{b_addr1}, b_addr2 = #{b_addr2} where B_ID = #{b_id}
+	</update>
 
 	
  </mapper> 

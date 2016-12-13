@@ -40,8 +40,6 @@ public class BuyerVO {
 		this.b_addr2 = b_addr2;
 		this.b_reg = b_reg;
 	}
-	
-	///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	public int getB_no() {
@@ -163,20 +161,16 @@ public class BuyerVO {
 		this.b_reg = b_reg;
 	}
 
+
 	public int getB_mile() {
 		return b_mile;
 	}
 
+
 	public void setB_mile(int b_mile) {
 		this.b_mile = b_mile;
 	}
-
 	
-
-	
-	
-	
-	
-	
+	///////////////////////////////////////////////////////////////////////////////////////////////////
 	
 }
