@@ -166,6 +166,9 @@
 					<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
 					<a href="../seller/main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
 					</c:if>
+					<c:if test="${s_login_id eq 'admin'}">
+					<a href="main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>
+					</c:if>
 					<!-- 바이어 입장 -->
 					<c:if test="${not empty b_login_id }">
 					<a href="../buyer/main" class="logo pull-left"><img src=<c:url value='/resources/themes/images/logo.png' /> class="site_logo" alt=""></a>

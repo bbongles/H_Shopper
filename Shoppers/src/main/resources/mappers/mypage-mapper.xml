@@ -84,12 +84,12 @@
 	
 	<!-- 최근 5건 판매물 승인 내역-->
 	<select id="selectBySellerProductAccessList" resultType="com.online.shop.domain.ProductVO">
-	select * from s_tbl_product where s_id = #{s_id} and p_acc = 0 and rownum between 1 and 5 order by p_reg desc
+	select * from s_tbl_product where s_id = #{s_id} and rownum between 1 and 5 order by p_reg desc
 	</select>
 	  
 	<!-- 판매물 승인 내역 -->
 	<select id="selectBySellerProductAccessAllList" resultType="com.online.shop.domain.ProductVO">
-	select * from s_tbl_product where s_id = #{s_id} and p_acc = 0 order by p_reg desc
+	select * from s_tbl_product where s_id = #{s_id} order by p_reg desc
 	</select>
 	
 	<!-- 최근 5건 판매 완료 내역  -->

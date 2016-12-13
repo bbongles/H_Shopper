@@ -62,27 +62,38 @@
 		<div id="wrapper" class="container">
 		<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
+					<a href="../buyer/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="./products.html">Woman</a>					
+							<li><a href="../products?p_cate1=home_deco">Home / Deco</a>					
 								<ul>
-									<li><a href="./products.html">Lacinia nibh</a></li>									
-									<li><a href="./products.html">Eget molestie</a></li>
-									<li><a href="./products.html">Varius purus</a></li>									
+									<li><a href="../products?p_cate2=furniture">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="../products?p_cate2=pottery">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="../products?p_cate2=lamp">lamp</a></li>			<!-- 조명 -->									
 								</ul>
 							</li>															
-							<li><a href="./products.html">Man</a></li>			
-							<li><a href="./products.html">Sport</a>
+							<li><a href="../products?p_cate1=candle_diffuser">Candle / Diffuser</a>
+								<ul>
+									<li><a href="../products?p_cate2=candle">candle</a></li>			<!-- 양초 -->										
+									<li><a href="../products?p_cate2=diffuser">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="../products?p_cate2=aromatic oils">aromatic oils</a></li>	<!-- 아로마오일 -->									
+								</ul>		
+								</li>	
+							<li><a href="../products?p_cate1=art_fancy">Art / Fancy</a>
 								<ul>									
-									<li><a href="./products.html">Gifts and Tech</a></li>
-									<li><a href="./products.html">Ties and Hats</a></li>
-									<li><a href="./products.html">Cold Weather</a></li>
+									<li><a href="../products?p_cate2=picture">picture</a></li>		<!-- 사진 -->
+									<li><a href="../products?p_cate2=fancy">fancy</a></li>		<!-- 문구 -->
+									<li><a href="../products?p_cate2=paper">paper</a></li>		<!-- 페이퍼 -->
 								</ul>
 							</li>							
-							<li><a href="./products.html">Hangbag</a></li>
-							<li><a href="./products.html">Best Seller</a></li>
-							<li><a href="./products.html">Top Seller</a></li>
+							<li><a href="../products?p_cate1=jewellery">Jewellery</a>
+								<ul>									
+									<li><a href="../products?p_cate2=earring">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="../products?p_cate2=necklace">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="../products?p_cate2=ring">ring</a></li>			<!-- 반지 -->
+								</ul>
+							</li>
+							<li><a href="../products">Event</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -140,14 +151,14 @@
 						<span class="text"><strong>주문 배송</strong> 조회</span>
 					</h3>
 					
-					
-						<fieldset class="bm">
+					 
+						<fieldset class="om">
 							<div class="control-buyer">
 								
 								
 							</div> 
 							<div id="maindiv" class="control-group">
-							<table id="ordert">
+							<table id="ordert" class="ordertd">
 									<caption><b>주문 배송 내역</b></caption>
 									<tr>
 										<th>주문번호</th>
@@ -157,10 +168,7 @@
 										<th>주문상태</th>
 									</tr>		
 							</table> 
-						<ul class="pageLinks">
-							
-			
-						</ul>
+						
 		
 							
 							
@@ -172,11 +180,7 @@
 						
 
 						</fieldset>
-						<%-- 현재 페이지, 페이지 당 보여줄 게시글 개수를 서버로 보내주기 위해서, 사용자에게는 보이지 않지만, 서버로 보낼 정보를 양식 데이터로 저장하는 form --%>
-						<form id="pageForm">
-			
-			
-						</form>
+					
 					
 						<hr>
 				</div>
@@ -207,7 +211,7 @@
 					</div>
 					<div class="span5">
 						<p class="logo"><img src="<c:url value='../resources/themes/images/logo.png' />" class="site_logo" alt=""></p>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p> -->
 						<br/>
 						<span class="social_icons">
 							<a class="facebook" href="#">Facebook</a>
@@ -219,7 +223,7 @@
 				</div>	
 			</section>
 		<section id="copyright">
-				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
+				<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 			</section>
 		</div>
 	
@@ -231,138 +235,51 @@
 <script>
 $(document).ready(function() {
 
-	var b_id = $("b_login_id").val();
+	var b_id = $("#b_login_id").val();
 
 
-getOrderList();
-getPageLinker();
-getPageForm();
+	getOrderlist();
 
-function getOrderList() {
-	var url = '/shop05/userid/all5/' + b_id;
+
+function getOrderlist() {
+	var url = '/shop/userid/all5/' + b_id;
 	$.getJSON(url, function(data) {
 		var td = '';
+		
+		
 		$(data).each(function(){ 
-			var list = this['list']; 
-			/* console.log(list); */
-			var num = 0;
-			$(list).each(function() {
-				/* console.log(list); */
-				var date = new Date(list[num].buy_date);
-				var year = date.getFullYear();
-				var month = date.getMonth();
-				var day = date.getDate();
-				var dateString = year + '년' + month + '월' + day + '일';
+			console.log(this);
+			var date = new Date(this.buy_date);
+			var year = date.getFullYear();
+			var month = date.getMonth();
+			var day = date.getDate();
+			var dateString = year + '년' + month + '월' + day + '일';
 			
-				var a = ''; 
-				if (list[num].buy_status == 0){
+			var a = ''; 
+			if (this.buy_status == 0){
 				a = '입금대기'
-				} else if (list[num].buy_status == 1){
+			} else if (this.buy_status == 1){
 				a = '결제확인중'
-				} else if (list[num].buy_status == 2){
+			} else if (this.buy_status == 2){
 				a = '결제완료'
-				} else if (list[num].buy_status == 3){ 
+			} else if (this.buy_status == 3){ 
 				a = '배송준비'
-				}
+			}
 			 
 			
-				 td += '<tr><td>' + list[num].buy_no + '</td>'
-					+ '<td>' + dateString + '</td>'
-					+ '<td>' + list[num].p_name + '&emsp;(' + list[num].o_cont + ')</td>'
-				+ '<td>' + list[num].s_id + '&emsp;</td>'
-				+ '<td>' + a + '</td></tr>';
-				
-				num++;
-				});
+			 td += '<tr><td>' + this.buy_no + '</td>'
+				+ '<td>' + dateString + '</td>'
+				+ '<td>' + this.p_name + '&emsp;(' + this.o_cont + ')</td>'
+			+ '<td>' + this.s_id + '&emsp;</td>'
+			+ '<td>' + a + '</td></tr>';
+			
+			
 		});
 		
 		$('#ordert > tbody:last').append(td);
-		
-		
 	});
 };  
 
-
-function getPageLinker() {
-	var url = '/shop05/userid/all5/' + b_id;
-	$.getJSON(url, function(data) {
-		var pi = '';
-		var li = '';
-		var ni = '';
-		var l = ' <li>-</li> ';
-		var frm = $('#pageForm');
-		$(data).each(function(){ 
-			var page = this['pageMaker']; 
-			console.log(page); 
-			if (page.hasPrev == true){
-				pi ='<li id="page"><a href="' + page.startPageNum - 1 +'">&laquo;이전</a></li>';
-			}
-			if (page.hasNext == true){
-				ni ='<li id="page"><a href="' + page.endPageNum + 1 +'">다음&raquo;</a></li>'
-			}
-			for (var num=page.startPageNum; num <= page.endPageNum; num++){
-				
-					li += '<li id="page"><a href=' + num + '>' + num + '</a></li> ' 
-			}
-			$('.pageLinks').append(l);
-			$('.pageLinks').append(pi);		
-			$('.pageLinks').append(li);
-			$('.pageLinks').append(ni);
-			$('.pageLinks').append(l);
-			
-			
-			
-			// 클래스 pageLinks 안의 li 태그 안의 a 태그를 찾아서 click 이벤트를 커스터마이징
-			$('.pageLinks li a').click(function(event) {
-				event.preventDefault(); // 기본 이벤트 처리 방식을 방지(막음)
-				// pageForm 안에 있는 name="page"인 요소를 찾아서
-				// 이동할 페이지 번호를 세팅
-				var targetPage = $(this).attr('href');
-				console.log('targetPage=' + targetPage);
-				alert('targetPage=' + targetPage);
-				frm.find('[name="page"]').val(targetPage);
-				// 페이징 화면으로 보내기 위한 action 정보
-				frm.attr('action', 'userid/all/'+ b_id);
-				// 페이징 화면을 처리하는 Controller의 method(요청 처리 방식)
-				frm.attr('method', 'get');
-				// 폼 양식을 서버로 전송
-				frm.submit(); 
-			});
-		});
-		
-		
-		
-		
-	});
-}; 
-
-function getPageForm() {
-	var url = '/shop05/userid/all5/' + b_id;
-	$.getJSON(url, function(data) {
-		var lnput = '';
-		$(data).each(function(){ 
-			var page = this['pageMaker']; 
-			console.log(page); 
-			
-					lnput += '<input type="hidden" name="page" value="' + page.criteria.page + '" /> ' 
-					 +	'<input type="hidden" name="perPage" value="' + page.criteria.perPage + '" /> ' 
-			   
-			$('#pageForm').append(lnput);
-			
-		});
-		
-		
-		
-		
-	});
-};   
-
-
-
-
-
-	
-	
 });
 </script>
 

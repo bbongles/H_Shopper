@@ -74,26 +74,39 @@
 				<a href="../seller/main" class="logo pull-left"><img
 					src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>"
 					alt=""></a>
-				<nav id="menu" class="pull-right">
-					<ul>
-						<li><a href="./products.html">Woman</a>
-							<ul>
-								<li><a href="./products.html">Lacinia nibh</a></li>
-								<li><a href="./products.html">Eget molestie</a></li>
-								<li><a href="./products.html">Varius purus</a></li>
-							</ul></li>
-						<li><a href="./products.html">Man</a></li>
-						<li><a href="./products.html">Sport</a>
-							<ul>
-								<li><a href="./products.html">Gifts and Tech</a></li>
-								<li><a href="./products.html">Ties and Hats</a></li>
-								<li><a href="./products.html">Cold Weather</a></li>
-							</ul></li>
-						<li><a href="./products.html">Hangbag</a></li>
-						<li><a href="./products.html">Best Seller</a></li>
-						<li><a href="./products.html">Top Seller</a></li>
-					</ul>
-				</nav>
+					<nav id="menu" class="pull-right">
+						<ul>
+							<li><a href="../products?p_cate1=home_deco">Home / Deco</a>					
+								<ul>
+									<li><a href="../products?p_cate2=furniture">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="../products?p_cate2=pottery">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="../products?p_cate2=lamp">lamp</a></li>			<!-- 조명 -->									
+								</ul>
+							</li>															
+							<li><a href="../products?p_cate1=candle_diffuser">Candle / Diffuser</a>
+								<ul>
+									<li><a href="../products?p_cate2=candle">candle</a></li>			<!-- 양초 -->										
+									<li><a href="../products?p_cate2=diffuser">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="../products?p_cate2=aromatic oils">aromatic oils</a></li>	<!-- 아로마오일 -->									
+								</ul>		
+								</li>	
+							<li><a href="../products?p_cate1=art_fancy">Art / Fancy</a>
+								<ul>									
+									<li><a href="../products?p_cate2=picture">picture</a></li>		<!-- 사진 -->
+									<li><a href="../products?p_cate2=fancy">fancy</a></li>		<!-- 문구 -->
+									<li><a href="../products?p_cate2=paper">paper</a></li>		<!-- 페이퍼 -->
+								</ul>
+							</li>							
+							<li><a href="../products?p_cate1=jewellery">Jewellery</a>
+								<ul>									
+									<li><a href="../products?p_cate2=earring">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="../products?p_cate2=necklace">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="../products?p_cate2=ring">ring</a></li>			<!-- 반지 -->
+								</ul>
+							</li>
+							<li><a href="../products">Event</a></li>
+						</ul>
+					</nav>
 			</div>
 		</section>
 		<section class="header_text sub">
@@ -181,8 +194,10 @@
 									</tr>
 								</table>
 							</div>
+							</fieldset>
+							<fieldset class="tabelfieldset">
 							<div id="maindiv" class="control-group">
-								<table id="totalReq">
+								<table id="totalReq" class="adminmaintable">
 									<caption>
 										<b>주문 요청 내역(최근 5건)</b>
 									</caption>
@@ -218,7 +233,7 @@
 									</c:forEach>
 								</table>
 
-								<table id="newTotalReq" style="display: none;">
+								<table id="newTotalReq" class="adminmaintable" style="display: none;">
 									<caption>
 										<b>[새로운 주문 요청 내역]</b>
 									</caption>
@@ -257,7 +272,7 @@
 								<br /> <br />
 
 
-								<table id="buySuc">
+								<table id="buySuc" class="adminmaintable">
 									<caption>
 										<b>최근 판매 완료 내역(최근 5건)</b>
 									</caption>
@@ -282,7 +297,7 @@
 									</c:forEach>
 								</table>
 
-								<table id="buyToday" style="display: none;">
+								<table id="buyToday" class="adminmaintable" style="display: none;">
 									<caption>
 										<b>[오늘의 판매 내역]</b>
 									</caption>
@@ -309,7 +324,7 @@
 									</c:forEach>
 								</table>
 
-								<table id="sellerAccess" style="display: none;">
+								<table id="sellerAccess" class="adminmaintable" style="display: none;">
 									<caption>
 										<b>[판매자 승인 요청]</b>
 									</caption>
@@ -333,7 +348,7 @@
 									</c:forEach>
 								</table>
 
-								<table id="productAccess" style="display: none;">
+								<table id="productAccess" class="adminmaintable" style="display: none;">
 									<caption>
 										<b>[판매물 승인 요청]</b>
 									</caption>
@@ -360,11 +375,12 @@
 									</c:forEach>
 								</table>
 							</div>
+							</fieldset>
 
 
 							
 
-						</fieldset>
+						
 					</form>
 					<hr>
 				</div>
@@ -396,9 +412,9 @@
 						<img src="<c:url value='../resources/themes/images/logo.png' />"
 							class="site_logo" alt="">
 					</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and
+					<!-- <p>Lorem Ipsum is simply dummy text of the printing and
 						typesetting industry. the Lorem Ipsum has been the industry's
-						standard dummy text ever since the you.</p>
+						standard dummy text ever since the you.</p> -->
 					<br /> <span class="social_icons"> <a class="facebook"
 						href="#">Facebook</a> <a class="twitter" href="#">Twitter</a> <a 
 						class="skype" href="#">Skype</a> <a class="vimeo" href="#">Vimeo</a>
@@ -407,8 +423,7 @@
 			</div>
 		</section>
 		<section id="copyright">
-			<span>Copyright 2013 bootstrappage template All right
-				reserved.</span>
+			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
 	<script src="<c:url value='/resources/themes/js/common.js' />"></script>
