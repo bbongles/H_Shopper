@@ -61,7 +61,7 @@
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
+					<a href="../seller/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="./products.html">Woman</a>					
@@ -142,13 +142,13 @@
 					</h3>
 					
 					<form action="#" method="post" class="form-stacked">
-						<fieldset class="bm">
+						<fieldset class="omd">
 							<div class="control-buyer">
-								
+								  
 								
 							</div> 
 							<div id="maindiv" class="control-group">
-							<table id="ordert">
+							<table id="ordert" class="ordertd">
 									<caption><b>주문 배송 내역</b></caption>
 									<tr>
 										<th>주문번호</th>
@@ -224,7 +224,7 @@ $(document).ready(function() {
 	getOrderList();
 	
 	function getOrderList() {
-		var url = '/shop05/sellerid/all3/' + s_id;
+		var url = '/shop/sellerid/all3/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';
 			

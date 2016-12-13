@@ -59,9 +59,9 @@
 			</div>
 		</div>
 		<div id="wrapper" class="container">
-			<section class="navbar main-menu">
+			<section class="navbar main-menu">     
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
+					<a href="../seller/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="./products.html">Woman</a>					
@@ -142,13 +142,13 @@
 					</h3>
 					
 					<form action="#" method="post" class="form-stacked">
-						<fieldset class="bm">
+						<fieldset class="om">
 							<div class="control-buyer">
 								
 								
 							</div> 
 							<div id="maindiv" class="control-group">
-							<table id="completet">
+							<table id="completet" class="completetd">
 									<caption>
 										<b>판매 내역</b>
 									</caption>
@@ -227,7 +227,7 @@ $(document).ready(function() {
 	getCompletelist();
 	
 	function getCompletelist() {
-		var url = '/shop05/sellerid/all6/' + s_id;
+		var url = '/shop/sellerid/all6/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';
 			

@@ -61,7 +61,7 @@
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
+					<a href="../seller/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="./products.html">Woman</a>					
@@ -261,7 +261,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-	var s_id = $("#s_login_id");
+	var s_id = $("#s_login_id").val();
 	
 	getOrderCount();
 	getProductAccCount();
@@ -270,7 +270,7 @@ $(document).ready(function() {
 	getProductAcclist();
 	
 	function getOrderCount() {
-		var url = '/shop05/sellerid/all/' + s_id;
+		var url = '/shop/sellerid/all/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';  	 
 			$(data).each(function(){  
@@ -281,7 +281,7 @@ $(document).ready(function() {
 	};
 	
 	function getProductAccCount() {
-		var url = '/shop05/sellerid/all4/' + s_id;
+		var url = '/shop/sellerid/all4/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';  	 
 			$(data).each(function(){  
@@ -292,7 +292,7 @@ $(document).ready(function() {
 	};
 	
 	function getOrderlist() {
-		var url = '/shop05/sellerid/all2/' + s_id;
+		var url = '/shop/sellerid/all2/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';
 			
@@ -331,7 +331,7 @@ $(document).ready(function() {
 	};  
 	
 	function getCompletelist() {
-		var url = '/shop05/sellerid/all5/' + s_id;
+		var url = '/shop/sellerid/all5/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';
 			
@@ -366,7 +366,7 @@ $(document).ready(function() {
 	};  
 	
 	function getProductAcclist() {
-		var url = '/shop05/sellerid/all7/' + s_id;
+		var url = '/shop/sellerid/all7/' + s_id;
 		$.getJSON(url, function(data) {
 			var td = '';
 			

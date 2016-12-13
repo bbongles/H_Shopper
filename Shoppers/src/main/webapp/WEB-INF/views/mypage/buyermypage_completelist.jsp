@@ -62,7 +62,7 @@
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
+					<a href="../buyer/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="./products.html">Woman</a>					
@@ -141,13 +141,13 @@
 					</h3>
 					
 					<form action="#" method="post" class="form-stacked">
-						<fieldset class="bm">
+						<fieldset class="cm">
 							<div class="control-buyer">
 								
 								
 							</div> 
 							<div id="maindiv" class="control-group">
-							<table id="completet">
+							<table id="completet" class="completetd">
 									<caption>
 										<b> 구매 내역 </b>
 									</caption>
@@ -221,7 +221,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-	var b_id = $("b_login_id").val();
+	var b_id = $("#b_login_id").val();
 
 
 	getCompleteList();

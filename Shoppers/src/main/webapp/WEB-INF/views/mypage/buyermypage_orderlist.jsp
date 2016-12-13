@@ -62,7 +62,7 @@
 		<div id="wrapper" class="container">
 		<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
+					<a href="../buyer/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="./products.html">Woman</a>					
@@ -140,14 +140,14 @@
 						<span class="text"><strong>주문 배송</strong> 조회</span>
 					</h3>
 					
-					
-						<fieldset class="bm">
+					 
+						<fieldset class="om">
 							<div class="control-buyer">
 								
 								
 							</div> 
 							<div id="maindiv" class="control-group">
-							<table id="ordert">
+							<table id="ordert" class="ordertd">
 									<caption><b>주문 배송 내역</b></caption>
 									<tr>
 										<th>주문번호</th>
@@ -227,7 +227,7 @@ $(document).ready(function() {
 	var b_id = $("#b_login_id").val();
 
 
-getOrderList();
+	getOrderlist();
 
 
 function getOrderlist() {

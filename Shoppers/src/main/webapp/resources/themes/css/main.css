@@ -1210,3 +1210,32 @@ button.detail:hover {
 .bmytable th{
 	width: 150px;
 }
+.ordertd{
+	width: 450px; 
+}
+.om{
+	margin-left: 20%;
+} 
+.completetd{  
+	width: 450px;
+}
+.cm{
+	margin-left: 20%;
+} 
+.producttd{ 
+	width: 450px;
+	text-align: center;
+}
+.pm{
+	margin-left: 20%; 
+}
+.ordertd{
+	width: 450px;
+	text-align: center;
+}
+.omd{
+	margin-left: 20%;
+}
+.completetd{
+	width: 450px;
+}
