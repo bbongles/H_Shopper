@@ -14,7 +14,8 @@
 	<style>
 	/* ///////////////////////////////test// */
 	.wrap {
-          max-width: 95.6%;
+          max-width: 94.5%;
+       
     }
     .wrap textarea {
       width: 100%;
@@ -330,7 +331,7 @@
 								    			<%-- <textarea style="width:80%;overflow:visible;" class="detailCont">${imageList.i_cont }</textarea><br/><br/><br/> --%>
 								    			<%-- <textarea class="detailCont autosize">${imageList.i_cont }</textarea><br/><br/><br/> --%>
 								    			<div class="wrap" style="text-align:center">
-								    				<textarea style="border:none;text-align:center" class="detailCont" >${imageList.i_cont }</textarea>
+								    				<textarea style="border:none;text-align:center;background-color:white" class="detailCont" readonly>${imageList.i_cont }</textarea>
 								    			</div>
 								    <script>
 									    $(document).ready(function() {
@@ -403,15 +404,16 @@
 						</tr>
 						
 						<%-- 판매자,관리자에서만 보이게 해야함.--%>
-						<tr>
-							<td class="modify${state.index }" style=" text-align: center; display: none;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
+						<tr style="height: 100%;">
+							<td class="modify${state.index }" style=" text-align: center; display: none;">
+							<img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
 							
 							<td colspan ="3" class="modify${state.index }" style="display: none; 
-							text-align: center; width: 250px; height: 50px;" modData="${state.index }">
+							text-align: center; width: 250px; height: 100%;" modData="${state.index }">
 							
 							<form id = "frm${state.index }" method="post">
 								<textarea cols="25" rows="3" name="qna_r_cont" class="qna_r_cont"  id="qna_r_cont${state.index }"
-								style="width: 100%;	height:100%; background-color: inherit;
+								style="width: 100%;	height:100px; background-color: inherit;
 								resize:none; box-sizing: border-box; 
 								-moz-box-sizing: border-box; 
 								-webkit-box-sizing: border-box; border: none;" placeholder="답변을 작성해 주세요." required></textarea>
@@ -422,7 +424,6 @@
 								</form>						
 									<button type="button" class="insertReply">저장</button>
 							</td>
-							
 						</tr>
 <!-- 							</div> -->
 						</c:if>
@@ -502,12 +503,11 @@
 
 												
 												<tr class ="revReply" modData="${state.index }">
-													<th style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
-														onMouseout="this.style.color='black';">한줄답글</th>
+													<th class="revReplytest" style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
+													 onMouseout="this.style.color='black';" modData="${state.index }">한줄답글</th>
 					<c:if test="${list.rev_reply eq 0 }">									
-				<td class="modify" id="revmodify${state.index }" >				
-					
-						<div modData="${state.index }" modData="${state.index }">
+				<td >		
+						<div class="modify" id="revmodifytest${state.index }" modData="${state.index }" >
 						<form id="revfrmmodify${state.index }" method="post" >
 							<input type="text" name="rev_r_cont" id="rev_r_cont${state.index }" 
 							placeholder="답글작성" maxlength="100" required
@@ -746,11 +746,10 @@
 										<ul class="thumbnails listing-products">
 											<li class="span3">
 												<div class="product-box">
-													<span class="sale_tag"></span>												
-													<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/7.jpg' />"></a><br/>
-													<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-													<a href="#" class="category">Suspendisse aliquet</a>
-													<p class="price">$261</p>
+													<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008243.jpg"/></a></p>
+													<a href="product_detail.html" class="title">크리스마스 양말</a><br/>
+													<a href="products.html" class="category">Mellow</a>
+													<p class="price">18,000 원</p>
 												</div>
 											</li>
 										</ul>
@@ -758,11 +757,12 @@
 									<div class="item">
 										<ul class="thumbnails listing-products">
 											<li class="span3">
-												<div class="product-box">												
-													<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/8.jpg' />"></a><br/>
-													<a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-													<a href="#" class="category">Urna nec lectus mollis</a>
-													<p class="price">$134</p>
+												<div class="product-box">
+													<span class="sale_tag"></span>
+													<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008255.jpg"/></a></p>
+													<a href="product_detail.html" class="title">드라이플라워박스</a><br/>
+													<a href="products.html" class="category">SANSANGGOT</a>
+													<p class="price">34,900 원</p>
 												</div>
 											</li>
 										</ul>
@@ -774,23 +774,27 @@
 							<h4 class="title"><strong>Best</strong> Seller</h4>								
 							<ul class="small-product">
 								<li>
-									<a href="#" title="Praesent tempor sem sodales">
-										<img src="<c:url value='/resources/themes/images/ladies/1.jpg' />" alt="Praesent tempor sem sodales">
+									<a href="#" title="유기농 씨드 레드 페이셜오일">
+										<%-- <img src="<c:url value='/resources/themes/images/ladies/3.jpg' />" alt="Praesent tempor sem sodales"> --%>
+										<img src="http://image.thefingers.co.kr/diyitem/webimage/basicicon/00/CB000008341.jpg" alt="Praesent tempor sem sodales">
+										
 									</a>
-									<a href="#">Praesent tempor sem</a>
+									<a href="#">유기농 씨드 레드 페이셜오일</a>
 								</li>
 								<li>
-									<a href="#" title="Luctus quam ultrices rutrum">
-										<img src="<c:url value='/resources/themes/images/ladies/2.jpg' />" alt="Luctus quam ultrices rutrum">
+									<a href="#" title="씨드 클렌징 오일">
+										<%-- <img src="<c:url value='/resources/themes/images/ladies/4.jpg' />" alt="Luctus quam ultrices rutrum"> --%>
+										<img src="http://image.thefingers.co.kr/diyitem/webimage/basicicon/00/CB000005914-5.jpg" alt="Luctus quam ultrices rutrum">
 									</a>
-									<a href="#">Luctus quam ultrices rutrum</a>
+									<a href="#">씨드 클렌징 오일</a>
 								</li>
 								<li>
-									<a href="#" title="Fusce id molestie massa">
-										<img src="<c:url value='/resources/themes/images/ladies/3.jpg' />" alt="Fusce id molestie massa">
+									<a href="#" title="로즈 꽃물 레드 크림">
+										<%-- <img src="<c:url value='/resources/themes/images/ladies/5.jpg' />" alt="Fusce id molestie massa"> --%>
+										<img src="http://image.thefingers.co.kr/diyitem/webimage/basicicon/00/CB000006320-2.jpg" alt="Luctus quam ultrices rutrum">
 									</a>
-									<a href="#">Fusce id molestie massa</a>
-								</li>   
+									<a href="#">로즈 꽃물 레드 크림</a>
+								</li>    
 							</ul>
 						</div>
 					</div>
@@ -839,8 +843,8 @@
 		</div>
 
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=124' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=124' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');

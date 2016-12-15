@@ -8,6 +8,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+
+</style>
 		<title>H-Shopper : 특별함을 전하는</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
@@ -182,7 +185,7 @@
 						<div class="row">
 							<div class="span12">
 								<h4 class="title">
-									<span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
+									<span class="pull-left"><span class="text"><span class="line">New <strong>Products</strong></span></span></span>
 									<span class="pull-right">
 										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
 									</span>
@@ -321,7 +324,7 @@
 						<div class="row">
 							<div class="span12">
 								<h4 class="title">
-									<span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
+									<span class="pull-left"><span class="text"><span class="line">Event <strong>Products</strong></span></span></span>
 									<span class="pull-right">
 										<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
 									</span>
@@ -384,7 +387,7 @@
 														<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008255.jpg"/></a></p>
 														<a href="product_detail.html" class="title">크리스마스 드라이플라워박스</a><br/>
 														<a href="products.html" class="category">SANSANGGOT</a>
-														<p class="price">₩ 34900</p>
+														<p class="price">34,900 원</p>
 													</div>
 												</li>
 												<li class="span3">
@@ -392,7 +395,7 @@
 														<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008243.jpg"/></a></p>
 														<a href="product_detail.html" class="title">크리스마스 양말</a><br/>
 														<a href="products.html" class="category">Mellow</a>
-														<p class="price">₩ 18,000</p>
+														<p class="price">18,000 원</p>
 													</div>
 												</li>
 												<li class="span3">
@@ -400,7 +403,7 @@
 														<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008063.jpg"/></a></p>
 														<a href="product_detail.html" class="title">해피홀리데이카드</a><br/>
 														<a href="products.html" class="category">BASRAK</a>
-														<p class="price">₩ 9,000</p>
+														<p class="price">9,000 원</p>
 													</div>
 												</li>
 												<li class="span3">
@@ -408,7 +411,7 @@
 														<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008040.jpg"/></a></p>
 														<a href="product_detail.html" class="title">홀리데이 밍크 드롭 귀걸이 (2colors)</a><br/>
 														<a href="products.html" class="category">Sara and Rosa</a>
-														<p class="price">₩ 15,900</p>
+														<p class="price">15,900 원</p>
 													</div>
 												</li>																																
 											</ul>
@@ -453,10 +456,10 @@
 				<h4 class="title"><span class="text">Cooperator</span></h4>
 				<div class="row">					
 					<div class="span2">
-						<a href="./sellerHome?s_id=s1"><img alt="" src=<c:url value='/resources/themes/images/clients/co1.png'/>></a>
+						<a href="./sellerHome?s_id=s1"><img  onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" alt="" src=<c:url value='/resources/themes/images/clients/co1.png'/>></a>
 					</div>
 					<div class="span2">
-						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/co2.png'/>></a>
+						<a href="#"><img onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" src=<c:url value='/resources/themes/images/clients/co2.png'/>></a>
 					</div>
 					<div class="span2">
 						<a href="#"><img alt="" src=<c:url value='/resources/themes/images/clients/co3.png'/>></a>
@@ -537,7 +540,7 @@
 			if(e.value=="no")e.value="yes";
 			else{e.value="no";location.reload();}
 			}
-			
+						
 		</script>
     </body>
 </html>

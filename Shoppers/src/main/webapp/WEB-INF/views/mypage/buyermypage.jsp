@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 		<meta charset="utf-8">
-		<title>Bootstrap E-commerce Templates</title>
+		<title>H-Shopper : 특별함을 전하는</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
@@ -134,7 +134,7 @@
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">개인 정보 수정</a></label>
+									href="buyermypage_updateinfo?b_id=${b_login_id }">개인 정보 수정</a></label>
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
@@ -177,7 +177,7 @@
 							
 							
 							
-							<table id="ordert" class="bmytable">
+							<table id="ordert" class="bmytable table table-striped">
 									<caption><b>[주문 배송 내역] (최근 5건)</b></caption>
 									<tr>
 										<th>주문번호</th>
@@ -187,7 +187,8 @@
 										<th>주문상태</th>
 									</tr>		
 							</table>
-							<table id="completet" class="bmytable">
+							
+							<table id="completet" class="bmytable table table-striped">
 									<caption>
 										<b>[구매 내역] (최근 5건)</b>
 									</caption>
@@ -238,7 +239,7 @@
 					</div>
 					<div class="span5">
 						<p class="logo"><img src="<c:url value='../resources/themes/images/logo.png' />" class="site_logo" alt=""></p>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p> -->
 						<br/>
 						<span class="social_icons">
 							<a class="facebook" href="#">Facebook</a>
@@ -250,7 +251,7 @@
 				</div>	
 			</section>
 			<section id="copyright">
-				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
+				<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 			</section>
 	</div>
 	<input type="hidden" value="${b_login_id}" id="b_login_id">

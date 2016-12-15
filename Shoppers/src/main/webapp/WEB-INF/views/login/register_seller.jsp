@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Bootstrap E-commerce Templates</title>
+<title>H-Shopper : 특별함을 전하는</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
@@ -556,7 +556,7 @@ input.radio {
 													<input required name="b_pw_check"
 														type="password" class="input-xlarge" minlength="4"
 														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="b_pass2"
-														onkeyup="b_checkPass(); return false;" /> 
+														onkeyup="b_checkPass(); return false;" style="font-family: verdana"/> 
 												</div> <!-- TODO :  -->
 											 </div><!-- ### 완료 ###-->
 
@@ -839,7 +839,7 @@ input.radio {
 											 	<label for="s_pw">비밀번호 </label> 
 											 	<div class="controls">
 												 	<input required name="s_pw" type="password" class="input-xlarge"
-														minlength="4" maxlength="16" id="s_pass1" placeholder="비밀번호" />
+														minlength="4" maxlength="16" id="s_pass1" placeholder="비밀번호" style="font-family: verdana"/>
 												</div>
 											 </div><!-- ### 완료 ###-->
 											 
@@ -853,7 +853,7 @@ input.radio {
 													<input required name="s_pw_check"
 														type="password" class="input-xlarge" minlength="4"
 														maxlength="16" placeholder="비밀번호 확인(위와 동일하게 입력하세요)" id="s_pass2"
-														onkeyup="s_checkPass(); return false;" /> 
+														onkeyup="s_checkPass(); return false;" style="font-family: verdana"/> 
 												</div>
 											 </div><!-- ### 완료 ###-->
 											 

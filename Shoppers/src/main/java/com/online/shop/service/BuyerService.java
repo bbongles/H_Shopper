@@ -45,5 +45,7 @@ public interface BuyerService {
 	// 전체 구매 완료 내역
 	public abstract List<CartandBuy> readCompleteMain2(String b_id);
 	
+	//마이페이지에서 구매자 정보 수정
+	public abstract int updateBuyerInfo(BuyerVO vo);
 
 }

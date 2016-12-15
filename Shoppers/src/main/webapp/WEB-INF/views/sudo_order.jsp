@@ -1015,11 +1015,10 @@
 										<ul class="thumbnails listing-products">
 											<li class="span3">
 												<div class="product-box">
-													<span class="sale_tag"></span>												
-													<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/2.jpg' />"></a><br/>
-													<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-													<a href="#" class="category">Suspendisse aliquet</a>
-													<p class="price">$261</p>
+													<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008040.jpg"/></a></p>
+													<a href="product_detail.html" class="title">홀리데이 밍크 드롭 귀걸이</a><br/>
+													<a href="products.html" class="category">Sara and Rosa</a>
+													<p class="price">15,900 원</p>
 												</div>
 											</li>
 										</ul>
@@ -1027,11 +1026,12 @@
 									<div class="item">
 										<ul class="thumbnails listing-products">
 											<li class="span3">
-												<div class="product-box">												
-													<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/4.jpg'/>"></a><br/>
-													<a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-													<a href="#" class="category">Urna nec lectus mollis</a>
-													<p class="price">$134</p>
+												<div class="product-box">
+													<span class="sale_tag"></span>
+													<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008255.jpg"/></a></p>
+													<a href="product_detail.html" class="title">크리스마스 드라이플라워박스</a><br/>
+													<a href="products.html" class="category">SANSANGGOT</a>
+													<p class="price">34,900원</p>
 												</div>
 											</li>
 										</ul>
@@ -1074,9 +1074,9 @@
 						<img src="<c:url value='/resources/themes/images/logo.png' />"
 							class="site_logo" alt="">
 					</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and
+					<!-- <p>Lorem Ipsum is simply dummy text of the printing and
 						typesetting industry. the Lorem Ipsum has been the industry's
-						standard dummy text ever since the you.</p>
+						standard dummy text ever since the you.</p> -->
 					<br /> <span class="social_icons"> <a class="facebook"
 						href="#">Facebook</a> <a class="twitter" href="#">Twitter</a> <a
 						class="skype" href="#">Skype</a> <a class="vimeo" href="#">Vimeo</a>
@@ -1085,7 +1085,7 @@
 			</div>
 		</section>
 		<section id="copyright">
-			<span>December 2016 Web Project All right.</span>
+			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
 

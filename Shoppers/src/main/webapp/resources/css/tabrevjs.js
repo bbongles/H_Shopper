@@ -27,7 +27,7 @@ $(document).ready(function() {
 		            }), 
 		           success: function(result) {
 		        	   if(result == 1) {
-		        		  window.open("../seller/insertReview?p_no="+p_no+"&b_id="+b_id,"newWindow","width=600, height=300, left=150, top=150");
+		        		  window.open("../seller/insertReview?p_no="+p_no+"&b_id="+b_id,"newWindow","width=780, height=400, left=150, top=150");
 		        	   } else{
 		        		  location.reload();
 		        		  alert('제품을 구매해야 합니다.');
@@ -80,9 +80,9 @@ $(document).ready(function() {
 			
 		});
 		
-		$('.revReply').click(function () {
+		$('.revReplytest').click(function () {
 			var x = $(this).attr('modData');
-			$('#revmodify'+x).toggle();
+			$('#revmodifytest'+x).toggle();
 				
 		});
 		

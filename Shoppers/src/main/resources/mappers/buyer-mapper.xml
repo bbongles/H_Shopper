@@ -23,5 +23,10 @@
     <select id="buyer-login" resultType="Integer">
     select count(1) from s_tbl_buyer where b_id = #{b_id} and b_pw = #{b_pw}
     </select>
+    
+    <update id="update-buyerInfo">
+		update s_tbl_buyer set B_PW = #{b_pw}, b_phone = #{b_phone}, 
+		B_EMAIL = #{b_email}, b_zip=#{b_zip}, b_addr1 = #{b_addr1}, b_addr2 = #{b_addr2} where B_ID = #{b_id}
+	</update>
 
  </mapper>

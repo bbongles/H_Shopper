@@ -92,4 +92,9 @@ public class BuyerServiceImpl implements BuyerService {
 	public List<CartandBuy> readCompleteMain2(String b_id) {
 		return dao.selectByBuyCompleteMain2(b_id);
 	}
+
+	@Override
+	public int updateBuyerInfo(BuyerVO vo) {
+		return dao.updateBuyerInfo(vo);
+	}
 }

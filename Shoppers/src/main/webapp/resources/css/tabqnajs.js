@@ -7,8 +7,8 @@ $(document).ready(function() {
 			$('#btnInsert').click(function() {
 				//location = "insertQnA";
 				var p_no = $('#detail_p_no').val();
-				//var b_id = $('#b_id').val();
-				var b_id = 'test';
+				var b_id = $('#b_id').val();
+				//var b_id = 'test';
 				window.open("../seller/insertQnA?p_no="+p_no+"&b_id="+b_id,"newWindow","width=800, height=300, left=150, top=150");
 				
 			});
