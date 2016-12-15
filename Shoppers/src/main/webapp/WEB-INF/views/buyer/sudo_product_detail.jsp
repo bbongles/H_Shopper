@@ -671,11 +671,10 @@
 										<ul class="thumbnails listing-products">
 											<li class="span3">
 												<div class="product-box">
-													<span class="sale_tag"></span>												
-													<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/7.jpg' />"></a><br/>
-													<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-													<a href="#" class="category">Suspendisse aliquet</a>
-													<p class="price">$261</p>
+													<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008040.jpg"/></a></p>
+													<a href="product_detail.html" class="title">홀리데이 밍크 드롭 귀걸이</a><br/>
+													<a href="products.html" class="category">Sara and Rosa</a>
+													<p class="price">15,900 원</p>
 												</div>
 											</li>
 										</ul>
@@ -683,11 +682,12 @@
 									<div class="item">
 										<ul class="thumbnails listing-products">
 											<li class="span3">
-												<div class="product-box">												
-													<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/8.jpg' />"></a><br/>
-													<a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-													<a href="#" class="category">Urna nec lectus mollis</a>
-													<p class="price">$134</p>
+												<div class="product-box">
+													<span class="sale_tag"></span>
+													<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008255.jpg"/></a></p>
+													<a href="product_detail.html" class="title">크리스마스 드라이플라워박스</a><br/>
+													<a href="products.html" class="category">SANSANGGOT</a>
+													<p class="price">34,900원</p>
 												</div>
 											</li>
 										</ul>
@@ -699,23 +699,27 @@
 							<h4 class="title"><strong>Best</strong> Seller</h4>								
 							<ul class="small-product">
 								<li>
-									<a href="#" title="Praesent tempor sem sodales">
-										<img src="<c:url value='/resources/themes/images/ladies/1.jpg' />" alt="Praesent tempor sem sodales">
+									<a href="#" title="유기농 씨드 레드 페이셜오일">
+										<%-- <img src="<c:url value='/resources/themes/images/ladies/3.jpg' />" alt="Praesent tempor sem sodales"> --%>
+										<img src="http://image.thefingers.co.kr/diyitem/webimage/basicicon/00/CB000008341.jpg" alt="Praesent tempor sem sodales">
+										
 									</a>
-									<a href="#">Praesent tempor sem</a>
+									<a href="#">유기농 씨드 레드 페이셜오일</a>
 								</li>
 								<li>
-									<a href="#" title="Luctus quam ultrices rutrum">
-										<img src="<c:url value='/resources/themes/images/ladies/2.jpg' />" alt="Luctus quam ultrices rutrum">
+									<a href="#" title="씨드 클렌징 오일">
+										<%-- <img src="<c:url value='/resources/themes/images/ladies/4.jpg' />" alt="Luctus quam ultrices rutrum"> --%>
+										<img src="http://image.thefingers.co.kr/diyitem/webimage/basicicon/00/CB000005914-5.jpg" alt="Luctus quam ultrices rutrum">
 									</a>
-									<a href="#">Luctus quam ultrices rutrum</a>
+									<a href="#">씨드 클렌징 오일</a>
 								</li>
 								<li>
-									<a href="#" title="Fusce id molestie massa">
-										<img src="<c:url value='/resources/themes/images/ladies/3.jpg' />" alt="Fusce id molestie massa">
+									<a href="#" title="로즈 꽃물 레드 크림">
+										<%-- <img src="<c:url value='/resources/themes/images/ladies/5.jpg' />" alt="Fusce id molestie massa"> --%>
+										<img src="http://image.thefingers.co.kr/diyitem/webimage/basicicon/00/CB000006320-2.jpg" alt="Luctus quam ultrices rutrum">
 									</a>
-									<a href="#">Fusce id molestie massa</a>
-								</li>   
+									<a href="#">로즈 꽃물 레드 크림</a>
+								</li>  
 							</ul>
 						</div>
 					</div>
