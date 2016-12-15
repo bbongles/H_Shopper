@@ -357,11 +357,10 @@
 										<ul class="thumbnails listing-products">
 											<li class="span3">
 												<div class="product-box">
-													<span class="sale_tag"></span>												
-													<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/2.jpg' />"></a><br/>
-													<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-													<a href="#" class="category">Suspendisse aliquet</a>
-													<p class="price">$261</p>
+													<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008040.jpg"/></a></p>
+													<a href="product_detail.html" class="title">홀리데이 밍크 드롭 귀걸이</a><br/>
+													<a href="products.html" class="category">Sara and Rosa</a>
+													<p class="price">15,900 원</p>
 												</div>
 											</li>
 										</ul>
@@ -369,11 +368,12 @@
 									<div class="item">
 										<ul class="thumbnails listing-products">
 											<li class="span3">
-												<div class="product-box">												
-													<a href="product_detail.html"><img alt="" src="<c:url value='/resources/themes/images/ladies/4.jpg'/>"></a><br/>
-													<a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-													<a href="#" class="category">Urna nec lectus mollis</a>
-													<p class="price">$134</p>
+												<div class="product-box">
+													<span class="sale_tag"></span>
+													<p><a href="product_detail.html"><img src="http://image.thefingers.co.kr/diyitem/webimage/list120/00/C000008255.jpg"/></a></p>
+													<a href="product_detail.html" class="title">크리스마스 드라이플라워박스</a><br/>
+													<a href="products.html" class="category">SANSANGGOT</a>
+													<p class="price">34,900원</p>
 												</div>
 											</li>
 										</ul>
@@ -545,9 +545,7 @@
       }
 
       // 장바구니 삭제 이벤트
-      $('.deleteall')
-            .on(
-                  "click",
+      $('.deleteall') .on("click",
                   function(event) {
                      var tb = $(this).attr('title');
                      var sel = false;
@@ -566,15 +564,28 @@
                                                                'Accept' : 'application/json',
                                                                'Content-Type' : 'application/json'
                                                             },
-                                                            data : $(
-                                                                  'input[name="RowCheck"]:checked').val(),
+                                                            data : $('input[name="RowCheck"]:checked').val(),
                                                             success : function(result) {
                                                                if (result == 1) {
                                                                   $("#price").val(0)
+                                                                 							// 장바구니 삭제시 Total 금액 수정
+																							         finalCartPrice = 0;
+																							         var chkObj = document.getElementsByName("RowCheck");
+																							
+																							         var rowCnt = chkObj.length - 1;
+																							         for (var i = 0; i <= rowCnt; i++) {
+																							            var text1 = chkObj[i].parentNode.parentNode.children[6].innerText * 1;// String 에서 숫자로 변환
+																							            finalCartPrice += text1;
+																							         }
+																							         $("#newtotal").val(finalCartPrice);
+																							      
+								                                                                
+                                                                  
                                                                } else {
 
                                                                }
                                                             }
+                                                            
                                                          });
                                                   $this
                                                          .remove(); //remove row when animation is finished
@@ -584,6 +595,7 @@
                         if (!sel)
                            alert('체크박스를 선택하세요');
                      }
+                     
                      return false;
                   });
 

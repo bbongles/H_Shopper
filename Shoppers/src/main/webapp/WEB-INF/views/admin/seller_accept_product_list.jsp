@@ -192,14 +192,12 @@
 		</tr>
 
 			<c:forEach var="pvo" items="${productList }">
-			<%-- <c:forEach var="svo" items="${sellerList }"> --%>
+
 
 				<tr>
-				
-					<td>${svo.s_no}</td>
 					<td>${pvo.s_id}</td>
 					<td>${pvo.p_no }</td>
-					<td>${pvo.p_name}<!--옵션정보 추가해줘야함 정훈이 코드 참고 --></td>
+					<td>${pvo.p_name}</td>
 					<td class="s_acc">
 						<c:if test="${pvo.p_acc == 0 }">
 							<span class="sp">미승인&nbsp;&nbsp;&nbsp;</span>
@@ -209,11 +207,13 @@
 							승인
 						</c:if>
 					</td>
-				
+
+
 				</tr>
-			<%-- </c:forEach> --%>
-			</c:forEach>
-	</table>
+
+				</c:forEach>
+
+		</table>
 	
 	
 								<ul class="pageLinks">
@@ -340,7 +340,7 @@
 					
 					$('.detail').on("click", function() {
 						// s_no 값 찾기 	
-						var p_no = this.parentNode.parentNode.childNodes[5].innerHTML;
+						var p_no = this.parentNode.parentNode.childNodes[3].innerHTML;
 						var p_acc = $(this).parent().children('.sp');
 						var btn = $(this);
 						console.log(p_no);
