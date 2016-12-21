@@ -37,5 +37,8 @@ public interface ProductDAO {
 		
 		// 승인 처리
 		public abstract int update(int pno);
+		
+		// 검색
+		public abstract List<ProductVO> selectSearch(String p_name);
 	
 } // end interface ProductDAO
