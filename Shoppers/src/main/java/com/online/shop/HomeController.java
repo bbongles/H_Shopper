@@ -2,9 +2,7 @@ package com.online.shop;
 
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,13 +30,12 @@ import com.online.shop.domain.QnaVO;
 import com.online.shop.domain.ReviewRVO;
 import com.online.shop.domain.ReviewVO;
 import com.online.shop.domain.SellerVO;
-import com.online.shop.pageutil.PageCriteria;
-import com.online.shop.pageutil.PageMaker;
 import com.online.shop.persistence.QnADAO;
 import com.online.shop.persistence.RevDAO;
 import com.online.shop.service.BuyerService;
 import com.online.shop.service.ProductService;
 import com.online.shop.service.SellerService;
+import com.online.shop.utility.EncryptUtil;
 
 /**
  * Handles requests for the application home page.
@@ -78,6 +75,37 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value = "main", method = RequestMethod.GET)
+	public String home2(Locale locale, Model model, HttpServletRequest request) {
+
+		logger.info("Welcome home! The client locale is {}.", locale);
+		List<ProductVO> productList = sellerService.readAllProduct();
+
+		int length = productList.size();
+		int numOfPage = length / 4;
+		if (length % 4 > 0) {
+			numOfPage++; // 나머지가 있으면 올림
+			// 뷰페이저로 한 페이지에 4개씩 출력 !
+			// ex) (9/4 = 2.X )=> 3페이지 필요
+		}
+		int remainder = length % 4;
+
+		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
+		model.addAttribute("productList", productList);
+		model.addAttribute("numOfPage", numOfPage);
+		model.addAttribute("remainder", remainder);
+		logger.info("length : " + length);
+		logger.info("numOfPage : " + numOfPage);
+		logger.info("remainder : " + remainder);
+		/* logger.info(productList.get(0).getP_name()); */
+		
+		for(int i = 0; i<productList.size() ; i++ ) {
+			logger.info("p_acc: " + productList.get(i).getP_acc());
+		}
+
+		return "common/sudo_index";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 
@@ -106,7 +134,7 @@ public class HomeController {
 			logger.info("p_acc: " + productList.get(i).getP_acc());
 		}
 
-		return "UI/sudo_index";
+		return "common/sudo_index";
 	}
 
 	
@@ -115,8 +143,9 @@ public class HomeController {
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String openRegister() {
-		return "/sudo_loginSelect";
+		return "common/sudo_loginSelect";
 	}
+	
 	
 	
 	/*---------------------------------------------------------------------------------*/
@@ -162,7 +191,7 @@ public class HomeController {
 		logger.info("remainder : " + remainder);
 		/* logger.info(productList.get(0).getP_name()); */
 
-		return "UI/sudo_index";
+		return "common/sudo_index";
 
 	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
 
@@ -176,7 +205,7 @@ public class HomeController {
 		logger.info("register_buyer 실행");
 
 		// return "sudo_checkout2";
-		return "/login/register_buyer";
+		return "/buyer/register_buyer";
 	}
 
 	
@@ -253,6 +282,7 @@ public class HomeController {
 																				// 정보들을
 																				// set
 																				// 한다.
+		vo.setB_pw(EncryptUtil.getEncryptMD5(vo.getB_pw()));
 		// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
 		// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
 		buyerService.insert(vo);
@@ -270,6 +300,7 @@ public class HomeController {
 	@RequestMapping(value = "buyer/login", method = RequestMethod.POST)
 	public void login(String b_id, String b_pw, HttpServletRequest request, String query, Model model, HttpServletResponse response) throws IOException {
 		logger.info("login 컨트롤러 실행");
+		b_pw = EncryptUtil.getEncryptMD5(b_pw);
 		logger.info("b_id : " + b_id + " , b_pw : " + b_pw);
 		HttpSession session = request.getSession();
 		if (buyerService.isValidUser(b_id, b_pw)) {
@@ -362,7 +393,7 @@ public class HomeController {
 		logger.info("remainder : " + remainder);
 		/* logger.info(productList.get(0).getP_name()); */
 
-		return "UI/sudo_index";
+		return "common/sudo_index";
 
 	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
 
@@ -399,7 +430,7 @@ public class HomeController {
 		logger.info("register_seller 실행");
 
 		// return "sudo_checkout2";
-		return "/login/register_seller";
+		return "/seller/register_seller";
 	}
 
 	/*---------------------------------------------------------------------------------*/
@@ -473,6 +504,7 @@ public class HomeController {
 	public String s_register_result(SellerVO vo, HttpServletRequest request) {
 		// login1 폼에서 입력받은 값을 vo 에 넣어서 insert합니다.
 		// 아이디가 PK라서 같은 아이디 두번넣으면 에러남.
+		vo.setS_pw(EncryptUtil.getEncryptMD5(vo.getS_pw()));
 		logger.info("판매자 회원가입 버튼 호출 ");
 		sellerService.createSeller(vo);
 		logger.info("판매자 회원가입 성공! ");
@@ -496,6 +528,7 @@ public class HomeController {
 	@RequestMapping(value = "seller/login", method = RequestMethod.POST)
 	public String sellerloginResult(String s_id, String s_pw, HttpServletRequest request, String query) {
 		logger.info("login 컨트롤러 실행");
+		s_pw = EncryptUtil.getEncryptMD5(s_pw);
 		logger.info("s_id : " + s_id + " , s_pw : " + s_pw);
 		HttpSession session = request.getSession();
 		if (sellerService.isValidUser(s_id, s_pw)) {
@@ -663,7 +696,7 @@ public class HomeController {
 		model.addAttribute("relativeList", cateCheck); // 카테고리 검색해서 연관상품 보여주기
 		model.addAttribute("sVo", sVo);
 
-		return "UI/sudo_product_detail";
+		return "common/sudo_product_detail";
 
 	} // end productDetail() -> 판매자 홈에서 상품 번호를 참조해 상품 상세 페이지로 넘겨주는 역할
 
@@ -725,7 +758,7 @@ public class HomeController {
 		
 		}
 
-		return "UI/sudo_products";
+		return "common/sudo_products";
 
 	} // end product
 

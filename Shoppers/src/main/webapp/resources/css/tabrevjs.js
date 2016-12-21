@@ -12,7 +12,7 @@ $(document).ready(function() {
 			
 			var p_no = $('#pno').val();
 			var b_id = $('#bno').val();
-			var url = '../seller/insertReview';
+			var url = '../buyer/insertReview';
 
 			  $.ajax({
 		          type:'put',

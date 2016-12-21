@@ -24,7 +24,7 @@ import com.online.shop.service.CartService;
 import com.online.shop.service.OrderService;
 
 @Controller
-@RequestMapping(value="/order")
+@RequestMapping(value="/buyer")
 public class OrderController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
@@ -80,7 +80,7 @@ public class OrderController {
 		model.addAttribute("buyerHP", vo.getB_phone());
 		model.addAttribute("buyerEmail", vo.getB_email());
 		model.addAttribute("b_id", vo.getB_id());
-		return "sudo_order";	
+		return "buyer/sudo_order";	
 	}
 	
 	// 체크박스 상관없이 아이템 하나 주문할때_ 
@@ -123,7 +123,7 @@ public class OrderController {
 		model.addAttribute("b_id", voo.getB_id());
 		
 		
-		return "sudo_order";	
+		return "buyer/sudo_order";	
 	}
 	
 	
@@ -157,7 +157,7 @@ public class OrderController {
 		session.setAttribute("ordered", "ordered");
 		logger.info("주문 성공!, 주문번호 : "+buyNO );
 		model.addAttribute("buyNO", buyNO);
-		return "test_order_complete";
+		return "buyer/order_complete";
 	}
 	
 	@RequestMapping(value="readyForBill", method=RequestMethod.POST)
@@ -186,11 +186,11 @@ public class OrderController {
 		session.setAttribute("ordered", "ordered");
 		logger.info("주문 성공!, 주문번호 : "+buyNO );
 		model.addAttribute("buyNO", buyNO);
-		return "test_order_complete";
+		return "buyer/order_complete";
 	}
 	
 	// 중복 주문 검사
-	@RequestMapping(value="test_bill", method=RequestMethod.GET)
+	@RequestMapping(value="obill", method=RequestMethod.GET)
 	public String billPop(HttpServletRequest request) {
 		// 이중 submit 방지용 세션
 		HttpSession session = request.getSession();
@@ -198,10 +198,10 @@ public class OrderController {
 		logger.info("세션 "+id);
 		if (id=="ordered"){
 			// 세션이 ordered면
-			return "test_xbill"; // 이미 주문됨.
+			return "buyer/xbill"; // 이미 주문됨.
 		} else {
 			// 세션이 ordered가 아니면 
-			return "test_bill";  // 주문성공
+			return "buyer/obill";  // 주문성공
 		}
 	}
 	

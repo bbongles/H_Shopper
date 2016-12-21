@@ -203,7 +203,7 @@ public class AdminController {
 	}
 
 	// 구매자 회원 목록 콘트롤러(페이징 페이지)
-	@RequestMapping(value="/admin/listview", method = RequestMethod.GET)
+	@RequestMapping(value="/admin/buyer_list", method = RequestMethod.GET)
 	public void listAll(Integer page, Model model) {
 		logger.info("listPage(): page=" + page);
 		

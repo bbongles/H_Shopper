@@ -188,7 +188,7 @@
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
-					<form id="frm" action="/shop/cart/insertCart"> <!-- 태훈 수정 -->
+					<form id="frm" action="/shop/buyer/insertCart"> <!-- 태훈 수정 -->
 						<!-- 김태훈 -->
 						<input type="hidden" name="p_no" value="${productVO.p_no }" />    
     					<input type="hidden" name="s_id" value="${productVO.s_id }" />
@@ -277,7 +277,7 @@
 									<input type="number" name="buy_cnt" class="span1" value="1">
 									<button class="btn btn-inverse" type="submit">Add to cart</button><!-- TODO  -->
 									<input type="button" class="btn btn-inverse" value="Check out" id="directOrder"/><!-- 태훈 수정 -->
-									
+									</form>
 								</div>
 							</div>	
 								
@@ -622,7 +622,7 @@
 					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
 					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
 					</div>
-					</form>
+					<!-- </form> -->
 					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
 					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
 					<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
@@ -770,8 +770,8 @@
 		<!-- 김태훈 백버튼 리프레시 -->
 		<input type="hidden" id="refreshed" value="no" style="display: none">
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121558' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121559' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121559' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121551' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');
@@ -817,7 +817,7 @@
 	    	
 	    	 // 김태훈 바로주문 코드
 		    $('#directOrder').click(function(){
-				$('#frm').attr('action', '/shop/cart/insertCertForDirect');
+				$('#frm').attr('action', '/shop/buyer/insertCartForDirect');
 				$('#frm').attr('method', 'get');
 				$('#frm').submit();
 		    });

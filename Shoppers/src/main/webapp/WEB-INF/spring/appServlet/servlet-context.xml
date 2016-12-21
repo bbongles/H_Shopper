@@ -63,27 +63,27 @@
 		</interceptor> -->
 		
 		<interceptor>
-			<mapping path="/order/readyForBill"/>
+			<mapping path="/buyer/readyForBill"/>
 			<beans:ref bean="OrderInterceptor"/>
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/order/readyForBill"/>
+			<mapping path="/buyer/readyForBill"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/order/OneCartTossOrder"/>
+			<mapping path="/buyer/OneCartTossOrder"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/order/cartTossOrder"/>
+			<mapping path="/buyer/cartTossOrder"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/cart/selectCart"/>
+			<mapping path="/buyer/selectCart"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
@@ -93,12 +93,12 @@
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/cart/insertCart"/>
+			<mapping path="/buyer/insertCart"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/cart/insertCertForDirect"/>
+			<mapping path="/buyer/insertCertForDirect"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		

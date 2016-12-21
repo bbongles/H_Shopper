@@ -223,7 +223,7 @@
 					<!------------------------ *** 주문 공사 !!! *** ------------------------->
 						
 						
-					<form action="/shop/order/readyForBill" method="get" name="frm">
+					<form action="/shop/buyer/readyForBill" method="get" name="frm">
 						
 						<table class="table table-striped"> 
 				<!-- 
@@ -1165,7 +1165,7 @@
 
 		$('#submitBuy').click(
 				function() {
-					window.open("../order/test_bill", 'window',
+					window.open("../buyer/obill", 'window',
 							'width=500, height=500, resizable=no');
 
 				});

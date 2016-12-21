@@ -41,7 +41,7 @@ public class SearchController {
 	
 	
 	// 구매자 회원 목록 콘트롤러(검색 기능 페이지)
-	@RequestMapping(value="/admin/searchlist", method= RequestMethod.GET)
+	@RequestMapping(value="/admin/buyer_searchlist", method= RequestMethod.GET)
 	public void searchList(@ModelAttribute("cri") SearchPageCriteria cri, Model model, Integer page){
 		logger.info(cri.toString());
 		logger.info("cri page=" + cri.getPage());
@@ -161,8 +161,5 @@ public class SearchController {
 		
 		model.addAttribute("searchpageMaker", pageMaker);
 	}
-	
-	
-	
-	
+
 }

@@ -154,7 +154,7 @@
 									href="seller_accept_product_list">판매물 등록 승인</a></label>
 							</div>
 							<div class="control-group">
-								<label class="control-label"><a href="listview">구매자
+								<label class="control-label"><a href="buyer_list">구매자
 										회원 목록</a></label>
 							</div>
 							<hr>

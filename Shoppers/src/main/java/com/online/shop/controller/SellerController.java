@@ -160,7 +160,7 @@ public class SellerController {
 		
 		}
 
-		return "UI/sudo_products";
+		return "common/sudo_products";
 
 	} // end product
 	
@@ -303,6 +303,27 @@ public class SellerController {
 
 	/*----------------------------------------------------------------------------*/
 	
+	// mypage 호출
+	@RequestMapping(value="sellermypage", method=RequestMethod.GET)
+	public void SellerMypage(){
+		
+	}
+	
+	@RequestMapping(value="sellermypage_order", method=RequestMethod.GET)
+	public void SellerMypageOrder(){
+		
+	}
+	
+	@RequestMapping(value="sellermypage_complete", method=RequestMethod.GET)
+	public void SellerMypageComplete(){
+		
+	}
+	
+	@RequestMapping(value="sellermypage_product", method=RequestMethod.GET)
+	public void SellerMypageProductAcc(){
+		
+	}
 
+	
 	
 } // end class SellerController

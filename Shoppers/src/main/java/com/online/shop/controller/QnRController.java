@@ -40,7 +40,7 @@ public class QnRController {
 	@Autowired
 	private CartService cartservice;
 	//최초화면에서 qna와 review 리스트를 가져와 화면에 출력
-	@RequestMapping(value="qnr", method=RequestMethod.GET)
+/*	@RequestMapping(value="qnr", method=RequestMethod.GET)
 	public void qaMain(Integer page, QnaVO vo, Model model) {
 		
 		//System.out.println("qnrController");
@@ -83,9 +83,9 @@ public class QnRController {
 		maker.setTotalCount(dao.getNumOfRecordsQna());
 		maker.setPageData();
 		model.addAttribute("pageMaker", maker);
-	}
+	}*/
 	
-	//구매자가 qna를 등록하기위한 페이지 띄움
+/*	//구매자가 qna를 등록하기위한 페이지 띄움
 	@RequestMapping(value="insertQnA", method=RequestMethod.GET)
 	public void insertQnA(int p_no, String b_id, Model model) {
 		System.out.println("insertQnA GET/"+b_id);
@@ -106,7 +106,7 @@ public class QnRController {
 		}else {
 			response.getWriter().print(0);
 		}
-	}
+	}*/
 	
 	//qna에 판매자가 답글을 등록하는 과정
 	@RequestMapping(value="insertReply", method=RequestMethod.POST)
@@ -158,7 +158,7 @@ public class QnRController {
 
 	}
 	
-	//구매자가 후기를 등록하기위한 페이지
+/*	//구매자가 후기를 등록하기위한 페이지
 	@RequestMapping(value="insertReview", method=RequestMethod.GET)
 	public void insertReview(int p_no, String b_id, Model model) {
 		System.out.println("vovovovovovvovovo");
@@ -200,7 +200,7 @@ public class QnRController {
 		}else {
 			response.getWriter().print(0);
 		}		
-	}
+	}*/
 	
 	//구매자가 작성한 후기에 판매자가 답글 등록
 	@RequestMapping(value="insertrevReply", method=RequestMethod.POST)

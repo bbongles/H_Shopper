@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>인터샙터용 login.jsp</title>
 </head>
 <body>
 <!-- 이게 있어야 인터셉터가 작동을 한다. 더미 JSP -->

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.online.shop.domain.BuyerVO;
+import com.online.shop.domain.CartVO;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -34,6 +35,7 @@ import com.online.shop.pageutil.PageMaker;
 import com.online.shop.persistence.QnADAO;
 import com.online.shop.persistence.RevDAO;
 import com.online.shop.service.BuyerService;
+import com.online.shop.service.CartService;
 import com.online.shop.service.ProductService;
 import com.online.shop.service.SellerService;
 
@@ -60,6 +62,9 @@ public class BuyerController {
 
 	@Autowired
 	private RevDAO daoR;
+	
+	@Autowired
+	private CartService cartservice;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -242,8 +247,131 @@ public class BuyerController {
 		
 		}
 
-		return "UI/sudo_products";
+		return "common/sudo_products";
 
 	} // end product
+	
+	//mypage 부분
+	@RequestMapping(value="buyermypage", method=RequestMethod.GET)
+	public void BuyerMypage(String b_id){
+		
+	}
+	
+	@RequestMapping(value="buyermypage_orderlist", method=RequestMethod.GET)
+	public void BuyerMypageOrderlist(){
+		
+	}
+	
 
+	@RequestMapping(value="buyermypage_completelist", method=RequestMethod.GET)
+	public void BuyerMypageCompletelist(){
+		
+	}
+	
+	//개인정보수정
+		@RequestMapping(value="buyermypage_updateinfo", method=RequestMethod.GET)
+		public void BuyerMypageUpdateInfo(String b_id, Model model){
+			System.out.println("구매자아이디: "+ b_id);
+			BuyerVO vo = buyerService.read(b_id);
+			model.addAttribute("buyerInfo", vo);
+		}
+		
+		//구매자 마이페이지 정보수정 기존비밀번호 일치 확인
+		@RequestMapping(value = "b_checkpw", method = RequestMethod.POST)
+		public void b_checkid(@RequestBody BuyerVO vo, HttpServletResponse response) throws IOException {
+
+			logger.info("checkid 실행");
+			logger.info("userpw: " + vo.getB_pw()+ "//id: " +vo.getB_id());
+
+			if(buyerService.isValidUser(vo.getB_id(), vo.getB_pw())) {
+				response.getWriter().print(1);
+			} else {
+				response.getWriter().print(0);
+			}
+
+		}
+		
+		//개인정보수정
+		@RequestMapping(value="buyermypage_updateinfo", method=RequestMethod.POST)
+		public void BuyerMypageUpdateInfoPost(@RequestBody BuyerVO vo, HttpServletResponse response) throws IOException{
+			System.out.println("vo: " +vo.getB_id()+"/"+vo.getB_pw()+"/"+vo.getB_email());
+			
+			int result = buyerService.updateBuyerInfo(vo);
+			System.out.println("결과:"+result);
+			if(result == 1) {
+				response.getWriter().print(1);
+			}else {
+				response.getWriter().print(0);
+			}		
+		}
+	
+
+		//구매자가 qna를 등록하기위한 페이지 띄움
+		@RequestMapping(value="insertQnA", method=RequestMethod.GET)
+		public void insertQnA(int p_no, String b_id, Model model) {
+			System.out.println("insertQnA GET/"+b_id);
+			model.addAttribute("p_no", p_no);
+			model.addAttribute("b_id", b_id);
+		}
+		
+		//구매자가 qna를 작성하고 등록버튼을 클릭했을때 처리
+		@RequestMapping(value="insertQnA", method=RequestMethod.POST)
+		public void insertQnAPOST(@RequestBody QnaVO vo,  HttpServletResponse response) throws IOException {
+			System.out.println("insert qna Post");
+			//System.out.println("vo:"+ vo.getB_email() + "/"+vo.getQna_cont());
+			
+			int result = dao.insertQnA(vo);
+
+			if(result == 1) {
+				response.getWriter().print(1);
+			}else {
+				response.getWriter().print(0);
+			}
+		}
+		
+		//구매자가 후기를 등록하기위한 페이지
+		@RequestMapping(value="insertReview", method=RequestMethod.GET)
+		public void insertReview(int p_no, String b_id, Model model) {
+			System.out.println("vovovovovovvovovo");
+			CartVO vo = new CartVO();
+			vo.setB_id(b_id);
+			vo.setP_no(p_no);
+			List<CartVO> list = cartservice.selectCartBuyer(vo);
+			model.addAttribute("p_no", p_no);
+			model.addAttribute("b_id", b_id);
+			model.addAttribute("cartlist", list);
+			
+		}
+		
+		//구매자가 후기를 등록하기위한 페이지
+		@RequestMapping(value="insertReview", method=RequestMethod.PUT)
+		public void insertReviewPut(@RequestBody CartVO vo, HttpServletResponse response) throws IOException {
+			//System.out.println("vo: "+ vo.getB_id()+"vo: " +vo.getP_no());
+			
+			//int result =1;
+			List<CartVO> list = cartservice.selectCartBuyer(vo);
+			
+			if(list.size() > 0) {
+				response.getWriter().print(1);
+			}else {
+				response.getWriter().print(0);
+			}	
+			
+		}
+		
+		//구매자가 후기를 작성하고 저장하는 과정
+		@RequestMapping(value="insertReview", method=RequestMethod.POST)
+		public void insertReviewPOST(@RequestBody ReviewVO vo, HttpServletResponse response) throws IOException {
+			//System.out.println("vo: "+ vo.getRev_score());
+			//System.out.println("vo: " + vo.getRev_cont());
+			int result = daoR.insertRev(vo);
+			//System.out.println("insert 결과: "+result);
+			if(result == 1) {
+				response.getWriter().print(1);
+			}else {
+				response.getWriter().print(0);
+			}		
+		}
+		
+		
 } // end class

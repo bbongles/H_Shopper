@@ -25,7 +25,7 @@ import com.online.shop.service.OrderService;
 import com.online.shop.service.SellerService;
 
 @Controller
-@RequestMapping(value="/cart")
+@RequestMapping(value="/buyer")
 public class CartController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
@@ -42,7 +42,7 @@ public class CartController {
 	@Autowired
 	SellerService sellerService;
 	
-	@RequestMapping(value="insertCart", method=RequestMethod.GET)
+	@RequestMapping(value="/insertCart", method=RequestMethod.GET)
 	public String insertCart(CartVO vo, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		Object id = session.getAttribute("b_login_id");
@@ -52,10 +52,10 @@ public class CartController {
 		cartService.insertCart(vo);
 		logger.info("카트 인서트 성공");
 		
-		return "redirect:selectCart";
+		return "redirect:/buyer/selectCart";
 	}
 	
-	@RequestMapping(value="insertCertForDirect", method=RequestMethod.GET)
+	@RequestMapping(value="/insertCartForDirect", method=RequestMethod.GET)
 	public String insertCartForDirect(CartVO vo, Model model, HttpServletRequest request){
 		logger.info("insertCartDirect 컨트롤러 실행");
 		HttpSession session = request.getSession();
@@ -102,7 +102,7 @@ public class CartController {
 		
 		////////////////////////////////
 		
-		return "sudo_order";
+		return "buyer/sudo_order";
 	}
 	
 	
@@ -142,10 +142,10 @@ public class CartController {
 		
 		if (list.size()!=0){
 			model.addAttribute("cartList", list);
-			return "sudo_cart";	
+			return "buyer/sudo_cart";	
 		} else {
 			logger.info("장바구니빔... 예외처리 추가 필요함");
-			return "test_emptyCart";
+			return "buyer/emptyCart";
 		}
 	
 	}

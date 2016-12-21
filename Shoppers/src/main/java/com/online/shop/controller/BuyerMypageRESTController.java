@@ -22,8 +22,8 @@ import com.online.shop.service.BuyerService;
 
 @RestController
 @RequestMapping(value="/userid")
-public class MypageRESTController { 
-	private static final Logger logger = LoggerFactory.getLogger(MypageRESTController.class);
+public class BuyerMypageRESTController { 
+	private static final Logger logger = LoggerFactory.getLogger(BuyerMypageRESTController.class);
 	
 	@Autowired
 	private BuyerService buyerservice;
