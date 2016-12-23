@@ -170,11 +170,10 @@ input.radio {
 						minlength="4" maxlength="16" id="b_pw_first" style="font-family: verdana" placeholder="비밀번호" />
 						<br/>
 						
-						<input type="hidden" id="firstpw" value="${buyerInfo.b_pw}"/>
 						<button type="button" id="btnfirst">확인</button>
 					</div>
 					
-			<!-- ///////////////////////////////////////////////////// -->		
+			<!-- ///////////////////////////////////////////////////// -->
 					
 				<section class="main-content" style="display: none;">
 					<div class="row">
@@ -226,7 +225,7 @@ input.radio {
 													<span id="b_duplicationCheckResult"></span> 
 												</label> 
 												 	<div class="controls">
-													 	<input required type="text" class="input-xlarge" value="${buyerInfo.b_pw }"
+													 	<input required type="password" class="input-xlarge" value="${buyerInfo.b_pw }"
 															minlength="4" maxlength="16" id="origin_b_pwd" placeholder="기존 비밀번호" style="font-family: verdana" />
 													</div>
 												 </div><!-- ### 완료 ###-->
@@ -403,16 +402,29 @@ $(document).ready(function() {
 	getCompleteList();
 	
 	$('#btnfirst').click(function() {
-		var oripw = $('#firstpw').val();
-		var inppw = $('#b_pw_first').val();
-		if(oripw == inppw) {
-			$('.firstdiv').hide();
-			$('.main-content').show();
-		} else {
-			
-			alert('비밀번호가 틀렸습니다.');
-			location.reload();s
-		}
+		var b_pw = $("#b_pw_first").val();
+		var b_id = $('#b_id_first').val();
+		$.ajax({
+			type : 'post',
+			url : 'b_checkpw',
+			headers:{
+	             'Content-Type': 'application/json',
+	             'X-HTTP-Method-Override': 'POST'
+	         },
+			data : JSON.stringify({
+				b_pw: b_pw,
+				b_id: b_id,
+	         }),
+			success : function(result) {
+				if (result == 1) {
+					$('.firstdiv').hide();
+					$('.main-content').show();
+				} else {
+					alert('비밀번호가 틀렸습니다.');
+					location.reload();
+				}
+			}
+		});
 		
 	})
 	

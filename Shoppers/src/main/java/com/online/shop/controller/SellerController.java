@@ -34,6 +34,7 @@ import com.online.shop.persistence.RevDAO;
 import com.online.shop.service.BuyerService;
 import com.online.shop.service.ProductService;
 import com.online.shop.service.SellerService;
+import com.online.shop.utility.EncryptUtil;
 
 @Controller // 스프링 프레임워크에 Controller bean 객체로 등록
 @RequestMapping(value="/seller")
@@ -324,6 +325,71 @@ public class SellerController {
 		
 	}
 
+	//seller개인정보수정
+	@RequestMapping(value="sellermypage_updateinfo", method=RequestMethod.GET)
+	public void sellerMypageUpdateInfo(String s_id, Model model){
+		System.out.println("판매자: "+ s_id);
+		SellerVO vo = sellerService.readSellerInfo(s_id);
+		model.addAttribute("sellerInfo", vo);
+	}
 	
+	//판매자 마이페이지 정보수정 기존비밀번호 일치 확인
+	@RequestMapping(value = "s_checkpw", method = RequestMethod.POST)
+	public void s_checkpw(@RequestBody SellerVO vo, HttpServletResponse response) throws IOException {
+
+		logger.info("checkpw 실행");
+		logger.info("userpw: " + vo.getS_pw()+ "//id: " +vo.getS_id());
+		vo.setS_pw(EncryptUtil.getEncryptMD5(vo.getS_pw()));
+		if(sellerService.isValidUser(vo.getS_id(), vo.getS_pw())) {
+			response.getWriter().print(1);
+		} else {
+			response.getWriter().print(0);
+		}
+
+	}
+	
+	
+	//판매자 개인정보수정
+	@RequestMapping(value="sellermypage_updateinfo", method=RequestMethod.POST)
+	public void sellerMypageUpdateInfoPost(@RequestBody SellerVO vo, HttpServletResponse response) throws IOException{
+		System.out.println("vo: " +vo.getS_id()+"/"+vo.getS_pw()+"/"+vo.getS_email());
+		vo.setS_pw(EncryptUtil.getEncryptMD5(vo.getS_pw()));
+		int result = sellerService.updateSellerInfo(vo);
+		System.out.println("결과:"+result);
+		if(result == 1) {
+			response.getWriter().print(1);
+		}else {
+			response.getWriter().print(0);
+		}
+	}	
+	
+	
+	//판매자회원탈퇴페이지
+	@RequestMapping(value="sellermypage_drop", method = RequestMethod.GET)
+	public void sellerDrop(String s_id, Model model){
+		
+		System.out.println("판매자아이디: "+ s_id);
+		SellerVO vo = sellerService.readCheckID(s_id);
+		model.addAttribute("sellerInfo", vo);
+	}
+	
+	
+	//판매자회원탈퇴
+	@RequestMapping(value="sellermypage_drop_commit", method = RequestMethod.PUT)
+	public void sellerDropcommit(@RequestBody SellerVO vo, HttpServletRequest request, HttpServletResponse response) throws IOException{
+		
+		System.out.println("구매자아이디: "+ vo.getS_id());
+		int result = sellerService.deleteSeller(vo.getS_id());
+		//int result = 1;
+		if(result  == 1) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		response.getWriter().print(1);
+		logger.info("세션 비우기 성공!");
+		} else {
+			response.getWriter().print(0);
+			logger.info("세션 비우기 실패!");
+		}
+	}	
 	
 } // end class SellerController

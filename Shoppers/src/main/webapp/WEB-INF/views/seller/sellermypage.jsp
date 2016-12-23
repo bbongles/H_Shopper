@@ -42,8 +42,7 @@
 					<div class="account pull-right">
 						<ul class="user-menu">				
 								<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
-							<li><a href="../seller/sellermypage">My Page</a></li>
-							<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li>
+							<li><a href="../mypage/sellermypage">My Page</a></li>
 							</c:if>	
 							<c:if test="${empty s_login_id && empty b_login_id }">
 								<c:url value="login" var="login" />
@@ -137,11 +136,11 @@
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">개인 정보 수정</a></label>
+									href="sellermypage_updateinfo?s_id=${s_login_id }">개인 정보 수정</a></label>
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">회원 탈퇴</a></label>
+									href="sellermypage_drop?s_id=${s_login_id }">회원 탈퇴</a></label>
 							</div>
 							
 						</fieldset>

@@ -260,5 +260,18 @@ public class SellerDAOImpl implements SellerDAO {
 			
 			return productListByPcate2;
 		}
-
+		
+		@Override
+		public int updateSellerInfo(SellerVO vo) {
+			System.out.println("imple vo");
+			int result = sqlSession.update(NAMESPACE+".update-sellerInfo", vo);
+			System.out.println("imple 결과:"+result);
+			return result;
+		}
+		
+		@Override
+		public int deleteSeller(String s_id) {
+			
+			return sqlSession.update(NAMESPACE+".delete-seller", s_id);
+		}
 } // end class SellerDAOImpl

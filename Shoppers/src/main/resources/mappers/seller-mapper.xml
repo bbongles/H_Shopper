@@ -81,5 +81,13 @@
   <select id="selectAllProductByPcate2" resultType="ProductVO">
   select * from s_tbl_product where p_cate2 = #{p_cate2} and p_acc = 1 order by p_no desc
   </select>
+
+	<update id="update-sellerInfo">
+		update s_tbl_seller set S_PW = #{s_pw}, s_phone = #{s_phone}, 
+		S_EMAIL = #{s_email}, s_zip=#{s_zip}, s_addr1 = #{s_addr1}, s_addr2 = #{s_addr2} where S_ID = #{s_id}
+	</update>
    
+   	<delete id = "delete-seller">
+		delete from s_tbl_seller where s_id = #{s_id}
+	</delete>
   </mapper>

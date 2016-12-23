@@ -97,4 +97,9 @@ public class BuyerServiceImpl implements BuyerService {
 	public int updateBuyerInfo(BuyerVO vo) {
 		return dao.updateBuyerInfo(vo);
 	}
+	
+	@Override
+	public int deletebuyer(String b_id) {
+		return dao.deleteBuyer(b_id);
+	}
 }
