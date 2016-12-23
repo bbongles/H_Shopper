@@ -29,4 +29,8 @@
 		B_EMAIL = #{b_email}, b_zip=#{b_zip}, b_addr1 = #{b_addr1}, b_addr2 = #{b_addr2} where B_ID = #{b_id}
 	</update>
 
+	<delete id = "delete-buyer">
+		delete from s_tbl_buyer where b_id = #{b_id}
+	</delete>
+
  </mapper>

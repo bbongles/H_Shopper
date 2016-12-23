@@ -45,4 +45,8 @@ public interface BuyerDAO {
 	//구매자 마이페이지 정보수정
 	public abstract int updateBuyerInfo(BuyerVO vo);
 	
+	//구매자 회원 탈퇴
+	public abstract int deleteBuyer(String b_id);
+	
+	
 }

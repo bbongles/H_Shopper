@@ -72,5 +72,7 @@ public interface SellerDAO {
 		
 		public abstract List<ProductVO> selectByProductAccAllList(String s_id);
 		//-----------------------------여기까지
-	
+		public abstract int updateSellerInfo(SellerVO vo);
+		
+		public abstract int deleteSeller(String s_id);	
 } // end interface SellerDAO

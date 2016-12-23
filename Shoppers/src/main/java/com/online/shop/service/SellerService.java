@@ -82,6 +82,9 @@ public interface SellerService {
 		
 		public abstract List<ProductVO> accAllList(String s_id);
 		
+		public abstract int updateSellerInfo(SellerVO vo);
+		
+		public abstract int deleteSeller(String s_id);
 		
 	
 } // end interface SellerService

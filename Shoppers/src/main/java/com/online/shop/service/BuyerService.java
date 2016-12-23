@@ -48,4 +48,7 @@ public interface BuyerService {
 	//마이페이지에서 구매자 정보 수정
 	public abstract int updateBuyerInfo(BuyerVO vo);
 
+	//구매자 회원 탈퇴
+	public abstract int deletebuyer(String b_id);
+
 }

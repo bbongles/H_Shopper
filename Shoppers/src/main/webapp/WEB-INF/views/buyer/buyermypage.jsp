@@ -138,7 +138,7 @@
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">회원 탈퇴</a></label>
+									href="buyermypage_drop?b_id=${b_login_id }">회원 탈퇴</a></label>
 							</div>
 							
 							<hr>

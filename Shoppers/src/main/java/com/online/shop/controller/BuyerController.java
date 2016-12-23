@@ -38,6 +38,7 @@ import com.online.shop.service.BuyerService;
 import com.online.shop.service.CartService;
 import com.online.shop.service.ProductService;
 import com.online.shop.service.SellerService;
+import com.online.shop.utility.EncryptUtil;
 
 @Controller // 스프링 프레임워크에 Controller bean 객체로 등록
 @RequestMapping(value = "/buyer")
@@ -268,7 +269,7 @@ public class BuyerController {
 		
 	}
 	
-	//개인정보수정
+/*	//개인정보수정
 		@RequestMapping(value="buyermypage_updateinfo", method=RequestMethod.GET)
 		public void BuyerMypageUpdateInfo(String b_id, Model model){
 			System.out.println("구매자아이디: "+ b_id);
@@ -303,7 +304,7 @@ public class BuyerController {
 			}else {
 				response.getWriter().print(0);
 			}		
-		}
+		}*/
 	
 
 		//구매자가 qna를 등록하기위한 페이지 띄움
@@ -373,5 +374,68 @@ public class BuyerController {
 			}		
 		}
 		
+		//buyer개인정보수정
+		@RequestMapping(value="buyermypage_updateinfo", method=RequestMethod.GET)
+		public void BuyerMypageUpdateInfo(String b_id, Model model){
+			System.out.println("구매자아이디: "+ b_id);
+			BuyerVO vo = buyerService.read(b_id);
+			model.addAttribute("buyerInfo", vo);
+		}
+		
+		//구매자 마이페이지 정보수정 기존비밀번호 일치 확인
+		@RequestMapping(value = "b_checkpw", method = RequestMethod.POST)
+		public void b_checkpw(@RequestBody BuyerVO vo, HttpServletResponse response) throws IOException {
+
+			logger.info("checkpw 실행");
+			logger.info("userpw: " + vo.getB_pw()+ "//id: " +vo.getB_id());
+			vo.setB_pw(EncryptUtil.getEncryptMD5(vo.getB_pw()));
+			if(buyerService.isValidUser(vo.getB_id(), vo.getB_pw())) {
+				response.getWriter().print(1);
+			} else {
+				response.getWriter().print(0);
+			}
+
+		}	
+		
+		//구매자 개인정보수정
+		@RequestMapping(value="buyermypage_updateinfo", method=RequestMethod.POST)
+		public void BuyerMypageUpdateInfoPost(@RequestBody BuyerVO vo, HttpServletResponse response) throws IOException{
+			System.out.println("vo: " +vo.getB_id()+"/"+vo.getB_pw()+"/"+vo.getB_email());
+			vo.setB_pw(EncryptUtil.getEncryptMD5(vo.getB_pw()));
+			int result = buyerService.updateBuyerInfo(vo);
+			System.out.println("결과:"+result);
+			if(result == 1) {
+				response.getWriter().print(1);
+			}else {
+				response.getWriter().print(0);
+			}		
+		}
+		
+		//구매자회원탈퇴페이지
+		@RequestMapping(value="buyermypage_drop", method = RequestMethod.GET)
+		public void buyerDrop(String b_id, Model model){
+			
+			System.out.println("구매자아이디: "+ b_id);
+			BuyerVO vo = buyerService.read(b_id);
+			model.addAttribute("buyerInfo", vo);
+		}
+		
+		//구매자회원탈퇴
+		@RequestMapping(value="buyermypage_drop_commit", method = RequestMethod.PUT)
+		public void buyerDropcommit(@RequestBody BuyerVO vo, HttpServletRequest request, HttpServletResponse response) throws IOException{
+			
+			System.out.println("구매자아이디: "+ vo.getB_id());
+			int result = buyerService.deletebuyer(vo.getB_id());
+			//int result = 1;
+			if(result  == 1) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			response.getWriter().print(1);
+			logger.info("세션 비우기 성공!");
+			} else {
+				response.getWriter().print(0);
+				logger.info("세션 비우기 실패!");
+			}
+		}
 		
 } // end class

@@ -185,4 +185,14 @@ public class SellerServiceImpl implements SellerService {
 		return sellerDao.isAccConf(s_id, s_pw);
 	}
 
+	@Override
+	public int updateSellerInfo(SellerVO vo) {
+		return sellerDao.updateSellerInfo(vo);
+	}
+	
+	@Override
+	public int deleteSeller(String s_id) {
+		return sellerDao.deleteSeller(s_id);
+	}
+	
 } // end class SellerServiceImpl
