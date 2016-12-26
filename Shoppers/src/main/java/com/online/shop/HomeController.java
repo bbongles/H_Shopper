@@ -524,6 +524,10 @@ public class HomeController {
 	public String openSellerRegister() {
 		return "/sudo_loginSelect";
 	}
+	@RequestMapping(value="loginFail", method=RequestMethod.GET)
+	public String openSellerLogin(){
+		return "common/sudo_loginForSeller";
+	}
 
 	@RequestMapping(value = "seller/login", method = RequestMethod.POST)
 	public String sellerloginResult(String s_id, String s_pw, HttpServletRequest request, String query) {
@@ -546,13 +550,13 @@ public class HomeController {
 				logger.info("ACC 확인 실패");
 				session.setAttribute("loginFail", "acc");
 				logger.info("login 화면 다시 로드");
-				return "redirect:../login";
+				return "redirect:../loginFail";
 			}
 		} else {
 			logger.info("로그인 실패");
 			session.setAttribute("loginFail", "fail");
 			logger.info("login 화면 다시 로드");
-			return "redirect:../login";
+			return "redirect:../loginFail";
 		}
 	}
 
