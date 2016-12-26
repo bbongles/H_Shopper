@@ -831,7 +831,7 @@
 	    	 
 	    	 // 김태훈 바로주문 코드
 		    $('#directOrder').click(function(){
-				$('#frm').attr('action', '/shop/cart/insertCertForDirect');
+				$('#frm').attr('action', '/shop/buyer/insertCartForDirect');
 				$('#frm').attr('method', 'get');
 				$('#frm').submit();
 		    });
