@@ -809,8 +809,7 @@ public class HomeController {
 		logger.info("검색어 : "+searching);
 		String p_name = searching;
 		logger.info("search_form 컨트롤러 실행");
-////////////////////////////////////////////
-List<ProductVO> productListByPcate = productService.selectSearch(p_name);
+		List<ProductVO> productListByPcate = productService.selectSearch(p_name);
 		logger.info("검색 리스트");
 		int length = productListByPcate.size();
 		int numOfPage = length / 9;
