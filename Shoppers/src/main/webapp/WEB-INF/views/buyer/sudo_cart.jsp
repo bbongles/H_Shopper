@@ -578,7 +578,7 @@
 																							            finalCartPrice += text1;
 																							         }
 																							         $("#newtotal").val(finalCartPrice);
-																							      
+																							      		
 								                                                                
                                                                   
                                                                } else {
@@ -625,6 +625,7 @@
                     if (data >= 0){
                        pricePerCnt.innerHTML = data;
                        updateTotalPrice();
+                       price2();
                     }
                  },
              });  
