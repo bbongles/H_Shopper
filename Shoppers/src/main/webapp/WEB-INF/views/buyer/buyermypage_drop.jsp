@@ -28,7 +28,7 @@
 		<!--[if lt IE 9]>			
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 			<script src="js/respond.min.js"></script>
-		<![endif]-->
+		<![endif]--> 
 	</head>
     <body>		
 		<div id="top-bar" class="container">
@@ -138,7 +138,7 @@
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="buyermypage_drop?b_id=${b_login_id }">회원 탈퇴</a></label>
+									href="javascript:window.location.reload(true);">회원 탈퇴</a></label>
 							</div>
 							
 							<hr>
@@ -148,70 +148,41 @@
 				
 				<div id="maindi" class="span7">
 					<h3 class="title">
-						<span class="text"><strong>MY </strong> 쇼핑 현황</span>
+						<span class="text"><strong>회원 </strong> 탈퇴</span>
 					</h3>
+					<div class = "firstdiv">
+						<label for="b_id_first">아이디</label> 
+						<input required name="b_id_first" type="text" class="input-xlarge"
+						minlength="4" maxlength="16" id="b_id_first" value="${buyerInfo.b_id }" readonly/>
+											
+						<label for="b_pw_first">비밀번호 입력</label> 
+						<input required name="b_pw_first" type="password" class="input-xlarge"
+						minlength="4" maxlength="16" id="b_pw_first" style="font-family: verdana" placeholder="비밀번호" />
+						<br/>
+						
+						<button type="button" id="btnfirst">확인</button>
+					</div>
 					
-					<form action="#" method="post" class="form-stacked">
-						<fieldset class="bm">
-							<div class="control-buyer">
-								<table>
-									<tr>
-										<th>[구매 중 상품]</th>
-										<th>[구매 완료 상품]</th>
-									</tr>
-									<tr>
-										<td id="buyer1" onMouseover="this.style.color='#5f5f59';"
-											onMouseout="this.style.color='#EA9999';"
-											style="text-align: center; color: #EA9999; text-decoration: underline;"></td>
-										<td id="buyer2" onMouseover="this.style.color='#5f5f59';"
-											onMouseout="this.style.color='#EA9999';"
-											style="text-align: center; color: #EA9999; text-decoration: underline;"></td>
-
-									</tr>
-								</table>
-						
-							</div> 
-							</fieldset>
-							<fieldset class="bmypagetable">
-							<div id="maindiv" class="control-group">
-							
-							
-							
-							<table id="ordert" class="bmytable table table-striped">
-									<caption><b>[주문 배송 내역] (최근 5건)</b></caption>
-									<tr>
-										<th>주문번호</th>
-										<th>주문일자</th>
-										<th>상품명(옵션)</th>
-										<th>판매자</th>
-										<th>주문상태</th>
-									</tr>		
-							</table>
-							
-							<table id="completet" class="bmytable table table-striped">
-									<caption>
-										<b>[구매 내역] (최근 5건)</b>
-									</caption>
-									<tr>
-										<th>주문번호</th>
-										<th>주문일자</th>
-										<th>상품명(옵션)</th>
-										<th>판매자</th>
-										<th>주문상태</th>
-									</tr>
-									
-							</table>
-							
-							
-							
-							
-							</div>
-
-
-						
-
-						</fieldset>
-					</form> 
+					<section class="main-content" style="display: none;">
+					
+					<div>
+					사용하고 계신 아이디<strong>(${b_login_id })</strong>는 탈퇴할 경우 재사용 및 복구가 불가능합니다.
+					<br/>
+					<strong style="color: red;">탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가</strong>하오니 신중하게 선택하시기 바랍니다.
+					</div>
+					<br/>
+					<div style="color: red;">
+					탈퇴 후에는 아이디 <strong> (${b_login_id }) </strong>로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다. 
+					<br/>게시판형 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다.
+					<br/>또한, 쇼핑몰 아이디를 사용해 다른 서비스에 로그인 할 수 없게 됩니다.
+					</div>
+					<br/>
+					<input type="checkbox" id="chkdrop" required />
+					<label for="chkdrop" style="display: inline;">안내 사항을 모두 확인하였으며, 이에 동의합니다.</label><br/>
+					<button class="btn" id="btndrop" type="button">회원 탈퇴</button>
+					
+					</section>
+					
 						<hr>
 				</div>
 			</div>
@@ -262,115 +233,67 @@
 $(document).ready(function() {
 	var b_id = $("#b_login_id").val();
 	
-	getAllbuylist();
-	getCompletebuy();
-	getOrderlist(); 
-	getCompleteList();
-	 
-	function getAllbuylist() {
-		var url = '/shop/userid/all/' + b_id;
-		$.getJSON(url, function(data) {
-			var td = '';  	 
-			$(data).each(function(){  
-				td += this.count +'건'  
-			});
-			$('#buyer1').html(td);
-		});
-	};
-	
-	function getCompletebuy() { 
-		var url2 = '/shop/userid/all2/' + b_id;
-		$.getJSON(url2, function(data) { 
-			var td2 = '';  
-				$(data).each(function(){  
-					td2 +=  this.count +'건'
-				});
-				$('#buyer2').html(td2);
-			});
-	};
-	
-	 function getOrderlist() {
-		var url = '/shop/userid/all3/' + b_id;
-		$.getJSON(url, function(data) {
-			var td = '';
-			
-			
-			$(data).each(function(){ 
-				console.log(this);
-				var date = new Date(this.buy_date);
-				var year = date.getFullYear();
-				var month = date.getMonth();
-				var day = date.getDate();
-				var dateString = year + '년' + month + '월' + day + '일';
-				
-				var a = ''; 
-				if (this.buy_status == 0){
-					a = '입금대기'
-				} else if (this.buy_status == 1){
-					a = '결제확인중'
-				} else if (this.buy_status == 2){
-					a = '결제완료'
-				} else if (this.buy_status == 3){ 
-					a = '배송준비'
+	$('#btnfirst').click(function() {
+		var b_pw = $("#b_pw_first").val();
+		var b_id = $('#b_id_first').val();
+		$.ajax({
+			type : 'post',
+			url : 'b_checkpw',
+			headers:{
+	             'Content-Type': 'application/json',
+	             'X-HTTP-Method-Override': 'POST'
+	         },
+			data : JSON.stringify({
+				b_pw: b_pw,
+				b_id: b_id,
+	         }),
+			success : function(result) {
+				if (result == 1) {
+					$('.firstdiv').hide();
+					$('.main-content').show();
+				} else {
+					alert('비밀번호가 틀렸습니다.');
+					location.reload();
 				}
-				 
-				
-				 td += '<tr><td>' + this.buy_no + '</td>'
-					+ '<td>' + dateString + '</td>'
-					+ '<td>' + this.p_name + '&emsp;(' + this.o_cont + ')</td>'
-				+ '<td>' + this.s_id + '&emsp;</td>'
-				+ '<td>' + a + '</td></tr>';
-				
-				
-			});
-			
-			$('#ordert > tbody:last').append(td);
+			}
 		});
-	};  
+		
+	})
 	
-	function getCompleteList() {
-		var url = '/shop/userid/all4/' + b_id;
-		$.getJSON(url, function(data) {
-			var td = '';  	  	
+	$('#btndrop').click(function() {
+		
+		if ($("input:checkbox[id='chkdrop']").is(":checked")) {
 			
-			$(data).each(function(){ 
-				console.log(this);
-				var date = new Date(this.buy_date);
-				var year = date.getFullYear();
-				var month = date.getMonth();
-				var day = date.getDate();
-				var dateString = year + '년' + month + '월' + day + '일';
-				
-				var a = ''; 
-				if (this.buy_status == 4){
-					a = '배송중'
-				} else if (this.buy_status == 5){
-					a = '배송완료'
+			var b_id = $('#b_id_first').val();
+
+			$.ajax({
+				type : 'put',
+				url : 'buyermypage_drop_commit',
+				headers:{
+		             'Content-Type': 'application/json',
+		             'X-HTTP-Method-Override': 'PUT'
+		         },
+				data : JSON.stringify({
+					b_id: b_id
+		         }),
+				success : function(result) {
+					if (result == 1) {
+						alert('회원 탈퇴 성공하였습니다.');
+						location = '../';
+						//location.replace = '../';
+						document.location.replace("../");
+						
+					} else {
+						alert('회원 탈퇴 실패하였습니다.');
+						location.reload();
+					}
 				}
-				 
-				
-				 td += '<tr><td>' + this.buy_no + '</td>'
-					+ '<td>' + dateString + '</td>'
-					+ '<td>' + this.p_name + '&emsp;(' + this.o_cont + ')</td>'
-				+ '<td>' + this.s_id + '&emsp;</td>'
-				+ '<td>' + a + '</td></tr>';
-				
-				
-			}); 
-			$('#completet > tbody:last').append(td);
-		});
-	};  
-	 
- 	$('#buyer1').click(function () {
-		$('#maindiv').children().hide();
-		$('#ordert').show();
-	});
- 	
-	$('#buyer2').click(function () {
-		$('#maindiv').children().hide();
-		$('#completet').show();
-	});
-	 
+			});
+		} else {
+			alert('체크안됨');
+		}
+		
+	})
 	
 	
 });

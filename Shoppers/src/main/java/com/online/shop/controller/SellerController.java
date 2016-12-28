@@ -2,6 +2,7 @@ package com.online.shop.controller;
 
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.online.shop.domain.BuyerVO;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -34,6 +37,7 @@ import com.online.shop.persistence.RevDAO;
 import com.online.shop.service.BuyerService;
 import com.online.shop.service.ProductService;
 import com.online.shop.service.SellerService;
+import com.online.shop.utility.EncryptUtil;
 
 @Controller // 스프링 프레임워크에 Controller bean 객체로 등록
 @RequestMapping(value="/seller")
@@ -324,6 +328,226 @@ public class SellerController {
 		
 	}
 
+	//seller개인정보수정
+	@RequestMapping(value="sellermypage_updateinfo", method=RequestMethod.GET)
+	public void sellerMypageUpdateInfo(String s_id, Model model){
+		System.out.println("판매자: "+ s_id);
+		SellerVO vo = sellerService.readSellerInfo(s_id);
+		model.addAttribute("sellerInfo", vo);
+	}
 	
+	//판매자 마이페이지 정보수정 기존비밀번호 일치 확인
+	@RequestMapping(value = "s_checkpw", method = RequestMethod.POST)
+	public void s_checkpw(@RequestBody SellerVO vo, HttpServletResponse response) throws IOException {
+
+		logger.info("checkpw 실행");
+		logger.info("userpw: " + vo.getS_pw()+ "//id: " +vo.getS_id());
+		vo.setS_pw(EncryptUtil.getEncryptMD5(vo.getS_pw()));
+		if(sellerService.isValidUser(vo.getS_id(), vo.getS_pw())) {
+			response.getWriter().print(1);
+		} else {
+			response.getWriter().print(0);
+		}
+
+	}
+	
+	
+	//판매자 개인정보수정
+	@RequestMapping(value="sellermypage_updateinfo", method=RequestMethod.POST)
+	public void sellerMypageUpdateInfoPost(@RequestBody SellerVO vo, HttpServletResponse response) throws IOException{
+		System.out.println("vo: " +vo.getS_id()+"/"+vo.getS_pw()+"/"+vo.getS_email());
+		vo.setS_pw(EncryptUtil.getEncryptMD5(vo.getS_pw()));
+		int result = sellerService.updateSellerInfo(vo);
+		System.out.println("결과:"+result);
+		if(result == 1) {
+			response.getWriter().print(1);
+		}else {
+			response.getWriter().print(0);
+		}
+	}	
+	
+	
+	//판매자회원탈퇴페이지
+	@RequestMapping(value="sellermypage_drop", method = RequestMethod.GET)
+	public void sellerDrop(String s_id, Model model){
+		
+		System.out.println("판매자아이디: "+ s_id);
+		SellerVO vo = sellerService.readCheckID(s_id);
+		model.addAttribute("sellerInfo", vo);
+	}
+	
+	
+	//판매자회원탈퇴
+	@RequestMapping(value="sellermypage_drop_commit", method = RequestMethod.PUT)
+	public void sellerDropcommit(@RequestBody SellerVO vo, HttpServletRequest request, HttpServletResponse response) throws IOException{
+		
+		System.out.println("구매자아이디: "+ vo.getS_id());
+		int result = sellerService.deleteSeller(vo.getS_id());
+		//int result = 1;
+		if(result  == 1) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		response.getWriter().print(1);
+		logger.info("세션 비우기 성공!");
+		} else {
+			response.getWriter().print(0);
+			logger.info("세션 비우기 실패!");
+		}
+	}
+	
+	//판매자 아이디 찾기
+	@RequestMapping(value="findID", method = RequestMethod.GET)
+	public void findsellerID(){
+
+	}
+	
+	//판매자 비밀번호 찾기
+	@RequestMapping(value="findpw", method = RequestMethod.GET)
+	public void findsellerPW(){
+
+	}
+	
+	// ** 판매자 아이디찾기 이메일 인증
+	// 이메일 인증번호 발송
+	@RequestMapping(value = "checkemailforid", method = RequestMethod.POST)
+	public void checkEmail(@RequestBody SellerVO vo, HttpServletResponse response) throws IOException {
+		logger.info("email: " + vo.getS_email()+"/name: " +vo.getS_name());
+		
+		//System.out.println(buyerService.findId(vo)+"/"+buyerService.findId(vo).isEmpty());
+		// true면 db에서 일치하는 정보가 없을때임
+		SellerVO result = sellerService.findId(vo);
+		//System.out.println("email: " + result.getS_email()+"/name: " +result.getS_name());
+		//buyerService.findId(vo).equals("")
+		
+		if(result == null) {
+			response.getWriter().print(0);
+		} else{
+			// @ converted to %40 in HTTPPost request
+			String convert_email = URLDecoder.decode(vo.getS_email(), "UTF-8");
+
+			// 필요없는 문자열을 제거
+			String b_email = convert_email.substring(0, convert_email.length() - 1);
+
+			// 4자리 인증번호 생성
+			// 1. 0~9999 까지의 난수를 발생시킨 후 1~3자리 수를 없애기위해 1000을 더해준다 (1000~10999)
+			// 2. 다섯자리가 넘어가면 1000을 빼준다.
+			int code = (int) (Math.random() * 10000 + 1000);
+			if (code > 10000) {
+				code = code - 1000;
+			}
+
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setTo(b_email); // 받는 이메일 등록
+
+			logger.info("메일 주소 : " + b_email);
+
+			message.setSubject("쇼핑몰 인증번호"); // 이메일 제목
+			message.setText("본인인증번호는 [ " + code + " ] 입니다. 정확히 입력해주세요"); // 이메일 내용
+
+			logger.info("보낸 코드 : " + code);
+			mailSender.send(message); // 이메일 전송
+
+			response.getWriter().print(code);
+
+		};
+
+	}
+	
+	// ** 판매자 이메일 인증 비밀번호 찾기
+		// 이메일 인증번호 발송
+		@RequestMapping(value = "checkemailforpw", method = RequestMethod.POST)
+		public void checkEmailforPW(@RequestBody SellerVO vo, HttpServletResponse response) throws IOException {
+			logger.info("email: " + vo.getS_email()+"/name: " +vo.getS_id());
+			System.out.println("email: " + vo.getS_email()+"/name: " +vo.getS_id());
+			//System.out.println(buyerService.findId(vo)+"/"+buyerService.findId(vo).isEmpty());
+			// true면 db에서 일치하는 정보가 없을때임
+			SellerVO result = sellerService.findPw(vo);
+			//buyerService.findId(vo).equals("")
+			if(result == null) {
+				response.getWriter().print(0);
+			} else{
+				// @ converted to %40 in HTTPPost request
+				String convert_email = URLDecoder.decode(vo.getS_email(), "UTF-8");
+
+				// 필요없는 문자열을 제거
+				String b_email = convert_email.substring(0, convert_email.length() - 1);
+
+					// 4자리 인증번호 생성
+					// 1. 0~9999 까지의 난수를 발생시킨 후 1~3자리 수를 없애기위해 1000을 더해준다 (1000~10999)
+					// 2. 다섯자리가 넘어가면 1000을 빼준다.
+				int code = (int) (Math.random() * 10000 + 1000);
+				if (code > 10000) {
+					code = code - 1000;
+				}
+				SimpleMailMessage message = new SimpleMailMessage();
+				message.setTo(b_email); // 받는 이메일 등록
+
+				logger.info("메일 주소 : " + b_email);
+
+				message.setSubject("쇼핑몰 인증번호"); // 이메일 제목
+				message.setText("본인인증번호는 [ " + code + " ] 입니다. 정확히 입력해주세요"); // 이메일 내용
+
+				logger.info("보낸 코드 : " + code);
+				mailSender.send(message); // 이메일 전송
+
+				response.getWriter().print(code);
+
+			};
+
+		}
+	
+	@RequestMapping(value="findidforlogin")
+	public void findlogin(SellerVO vo, Model model) {
+		System.out.println("findidlogin" +vo.getS_name()+"/"+vo.getS_email());
+		SellerVO vo1 = sellerService.findId(vo);
+		//System.out.println("after: "+vo1.getB_id()+"/"+vo1.getB_birth());
+		model.addAttribute("s_id", vo1.getS_id());
+		model.addAttribute("s_birth", vo1.getS_birth());
+	}
+	
+	//pw재설정하는 페이지로 이동
+	@RequestMapping(value="findpwforupdate")
+	public void findpwupdate(SellerVO vo, Model model) {
+		System.out.println("findpwupdate" +vo.getS_id()+"/"+vo.getS_email());
+		SellerVO vo1 = sellerService.findPw(vo);
+		System.out.println("after: "+vo1.getS_id()+"/"+vo1.getS_birth());
+		model.addAttribute("vo", vo1);
+		
+	}
+	
+	@RequestMapping(value="findpwforupdate", method=RequestMethod.POST)
+	public void findpwupdatePOST(@RequestBody SellerVO vo, HttpServletResponse response) throws IOException {
+		System.out.println("findpwupdatePOST/ " +vo.getS_id()+"/"+vo.getS_pw());
+		int result = sellerService.updatePw(vo);
+		//System.out.println("after: "+vo1.getB_id()+"/"+vo1.getB_birth());
+		if(result == 1) {
+			response.getWriter().print(1);
+		}else {
+			response.getWriter().print(0);
+		}				
+	}
+	// 판매자 로그인 했을때 검색 
+		@RequestMapping(value="search_form", method=RequestMethod.POST)
+		public String search_form(String searching, Model model){
+			logger.info("검색어 : "+searching);
+			String p_name = searching;
+			logger.info("search_form 컨트롤러 실행");
+			List<ProductVO> productListByPcate = productService.selectSearch(p_name);
+			logger.info("검색 리스트");
+			int length = productListByPcate.size();
+			int numOfPage = length / 9;
+			if (length % 9 > 0) {
+				numOfPage++; // 나머지가 있으면 올림
+			}
+			int remainder = length % 9;
+			model.addAttribute("productListByPcate", productListByPcate);
+			model.addAttribute("numOfPage", numOfPage);
+			model.addAttribute("remainder", remainder);
+			logger.info("length : " + length);
+			logger.info("numOfPage : " + numOfPage);
+			logger.info("remainder : " + remainder);
+			return "common/sudo_products";
+		}
+
 	
 } // end class SellerController

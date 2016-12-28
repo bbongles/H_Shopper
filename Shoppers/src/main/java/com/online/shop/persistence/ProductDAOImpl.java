@@ -157,5 +157,10 @@ public class ProductDAOImpl implements ProductDAO {
 			return sqlSession.selectList(NAMESPACEM + ".productListSearch", cri);
 		}
 		// 여기까지
+		// 검색
+		@Override
+		public List<ProductVO> selectSearch(String p_name) {
+			return sqlSession.selectList(NAMESPACE+".search-form", p_name);
+		}
 	
 } // end class ProductDAOImpl

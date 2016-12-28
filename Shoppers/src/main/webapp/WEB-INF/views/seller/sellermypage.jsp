@@ -139,11 +139,11 @@
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">개인 정보 수정</a></label>
+									href="sellermypage_updateinfo?s_id=${s_login_id }">개인 정보 수정</a></label>
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">회원 탈퇴</a></label>
+									href="sellermypage_drop?s_id=${s_login_id }">회원 탈퇴</a></label>
 							</div>
 							
 						</fieldset>

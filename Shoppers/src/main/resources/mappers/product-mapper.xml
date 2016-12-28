@@ -86,4 +86,9 @@
 		where rn between #{start} and #{end}
 	</select>
 	
+	<!-- 검색(미완성) -->
+	<select id="search-form" resultType="com.online.shop.domain.ProductVO">
+	select * from s_tbl_product where p_name like '%'||#{p_name}||'%'
+	</select>
+	
 </mapper>

@@ -30,6 +30,7 @@ public interface ProductDAO {
 
 	public abstract List<ProductVO> selectAcc();
 
+
 	// 페이징 처리가 되는 select문
 	public abstract List<ProductVO> select(PageCriteria cri);
 	// 페이징 처리를 위한 전체 페이지수 검색
@@ -38,8 +39,11 @@ public interface ProductDAO {
 	public abstract List<ProductVO> select(SearchPageCriteria cri);
 	// 검색후 페이징 처리를 위한 전체 페이지수 검색
 	public abstract int listSearchCount(SearchPageCriteria cri);
-
+	
 	// 승인 처리
 	public abstract int update(int pno);
+	
+	// 검색
+	public abstract List<ProductVO> selectSearch(String p_name);
 	
 } // end interface ProductDAO

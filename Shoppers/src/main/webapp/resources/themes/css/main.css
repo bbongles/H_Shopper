@@ -775,7 +775,7 @@ section.our_client .row{
 }
 .search_form input{
 	background: url(../images/search.png) #fff no-repeat 97% 6px;
-	color:#fff;
+	color:#000000;
 	text-shadow:none;
 	padding-right:25px;	
 	border:1px solid #eee;
@@ -1200,8 +1200,11 @@ button.detail:hover {
 	font-size: 15px; 
 }
 .adminmaintable th{
-	
-	width: 100px;
+	width: 150px;
+	text-align: center; 
+}
+.adminmaintable{
+	text-align: center; 
 }
 .tabelfieldset{
 	margin-left: 7%;

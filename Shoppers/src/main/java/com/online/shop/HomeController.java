@@ -524,6 +524,10 @@ public class HomeController {
 	public String openSellerRegister() {
 		return "/sudo_loginSelect";
 	}
+	@RequestMapping(value="loginFail", method=RequestMethod.GET)
+	public String openSellerLogin(){
+		return "common/sudo_loginForSeller";
+	}
 
 	@RequestMapping(value = "seller/login", method = RequestMethod.POST)
 	public String sellerloginResult(String s_id, String s_pw, HttpServletRequest request, String query) {
@@ -546,13 +550,13 @@ public class HomeController {
 				logger.info("ACC 확인 실패");
 				session.setAttribute("loginFail", "acc");
 				logger.info("login 화면 다시 로드");
-				return "redirect:../login";
+				return "redirect:../loginFail";
 			}
 		} else {
 			logger.info("로그인 실패");
 			session.setAttribute("loginFail", "fail");
 			logger.info("login 화면 다시 로드");
-			return "redirect:../login";
+			return "redirect:../loginFail";
 		}
 	}
 
@@ -791,25 +795,40 @@ public class HomeController {
 			// ex) (9/4 = 2.X )=> 3페이지 필요
 		}
 		int remainder = length % 8;
-		
-		
 		logger.info("productList size: " + productList.size());
 		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("productList", productList);
-
 		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("sellerInfo", sellerInfo);
-		
 		model.addAttribute("numOfPage", numOfPage);
 		model.addAttribute("remainder", remainder);
-		
 		logger.info("length : " + length);
 		logger.info("numOfPage : " + numOfPage);
 		logger.info("remainder : " + remainder);
-		
-
-
 		return "/visitor/sudo_seller_home";
 	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
+	
+	@RequestMapping(value="search_form", method=RequestMethod.POST)
+	public String search_form(String searching, Model model){
+		logger.info("검색어 : "+searching);
+		String p_name = searching;
+		logger.info("search_form 컨트롤러 실행");
+		List<ProductVO> productListByPcate = productService.selectSearch(p_name);
+		logger.info("검색 리스트");
+		int length = productListByPcate.size();
+		int numOfPage = length / 9;
+		if (length % 9 > 0) {
+			numOfPage++; // 나머지가 있으면 올림
+		}
+		int remainder = length % 9;
+		model.addAttribute("productListByPcate", productListByPcate);
+		model.addAttribute("numOfPage", numOfPage);
+		model.addAttribute("remainder", remainder);
+		logger.info("length : " + length);
+		logger.info("numOfPage : " + numOfPage);
+		logger.info("remainder : " + remainder);
+		return "common/sudo_products";
+
+	}
 
 } // end class HomeController

@@ -50,6 +50,9 @@ public interface ProductService {
 			public abstract int listSearchCount(SearchPageCriteria cri);
 			// 승인 요청 처리 service
 			public abstract int productAcc(int pno);
+			
+			// 검색
+			public abstract List<ProductVO> selectSearch(String p_name);
 		
 		
 	

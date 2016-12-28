@@ -124,6 +124,10 @@ public class ProductServiceImpl implements ProductService {
 		public int productAcc(int pno) {
 			return productDao.update(pno);
 		}
+		@Override
+		public List<ProductVO> selectSearch(String p_name) {
+			return productDao.selectSearch(p_name);
+		}
 
 
 
