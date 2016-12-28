@@ -524,6 +524,10 @@ public class HomeController {
 	public String openSellerRegister() {
 		return "/sudo_loginSelect";
 	}
+	@RequestMapping(value="loginFail", method=RequestMethod.GET)
+	public String openSellerLogin(){
+		return "common/sudo_loginForSeller";
+	}
 
 	@RequestMapping(value = "seller/login", method = RequestMethod.POST)
 	public String sellerloginResult(String s_id, String s_pw, HttpServletRequest request, String query) {
@@ -546,13 +550,13 @@ public class HomeController {
 				logger.info("ACC 확인 실패");
 				session.setAttribute("loginFail", "acc");
 				logger.info("login 화면 다시 로드");
-				return "redirect:../login";
+				return "redirect:../loginFail";
 			}
 		} else {
 			logger.info("로그인 실패");
 			session.setAttribute("loginFail", "fail");
 			logger.info("login 화면 다시 로드");
-			return "redirect:../login";
+			return "redirect:../loginFail";
 		}
 	}
 
@@ -809,8 +813,7 @@ public class HomeController {
 		logger.info("검색어 : "+searching);
 		String p_name = searching;
 		logger.info("search_form 컨트롤러 실행");
-////////////////////////////////////////////
-List<ProductVO> productListByPcate = productService.selectSearch(p_name);
+		List<ProductVO> productListByPcate = productService.selectSearch(p_name);
 		logger.info("검색 리스트");
 		int length = productListByPcate.size();
 		int numOfPage = length / 9;

@@ -526,5 +526,28 @@ public class SellerController {
 			response.getWriter().print(0);
 		}				
 	}
+	// 판매자 로그인 했을때 검색 
+		@RequestMapping(value="search_form", method=RequestMethod.POST)
+		public String search_form(String searching, Model model){
+			logger.info("검색어 : "+searching);
+			String p_name = searching;
+			logger.info("search_form 컨트롤러 실행");
+			List<ProductVO> productListByPcate = productService.selectSearch(p_name);
+			logger.info("검색 리스트");
+			int length = productListByPcate.size();
+			int numOfPage = length / 9;
+			if (length % 9 > 0) {
+				numOfPage++; // 나머지가 있으면 올림
+			}
+			int remainder = length % 9;
+			model.addAttribute("productListByPcate", productListByPcate);
+			model.addAttribute("numOfPage", numOfPage);
+			model.addAttribute("remainder", remainder);
+			logger.info("length : " + length);
+			logger.info("numOfPage : " + numOfPage);
+			logger.info("remainder : " + remainder);
+			return "common/sudo_products";
+		}
+
 	
 } // end class SellerController

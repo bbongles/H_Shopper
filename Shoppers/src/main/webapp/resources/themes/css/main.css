@@ -1200,8 +1200,11 @@ button.detail:hover {
 	font-size: 15px; 
 }
 .adminmaintable th{
-	
-	width: 100px;
+	width: 150px;
+	text-align: center; 
+}
+.adminmaintable{
+	text-align: center; 
 }
 .tabelfieldset{
 	margin-left: 7%;
