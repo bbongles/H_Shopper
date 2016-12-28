@@ -45,12 +45,12 @@
   
   <!-- 상품 번호로 옵션 가져오기 -->
   <select id="selectOpByPno" resultType="OptionVO">
-  select * from s_tbl_option where p_no = #{p_no}
+  select * from s_tbl_option where p_no = #{p_no} order by o_no
   </select>
   
   <!-- 상품 번호로 이미지 가져오기 -->
   <select id="selectImgByPno" resultType="ImageVO">
-  select * from s_tbl_image where p_no = #{p_no}
+  select * from s_tbl_image where p_no = #{p_no} order by i_no
   </select>
   
   <!-- 판매자 로고 이미지 등록 -->
