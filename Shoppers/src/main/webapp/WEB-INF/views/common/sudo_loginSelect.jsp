@@ -364,11 +364,13 @@
 						<span class="text"><strong>Register</strong> Select</span>
 					</h4>
 					<a href="buyer/register"><img alt="구매자 회원가입"
-						src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_buyer.gif"
-						style="width: 150px"></a> <a href="seller/register"><img
+						src="http://i.imgur.com/LCGiJiy.png"
+						style="width: 300px"></a>
+						<a href="seller/register"><img
 						alt="판매자 회원가입"
-						src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_seller.gif"
-						style="width: 150px"></a>
+						src="http://i.imgur.com/7JadaOo.png"
+						style="width: 300px"
+						></a>
 				</div><!-- span7 -->
 			</div><!-- end row -->
 		</section>
