@@ -269,44 +269,6 @@ public class BuyerController {
 		
 	}
 	
-/*	//개인정보수정
-		@RequestMapping(value="buyermypage_updateinfo", method=RequestMethod.GET)
-		public void BuyerMypageUpdateInfo(String b_id, Model model){
-			System.out.println("구매자아이디: "+ b_id);
-			BuyerVO vo = buyerService.read(b_id);
-			model.addAttribute("buyerInfo", vo);
-		}
-		
-		//구매자 마이페이지 정보수정 기존비밀번호 일치 확인
-		@RequestMapping(value = "b_checkpw", method = RequestMethod.POST)
-		public void b_checkid(@RequestBody BuyerVO vo, HttpServletResponse response) throws IOException {
-
-			logger.info("checkid 실행");
-			logger.info("userpw: " + vo.getB_pw()+ "//id: " +vo.getB_id());
-
-			if(buyerService.isValidUser(vo.getB_id(), vo.getB_pw())) {
-				response.getWriter().print(1);
-			} else {
-				response.getWriter().print(0);
-			}
-
-		}
-		
-		//개인정보수정
-		@RequestMapping(value="buyermypage_updateinfo", method=RequestMethod.POST)
-		public void BuyerMypageUpdateInfoPost(@RequestBody BuyerVO vo, HttpServletResponse response) throws IOException{
-			System.out.println("vo: " +vo.getB_id()+"/"+vo.getB_pw()+"/"+vo.getB_email());
-			
-			int result = buyerService.updateBuyerInfo(vo);
-			System.out.println("결과:"+result);
-			if(result == 1) {
-				response.getWriter().print(1);
-			}else {
-				response.getWriter().print(0);
-			}		
-		}*/
-	
-
 		//구매자가 qna를 등록하기위한 페이지 띄움
 		@RequestMapping(value="insertQnA", method=RequestMethod.GET)
 		public void insertQnA(int p_no, String b_id, Model model) {
@@ -436,6 +398,136 @@ public class BuyerController {
 				response.getWriter().print(0);
 				logger.info("세션 비우기 실패!");
 			}
+		}
+		
+		//구매자 아이디 찾기
+		@RequestMapping(value="findID", method = RequestMethod.GET)
+		public void findbuyerID(){
+
+		}
+		
+		//구매자 비밀번호 찾기
+		@RequestMapping(value="findpw", method = RequestMethod.GET)
+		public void findbuyerPW(){
+
+		}
+		
+		// ** 구매자 회원가입 _이메일 인증
+		// 이메일 인증번호 발송
+		@RequestMapping(value = "checkemailforid", method = RequestMethod.POST)
+		public void checkEmail(@RequestBody BuyerVO vo, HttpServletResponse response) throws IOException {
+			logger.info("email: " + vo.getB_email()+"/name: " +vo.getB_name());
+			System.out.println("email: " + vo.getB_email()+"/name: " +vo.getB_name());
+			//System.out.println(buyerService.findId(vo)+"/"+buyerService.findId(vo).isEmpty());
+			// true면 db에서 일치하는 정보가 없을때임
+			BuyerVO result = buyerService.findId(vo);
+			//buyerService.findId(vo).equals("")
+			if(result == null) {
+				response.getWriter().print(0);
+			} else{
+				// @ converted to %40 in HTTPPost request
+				String convert_email = URLDecoder.decode(vo.getB_email(), "UTF-8");
+
+				// 필요없는 문자열을 제거
+				String b_email = convert_email.substring(0, convert_email.length() - 1);
+
+				// 4자리 인증번호 생성
+				// 1. 0~9999 까지의 난수를 발생시킨 후 1~3자리 수를 없애기위해 1000을 더해준다 (1000~10999)
+				// 2. 다섯자리가 넘어가면 1000을 빼준다.
+				int code = (int) (Math.random() * 10000 + 1000);
+				if (code > 10000) {
+					code = code - 1000;
+				}
+
+				SimpleMailMessage message = new SimpleMailMessage();
+				message.setTo(b_email); // 받는 이메일 등록
+
+				logger.info("메일 주소 : " + b_email);
+
+				message.setSubject("쇼핑몰 인증번호"); // 이메일 제목
+				message.setText("본인인증번호는 [ " + code + " ] 입니다. 정확히 입력해주세요"); // 이메일 내용
+
+				logger.info("보낸 코드 : " + code);
+				mailSender.send(message); // 이메일 전송
+
+				response.getWriter().print(code);
+
+			};
+
+		}
+		
+		// ** 구매자 회원가입 _이메일 인증 비밀번호 찾기
+			// 이메일 인증번호 발송
+			@RequestMapping(value = "checkemailforpw", method = RequestMethod.POST)
+			public void checkEmailforPW(@RequestBody BuyerVO vo, HttpServletResponse response) throws IOException {
+				logger.info("email: " + vo.getB_email()+"/id: " +vo.getB_id());
+				System.out.println("email: " + vo.getB_email()+"/name: " +vo.getB_id());
+				//System.out.println(buyerService.findId(vo)+"/"+buyerService.findId(vo).isEmpty());
+				// true면 db에서 일치하는 정보가 없을때임
+				BuyerVO result = buyerService.findPw(vo);
+				//buyerService.findId(vo).equals("")
+				if(result == null) {
+					response.getWriter().print(0);
+				} else{
+					// @ converted to %40 in HTTPPost request
+					String convert_email = URLDecoder.decode(vo.getB_email(), "UTF-8");
+
+					// 필요없는 문자열을 제거
+					String b_email = convert_email.substring(0, convert_email.length() - 1);
+
+						// 4자리 인증번호 생성
+						// 1. 0~9999 까지의 난수를 발생시킨 후 1~3자리 수를 없애기위해 1000을 더해준다 (1000~10999)
+						// 2. 다섯자리가 넘어가면 1000을 빼준다.
+					int code = (int) (Math.random() * 10000 + 1000);
+					if (code > 10000) {
+						code = code - 1000;
+					}
+					SimpleMailMessage message = new SimpleMailMessage();
+					message.setTo(b_email); // 받는 이메일 등록
+
+					logger.info("메일 주소 : " + b_email);
+
+					message.setSubject("쇼핑몰 인증번호"); // 이메일 제목
+					message.setText("본인인증번호는 [ " + code + " ] 입니다. 정확히 입력해주세요"); // 이메일 내용
+
+					logger.info("보낸 코드 : " + code);
+					mailSender.send(message); // 이메일 전송
+
+					response.getWriter().print(code);
+
+				};
+
+			}
+		
+		@RequestMapping(value="findidforlogin")
+		public void findlogin(BuyerVO vo, Model model) {
+			System.out.println("findidlogin" +vo.getB_name()+"/"+vo.getB_email());
+			BuyerVO vo1 = buyerService.findId(vo);
+			System.out.println("after: "+vo1.getB_id()+"/"+vo1.getB_birth());
+			model.addAttribute("vo", vo1);
+			//model.addAttribute("b_reg", vo1.getB_reg());
+		}
+		
+		//pw재설정하는 페이지로 이동
+		@RequestMapping(value="findpwforupdate")
+		public void findpwupdate(BuyerVO vo, Model model) {
+			System.out.println("findpwupdate" +vo.getB_id()+"/"+vo.getB_email());
+			BuyerVO vo1 = buyerService.findPw(vo);
+			System.out.println("after: "+vo1.getB_id()+"/"+vo1.getB_birth());
+			model.addAttribute("vo", vo1);
+			
+		}
+		
+		@RequestMapping(value="findpwforupdate", method=RequestMethod.POST)
+		public void findpwupdatePOST(@RequestBody BuyerVO vo, HttpServletResponse response) throws IOException {
+			System.out.println("findpwupdatePOST/ " +vo.getB_id()+"/"+vo.getB_pw());
+			int result = buyerService.updatePw(vo);
+			//System.out.println("after: "+vo1.getB_id()+"/"+vo1.getB_birth());
+			if(result == 1) {
+				response.getWriter().print(1);
+			}else {
+				response.getWriter().print(0);
+			}				
 		}
 		
 } // end class

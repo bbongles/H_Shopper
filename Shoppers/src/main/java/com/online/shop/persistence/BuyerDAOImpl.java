@@ -137,4 +137,21 @@ public class BuyerDAOImpl implements BuyerDAO{
 		return sqlSession.delete(NAMESPACE+".delete-buyer", b_id);
 	}
 	
+	@Override
+	public BuyerVO findId(BuyerVO vo) {
+		System.out.println("findId");
+		BuyerVO result = sqlSession.selectOne(NAMESPACE+".buyer-find-id", vo);
+		System.out.println(result.getB_id());
+		return  result;
+	}
+	
+	@Override
+	public BuyerVO findPw(BuyerVO vo) {
+		return sqlSession.selectOne(NAMESPACE+".buyer-find-pw", vo);
+	}
+	
+	@Override
+	public int updatepw(BuyerVO vo) {
+		return sqlSession.update(NAMESPACE+".update-buyer-pw", vo);
+	}
 }

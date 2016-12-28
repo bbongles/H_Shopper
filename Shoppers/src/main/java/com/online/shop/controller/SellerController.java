@@ -2,6 +2,7 @@ package com.online.shop.controller;
 
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.online.shop.domain.BuyerVO;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -390,6 +393,138 @@ public class SellerController {
 			response.getWriter().print(0);
 			logger.info("세션 비우기 실패!");
 		}
-	}	
+	}
+	
+	//판매자 아이디 찾기
+	@RequestMapping(value="findID", method = RequestMethod.GET)
+	public void findsellerID(){
+
+	}
+	
+	//판매자 비밀번호 찾기
+	@RequestMapping(value="findpw", method = RequestMethod.GET)
+	public void findsellerPW(){
+
+	}
+	
+	// ** 판매자 아이디찾기 이메일 인증
+	// 이메일 인증번호 발송
+	@RequestMapping(value = "checkemailforid", method = RequestMethod.POST)
+	public void checkEmail(@RequestBody SellerVO vo, HttpServletResponse response) throws IOException {
+		logger.info("email: " + vo.getS_email()+"/name: " +vo.getS_name());
+		
+		//System.out.println(buyerService.findId(vo)+"/"+buyerService.findId(vo).isEmpty());
+		// true면 db에서 일치하는 정보가 없을때임
+		SellerVO result = sellerService.findId(vo);
+		//System.out.println("email: " + result.getS_email()+"/name: " +result.getS_name());
+		//buyerService.findId(vo).equals("")
+		
+		if(result == null) {
+			response.getWriter().print(0);
+		} else{
+			// @ converted to %40 in HTTPPost request
+			String convert_email = URLDecoder.decode(vo.getS_email(), "UTF-8");
+
+			// 필요없는 문자열을 제거
+			String b_email = convert_email.substring(0, convert_email.length() - 1);
+
+			// 4자리 인증번호 생성
+			// 1. 0~9999 까지의 난수를 발생시킨 후 1~3자리 수를 없애기위해 1000을 더해준다 (1000~10999)
+			// 2. 다섯자리가 넘어가면 1000을 빼준다.
+			int code = (int) (Math.random() * 10000 + 1000);
+			if (code > 10000) {
+				code = code - 1000;
+			}
+
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setTo(b_email); // 받는 이메일 등록
+
+			logger.info("메일 주소 : " + b_email);
+
+			message.setSubject("쇼핑몰 인증번호"); // 이메일 제목
+			message.setText("본인인증번호는 [ " + code + " ] 입니다. 정확히 입력해주세요"); // 이메일 내용
+
+			logger.info("보낸 코드 : " + code);
+			mailSender.send(message); // 이메일 전송
+
+			response.getWriter().print(code);
+
+		};
+
+	}
+	
+	// ** 판매자 이메일 인증 비밀번호 찾기
+		// 이메일 인증번호 발송
+		@RequestMapping(value = "checkemailforpw", method = RequestMethod.POST)
+		public void checkEmailforPW(@RequestBody SellerVO vo, HttpServletResponse response) throws IOException {
+			logger.info("email: " + vo.getS_email()+"/name: " +vo.getS_id());
+			System.out.println("email: " + vo.getS_email()+"/name: " +vo.getS_id());
+			//System.out.println(buyerService.findId(vo)+"/"+buyerService.findId(vo).isEmpty());
+			// true면 db에서 일치하는 정보가 없을때임
+			SellerVO result = sellerService.findPw(vo);
+			//buyerService.findId(vo).equals("")
+			if(result == null) {
+				response.getWriter().print(0);
+			} else{
+				// @ converted to %40 in HTTPPost request
+				String convert_email = URLDecoder.decode(vo.getS_email(), "UTF-8");
+
+				// 필요없는 문자열을 제거
+				String b_email = convert_email.substring(0, convert_email.length() - 1);
+
+					// 4자리 인증번호 생성
+					// 1. 0~9999 까지의 난수를 발생시킨 후 1~3자리 수를 없애기위해 1000을 더해준다 (1000~10999)
+					// 2. 다섯자리가 넘어가면 1000을 빼준다.
+				int code = (int) (Math.random() * 10000 + 1000);
+				if (code > 10000) {
+					code = code - 1000;
+				}
+				SimpleMailMessage message = new SimpleMailMessage();
+				message.setTo(b_email); // 받는 이메일 등록
+
+				logger.info("메일 주소 : " + b_email);
+
+				message.setSubject("쇼핑몰 인증번호"); // 이메일 제목
+				message.setText("본인인증번호는 [ " + code + " ] 입니다. 정확히 입력해주세요"); // 이메일 내용
+
+				logger.info("보낸 코드 : " + code);
+				mailSender.send(message); // 이메일 전송
+
+				response.getWriter().print(code);
+
+			};
+
+		}
+	
+	@RequestMapping(value="findidforlogin")
+	public void findlogin(SellerVO vo, Model model) {
+		System.out.println("findidlogin" +vo.getS_name()+"/"+vo.getS_email());
+		SellerVO vo1 = sellerService.findId(vo);
+		//System.out.println("after: "+vo1.getB_id()+"/"+vo1.getB_birth());
+		model.addAttribute("s_id", vo1.getS_id());
+		model.addAttribute("s_birth", vo1.getS_birth());
+	}
+	
+	//pw재설정하는 페이지로 이동
+	@RequestMapping(value="findpwforupdate")
+	public void findpwupdate(SellerVO vo, Model model) {
+		System.out.println("findpwupdate" +vo.getS_id()+"/"+vo.getS_email());
+		SellerVO vo1 = sellerService.findPw(vo);
+		System.out.println("after: "+vo1.getS_id()+"/"+vo1.getS_birth());
+		model.addAttribute("vo", vo1);
+		
+	}
+	
+	@RequestMapping(value="findpwforupdate", method=RequestMethod.POST)
+	public void findpwupdatePOST(@RequestBody SellerVO vo, HttpServletResponse response) throws IOException {
+		System.out.println("findpwupdatePOST/ " +vo.getS_id()+"/"+vo.getS_pw());
+		int result = sellerService.updatePw(vo);
+		//System.out.println("after: "+vo1.getB_id()+"/"+vo1.getB_birth());
+		if(result == 1) {
+			response.getWriter().print(1);
+		}else {
+			response.getWriter().print(0);
+		}				
+	}
 	
 } // end class SellerController

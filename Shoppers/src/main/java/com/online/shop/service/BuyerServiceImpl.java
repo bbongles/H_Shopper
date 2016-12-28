@@ -102,4 +102,20 @@ public class BuyerServiceImpl implements BuyerService {
 	public int deletebuyer(String b_id) {
 		return dao.deleteBuyer(b_id);
 	}
+	
+	@Override
+	public BuyerVO findId(BuyerVO vo) {
+		return dao.findId(vo);
+	}
+	
+	@Override
+	public BuyerVO findPw(BuyerVO vo) {
+		return dao.findPw(vo);
+	}
+	
+	@Override
+	public int updatePw(BuyerVO vo) {
+		return dao.updatepw(vo);
+	}
+	
 }
