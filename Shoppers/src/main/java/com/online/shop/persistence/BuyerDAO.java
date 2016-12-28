@@ -48,5 +48,11 @@ public interface BuyerDAO {
 	//구매자 회원 탈퇴
 	public abstract int deleteBuyer(String b_id);
 	
+	//구매자 아이디 찾기
+	public abstract BuyerVO findId(BuyerVO vo);
+	//구매자 비밀번호 재설정을 위한 인증
+	public abstract BuyerVO findPw(BuyerVO vo);
 	
+	//구매자 비밀번호 재설정
+	public abstract int updatepw(BuyerVO vo);
 }

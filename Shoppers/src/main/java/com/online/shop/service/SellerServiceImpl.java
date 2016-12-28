@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.online.shop.domain.BuyerVO;
 import com.online.shop.domain.CartandBuy;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
@@ -193,6 +194,21 @@ public class SellerServiceImpl implements SellerService {
 	@Override
 	public int deleteSeller(String s_id) {
 		return sellerDao.deleteSeller(s_id);
+	}
+	
+	@Override
+	public SellerVO findId(SellerVO vo) {
+		return sellerDao.findId(vo);
+	}
+	
+	@Override
+	public SellerVO findPw(SellerVO vo) {
+		return sellerDao.findPw(vo);
+	}
+	
+	@Override
+	public int updatePw(SellerVO vo) {
+		return sellerDao.updatepw(vo);
 	}
 	
 } // end class SellerServiceImpl

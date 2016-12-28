@@ -274,4 +274,20 @@ public class SellerDAOImpl implements SellerDAO {
 			
 			return sqlSession.update(NAMESPACE+".delete-seller", s_id);
 		}
+		
+		@Override
+		public SellerVO findId(SellerVO vo) {
+			
+			return sqlSession.selectOne(NAMESPACE+".seller-find-id", vo);
+		}
+		@Override
+		public SellerVO findPw(SellerVO vo) {
+			
+			return sqlSession.selectOne(NAMESPACE+".seller-find-pw", vo);
+		}
+		@Override
+		public int updatepw(SellerVO vo) {
+			
+			return sqlSession.update(NAMESPACE+".update-seller-pw", vo);
+		}
 } // end class SellerDAOImpl

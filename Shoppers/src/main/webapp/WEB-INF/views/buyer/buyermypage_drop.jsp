@@ -28,11 +28,11 @@
 		<!--[if lt IE 9]>			
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 			<script src="js/respond.min.js"></script>
-		<![endif]-->
+		<![endif]--> 
 	</head>
     <body>		
 		<div id="top-bar" class="container">
-			<div class="row">	
+			<div class="row">
 				<div class="span4">
 					<form method="POST" class="search_form">
 						<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
@@ -41,11 +41,9 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<!-- ------------------셀러 입장 시작 - 수용이가 수정할 때 참고할 부분---------------------- -->
-							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
-								<li><a href="sellermypage">My Page</a></li>
-								<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li>
-								<!-- 마이홈은 판매자홈 말하는거임 -->
+								<c:if test="${not empty b_login_id }">
+							<li><a href="../mypage/buyermypage">My Page</a></li>	
+							<li><a href="../cart/selectCart">Cart</a></li>
 							</c:if>
 							<c:if test="${empty s_login_id && empty b_login_id }">
 								<c:url value="login" var="login" />
@@ -55,16 +53,16 @@
 								<!-- 세션에 로그인 정보가 있는 경우 -->
 								<c:url value="../logout" var="logout" />
 								<li><a href="${logout }">Logout</a></li>		
-							</c:if>	
+							</c:if>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="wrapper" class="container">
-			<section class="navbar main-menu">     
+			<section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="../seller/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
+					<a href="/shop/buyer/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
 							<li><a href="../products?p_cate1=home_deco">Home / Deco</a>					
@@ -103,7 +101,7 @@
 		<section class="header_text sub">
 		 
 			<h3 class="titlem"> 
-				<span><a href="sellermypage"><strong>MY</strong>  페이지</a></span>  
+				<span><a href="buyermypage"><strong>MY</strong>  페이지</a></span>  
 			</h3> 
 			
 		</section>
@@ -114,21 +112,19 @@
 				<div class="span5 sp"> 
 				
 					<h3 class="title">
-						<span class="text"><strong>판매</strong> 정보</span>
+						<span class="text"><strong>구매</strong> 정보</span>
 					</h3>
 					<form action="#" method="post">
 						<input type="hidden" name="next" value="/">
 						<fieldset>
 							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_order" id="test">주문 요청 조회</a></label>
+								<label class="control-label"><a href="buyermypage_orderlist" id="test">주문 배송 조회</a></label>
 
 							</div>
 							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_complete">판매 내역</a></label>
+								<label class="control-label"><a href="buyermypage_completelist">구매 내역</a></label>
 							</div>
-							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_product">상품 등록 내역</a></label>
-							</div>
+							
 							</fieldset>
 							
 							
@@ -138,55 +134,54 @@
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">개인 정보 수정</a></label>
+									href="buyermypage_updateinfo?b_id=${b_login_id }">개인 정보 수정</a></label>
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">회원 탈퇴</a></label>
+									href="javascript:window.location.reload(true);">회원 탈퇴</a></label>
 							</div>
 							
 							<hr>
 						</fieldset>
 					</form>
-				</div>
+				</div> 	
 				
 				<div id="maindi" class="span7">
 					<h3 class="title">
-						<span class="text"><strong>주문 요청</strong> 조회</span>
+						<span class="text"><strong>회원 </strong> 탈퇴</span>
 					</h3>
-					
-					<form action="#" method="post" class="form-stacked">
-						<fieldset class="om">
-							<div class="control-buyer">
-								
-								
-							</div> 
-							<div id="maindiv" class="control-group">
-							<table id="completet" class="completetd">
-									<caption>
-										<b>판매 내역</b>
-									</caption>
-									<tr>
-										<th>주문번호</th>
-										<th>주문일자</th>
-										<th>상품명(옵션)</th>
-										<th>구매자 ID</th>
-										<th>주문상태</th>
-									</tr>
-									
-							</table>
-			
-							
-							
-							
-							
-							</div>
-
-
+					<div class = "firstdiv">
+						<label for="b_id_first">아이디</label> 
+						<input required name="b_id_first" type="text" class="input-xlarge"
+						minlength="4" maxlength="16" id="b_id_first" value="${buyerInfo.b_id }" readonly/>
+											
+						<label for="b_pw_first">비밀번호 입력</label> 
+						<input required name="b_pw_first" type="password" class="input-xlarge"
+						minlength="4" maxlength="16" id="b_pw_first" style="font-family: verdana" placeholder="비밀번호" />
+						<br/>
 						
-
-						</fieldset>
-					</form> 
+						<button type="button" id="btnfirst">확인</button>
+					</div>
+					
+					<section class="main-content" style="display: none;">
+					
+					<div>
+					사용하고 계신 아이디<strong>(${b_login_id })</strong>는 탈퇴할 경우 재사용 및 복구가 불가능합니다.
+					<br/>
+					<strong style="color: red;">탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가</strong>하오니 신중하게 선택하시기 바랍니다.
+					</div>
+					<br/>
+					<div style="color: red;">
+					탈퇴 후에는 아이디 <strong> (${b_login_id }) </strong>로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다. 
+					<br/>게시판형 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다.
+					<br/>또한, 쇼핑몰 아이디를 사용해 다른 서비스에 로그인 할 수 없게 됩니다.
+					</div>
+					<br/>
+					<input type="checkbox" id="chkdrop" required />
+					<label for="chkdrop" style="display: inline;">안내 사항을 모두 확인하였으며, 이에 동의합니다.</label><br/>
+					<button class="btn" id="btndrop" type="button">회원 탈퇴</button>
+					
+					</section>
 					
 						<hr>
 				</div>
@@ -230,51 +225,75 @@
 				<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 			</section>
 	</div>
-	
-<input type="hidden" value="${s_login_id}" id="s_login_id">
+	<input type="hidden" value="${b_login_id}" id="b_login_id">
+
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-	var s_id = $("#s_login_id").val();
-
-	getCompletelist();
+	var b_id = $("#b_login_id").val();
 	
-	function getCompletelist() {
-		var url = '/shop/sellerid/all6/' + s_id;
-		$.getJSON(url, function(data) {
-			var td = '';
-			
-			
-			$(data).each(function(){ 
-				console.log(this);
-				var date = new Date(this.buy_date);
-				var year = date.getFullYear();
-				var month = date.getMonth();
-				var day = date.getDate();
-				var dateString = year + '년' + month + '월' + day + '일';
-				
-				var a = ''; 
-				if (this.buy_status == 4){
-					a = '배송중'
-				} else if (this.buy_status == 5){
-					a = '배송완료'
+	$('#btnfirst').click(function() {
+		var b_pw = $("#b_pw_first").val();
+		var b_id = $('#b_id_first').val();
+		$.ajax({
+			type : 'post',
+			url : 'b_checkpw',
+			headers:{
+	             'Content-Type': 'application/json',
+	             'X-HTTP-Method-Override': 'POST'
+	         },
+			data : JSON.stringify({
+				b_pw: b_pw,
+				b_id: b_id,
+	         }),
+			success : function(result) {
+				if (result == 1) {
+					$('.firstdiv').hide();
+					$('.main-content').show();
+				} else {
+					alert('비밀번호가 틀렸습니다.');
+					location.reload();
 				}
-				 
-				
-				 td += '<tr><td>' + this.buy_no + '</td>'
-					+ '<td>' + dateString + '</td>'
-					+ '<td>' + this.p_name + '&emsp;(' + this.o_cont + ')</td>'
-				+ '<td>' + this.b_id + '&emsp;</td>'
-				+ '<td>' + a + '</td></tr>';
-				
-				
-			});
-			
-			$('#completet > tbody:last').append(td);
+			}
 		});
-	};  
+		
+	})
 	
+	$('#btndrop').click(function() {
+		
+		if ($("input:checkbox[id='chkdrop']").is(":checked")) {
+			
+			var b_id = $('#b_id_first').val();
+
+			$.ajax({
+				type : 'put',
+				url : 'buyermypage_drop_commit',
+				headers:{
+		             'Content-Type': 'application/json',
+		             'X-HTTP-Method-Override': 'PUT'
+		         },
+				data : JSON.stringify({
+					b_id: b_id
+		         }),
+				success : function(result) {
+					if (result == 1) {
+						alert('회원 탈퇴 성공하였습니다.');
+						location = '../';
+						//location.replace = '../';
+						document.location.replace("../");
+						
+					} else {
+						alert('회원 탈퇴 실패하였습니다.');
+						location.reload();
+					}
+				}
+			});
+		} else {
+			alert('체크안됨');
+		}
+		
+	})
 	
 	
 });

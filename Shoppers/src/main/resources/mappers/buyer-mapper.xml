@@ -33,4 +33,17 @@
 		delete from s_tbl_buyer where b_id = #{b_id}
 	</delete>
 
+<!-- id/pw 찾기 sql문 -->
+	<select id="buyer-find-id" resultType="BuyerVO">
+	select * from s_tbl_buyer where b_name = #{b_name} and b_email = #{b_email}
+	</select>
+
+	<select id="buyer-find-pw" resultType="BuyerVO">
+	select * from s_tbl_buyer where b_id = #{b_id} and b_email = #{b_email}
+	</select>
+	
+	<update id="update-buyer-pw">
+		update s_tbl_buyer set B_PW = #{b_pw} where B_ID = #{b_id}
+	</update>
+	
  </mapper>

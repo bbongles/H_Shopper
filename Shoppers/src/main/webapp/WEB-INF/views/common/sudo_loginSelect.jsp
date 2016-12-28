@@ -313,8 +313,9 @@
 											name="query" value="<%=request.getQueryString()%>" />
 										<hr>
 										<p class="reset">
-											구매자 <a tabindex="4" href="#"
-												title="Recover your username or password">아이디/비밀번호 찾기</a>
+											구매자 <a tabindex="4" href="buyer/findID"
+												title="Recover your username or password">아이디</a>/<a tabindex="4" href="buyer/findpw"
+												title="Recover your username or password">비밀번호 찾기</a>
 										</p>
 									</div>
 								</fieldset>
@@ -344,8 +345,9 @@
 											type="submit" value="판매자 로그인">
 										<hr>
 										<p class="reset">
-											판매자 <a tabindex="4" href="#"
-												title="Recover your username or password">아이디/비밀번호 찾기</a>
+											판매자 <a tabindex="4" href="seller/findID"
+												title="Recover your username or password">아이디</a>/<a tabindex="4" href="seller/findpw"
+												title="Recover your username or password">비밀번호 찾기</a>
 										</p>
 									</div>
 								</fieldset>
