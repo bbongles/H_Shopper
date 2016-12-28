@@ -17,25 +17,29 @@ public interface ProductDAO {
 	public abstract int deleteOptionByPno(int p_no);
 	public abstract int deleteImageByPno(int p_no);
 	public abstract int deleteProductByPno(int p_no);
+	public abstract ProductVO selectProductByPno(int p_no);
+	public abstract List<OptionVO> selectOptionByPno(int p_no);
+	public abstract List<ImageVO> selectImageByPno(int p_no);
+	public abstract int updateProductByPno(ProductVO pVo);
 	
 	// 상품 카테고리 검색 추가 by 김태훈
 	public abstract List<ProductVO> selectProductCate(String p_cate2);
 	
 	// 전체 검색을 위한 select문
-		public abstract List<ProductVO> select();
+	public abstract List<ProductVO> select();
 
-		public abstract List<ProductVO> selectAcc();
+	public abstract List<ProductVO> selectAcc();
 
-		// 페이징 처리가 되는 select문
-		public abstract List<ProductVO> select(PageCriteria cri);
-		// 페이징 처리를 위한 전체 페이지수 검색
-		public abstract int getNumOfRecords();
-		// 검색 기능이 되는 select문
-		public abstract List<ProductVO> select(SearchPageCriteria cri);
-		// 검색후 페이징 처리를 위한 전체 페이지수 검색
-		public abstract int listSearchCount(SearchPageCriteria cri);
-		
-		// 승인 처리
-		public abstract int update(int pno);
+	// 페이징 처리가 되는 select문
+	public abstract List<ProductVO> select(PageCriteria cri);
+	// 페이징 처리를 위한 전체 페이지수 검색
+	public abstract int getNumOfRecords();
+	// 검색 기능이 되는 select문
+	public abstract List<ProductVO> select(SearchPageCriteria cri);
+	// 검색후 페이징 처리를 위한 전체 페이지수 검색
+	public abstract int listSearchCount(SearchPageCriteria cri);
+
+	// 승인 처리
+	public abstract int update(int pno);
 	
 } // end interface ProductDAO

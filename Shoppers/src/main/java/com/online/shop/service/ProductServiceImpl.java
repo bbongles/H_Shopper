@@ -61,6 +61,30 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
+	public ProductVO readProductByPno(int p_no) {
+		
+		return productDao.selectProductByPno(p_no);
+	}
+	
+	@Override
+	public List<OptionVO> readOptionByPno(int p_no) {
+		
+		return productDao.selectOptionByPno(p_no);
+	}
+	
+	@Override
+	public List<ImageVO> readImageByPno(int p_no) {
+		
+		return productDao.selectImageByPno(p_no);
+	}
+
+	@Override
+	public int updateProductByPno(ProductVO pVo) {
+	
+		return productDao.updateProductByPno(pVo);
+	}
+	
+	@Override
 	public List<ProductVO> selectCate2(String p_cate2) {
 		return productDao.selectProductCate(p_cate2);
 	}
@@ -100,6 +124,7 @@ public class ProductServiceImpl implements ProductService {
 		public int productAcc(int pno) {
 			return productDao.update(pno);
 		}
+
 
 
 

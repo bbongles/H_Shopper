@@ -84,6 +84,34 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.delete(NAMESPACE + ".deleteProductByPno", p_no);
 	}
 	
+	@Override
+	public ProductVO selectProductByPno(int p_no) {
+		logger.info("selectProductByPno(): p_no = " + p_no);
+		
+		return sqlSession.selectOne(NAMESPACE + ".selectProductByPno", p_no);
+	}
+	
+	@Override
+	public List<OptionVO> selectOptionByPno(int p_no) {
+		logger.info("selectOptionByPno(): p_no = " + p_no);
+		
+		return sqlSession.selectList(NAMESPACE + ".selectOptionByPno", p_no);
+	}
+	
+	@Override
+	public List<ImageVO> selectImageByPno(int p_no) {
+		logger.info("selectImageByPno(): p_no = " + p_no);
+		
+		return sqlSession.selectList(NAMESPACE + ".selectImageByPno", p_no);
+	}
+	
+	@Override
+	public int updateProductByPno(ProductVO pVo) {
+		logger.info("updateProductByPno() p_no = " + pVo.getP_no());
+		
+		return sqlSession.update(NAMESPACE + ".updateProductByPno", pVo);
+	}
+	
 	// 김태훈
 	@Override
 	public List<ProductVO> selectProductCate(String p_cate2) {

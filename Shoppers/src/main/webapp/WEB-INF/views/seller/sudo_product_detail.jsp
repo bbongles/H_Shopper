@@ -688,6 +688,7 @@
 						<!--  삭제버튼  -->
 						<!-- 김태훈 코드2............ 로그인한 아이디랑 상품등록 아이디가 같을때만 보임-->
 						<c:if test="${s_login_id eq productVO.s_id}">
+						<input class="btn btn-inverse" type="button" id="modiProduct" value="Modify" />
 						<input class="btn btn-inverse" type="button" id="delProduct" value="Delete" />
 						</c:if>
 						<!-- 김태훈 코드2............ -->
@@ -866,7 +867,17 @@
 		</script>
 		
 		<script>
-	    	// 게시글 삭제
+	    	// 상품 수정
+	    	$('#modiProduct').click(function() {
+	    		var result = confirm('정말 수정하시겠습니까?');
+	    		if (result == true) {
+	    			$('#frm').attr('action', 'pUpdate');
+	    			$('#frm').attr('method', 'get');
+	    			$('#frm').submit();
+	    		}
+	    	});
+		
+			// 상품 삭제
 		    $('#delProduct').click(function() {
 		    	var result = confirm('정말 삭제하시겠습니까?');
 		    	if (result == true) {
