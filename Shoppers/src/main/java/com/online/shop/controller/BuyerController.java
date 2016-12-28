@@ -337,8 +337,10 @@ public class BuyerController {
 	@RequestMapping(value = "insertQnA", method = RequestMethod.GET)
 	public void insertQnA(int p_no, String b_id, Model model) {
 		System.out.println("insertQnA GET/" + b_id);
+		BuyerVO vo = buyerService.read(b_id);
 		model.addAttribute("p_no", p_no);
-		model.addAttribute("b_id", b_id);
+		model.addAttribute("vo", vo);
+		//model.addAttribute("b_id", b_id);
 	}
 
 	// 구매자가 qna를 작성하고 등록버튼을 클릭했을때 처리
