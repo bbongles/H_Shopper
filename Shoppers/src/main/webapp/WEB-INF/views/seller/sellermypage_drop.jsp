@@ -129,25 +129,21 @@
 							</div>
 							</fieldset>
 							
-							
-<h3 class="title">
-						<span class="text"><strong>판매</strong> 정보</span>
-					</h3>
-					<form action="#" method="post">
-						<input type="hidden" name="next" value="/">
+				<h3 class="title">
+					<span class="text"><strong>개인</strong> 정보</span>
+				</h3>
 						<fieldset>
 							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_order" id="test">주문 요청 조회</a></label>
-
+								<label class="control-label"><a
+									href="sellermypage_updateinfo?s_id=${s_login_id }">개인 정보 수정</a></label>
 							</div>
 							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_complete">판매 내역</a></label>
+								<label class="control-label"><a
+									href="javascript:window.location.reload(true);">회원 탈퇴</a></label>
 							</div>
-							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_product">상품 등록 내역</a></label>
-							</div>
-							</fieldset>
-					</form>
+							
+							<hr>
+						</fieldset>
 				</div> 	
 				
 				<div id="maindi" class="span7">

@@ -273,7 +273,7 @@ $(document).ready(function() {
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="<c:url value='/resources/css/findidjs.js?ver=9' />"></script>
+<script src="<c:url value='/resources/css/findidjs.js?ver=8' />"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
