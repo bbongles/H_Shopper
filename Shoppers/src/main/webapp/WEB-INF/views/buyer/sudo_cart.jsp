@@ -421,7 +421,7 @@
 				<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 			</section>
 		</div>
-		
+		<a href="javascript:window.location.replace('buyer/selectCart');"></a>
 		<!-- 김태훈 백버튼 리프레시 -->
 		<input type="hidden" id="refreshed" value="no" style="display: none">
 		<script src="resources/themes/js/common.js"></script>
@@ -429,6 +429,7 @@
 			$(document).ready(function() {
 				$('#checkout').click(function (e) {
 					document.location.href = "checkout.html";
+					document.location.replace("../");
 				})
 			});
 		</script>	

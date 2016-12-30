@@ -24,7 +24,7 @@
 <link href="<c:url value='/resources/themes/css/flexslider.css' />"
 	rel="stylesheet" />
 <link href="<c:url value='/resources/themes/css/main.css' />"
-	rel="stylesheet" />
+	rel="stylesheet" />	
 
 <!-- scripts -->
 <script src="<c:url value='/resources/themes/js/jquery-1.7.2.min.js' />"></script>
@@ -34,10 +34,13 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script>
 
 var autcheck1 = false;
-var autcheck2 = false;
+var pwError = false;
+var idError = false;
 
 	/* 구매자 비밀번호 확인 */
 	function b_checkPass() {
@@ -49,11 +52,11 @@ var autcheck2 = false;
 		if (pass1.value == pass2.value) {
 			message.style.color = goodColor;
 			message.innerHTML = "일치합니다"
-				autcheck1 = true;
+				pwError = true;
 		} else {
 			message.style.color = badColor;
 			message.innerHTML = "패스워드가 일치하지 않습니다.!"
-				autcheck1 = false;
+				pwError = false;
 		}
 	}
 
@@ -115,12 +118,12 @@ var autcheck2 = false;
 						$("#b_duplicationCheckResult").html("중복된 아이디입니다.");
 						$("#b_duplicationCheckResult").css("color", "red");
 						$("#b_id").css("color", "red");
-						autcheck1 = false;
+						idError = false;
 					} else {
 						$("#b_duplicationCheckResult").html("사용 가능한 아이디입니다.");
 						$("#b_duplicationCheckResult").css("color", "green");
 						$("#b_id").css("color", "green");
-						autcheck1 = true;
+						idError = true;
 					}
 				}
 			});
@@ -177,7 +180,13 @@ var autcheck2 = false;
 	$(document).ready(function() {
 		$('#fileForm1').submit(function() {
 			if (autcheck1 != true) {
-				alert('메일인증/아이디중복/비밀번호일치 여부를 확인해주세요...')
+				alert('메일인증 여부를 확인해주세요...')
+				return false;
+			} else if (idError != true) {
+				alert('아이디가 중복됩니다..')
+				return false;
+			} else if (pwError != true) {
+				alert('비밀번호가 일치하지 않습니다..')
 				return false;
 			} else {
 				return true;
@@ -217,16 +226,6 @@ input.radio {
   clear: none;
   margin: 2px 0 0 2px;
 }
-
-
-
-</style>
-<!-- 7777777777777777777777 -->
-
-
-
-<!--  TEST -->
-<style>
 
 
 </style>
@@ -370,7 +369,7 @@ input.radio {
 												</div>
 											</div><!-- ### 완료 ###-->
 									
-											 -->
+						
 											 <div class="control-group">
 											 	<label for="b_pw">비밀번호 </label> 
 											 	<div class="controls">
@@ -562,5 +561,9 @@ input.radio {
 			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
+	
+
+
+	
 </body>
 </html>
