@@ -808,6 +808,7 @@ public class HomeController {
 		return "/visitor/sudo_seller_home";
 	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
 	
+	// 검색
 	@RequestMapping(value="search_form", method=RequestMethod.POST)
 	public String search_form(String searching, Model model){
 		logger.info("검색어 : "+searching);

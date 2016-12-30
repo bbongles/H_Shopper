@@ -42,8 +42,8 @@
 					<div class="account pull-right">
 						<ul class="user-menu">				
 							<c:if test="${not empty b_login_id }">
-							<li><a href="../mypage/buyermypage">My Page</a></li>	
-							<li><a href="../cart/selectCart">Cart</a></li>
+							<li><a href="../buyer/buyermypage">My Page</a></li>	
+							<li><a href="../buyer/selectCart">Cart</a></li>
 							</c:if>
 							<c:if test="${empty s_login_id && empty b_login_id }">
 								<c:url value="login" var="login" />
