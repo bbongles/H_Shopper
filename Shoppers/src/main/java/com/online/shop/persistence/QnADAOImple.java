@@ -28,6 +28,13 @@ public class QnADAOImple implements QnADAO {
 			return session.selectList(NAMESPACE + ".select-qna", p_no);
 		}
 
+	// 수용
+	@Override
+	public List<QnaVO> selecthome_selectQna(String s_id) {
+		// TODO Auto-generated method stub
+		return session.selectList(NAMESPACE + ".sellerhome_select-qna", s_id);
+	}
+	
 	@Override
 	public int insertQnAR(QnaRVO vo) {
 		int result = 0;

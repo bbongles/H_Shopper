@@ -35,8 +35,9 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 
-var autcheck1 = false;
 var autcheck2 = false;
+var pwError = false;
+var idError = false;
 
 	/* 판매자 비밀번호 확인 */
 	function s_checkPass() {
@@ -48,10 +49,11 @@ var autcheck2 = false;
 		if (pass1.value == pass2.value) {
 			message.style.color = goodColor;
 			message.innerHTML = "일치합니다"
+			pwError = true;
 		} else {
 			message.style.color = badColor;
 			message.innerHTML = "패스워드가 일치하지 않습니다.!"
-			autcheck2=false;
+			pwError = false;
 		}
 	}
 
@@ -113,12 +115,12 @@ var autcheck2 = false;
 						$("#s_duplicationCheckResult").html("중복된 아이디입니다.");
 						$("#s_duplicationCheckResult").css("color", "red");
 						$("#s_id").css("color", "red");
-						autcheck2=false;
+						idError = false;
 					} else {
 						$("#s_duplicationCheckResult").html("사용 가능한 아이디입니다.");
 						$("#s_duplicationCheckResult").css("color", "green");
 						$("#s_id").css("color", "green");
-						autcheck2=true;
+						idError = true;
 					}
 				}
 			});
@@ -172,6 +174,12 @@ var autcheck2 = false;
 		$('#fileForm2').submit(function() {
 			if (autcheck2 != true) {
 				alert('이메일 인증을 다시 확인해 주십시오...')
+				return false;
+			} else if (idError != true) {
+				alert('아이디가 중복됩니다.')
+				return false;
+			} else if (pwError != true) {
+				alert("비밀번호가 일치하지 않습니다.")
 				return false;
 			} else {
 				return true;
@@ -553,6 +561,6 @@ input.radio {
 			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
-
+	<script src=<c:url value='/resources/themes/js/common.js'/>></script>
 </body>
 </html>

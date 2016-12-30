@@ -41,6 +41,7 @@
 
 
 <body>
+
 	<div id="top-bar" class="container">
 		<div class="row">
 			<div class="span4">
@@ -184,6 +185,12 @@
 			<span>December 2016 Web Project All right.</span>
 		</section>
 	</div>
+	<a href="javascript:window.location.replace('buyer/readyForBill');"></a>
 	<!-- <script src="/shop01/resources/themes/js/common.js"/></script> -->
+	<script type="text/javascript">
+	$(docuemnt).ready(function(){
+		document.location.replace("../");
+	})
+	</script>
 </body>
 </html>

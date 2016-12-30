@@ -173,7 +173,7 @@
 										<th>[새로운 주문내역]</th>
 										<th>[오늘의 판매 내역]</th>
 										<th>[판매자 승인 요청]</th>
-										<th>[판매몰 승인 요청]</th>
+										<th>[판매물 승인 요청]</th>
 									</tr>
 									<tr>
 										<td id="newReq" onMouseover="this.style.color='#5f5f59';"

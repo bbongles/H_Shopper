@@ -10,6 +10,8 @@ public interface QnADAO {
 
 	public abstract int insertQnA(QnaVO vo);
 	public abstract List<QnaVO> selectQna(int p_no);
+	public abstract List<QnaVO> selecthome_selectQna(String s_id); // sellerhome
+	
 	public abstract int insertQnAR(QnaRVO vo);
 /*	public abstract List<QnaRVO> selectQnaR(QnaVO vo);*/
 	public abstract QnaRVO selectQnaR(QnaVO vo);
@@ -17,6 +19,7 @@ public interface QnADAO {
 	public abstract int deleteQnAR(QnaRVO vo);
 	
 	public abstract List<QnaVO> selectQna(PageCriteria cri);
+	
 	
 	public abstract int getNumOfRecordsQna();
 	

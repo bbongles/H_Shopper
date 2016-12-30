@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.online.shop.domain.BuyerVO;
 import com.online.shop.domain.CartandBuy;
+import com.online.shop.domain.EditorVO;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -197,6 +198,25 @@ public class SellerServiceImpl implements SellerService {
 	}
 	
 	@Override
+
+	public int create(EditorVO vo) {
+		return sellerDao.insertBoard(vo);
+	}
+	
+	@Override
+	public int getNumOfRecordsBoard() {
+		return sellerDao.getNumOfRecordsBoard();
+	}
+	
+	@Override
+	public List<EditorVO> readBoard(PageCriteria c) {
+		return sellerDao.selectAllBoard(c);
+	}
+	
+	@Override
+	public EditorVO readBoard(int bd_bno) {
+		return sellerDao.selectBoard(bd_bno);
+	}
 	public SellerVO findId(SellerVO vo) {
 		return sellerDao.findId(vo);
 	}

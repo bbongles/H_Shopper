@@ -192,6 +192,7 @@ p {
 				<span>Seller's Home</span>
 			</h4>
 		</section>
+				<a id="board" href="seller_board?s_id=${sellerInfo.s_name}">판매자 게시판</a>
 		<section class="main-content">
 			<div class="row">
 				<div class="span12">

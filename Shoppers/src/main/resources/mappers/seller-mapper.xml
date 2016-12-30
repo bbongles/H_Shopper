@@ -91,6 +91,35 @@
 		delete from s_tbl_seller where s_id = #{s_id}
 	</delete>
 	
+	<!-- 판매자 게시판 관련 쿼리  -->
+	<insert id="insertBoard">
+		insert into s_tbl_sellerhome_board(bd_title, editor, bid, s_id) values(#{bd_title}, #{editor}, #{bid}, #{s_id})
+	</insert>
+	
+	<select id="selectAllBoard" resultType="EditorVO">
+	select * from s_tbl_sellerhome_board order by bd_bno
+	</select>
+	
+	<select id="totalBoard" resultType="Integer">
+	select count(*) from s_tbl_sellerhome_board
+	</select>
+	
+	<select id="listSelectAllBoard" resultType="EditorVO">
+	select b.bd_bno, b.bd_title, b.editor, b.s_id, b.bd_reg,  b.bid
+    from (
+        select rownum rn, a.*
+        from (
+            select * from S_TBL_SELLERHOME_BOARD order by bd_bno desc
+        ) a
+    ) b
+    where rn between #{start} and #{end}
+	</select>
+	
+	<select id="selectBoardByBD_Bno" resultType="EditorVO">
+	select * from s_tbl_sellerhome_board where bd_bno = #{bd_bno}
+	</select>
+	
+	
 	<!-- id/pw 찾기 sql문 -->
 	<select id="seller-find-id" resultType="SellerVO">
 	select * from s_tbl_seller where s_name = #{s_name} and s_email = #{s_email}
@@ -103,5 +132,6 @@
 	<update id="update-seller-pw">
 		update s_tbl_seller set s_pw = #{s_pw} where s_id = #{s_id}
 	</update>
+
 	
   </mapper>

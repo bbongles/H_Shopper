@@ -1242,3 +1242,7 @@ button.detail:hover {
 .completetd{
 	width: 450px;
 }
+/* 판매자 홈 게시판 css */
+.sbt{
+	margin-left: 20%; 
+}

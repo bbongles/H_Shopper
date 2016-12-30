@@ -21,7 +21,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+import com.online.shop.domain.EditorVO;
+
 import com.online.shop.domain.BuyerVO;
+
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -68,10 +72,10 @@ public class SellerController {
 	public String sellerHome(Model model, String s_id, HttpServletRequest request) {
 		
 		// 로그인한 판매자의 세션 정보 받아오기
-/*		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 	    Object id = session.getAttribute("s_login_id");
 		
-		String s_login_id = (String) id;*/
+		String s_login_id = (String) id;
 		
 		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
 		
@@ -107,6 +111,92 @@ public class SellerController {
 		
 	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
 	
+	//-----------------------------------------------------------------------------------------------//
+	//-----------------------------------------------------------------------------------------------//
+	
+	// TEST 
+	
+	@RequestMapping(value="/sellerHome2", method=RequestMethod.GET) // 맵핑 판매자 홈으로 바꾸고 나중에 쿼리 스트링 넘겨서 각각의 판매자 홈으로 넘어가게 해줘야함
+	public String sellerHome2(Model model, String s_id, HttpServletRequest request) {
+		
+		
+		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
+		
+		// 전체 상품 리스트
+		List<ProductVO> productList = sellerService.readProductBySid(s_id);
+		
+		int length = productList.size();
+		int numOfPage = length / 8;
+		if (length % 8 > 0) {
+			numOfPage++; // 나머지가 있으면 올림
+			// 뷰페이저로 한 페이지에 4개씩 출력 !
+			// ex) (9/4 = 2.X )=> 3페이지 필요
+		}
+		int remainder = length % 8;
+		
+		// --------------------------------------------------------------------
+		// Q&A, Review code
+		// TODO : mapper 만들기 
+		
+		List<QnaVO> list = dao.selecthome_selectQna(s_id);
+
+		List<QnaRVO> listR = new ArrayList<>();
+		for(QnaVO volist : list) {
+			if(volist.getQna_reply() == 1) {
+			QnaRVO rvo = dao.selectQnaR(volist);
+			listR.add(rvo);
+			}
+		}
+		
+		List<ReviewVO>list1 = daoR.selecthome_selectRev(s_id);
+		
+																		logger.info("**************1");
+		List<ReviewRVO> list2 = new ArrayList<>();
+																		logger.info("**************2");
+		for(ReviewVO volist : list1) {
+																		logger.info("**************3");
+			if(volist.getRev_reply() == 1) {
+																		logger.info("**************4");
+			ReviewRVO vo1 = daoR.selectRevReply(volist.getRev_no());
+																		logger.info("**************5");
+			list2.add(vo1);
+																		logger.info("**************6");
+			}
+		}
+		logger.info("**************7");
+		model.addAttribute("listQnA", list);
+		model.addAttribute("listQnAR", listR);
+				
+		logger.info("**************");
+		model.addAttribute("listRev", list1);
+		model.addAttribute("listReply", list2);
+		
+		// --------------------------------------------------------------------
+				
+		
+		logger.info("productList size: " + productList.size());
+		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
+		model.addAttribute("productList", productList);
+
+		// 판매자 정보를 Model 객체에 넣어서 View(jsp)에 전달
+		model.addAttribute("sellerInfo", sellerInfo);
+		
+		model.addAttribute("numOfPage", numOfPage);
+		model.addAttribute("remainder", remainder);
+		
+		logger.info("length : " + length);
+		logger.info("numOfPage : " + numOfPage);
+		logger.info("remainder : " + remainder);
+		
+
+		return "/seller/sudo_seller_home2";
+		
+	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
+	
+	
+	
+	//-----------------------------------------------------------------------------------------------//
+	//-----------------------------------------------------------------------------------------------//
 	
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public String product(Model model, String p_cate1, String p_cate2) {
@@ -548,6 +638,29 @@ public class SellerController {
 			logger.info("remainder : " + remainder);
 			return "common/sudo_products";
 		}
+
+		
+		// 판매자 홈 게시판
+		@RequestMapping(value="/seller_board", method=RequestMethod.GET)
+		public void seller_board(Integer page, Model model){
+			logger.info("page : " + page);
+			
+			PageCriteria c = new PageCriteria();
+			if (page != null) {
+				c.setPage(page);
+			}
+			
+			List<EditorVO> list = sellerService.readBoard(c);
+			model.addAttribute("boardList", list);
+			
+			PageMaker maker = new PageMaker();
+			maker.setCrieria(c);
+			maker.setTotalCount(sellerService.getNumOfRecordsBoard());
+			maker.setPageData();
+			model.addAttribute("pageMaker", maker);
+			
+		}
+
 
 	
 } // end class SellerController

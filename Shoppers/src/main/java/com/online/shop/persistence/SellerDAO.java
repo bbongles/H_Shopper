@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.online.shop.domain.BuyerVO;
 import com.online.shop.domain.CartandBuy;
+import com.online.shop.domain.EditorVO;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -75,7 +76,20 @@ public interface SellerDAO {
 		//-----------------------------여기까지
 		public abstract int updateSellerInfo(SellerVO vo);
 		
-		public abstract int deleteSeller(String s_id);
+
+		public abstract int deleteSeller(String s_id);	
+		// 판매자 홈 게시판 관련
+		// 전체 게시글 읽어오기
+		public abstract int getNumOfRecordsBoard();
+		public abstract List<EditorVO> selectAllBoard(PageCriteria c);
+		
+		public abstract List<EditorVO> selectAllBoard();
+		// 게시글 입력
+		public abstract int insertBoard(EditorVO vo);
+		// 해당 게시글 읽어오기
+		public abstract EditorVO selectBoard(int bd_bno);
+		
+
 		
 		
 		//판매자 아이디 찾기
@@ -85,4 +99,5 @@ public interface SellerDAO {
 		
 		//판매자 비밀번호 재설정
 		public abstract int updatepw(SellerVO vo);
+
 } // end interface SellerDAO

@@ -24,6 +24,15 @@
 		select * from s_tbl_qna where p_no  = #{p_no}
 	</select>
 	
+	<!-- sellerhome QnA쿼리 -->
+	<select id="sellerhome_select-qna" resultType="com.online.shop.domain.QnaVO">
+		select * from s_tbl_qna where p_no in (
+			select p_no from s_tbl_product 
+			where s_id = #{s_id}
+		)
+	</select>
+	
+	
 	<select id="select-qnar" resultType="com.online.shop.domain.QnaRVO">
 		select * from s_tbl_qna_r where qna_no  = #{qna_no}
 	</select>

@@ -7,28 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>H-Shopper : 특별함을 전하는</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
-<!-- bootstrap -->
-<link href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+			<!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet" />     <!--  선생님 수정  --> 
+		<link href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />" rel="stylesheet">
+		
+		<link href="<c:url value='/resources/themes/css/bootstrappage.css' />" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="<c:url value='/resources/themes/css/flexslider.css' />" rel="stylesheet"/>
+		<link href="<c:url value='/resources/themes/css/main.css' />" rel="stylesheet"/>
 
-<link href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />" rel="stylesheet">
-<link href="<c:url value='/resources/themes/css/bootstrappage.css' />"	rel="stylesheet" />
-
-<!-- global styles -->
-<link href="<c:url value='/resources/themes/css/flexslider.css' />"	rel="stylesheet" />
-<link href="<c:url value='/resources/themes/css/main.css' />"	rel="stylesheet" />
-
-<!-- scripts -->
-<script src="<c:url value='/resources/themes/js/jquery-1.7.2.min.js' />"></script>
-<script src="<c:url value='/resources/bootstrap/js/bootstrap.min.js' />"></script>
-<script src="<c:url value='/resources/themes/js/superfish.js' />"></script>
-<script	src="<c:url value='/resources/themes/js/jquery.scrolltotop.js' />"></script>
-
-
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<!-- scripts -->
+		<script src=<c:url value='/resources/themes/js/jquery-1.7.2.min.js'/> ></script>
+		<script src=<c:url value='/resources/bootstrap/js/bootstrap.min.js'/> ></script>				
+		<script src=<c:url value='/resources/themes/js/superfish.js'/> ></script>	
+		<script src=<c:url value='/resources/themes/js/jquery.scrolltotop.js'/> ></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
 
 
 <style>
@@ -70,6 +71,9 @@ p {
 	border: none;
 	margin: 30px;
 	border-radius: 5px;
+}
+#board{
+	font-size: 20px;
 }
 
 </style>
@@ -191,7 +195,10 @@ p {
 			<h4>
 				<span>Seller's Home</span>
 			</h4>
+			
+		
 		</section>
+			<a id="board" href="seller_board">판매자 게시판</a>
 		<section class="main-content">
 			<div class="row">
 				<div class="span12">
@@ -211,13 +218,20 @@ p {
 								<p>${sellerInfo.s_name }</p>
 								<label>이메일</label>
 								<p>${sellerInfo.s_email }</p>
-								<label>개인 쇼핑몰 / SNS</label>
+								<label>개인 쇼핑몰 / SNS</label>class="title
 								<p>${sellerInfo.s_info }</p>
 							</div>
 							
 							<div id="google_map">
 								<iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=74%2F6+Nguy%E1%BB%85n+V%C4%83n+Tho%E1%BA%A1i,+S%C6%A1n+Tr%C3%A0,+%C4%90%C3%A0+N%E1%BA%B5ng,+Vi%E1%BB%87t+Nam&amp;aq=0&amp;oq=74%2F6+Nguyen+Van+Thoai+Da+Nang,+Viet+Nam&amp;sll=37.0625,-95.677068&amp;sspn=41.546728,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=74+Nguy%E1%BB%85n+V%C4%83n+Tho%E1%BA%A1i,+Ng%C5%A9+H%C3%A0nh+S%C6%A1n,+Da+Nang,+Vietnam&amp;t=m&amp;ll=16.064537,108.24151&amp;spn=0.032992,0.039396&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
 							</div>
+							
+							
+							
+							
+							
+							
+							
 						</div>
 						</div>
 						
@@ -334,8 +348,7 @@ p {
 																		class="category">${productList[8 * page + status.index].p_cate1}</a>
 																	<!-- 카테고리 -->
 																	<p class="price">
-																		<fmt:formatNumber
-																			value="${productList[8 * page + status.index].p_price}"
+																		<fmt:formatNumber value="${productList[8 * page + status.index].p_price}"
 																			groupingUsed="true" />
 																		원
 																	</p>
@@ -517,7 +530,7 @@ p {
 			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
-	<!-- <script src="/shop01/resources/themes/js/common.js"/></script> -->
+	
 
 	<script>
 	
@@ -559,6 +572,8 @@ p {
     });
  
 	</script>
-
+	
+	<script src=<c:url value='/resources/themes/js/common.js'/>></script>
+	
 </body>
 </html>
