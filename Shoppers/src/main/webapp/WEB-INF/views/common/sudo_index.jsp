@@ -85,7 +85,8 @@
 			</div>
 		</div>
 		<div id="wrapper" class="container">
-	<div class="navbar-inner main-menu">				
+		<section class="navbar main-menu">
+			<div class="navbar-inner main-menu">				
 					<!-- 방문객 입장 -->
 					<c:if test="${empty s_login_id && empty b_login_id }">
 
@@ -113,7 +114,7 @@
 
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="./products?p_cate1=home_deco">Home / Deco</a>					
+							<li><a href="./products?p_cate1=home_deco">Home / Deco</a>				
 								<ul>
 									<li><a href="./products?p_cate2=furniture">furniture</a></li>	<!-- 가구 -->									
 									<li><a href="./products?p_cate2=pottery">pottery</a></li>		<!-- 도자기 -->		

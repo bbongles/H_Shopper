@@ -7,28 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>H-Shopper : 특별함을 전하는</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
-<!-- bootstrap -->
-<link href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+			<!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet" />     <!--  선생님 수정  --> 
+		<link href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />" rel="stylesheet">
+		
+		<link href="<c:url value='/resources/themes/css/bootstrappage.css' />" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="<c:url value='/resources/themes/css/flexslider.css' />" rel="stylesheet"/>
+		<link href="<c:url value='/resources/themes/css/main.css' />" rel="stylesheet"/>
 
-<link href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />" rel="stylesheet">
-<link href="<c:url value='/resources/themes/css/bootstrappage.css' />"	rel="stylesheet" />
-
-<!-- global styles -->
-<link href="<c:url value='/resources/themes/css/flexslider.css' />"	rel="stylesheet" />
-<link href="<c:url value='/resources/themes/css/main.css' />"	rel="stylesheet" />
-
-<!-- scripts -->
-<script src="<c:url value='/resources/themes/js/jquery-1.7.2.min.js' />"></script>
-<script src="<c:url value='/resources/bootstrap/js/bootstrap.min.js' />"></script>
-<script src="<c:url value='/resources/themes/js/superfish.js' />"></script>
-<script	src="<c:url value='/resources/themes/js/jquery.scrolltotop.js' />"></script>
-
-
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<!-- scripts -->
+		<script src=<c:url value='/resources/themes/js/jquery-1.7.2.min.js'/> ></script>
+		<script src=<c:url value='/resources/bootstrap/js/bootstrap.min.js'/> ></script>				
+		<script src=<c:url value='/resources/themes/js/superfish.js'/> ></script>	
+		<script src=<c:url value='/resources/themes/js/jquery.scrolltotop.js'/> ></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
 
 
 <style>
@@ -529,7 +530,7 @@ p {
 			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
-	<!-- <script src="/shop01/resources/themes/js/common.js"/></script> -->
+	
 
 	<script>
 	
@@ -571,6 +572,8 @@ p {
     });
  
 	</script>
-
+	
+	<script src=<c:url value='/resources/themes/js/common.js'/>></script>
+	
 </body>
 </html>

@@ -4,16 +4,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-		<meta charset="utf-8">
+<meta charset="UTF-8">
+<style>
+
+</style>
 		<title>H-Shopper : 특별함을 전하는</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
 		<!-- bootstrap -->
-		<link href="<c:url value='/resources/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet"> 
-		<link href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />" rel="stylesheet">		
+			<!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet" />     <!--  선생님 수정  --> 
+		<link href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />" rel="stylesheet">
+		
 		<link href="<c:url value='/resources/themes/css/bootstrappage.css' />" rel="stylesheet"/>
 		
 		<!-- global styles -->
@@ -21,10 +26,10 @@
 		<link href="<c:url value='/resources/themes/css/main.css' />" rel="stylesheet"/>
 
 		<!-- scripts -->
-		<script src="<c:url value='/resources/themes/js/jquery-1.7.2.min.js' />"></script>
-		<script src="<c:url value='/resources/bootstrap/js/bootstrap.min.js' />"></script>				
-		<script src="<c:url value='/resources/themes/js/superfish.js' />"></script>	
-		<script src="<c:url value='/resources/themes/js/jquery.scrolltotop.js' />"></script>
+		<script src=<c:url value='/resources/themes/js/jquery-1.7.2.min.js'/> ></script>
+		<script src=<c:url value='/resources/bootstrap/js/bootstrap.min.js'/> ></script>				
+		<script src=<c:url value='/resources/themes/js/superfish.js'/> ></script>	
+		<script src=<c:url value='/resources/themes/js/jquery.scrolltotop.js'/> ></script>
 		<!--[if lt IE 9]>			
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 			<script src="js/respond.min.js"></script>
@@ -270,8 +275,9 @@
 	
 	<input type="hidden" value="${s_login_id}" id="s_login_id">
 	
-
+<script src=<c:url value='/resources/themes/js/common.js'/>></script>
 </body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function() {

@@ -83,36 +83,29 @@
 	}
 </style>
 
-
-
-
 <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
-<!-- bootstrap -->
-<link
-	href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />"
-	rel="stylesheet">
-	
-<link
-	href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />"
-	rel="stylesheet">
-<link href="<c:url value='/resources/themes/css/bootstrappage.css' />"
-	rel="stylesheet" />
+		<!-- bootstrap -->
+			<!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet" />     <!--  선생님 수정  --> 
+		<link href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />" rel="stylesheet">
+		
+		<link href="<c:url value='/resources/themes/css/bootstrappage.css' />" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="<c:url value='/resources/themes/css/flexslider.css' />" rel="stylesheet"/>
+		<link href="<c:url value='/resources/themes/css/main.css' />" rel="stylesheet"/>
 
-<!-- global styles -->
-<link href="<c:url value='/resources/themes/css/flexslider.css' />"
-	rel="stylesheet" />
-<link href="<c:url value='/resources/themes/css/main.css' />"
-	rel="stylesheet" />
-
-<!-- scripts -->
-<script src="<c:url value='/resources/themes/js/jquery-1.7.2.min.js' />"></script>
-<script src="<c:url value='/resources/bootstrap/js/bootstrap.min.js' />"></script>
-<script src="<c:url value='/resources/themes/js/superfish.js' />"></script>
-<script src="<c:url value='/resources/themes/js/jquery.scrolltotop.js' />"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- scripts -->
+		<script src=<c:url value='/resources/themes/js/jquery-1.7.2.min.js'/> ></script>
+		<script src=<c:url value='/resources/bootstrap/js/bootstrap.min.js'/> ></script>				
+		<script src=<c:url value='/resources/themes/js/superfish.js'/> ></script>	
+		<script src=<c:url value='/resources/themes/js/jquery.scrolltotop.js'/> ></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
 <script type="text/javascript" src="<c:url value='/resources/build/imgur.min.js'/>"></script>
-    <script>
+<script>
 $(function() {
 	$("select[name=p_cate1]").change(function() {
 		var temp = $("select[name=p_cate2]");
@@ -784,6 +777,6 @@ var x=0;
 			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
-	<!-- <script src="/shop01/resources/themes/js/common.js"/></script> -->
+	<script src=<c:url value='/resources/themes/js/common.js'/>></script>
 </body>
 </html>

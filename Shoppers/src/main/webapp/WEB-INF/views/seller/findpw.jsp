@@ -243,7 +243,7 @@ input.radio {
 				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
 			</section>
 	</div>
-	
+	<script src=<c:url value='/resources/themes/js/common.js'/>></script>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
