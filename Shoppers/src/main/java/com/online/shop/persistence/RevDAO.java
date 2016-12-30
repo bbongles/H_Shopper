@@ -9,6 +9,8 @@ import com.online.shop.pageutil.PageCriteria;
 public interface RevDAO {
 	public abstract int insertRev(ReviewVO vo);
 	public abstract List<ReviewVO> selectRev(int p_no);
+	public abstract List<ReviewVO> selecthome_selectRev(String s_id); // sellerhome
+	
 	public abstract int insertRevReply(ReviewRVO vo);
 	public abstract ReviewRVO selectRevReply(int rev_no);
 	public abstract int updateRevReply(ReviewRVO vo);

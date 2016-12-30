@@ -655,6 +655,9 @@ public class HomeController {
 		}
 		int remainder = length % 3;
 		
+		// --------------------------------------------------------------------
+		// Q&A, Review code
+		
 		List<QnaVO> list = dao.selectQna(p_no);
 
 		List<QnaRVO> listR = new ArrayList<>();
@@ -680,7 +683,8 @@ public class HomeController {
 				
 		model.addAttribute("listRev", list1);
 		model.addAttribute("listReply", list2);
-
+		
+		// --------------------------------------------------------------------
 		
 		model.addAttribute("productVO", pVo); // 전체 정보를 Model 객체에 넣어서 View(jsp)에
 												// 전달
@@ -801,8 +805,10 @@ public class HomeController {
 		logger.info("length : " + length);
 		logger.info("numOfPage : " + numOfPage);
 		logger.info("remainder : " + remainder);
-		return "/visitor/sudo_seller_home";
+		
+		return "/common/sudo_seller_home";
 	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
+	
 	
 	@RequestMapping(value="search_form", method=RequestMethod.POST)
 	public String search_form(String searching, Model model){
