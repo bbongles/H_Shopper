@@ -127,11 +127,11 @@ input.radio {
 						<input type="hidden" name="next" value="/">
 						<fieldset>
 							<div class="control-group">
-								<label class="control-label"><a href="buyermypage_orderlist" id="test">주문 배송 조회</a></label>
+								<label class="control-label"><a href="javascript:window.location.replace('buyermypage_orderlist');" id="test">주문 배송 조회</a></label>
 
 							</div>
 							<div class="control-group">
-								<label class="control-label"><a href="buyermypage_completelist">구매 내역</a></label>
+								<label class="control-label"><a href="javascript:window.location.replace('buyermypage_completelist');">구매 내역</a></label>
 							</div>
 							
 							</fieldset>
@@ -147,7 +147,7 @@ input.radio {
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="buyermypage_drop?b_id=${b_login_id }">회원 탈퇴</a></label>
+									href="javascript:window.location.replace('buyermypage_drop?b_id=${b_login_id }');">회원 탈퇴</a></label>
 							</div>
 							
 							<hr>

@@ -93,8 +93,8 @@
  <!-- 김태훈 코드 시작, 로그인한 사용자별 상단 메뉴 정렬--><!-- TODO: 마이페이지, 장바구니 링크 걸고, 인터셉터 걸어야함 -->
 							<!-- ---------------visitor 입장----------------------------- -->
 							<c:if test="${empty s_login_id && empty b_login_id }">
-							<li><a href="mypage/buyermypage">My Page</a></li>
-							<li><a href="cart/selectCart">Cart</a></li>
+							<li><a href="shop/login">My Page</a></li>
+							<li><a href="../shop/login">Cart</a></li>
 							</c:if>
 							<!-- ------------바이어 입장 시작-------------------------- -->
 							<c:if test="${not empty b_login_id }">
@@ -468,11 +468,16 @@
 														pattern="yyyy년 MM월 dd일" />&emsp;&emsp;</td>
 												</tr>		
 												
+												</tr>		
+												<c:if test="${list.rev_reply eq 0 }">
 												<tr class ="revReply" modData="${state.index }">
-													<th style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
-														onMouseout="this.style.color='black';">한줄답글</th>
-				
+													<th>한줄답글</th>
+												</c:if>
+												
 				<c:if test="${list.rev_reply eq 1 }">
+					<tr class ="revReply" modData="${state.index }">
+						<th style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
+							onMouseout="this.style.color='black';">한줄답글</th>
 					<td>
 						<c:forEach var="listr" items="${listReply}">
 						<c:if test="${list.rev_no eq listr.rev_no }">

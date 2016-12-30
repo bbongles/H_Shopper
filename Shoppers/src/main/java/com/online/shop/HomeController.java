@@ -1,6 +1,7 @@
 package com.online.shop;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -162,7 +163,7 @@ public class HomeController {
 // ** 구매자 메인 화면
 	
 	@RequestMapping(value = "buyer/main", method = RequestMethod.GET)
-	public String mainHome(Model model, HttpServletRequest request) {
+	public String mainHome(Model model, HttpServletRequest request/*HttpServletResponse response*/) /*throws IOException*/ {
 
 		HttpSession session = request.getSession();
 		// 주문 중복시, 메인으로 올때 주문된 정보를 지움(orderInterceptor, orerdercontroller)
@@ -182,6 +183,7 @@ public class HomeController {
 		}
 		int remainder = length % 4;
 
+		
 		// 전체 상품 리스트를 Model 객체에 넣어서 View(jsp)에 전달
 		model.addAttribute("productList", productList);
 		model.addAttribute("numOfPage", numOfPage);
@@ -191,6 +193,14 @@ public class HomeController {
 		logger.info("remainder : " + remainder);
 		/* logger.info(productList.get(0).getP_name()); */
 
+/*		response.setCharacterEncoding("EUC-KR");
+	     PrintWriter writer = response.getWriter();
+	     writer.println("<script type='text/javascript'>");
+	     writer.println("document.location.replace('../common/sudo_index');");
+	     writer.println("history.go(1);");
+	     writer.println("</script>");
+	     writer.flush();
+	     return;*/
 		return "common/sudo_index";
 
 	} // end sellerHome() -> 판매자 홈에서 상품 리스트를 보여주는 역할
@@ -305,6 +315,7 @@ public class HomeController {
 		HttpSession session = request.getSession();
 		if (buyerService.isValidUser(b_id, b_pw)) {
 			logger.info("로그인 성공");
+			
 			model.addAttribute("login_result", buyerService.isValidUser(b_id, b_pw));
 			
 			session.setAttribute("b_login_id", b_id);
@@ -530,33 +541,39 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "seller/login", method = RequestMethod.POST)
-	public String sellerloginResult(String s_id, String s_pw, HttpServletRequest request, String query) {
+	public void sellerloginResult(@RequestBody SellerVO vo, HttpServletRequest request, String query, HttpServletResponse response ) throws IOException {
 		logger.info("login 컨트롤러 실행");
-		s_pw = EncryptUtil.getEncryptMD5(s_pw);
-		logger.info("s_id : " + s_id + " , s_pw : " + s_pw);
+		logger.info("id: "+vo.getS_id()+ "pw: "+ vo.getS_pw());
+		
+		String s_pw = EncryptUtil.getEncryptMD5(vo.getS_pw());
+		logger.info("s_id : " +vo.getS_id() + " , s_pw : " + s_pw);
+		
 		HttpSession session = request.getSession();
-		if (sellerService.isValidUser(s_id, s_pw)) {
+		if (sellerService.isValidUser(vo.getS_id(), s_pw)) {
 			logger.info("인증 성공! ACC 확인 중");
-			if (sellerService.isAccConf(s_id, s_pw)){
+			if (sellerService.isAccConf(vo.getS_id(), s_pw)){
 				logger.info("ACC 확인 성공 ! 로그인 성공!");
-				session.setAttribute("s_login_id", s_id);
-				logger.info("세션 저장 성공! key:login_id, 값 : " + s_id);
+				session.setAttribute("s_login_id", vo.getS_id());
+				logger.info("세션 저장 성공! key:login_id, 값 : " + vo.getS_id());
 				session.removeAttribute("b_login_id");
 				logger.info("seller/main 으로 이동~");
 				logger.info("로그인 결과를 세션에 저장합니다.. ");
-				session.setAttribute("login_result", sellerService.isValidUser(s_id, s_pw));
-				return "redirect:main";
+				session.setAttribute("login_result", sellerService.isValidUser(vo.getS_id(), s_pw));
+				response.getWriter().print(1);
+				//return "redirect:main";
 			} else {
 				logger.info("ACC 확인 실패");
 				session.setAttribute("loginFail", "acc");
 				logger.info("login 화면 다시 로드");
-				return "redirect:../loginFail";
+				response.getWriter().print(0);
+				//return "redirect:../loginFail";
 			}
 		} else {
 			logger.info("로그인 실패");
 			session.setAttribute("loginFail", "fail");
 			logger.info("login 화면 다시 로드");
-			return "redirect:../loginFail";
+			response.getWriter().print(0);
+			//return "redirect:../loginFail";
 		}
 	}
 

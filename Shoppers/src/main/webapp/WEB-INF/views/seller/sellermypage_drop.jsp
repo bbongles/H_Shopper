@@ -41,9 +41,11 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-								<c:if test="${not empty b_login_id }">
-							<li><a href="../mypage/buyermypage">My Page</a></li>	
-							<li><a href="../cart/selectCart">Cart</a></li>
+							<!-- ------------------셀러 입장 시작 - 수용이가 수정할 때 참고할 부분---------------------- -->
+							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+								<li><a href="sellermypage">My Page</a></li>
+								<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li>
+								<!-- 마이홈은 판매자홈 말하는거임 -->
 							</c:if>
 							<c:if test="${empty s_login_id && empty b_login_id }">
 								<c:url value="login" var="login" />
@@ -118,14 +120,14 @@
 						<input type="hidden" name="next" value="/">
 						<fieldset>
 							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_order" id="test">주문 요청 조회</a></label>
+								<label class="control-label"><a href="javascript:window.location.replace('sellermypage_order');" id="test">주문 요청 조회</a></label>
 
 							</div>
 							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_complete">판매 내역</a></label>
+								<label class="control-label"><a href="javascript:window.location.replace('sellermypage_complete');">판매 내역</a></label>
 							</div>
 							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_product">상품 등록 내역</a></label>
+								<label class="control-label"><a href="javascript:window.location.replace('sellermypage_product');">상품 등록 내역</a></label>
 							</div>
 							</fieldset>
 							
@@ -135,7 +137,7 @@
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="sellermypage_updateinfo?s_id=${s_login_id }">개인 정보 수정</a></label>
+									href="javascript:window.location.replace('sellermypage_updateinfo?s_id=${s_login_id }');">개인 정보 수정</a></label>
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a

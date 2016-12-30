@@ -70,10 +70,21 @@ input.radio {
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.jsp">Login</a></li>		
+							<!-- ------------------셀러 입장 시작 - 수용이가 수정할 때 참고할 부분---------------------- -->
+							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+								<li><a href="sellermypage">My Page</a></li>
+								<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li>
+								<!-- 마이홈은 판매자홈 말하는거임 -->
+							</c:if>
+							<c:if test="${empty s_login_id && empty b_login_id }">
+								<c:url value="login" var="login" />
+								<li><a href="${login}">Login</a></li>	
+							</c:if>
+							<c:if test="${not empty s_login_id || not empty b_login_id }">
+								<!-- 세션에 로그인 정보가 있는 경우 -->
+								<c:url value="../logout" var="logout" />
+								<li><a href="${logout }">Logout</a></li>		
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -127,14 +138,14 @@ input.radio {
 						<input type="hidden" name="next" value="/">
 						<fieldset>
 							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_order" id="test">주문 요청 조회</a></label>
+								<label class="control-label"><a href="javascript:window.location.replace('sellermypage_order');" id="test">주문 요청 조회</a></label>
 
 							</div>
 							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_complete">판매 내역</a></label>
+								<label class="control-label"><a href="javascript:window.location.replace('sellermypage_complete');">판매 내역</a></label>
 							</div>
 							<div class="control-group">
-								<label class="control-label"><a href="sellermypage_product">상품 등록 내역</a></label>
+								<label class="control-label"><a href="javascript:window.location.replace('sellermypage_product');">상품 등록 내역</a></label>
 							</div>
 							</fieldset>
 							
@@ -149,7 +160,7 @@ input.radio {
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="sellermypage_drop?s_id=${s_login_id }">회원 탈퇴</a></label>
+									href="javascript:window.location.replace('sellermypage_drop?s_id=${s_login_id }');">회원 탈퇴</a></label>
 							</div>
 							
 							<hr>

@@ -323,26 +323,26 @@
 
 						</div>
 						<div class="tab-pane fade" id="sellerLogin">
-							<form action="seller/login" method="post" id="loginBuyerOrSeller">
+							<form name="from1" method="post" id="loginBuyerOrSeller">
 								<input type="hidden" name="next" value="/">
 								<fieldset>
 									<div class="control-group">
 										<label class="control-label">아이디</label>
 										<div class="controls">
 											<input type="text" placeholder="아이디 입력" id="username"
-												class="input-xlarge" name="s_id">
+												class="input-xlarge s_id1" name="s_id">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label">비밀번호</label>
 										<div class="controls">
 											<input type="password" name="s_pw" placeholder="비밀번호 입력"
-												id="password" class="input-xlarge" style="font-family: verdana">
+												id="password" class="input-xlarge s_pw1" style="font-family: verdana">
 										</div>
 									</div>
 									<div class="control-group">
 										<input tabindex="3" class="btn btn-inverse large"
-											type="submit" value="판매자 로그인">
+											type="button" value="판매자 로그인" id = "btnsellerlogin">
 										<hr>
 										<p class="reset">
 											판매자 <a tabindex="4" href="seller/findID"
@@ -353,6 +353,37 @@
 								</fieldset>
 							</form>
 						</div>
+						<script>
+						$('#btnsellerlogin').click(function() {
+							 var s_id = $('.s_id1').val();
+							 var s_pw = $('.s_pw1').val();
+
+							 $.ajax({   
+								   type: "post",
+								   url: "seller/login",
+									headers:{
+								          'Content-Type': 'application/json',
+								          'X-HTTP-Method-Override': 'POST'
+								         },
+									data : JSON.stringify({
+											s_id: s_id,
+											s_pw: s_pw,
+								         }),
+								  success:function(result){
+										if (result == 1) {
+											alert('로그인 성공하였습니다.');
+											//location.replace = '../';
+											document.location.replace("seller/main");
+											
+										} else {
+											alert('로그인 실패하였습니다.');
+											location.reload();
+										}
+								  }
+							 });
+						})
+
+						</script>
 						<!-- class = tab-pane -->
 					</div>
 					<!-- myTabContent -->

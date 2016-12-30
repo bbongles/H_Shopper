@@ -1,5 +1,7 @@
 package com.online.shop.interceptor;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,6 +38,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			} else {
 				logger.info("dest 없음");
 				// 저장된 요청 주소가 없는 경우에는 홈페이지로 이동
+				
+/*			     response.setCharacterEncoding("EUC-KR");
+			     PrintWriter writer = response.getWriter();
+			     writer.println("<script type='text/javascript'>");
+			     writer.println("document.location.replace('/shop/buyer/main');");
+			     writer.println("</script>");
+			     writer.flush();*/
+
+			     
 				response.sendRedirect("/shop/buyer/main"); // 메인페이지로 리다이렉트	
 			}
 
