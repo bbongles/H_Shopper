@@ -553,6 +553,6 @@ input.radio {
 			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
-
+	<script src=<c:url value='/resources/themes/js/common.js'/>></script>
 </body>
 </html>

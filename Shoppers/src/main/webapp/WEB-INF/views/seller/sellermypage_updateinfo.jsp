@@ -413,7 +413,7 @@ input.radio {
 	</div>
 	<input type="text" value="${s_login_id}" id="b_login_id">
 	
-
+	<script src=<c:url value='/resources/themes/js/common.js'/>></script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
