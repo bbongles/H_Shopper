@@ -1,9 +1,11 @@
 package com.online.shop.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,9 +21,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.online.shop.domain.BuyerVO;
 import com.online.shop.domain.CartVO;
+import com.online.shop.domain.EditorVO;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -39,6 +45,8 @@ import com.online.shop.service.CartService;
 import com.online.shop.service.ProductService;
 import com.online.shop.service.SellerService;
 import com.online.shop.utility.EncryptUtil;
+
+import com.online.shop.domain.PhotoVo;
 
 @Controller // 스프링 프레임워크에 Controller bean 객체로 등록
 @RequestMapping(value = "/buyer")
@@ -471,5 +479,110 @@ public class BuyerController {
 		return "common/sudo_products";
 
 	}
+	
+	// 판매자 홈 게시판
+	@RequestMapping(value="/seller_board", method=RequestMethod.GET)
+	public void seller_board(Integer page, Model model, String s_id){
+		logger.info("page : " + page);
+		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
+		
+		model.addAttribute("sellerInfo", sellerInfo);
+				
+		PageCriteria c = new PageCriteria();
+		if (page != null) {
+			c.setPage(page);
+		}
+		
+		List<EditorVO> list = sellerService.readBoard(c);
+		model.addAttribute("boardList", list);
+		
+		PageMaker maker = new PageMaker();
+		maker.setCrieria(c);
+		maker.setTotalCount(sellerService.getNumOfRecordsBoard());
+		maker.setPageData();
+		model.addAttribute("pageMaker", maker);
+		
+	}
+	
+	// 판매자 홈 게시판 글 등록
+	@RequestMapping(value="/seller_board_register", method=RequestMethod.GET)
+	public void seller_board_register(String s_id, Model model){
+		logger.info("register 호출 : " + s_id);
+		SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
+		
+		model.addAttribute("sellerInfo", sellerInfo);
+	}
+	
+	// 판매자 홈 게시판 글 등록
+		@RequestMapping(value="/seller_board_register", method=RequestMethod.POST)
+		public String seller_board_registerPOST(EditorVO vo, RedirectAttributes attr, Model model){
+		 	
+			int result = sellerService.create(vo);
+			logger.info("입력 결과 : " + result);
+		 	logger.info("vo : " + vo.getEditor());
+		 	logger.info("s_id :" + vo.getS_id());
+		 	if(result == 1) {
+		 		attr.addFlashAttribute("insert_result", "success");
+		 	} else{
+		 		attr.addFlashAttribute("insert_result", "fail");
+		 	}
+		 	
+		 	return "redirect:seller_board?s_id=" + vo.getS_id();
+		}
+	
+	// 스마트 에디터 단일파일업로드
+		@RequestMapping("/file_uploader")
+		public String photoUpload(HttpServletRequest request, PhotoVo vo, @RequestParam("Filedata")MultipartFile file){
+			System.out.println("photoUpload() 호출...");
+		    String callback = vo.getCallback();
+		    String callback_func = vo.getCallback_func();
+		    String file_result = "";
+		    
+		    logger.info("callback: " + callback);
+		    logger.info("callback_func: " + callback_func);
+		    logger.info("파일 : " + vo.getFiledata());
+		    try {
+		        if(vo.getFiledata() != null && vo.getFiledata().getOriginalFilename() != null && !vo.getFiledata().getOriginalFilename().equals("")){
+		            //파일이 존재하면
+		            String original_name = vo.getFiledata().getOriginalFilename();
+		            String ext = original_name.substring(original_name.lastIndexOf(".")+1);
+		            //파일 기본경로
+		            String defaultPath = request.getSession().getServletContext().getRealPath("/");
+		            //파일 기본경로 _ 상세경로
+		            String path = defaultPath + "resources" + File.separator + "photo_upload" + File.separator;              
+		            File filez = new File(path);
+		            System.out.println("path:"+path);
+		            //디렉토리 존재하지 않을경우 디렉토리 생성
+		            if(!filez.exists()) {
+		                filez.mkdirs();
+		            }
+		            //서버에 업로드 할 파일명(한글문제로 인해 원본파일은 올리지 않는것이 좋음)
+		            String realname = UUID.randomUUID().toString() + "." + ext;
+		        ///////////////// 서버에 파일쓰기 ///////////////// 
+		            vo.getFiledata().transferTo(new File(path+realname));
+		            file_result += "&bNewLine=true&sFileName="+original_name+"&sFileURL=/notice01/resources/photo_upload/"+realname;
+		          /* file_result += "&bNewLine=true&sFileName="+original_name+"&sFileURL=resources/photo_upload/"+realname;*/
+		            
+		            logger.info("realname:" + realname);
+		        } else {
+		            file_result += "&errstr=error";
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return "redirect:" + callback + "?callback_func="+callback_func+file_result;
+		}
+		
+		// 해당 번호 게시글 상세보기
+		@RequestMapping(value="/seller_board_detail", method=RequestMethod.GET)
+		public void seller_board_detail(int bd_bno, Model model, String s_id){
+		 	logger.info("bd_bno = " + bd_bno);
+		 	SellerVO sellerInfo = sellerService.readSellerInfo(s_id);
+			
+			model.addAttribute("sellerInfo", sellerInfo);
+		 	EditorVO vo = sellerService.readBoard(bd_bno);
+		 	model.addAttribute("board", vo);
+		}
+
 
 } // end class

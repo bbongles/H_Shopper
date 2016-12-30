@@ -85,8 +85,6 @@ public class BuyerMypageRESTController {
 		logger.info("b_id(all5) = " + b_id);
 		List<CartandBuy> list2 = buyerservice.readordermain(b_id);
 		
-		logger.info("List.size : " + list2.size());
-		
 		ResponseEntity<List<CartandBuy>> entity = null;
 		if (list2 != null){
 			entity = new ResponseEntity<>(list2 , HttpStatus.OK);
@@ -99,7 +97,7 @@ public class BuyerMypageRESTController {
 	public ResponseEntity<List<CartandBuy>>  readCompleteMain2(@PathVariable("id") String b_id){
 		logger.info("b_id = " + b_id);
 		List<CartandBuy> list = buyerservice.readCompleteMain2(b_id);
-		logger.info("List.name : " + list.get(0).getB_name());
+
 		
 		ResponseEntity<List<CartandBuy>> entity = null;
 		if (list != null){

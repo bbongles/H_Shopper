@@ -71,6 +71,9 @@ p {
 	margin: 30px;
 	border-radius: 5px;
 }
+#board{
+	font-size: 20px;
+}
 
 </style>
 
@@ -191,7 +194,10 @@ p {
 			<h4>
 				<span>Seller's Home</span>
 			</h4>
+			
+		
 		</section>
+			<a id="board" href="seller_board">판매자 게시판</a>
 		<section class="main-content">
 			<div class="row">
 				<div class="span12">
@@ -211,7 +217,7 @@ p {
 								<p>${sellerInfo.s_name }</p>
 								<label>이메일</label>
 								<p>${sellerInfo.s_email }</p>
-								<label>개인 쇼핑몰 / SNS</label>
+								<label>개인 쇼핑몰 / SNS</label>class="title
 								<p>${sellerInfo.s_info }</p>
 							</div>
 							

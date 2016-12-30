@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.online.shop.domain.EditorVO;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -413,6 +414,27 @@ public class SellerController {
 			logger.info("numOfPage : " + numOfPage);
 			logger.info("remainder : " + remainder);
 			return "common/sudo_products";
+		}
+		
+		// 판매자 홈 게시판
+		@RequestMapping(value="/seller_board", method=RequestMethod.GET)
+		public void seller_board(Integer page, Model model){
+			logger.info("page : " + page);
+			
+			PageCriteria c = new PageCriteria();
+			if (page != null) {
+				c.setPage(page);
+			}
+			
+			List<EditorVO> list = sellerService.readBoard(c);
+			model.addAttribute("boardList", list);
+			
+			PageMaker maker = new PageMaker();
+			maker.setCrieria(c);
+			maker.setTotalCount(sellerService.getNumOfRecordsBoard());
+			maker.setPageData();
+			model.addAttribute("pageMaker", maker);
+			
 		}
 
 	

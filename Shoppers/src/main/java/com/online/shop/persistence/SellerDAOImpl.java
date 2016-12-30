@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.online.shop.domain.CartandBuy;
+import com.online.shop.domain.EditorVO;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -274,4 +275,41 @@ public class SellerDAOImpl implements SellerDAO {
 			
 			return sqlSession.update(NAMESPACE+".delete-seller", s_id);
 		}
+		
+		@Override
+		public int insertBoard(EditorVO vo) {
+			int result = sqlSession.insert(NAMESPACE + ".insertBoard", vo);
+			logger.info("insert 결과 : " + result);
+			return result;
+		}
+		
+		@Override
+		public List<EditorVO> selectAllBoard() {
+			List<EditorVO> list = sqlSession.selectList(NAMESPACE + ".selectAllBoard");
+			logger.info("selectAll () : " + list.size()); 
+			return list;
+		}
+		
+		@Override
+		public List<EditorVO> selectAllBoard(PageCriteria c) {
+			List<EditorVO> list = sqlSession.selectList(NAMESPACE + ".listSelectAllBoard", c);
+			logger.info("selectall() 호출 결과: " + list.size());
+			return list;
+		}
+		
+		@Override
+		public int getNumOfRecordsBoard() {
+			return sqlSession.selectOne(NAMESPACE + ".totalBoard");
+		}
+		
+		@Override
+		public EditorVO selectBoard(int bd_bno) {
+			EditorVO vo = sqlSession.selectOne(NAMESPACE + ".selectBoardByBD_Bno", bd_bno);
+			logger.info("select() 호출 : bd_bno = " + bd_bno);
+			return vo;
+		}
+		
+		
+		
+		
 } // end class SellerDAOImpl

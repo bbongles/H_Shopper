@@ -149,7 +149,7 @@
 				
 				<div id="maindi" class="span7">
 					<h3 class="title">
-						<span class="text"><strong>주문 요청</strong> 조회</span>
+						<span class="text"><strong>상품</strong> 등록 내역</span>
 					</h3>
 					
 					<form action="#" method="post" class="form-stacked">

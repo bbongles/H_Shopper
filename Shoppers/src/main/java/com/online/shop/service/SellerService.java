@@ -3,6 +3,7 @@ package com.online.shop.service;
 import java.util.List;
 
 import com.online.shop.domain.CartandBuy;
+import com.online.shop.domain.EditorVO;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
 import com.online.shop.domain.ProductVO;
@@ -85,6 +86,15 @@ public interface SellerService {
 		public abstract int updateSellerInfo(SellerVO vo);
 		
 		public abstract int deleteSeller(String s_id);
+		
+		// 판매자 홈 게시판
+		// 게시판 입력
+		public abstract int create(EditorVO vo);	
+		// 해당 번호 게시글
+		public abstract EditorVO readBoard(int bd_bno);
+		// 페이징 처리
+		public abstract int getNumOfRecordsBoard();
+		public abstract List<EditorVO> readBoard(PageCriteria c);
 		
 	
 } // end interface SellerService
