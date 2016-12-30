@@ -61,13 +61,13 @@ td {
 			<tr>
 				<th scope="row" style="border-bottom: 0.1px solid gray;">답변수신 메일 &emsp;</th>
 				<td style="border-bottom: 0.1px solid lightgray;" >
-				<input type="text" id="b_email" name="b_email" placeholder="이메일주소를 입력해 주세요" /></td>
+				<input type="text" id="b_email" name="b_email" value="${vo.b_email}" placeholder="이메일주소를 입력해 주세요" /></td>
 					
 			</tr>
 
 		</table>
 		
-		<input type="hidden" name="b_id" value="${b_id}" id = "b_id" />
+		<input type="hidden" name="b_id" value="${vo.b_id}" id = "b_id" />
 		<input type="hidden" name="p_no" value="${p_no}" id = "p_no"/>
 		
 		<input style="float: right; margin-right: 130px;" type="submit" id="submitQnA" value="등록">

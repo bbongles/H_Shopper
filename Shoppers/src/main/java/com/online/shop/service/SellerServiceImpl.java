@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.online.shop.domain.BuyerVO;
 import com.online.shop.domain.CartandBuy;
 import com.online.shop.domain.EditorVO;
 import com.online.shop.domain.ImageVO;
@@ -197,6 +198,7 @@ public class SellerServiceImpl implements SellerService {
 	}
 	
 	@Override
+
 	public int create(EditorVO vo) {
 		return sellerDao.insertBoard(vo);
 	}
@@ -214,6 +216,19 @@ public class SellerServiceImpl implements SellerService {
 	@Override
 	public EditorVO readBoard(int bd_bno) {
 		return sellerDao.selectBoard(bd_bno);
+	}
+	public SellerVO findId(SellerVO vo) {
+		return sellerDao.findId(vo);
+	}
+	
+	@Override
+	public SellerVO findPw(SellerVO vo) {
+		return sellerDao.findPw(vo);
+	}
+	
+	@Override
+	public int updatePw(SellerVO vo) {
+		return sellerDao.updatepw(vo);
 	}
 	
 } // end class SellerServiceImpl

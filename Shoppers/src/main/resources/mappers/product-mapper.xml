@@ -41,6 +41,26 @@
 	delete from s_tbl_product where p_no = #{p_no}
 	</delete>
 	
+	<!-- 상품 정보 수정 -->
+	<select id="selectProductByPno" resultType="ProductVO">
+	select * from s_tbl_product where p_no = #{p_no}
+	</select>
+	
+	<select id="selectOptionByPno" resultType="OptionVO">
+	select * from s_tbl_option where p_no = #{p_no} order by o_no
+	</select>
+	
+	<select id="selectImageByPno" resultType="ImageVO">
+	select * from s_tbl_image where p_no = #{p_no} order by i_no
+	</select>
+	
+	<update id="updateProductByPno">
+	update s_tbl_product
+	set p_cate1 = #{p_cate1}, p_cate2 = #{p_cate2}, p_name = #{p_name}, p_price = #{p_price},
+	p_stock = #{p_stock}, p_dis_rate = #{p_dis_rate}, p_img = #{p_img}
+	where p_no = #{p_no}			
+	</update>
+	
 			<!-- 상품 카테고리검색 추가 by 김태훈-->
 	<select id="selectCate2" resultType="ProductVO">
 	select * from s_tbl_product where p_cate2 = #{p_cate2}

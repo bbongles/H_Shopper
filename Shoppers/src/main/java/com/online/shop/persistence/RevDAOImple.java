@@ -29,6 +29,11 @@ public class RevDAOImple implements RevDAO {
 	public List<ReviewVO> selectRev(int p_no) {
 		return session.selectList(NAMESPACE + ".select-rev", p_no);
 	}
+	
+	// 수용
+	public List<ReviewVO> selecthome_selectRev(String s_id) {
+		return session.selectList(NAMESPACE + ".sellerhome_select-rev", s_id);
+	}
 
 	@Override
 	public int insertRevReply(ReviewRVO vo) {

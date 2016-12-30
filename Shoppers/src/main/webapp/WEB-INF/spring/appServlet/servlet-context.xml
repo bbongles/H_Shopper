@@ -103,7 +103,7 @@
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/mypage/buyermypage"/>
+			<mapping path="/buyer/buyermypage"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
@@ -111,6 +111,7 @@
 			<mapping path="/mypage/sellermypage"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
+		
 		
 		
 		

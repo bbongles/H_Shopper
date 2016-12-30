@@ -15,6 +15,14 @@
 		select * from s_tbl_review where p_no  = #{p_no}
 	</select>
 	
+	<!-- sellerhome rev쿼리 -->
+	<select id="sellerhome_select-rev" resultType="com.online.shop.domain.ReviewVO">
+		select * from s_tbl_review where p_no in (
+			select p_no from s_tbl_product 
+			where s_id = #{s_id}
+		)
+	</select>
+	
 	<insert id="insert-revReply">
 		insert into s_tbl_review_r(s_id, rev_r_cont, rev_no)
 		values(#{s_id}, #{rev_r_cont}, #{rev_no})

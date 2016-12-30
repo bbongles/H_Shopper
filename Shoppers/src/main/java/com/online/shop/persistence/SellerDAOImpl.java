@@ -308,8 +308,20 @@ public class SellerDAOImpl implements SellerDAO {
 			logger.info("select() 호출 : bd_bno = " + bd_bno);
 			return vo;
 		}
-		
-		
-		
-		
+	
+		public SellerVO findId(SellerVO vo) {
+			
+			return sqlSession.selectOne(NAMESPACE+".seller-find-id", vo);
+		}
+		@Override
+		public SellerVO findPw(SellerVO vo) {
+			
+			return sqlSession.selectOne(NAMESPACE+".seller-find-pw", vo);
+		}
+		@Override
+		public int updatepw(SellerVO vo) {
+			
+			return sqlSession.update(NAMESPACE+".update-seller-pw", vo);
+		}
+
 } // end class SellerDAOImpl

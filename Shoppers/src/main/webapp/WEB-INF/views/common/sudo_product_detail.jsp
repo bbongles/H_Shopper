@@ -324,121 +324,126 @@
 									<!-- 두번째 탭 -->
 									<div class="tab-pane" id="tab2">
 									<table class="table table-striped shop_attributes">	
-											<tbody>
-												<c:forEach var="list" items="${listQnA }" varStatus="state">
-												
-					<tr>
-						<c:if test="${list.qna_type eq 0 }">
-							<td>상품</td>
-						</c:if>
-						<c:if test="${list.qna_type eq 1 }">
-							<td>배송</td>
-						</c:if>
-						<c:if test="${list.qna_type eq 2 }">
-							<td>반품/취소</td>
-						</c:if>
-						<c:if test="${list.qna_type eq 3 }">
-							<td>교환/변경</td>
-						</c:if>
-						<c:if test="${list.qna_type eq 4 }">
-							<td>기타</td>
-						</c:if>
-						
-						<td class="replies" repData="${state.index }">
-						
-						<c:if test="${list.qna_reply eq 0 }">
-							답변 대기&emsp;
-							<span class ="qnaDetail" modData="${state.index }" onMouseover="this.style.color='blue'; this.style.textDecoration='underline';" 
-	 						onMouseout="this.style.color='black'; this.style.textDecoration='none';">${fn:substring(list.qna_cont,0,9) }...</span>
-						</c:if>
-						
-						<c:if test="${list.qna_reply eq 1 }">
-							<Strong style="text-decoration: underline;">답변 완료</Strong>&emsp;
-							<span class ="qnaDetail" modData="${state.index }" onMouseover="this.style.color='blue'; this.style.textDecoration='underline';" 
-	 						onMouseout="this.style.color='black'; this.style.textDecoration='none';"><b>${fn:substring(list.qna_cont,0,9) }...</b></span>
-						</c:if>
-														
-						</td>
-												
-						<td>${list.b_id }</td>
-						<td><fmt:formatDate value="${list.qna_reg }"
-								pattern="yyyy년 MM월 dd일" />&emsp;&emsp;</td>
-						<tr><tr/>
-						<tr/>
-						
-						<c:if test="${list.qna_reply eq 0 }">
-						
-						<tr style="background-color: inherit;">
-														
-							<td class="modify${state.index }" style="display: none; "><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
-							
-							<td colspan ="3" class="modify${state.index }" style="display: none;">${list.qna_cont }</td>
-						</tr>
-						
-												<%-- 판매자,관리자에서만 보이게 해야함.--%>
-						<tr style="display: none;">
-							<td class="modify${state.index }" style=" text-align: center; display: none;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
-							
-							<td colspan ="3" class="modify${state.index }" style="display: none; 
-							text-align: center; width: 250px; height: 50px;" modData="${state.index }">
-							
-							<form id = "frm${state.index }" method="post">
-								<textarea cols="25" rows="3" name="qna_r_cont" class="qna_r_cont"  id="qna_r_cont${state.index }"
-								style="width: 100%;	height:100%; background-color: inherit;
-								resize:none; box-sizing: border-box; 
-								-moz-box-sizing: border-box; 
-								-webkit-box-sizing: border-box; border: none;" placeholder="답변을 작성해 주세요." required></textarea>
-							
-								<input type="hidden" name="s_id" id="s_id${state.index }" value="sellerId" />
-								<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
-								<input type="hidden" name="qna_no" id="qna_no${state.index }" value="${list.qna_no }" />
-								</form>						
-									<button type="button" class="insertReply">저장</button>
-							</td>
-							
-						</tr>
-
-<!-- 							</div> -->
-						</c:if>
-						
-						<c:if test="${list.qna_reply eq 1 }">
-						<c:forEach var="listr" items="${listQnAR }" >
-						<c:if test="${list.qna_no eq listr.qna_no }">
-							
-						<tr style="background-color: inherit;">
-														
-							<td class="modify${state.index }" style="display: none; "><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
-							
-							<td colspan ="3" class="modify${state.index }" style="display: none;">
-								 ${list.qna_cont }</td>
-						</tr>
-							
-						<tr>
-							
-							<td class="modify${state.index }" style="display: none; "><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
-							
-							<td colspan ="3" class="modify${state.index }" style="display: none; height: 100%" modData="${state.index }">
-							
-							<form id = "updatefrm${state.index }" method="post">
-								
-								<pre id = "qna_r_cont${state.index }" 
-								name = "qna_r_cont" class="qna_r_cont" style="border: none; background-color: inherit;" contenteditable="false">${listr.qna_r_cont }</pre>
-								
-								<input type="hidden" name="qna_r_no" id="qna_r_no${state.index }" value="${listr.qna_r_no }"/>
-								<input type="hidden" name="s_id" id="s_id${state.index }" value="${listr.s_id }" /> 
-								<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
-								<input type="hidden" name="qna_no" id="qna_no${state.index }" value="${listr.qna_no }" />
-							</form>
-							</td>
-							</tr>
-							
-							<!-- </div> -->
-								</c:if>
-							</c:forEach>
-						</c:if>
-											</c:forEach>
+												<tbody>
+													<c:forEach var="list" items="${listQnA }" varStatus="state">
+													
+														<tr>
+															<!-- # colum 1 -->
+															<c:if test="${list.qna_type eq 0 }">
+																<td>상품</td>
+															</c:if>
+															<c:if test="${list.qna_type eq 1 }">
+																<td>배송</td>
+															</c:if>
+															<c:if test="${list.qna_type eq 2 }">
+																<td>반품/취소</td>
+															</c:if>
+															<c:if test="${list.qna_type eq 3 }">
+																<td>교환/변경</td>
+															</c:if>
+															<c:if test="${list.qna_type eq 4 }">
+																<td>기타</td>
+															</c:if>
+															
+															<!-- # colum 2 -->
+															<td class="replies" repData="${state.index }">
+																<c:if test="${list.qna_reply eq 0 }">
+																	답변 대기&emsp;
+																	<span class ="qnaDetail" modData="${state.index }" onMouseover="this.style.color='blue'; this.style.textDecoration='underline';" 
+											 						onMouseout="this.style.color='black'; this.style.textDecoration='none';">${fn:substring(list.qna_cont,0,9) }...</span>
+																</c:if>
+																
+																<c:if test="${list.qna_reply eq 1 }">
+																	<Strong style="text-decoration: underline;">답변 완료</Strong>&emsp;
+																	<span class ="qnaDetail" modData="${state.index }" onMouseover="this.style.color='blue'; this.style.textDecoration='underline';" 
+											 						onMouseout="this.style.color='black'; this.style.textDecoration='none';"><b>${fn:substring(list.qna_cont,0,9) }...</b></span>
+																</c:if>						
+															</td>
+															
+															<!-- # colum 3 -->						
+															<td>${list.b_id }</td>
+															
+															<!-- # colum 4 -->
+															<td><fmt:formatDate value="${list.qna_reg }" pattern="yyyy년 MM월 dd일" />&emsp;&emsp;</td>
+															
+															<!-- # colum 5 -->
+															<!-- <tr><tr/> -->
+														<tr/>
+															
+															<c:if test="${list.qna_reply eq 0 }">
+															
+															<tr style="background-color: inherit;">
+																							
+																<td class="modify${state.index }" style="display: none; "><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
+																
+																<td colspan ="3" class="modify${state.index }" style="display: none;">${list.qna_cont }</td>
+															</tr>
+															
+																					<%-- 판매자,관리자에서만 보이게 해야함.--%>
+															<tr style="display: none;">
+																<td class="modify${state.index }" style=" text-align: center; display: none;"><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
+																
+																<td colspan ="3" class="modify${state.index }" style="display: none; 
+																text-align: center; width: 250px; height: 50px;" modData="${state.index }">
+																
+																<form id = "frm${state.index }" method="post">
+																	<textarea cols="25" rows="3" name="qna_r_cont" class="qna_r_cont"  id="qna_r_cont${state.index }"
+																	style="width: 100%;	height:100%; background-color: inherit;
+																	resize:none; box-sizing: border-box; 
+																	-moz-box-sizing: border-box; 
+																	-webkit-box-sizing: border-box; border: none;" placeholder="답변을 작성해 주세요." required></textarea>
+																
+																	<input type="hidden" name="s_id" id="s_id${state.index }" value="sellerId" />
+																	<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
+																	<input type="hidden" name="qna_no" id="qna_no${state.index }" value="${list.qna_no }" />
+																	</form>						
+																		<button type="button" class="insertReply">저장</button>
+																</td>
+																
+															</tr>
+									
+									<!-- 							</div> -->
+															</c:if>
+															
+															<c:if test="${list.qna_reply eq 1 }">
+															<c:forEach var="listr" items="${listQnAR }" >
+															<c:if test="${list.qna_no eq listr.qna_no }">
+																
+															<tr style="background-color: inherit;">
+																							
+																<td class="modify${state.index }" style="display: none; "><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/blue_Q.png" />' ></img></td>
+																
+																<td colspan ="3" class="modify${state.index }" style="display: none;">
+																	 ${list.qna_cont }</td>
+															</tr>
+																
+															<tr>
+																
+																<td class="modify${state.index }" style="display: none; "><img style="width: 15px; height: 15px;" src='<c:url value="/resources/css/red_A.png" />' ></img></td>
+																
+																<td colspan ="3" class="modify${state.index }" style="display: none; height: 100%" modData="${state.index }">
+																
+																<form id = "updatefrm${state.index }" method="post">
+																	
+																	<pre id = "qna_r_cont${state.index }" 
+																	name = "qna_r_cont" class="qna_r_cont" style="border: none; background-color: inherit;" contenteditable="false">${listr.qna_r_cont }</pre>
+																	
+																	<input type="hidden" name="qna_r_no" id="qna_r_no${state.index }" value="${listr.qna_r_no }"/>
+																	<input type="hidden" name="s_id" id="s_id${state.index }" value="${listr.s_id }" /> 
+																	<input type="hidden" name="p_no" id="p_no${state.index }" value="${productVO.p_no}" /> 
+																	<input type="hidden" name="qna_no" id="qna_no${state.index }" value="${listr.qna_no }" />
+																</form>
+																</td>
+																</tr>
+																
+															</c:if>
+														</c:forEach>
+													</c:if>
+												</c:forEach>
 											</tbody>
 										</table>
+										
+										
  									<input type="hidden" name="pno" id="detail_p_no" value="${productVO.p_no}">
  									
 									<button type="button" id="btnVisitorInsert">상품 문의</button>

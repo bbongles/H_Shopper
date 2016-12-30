@@ -24,6 +24,12 @@ public interface ProductService {
 	public abstract int deleteOptionByPno(int p_no);
 	public abstract int deleteImageByPno(int p_no);
 	public abstract int deleteProductByPno(int p_no);
+	// 상품 정보 수정 기능 중  - 불러오기
+	public abstract ProductVO readProductByPno(int p_no);
+	public abstract List<OptionVO> readOptionByPno(int p_no);
+	public abstract List<ImageVO> readImageByPno(int p_no);
+	// 상품 정보 수정 기능 중  - 업데이트
+	public abstract int updateProductByPno(ProductVO pVo);
 	
 	// 카테고리 검색 추가 by 김태훈
 	public abstract List<ProductVO> selectCate2(String p_cate2);

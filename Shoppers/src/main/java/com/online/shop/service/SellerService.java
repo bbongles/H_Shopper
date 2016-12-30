@@ -2,6 +2,7 @@ package com.online.shop.service;
 
 import java.util.List;
 
+import com.online.shop.domain.BuyerVO;
 import com.online.shop.domain.CartandBuy;
 import com.online.shop.domain.EditorVO;
 import com.online.shop.domain.ImageVO;
@@ -87,6 +88,7 @@ public interface SellerService {
 		
 		public abstract int deleteSeller(String s_id);
 		
+
 		// 판매자 홈 게시판
 		// 게시판 입력
 		public abstract int create(EditorVO vo);	
@@ -96,5 +98,13 @@ public interface SellerService {
 		public abstract int getNumOfRecordsBoard();
 		public abstract List<EditorVO> readBoard(PageCriteria c);
 		
+
+		//판매자 아이디 찾기
+		public abstract SellerVO findId(SellerVO vo);
+		//판매자 비밀번호 찾기
+		public abstract SellerVO findPw(SellerVO vo);
+		//판매자 비밀번호 재설정
+		public abstract int updatePw(SellerVO vo);
+
 	
 } // end interface SellerService

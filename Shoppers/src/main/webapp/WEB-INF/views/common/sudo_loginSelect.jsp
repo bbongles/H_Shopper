@@ -313,8 +313,9 @@
 											name="query" value="<%=request.getQueryString()%>" />
 										<hr>
 										<p class="reset">
-											구매자 <a tabindex="4" href="#"
-												title="Recover your username or password">아이디/비밀번호 찾기</a>
+											구매자 <a tabindex="4" href="buyer/findID"
+												title="Recover your username or password">아이디</a>/<a tabindex="4" href="buyer/findpw"
+												title="Recover your username or password">비밀번호 찾기</a>
 										</p>
 									</div>
 								</fieldset>
@@ -344,8 +345,9 @@
 											type="submit" value="판매자 로그인">
 										<hr>
 										<p class="reset">
-											판매자 <a tabindex="4" href="#"
-												title="Recover your username or password">아이디/비밀번호 찾기</a>
+											판매자 <a tabindex="4" href="seller/findID"
+												title="Recover your username or password">아이디</a>/<a tabindex="4" href="seller/findpw"
+												title="Recover your username or password">비밀번호 찾기</a>
 										</p>
 									</div>
 								</fieldset>
@@ -362,11 +364,13 @@
 						<span class="text"><strong>Register</strong> Select</span>
 					</h4>
 					<a href="buyer/register"><img alt="구매자 회원가입"
-						src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_buyer.gif"
-						style="width: 150px"></a> <a href="seller/register"><img
+						src="http://i.imgur.com/LCGiJiy.png"
+						style="width: 300px"></a>
+						<a href="seller/register"><img
 						alt="판매자 회원가입"
-						src="http://order.garak24.com/data/skin/default/images/buttons/banner_join_seller.gif"
-						style="width: 150px"></a>
+						src="http://i.imgur.com/7JadaOo.png"
+						style="width: 300px"
+						></a>
 				</div><!-- span7 -->
 			</div><!-- end row -->
 		</section>

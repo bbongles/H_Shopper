@@ -1,41 +1,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Bootstrap E-commerce Templates</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
-<!-- bootstrap -->
-<link
-	href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />"
-	rel="stylesheet">
-	
-<link
-	href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />"
-	rel="stylesheet">
-<link href="<c:url value='/resources/themes/css/bootstrappage.css' />"
-	rel="stylesheet" />
+<title>H-Shopper : 특별함을 전하는</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+			<!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet" />     <!--  선생님 수정  --> 
+		<link href="<c:url value='/resources/bootstrap/css/bootstrap-responsive.min.css' />" rel="stylesheet">
+		
+		<link href="<c:url value='/resources/themes/css/bootstrappage.css' />" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="<c:url value='/resources/themes/css/flexslider.css' />" rel="stylesheet"/>
+		<link href="<c:url value='/resources/themes/css/main.css' />" rel="stylesheet"/>
 
-<!-- global styles -->
-<link href="<c:url value='/resources/themes/css/flexslider.css' />"
-	rel="stylesheet" />
-<link href="<c:url value='/resources/themes/css/main.css' />"
-	rel="stylesheet" />
-
-<!-- scripts -->
-<script src="<c:url value='/resources/themes/js/jquery-1.7.2.min.js' />"></script>
-<script src="<c:url value='/resources/bootstrap/js/bootstrap.min.js' />"></script>
-<script src="<c:url value='/resources/themes/js/superfish.js' />"></script>
-<script src="<c:url value='/resources/themes/js/jquery.scrolltotop.js' />"></script>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
+		<!-- scripts -->
+		<script src=<c:url value='/resources/themes/js/jquery-1.7.2.min.js'/> ></script>
+		<script src=<c:url value='/resources/bootstrap/js/bootstrap.min.js'/> ></script>				
+		<script src=<c:url value='/resources/themes/js/superfish.js'/> ></script>	
+		<script src=<c:url value='/resources/themes/js/jquery.scrolltotop.js'/> ></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
 
 </head><!-- -------------------------------------------------------------- -->
 
@@ -95,22 +88,35 @@
 					class="site_logo" alt=""></a>
 				<nav id="menu" class="pull-right">
 					<ul>
-						<li><a href="./products.html">Woman</a>
-							<ul>
-								<li><a href="./products.html">Lacinia nibh</a></li>
-								<li><a href="./products.html">Eget molestie</a></li>
-								<li><a href="./products.html">Varius purus</a></li>
-							</ul></li>
-						<li><a href="./products.html">Man</a></li>
-						<li><a href="./products.html">Sport</a>
-							<ul>
-								<li><a href="./products.html">Gifts and Tech</a></li>
-								<li><a href="./products.html">Ties and Hats</a></li>
-								<li><a href="./products.html">Cold Weather</a></li>
-							</ul></li>
-						<li><a href="./products.html">Hangbag</a></li>
-						<li><a href="./products.html">Best Seller</a></li>
-						<li><a href="./products.html">Top Seller</a></li>
+						<li><a href="../buyer/products?p_cate1=home_deco">Home / Deco</a>					
+								<ul>
+									<li><a href="../buyer/products?p_cate2=furniture">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="../buyer/products?p_cate2=pottery">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="../buyer/products?p_cate2=lamp">lamp</a></li>			<!-- 조명 -->									
+								</ul>
+							</li>															
+							<li><a href="../buyer/products?p_cate1=candle_diffuser">Candle / Diffuser</a>
+								<ul>
+									<li><a href="../buyer/products?p_cate2=candle">candle</a></li>			<!-- 양초 -->										
+									<li><a href="../buyer/products?p_cate2=diffuser">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="../buyer/products?p_cate2=aromatic oils">aromatic oils</a></li>	<!-- 아로마오일 -->									
+								</ul>		
+								</li>	
+							<li><a href="../buyer/products?p_cate1=art_fancy">Art / Fancy</a>
+								<ul>									
+									<li><a href="../buyer/products?p_cate2=picture">picture</a></li>		<!-- 사진 -->
+									<li><a href="../buyer/products?p_cate2=fancy">fancy</a></li>		<!-- 문구 -->
+									<li><a href="../buyer/products?p_cate2=paper">paper</a></li>		<!-- 페이퍼 -->
+								</ul>
+							</li>							
+							<li><a href="../buyer/products?p_cate1=jewellery">Jewellery</a>
+								<ul>									
+									<li><a href="../buyer/products?p_cate2=earring">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="../buyer/products?p_cate2=necklace">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="../buyer/products?p_cate2=ring">ring</a></li>			<!-- 반지 -->
+								</ul>
+							</li>
+							<li><a href="../products">Event</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -173,9 +179,9 @@
 						<img src="<c:url value='/resources/themes/images/logo.png' />"
 							class="site_logo" alt="">
 					</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and
+					<!-- <p>Lorem Ipsum is simply dummy text of the printing and
 						typesetting industry. the Lorem Ipsum has been the industry's
-						standard dummy text ever since the you.</p>
+						standard dummy text ever since the you.</p> -->
 					<br /> <span class="social_icons"> <a class="facebook"
 						href="#">Facebook</a> <a class="twitter" href="#">Twitter</a> <a
 						class="skype" href="#">Skype</a> <a class="vimeo" href="#">Vimeo</a>
@@ -184,7 +190,7 @@
 			</div>
 		</section>
 		<section id="copyright">
-			<span>December 2016 Web Project All right.</span>
+			<span>Copyright 2016. Monday To Friday all rights reserved.</span>
 		</section>
 	</div>
 	<!-- <script src="/shop01/resources/themes/js/common.js"/></script> -->

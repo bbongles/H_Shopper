@@ -41,8 +41,11 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
+							<!-- ------------------셀러 입장 시작 - 수용이가 수정할 때 참고할 부분---------------------- -->
 							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
-							<li><a href="../mypage/sellermypage">My Page</a></li>
+								<li><a href="sellermypage">My Page</a></li>
+								<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li>
+								<!-- 마이홈은 판매자홈 말하는거임 -->
 							</c:if>
 							<c:if test="${empty s_login_id && empty b_login_id }">
 								<c:url value="login" var="login" />
@@ -64,35 +67,35 @@
 					<a href="../seller/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="../products?p_cate1=home_deco">Home / Deco</a>					
+							<li><a href="./products?p_cate1=home_deco">Home / Deco</a>					
 								<ul>
-									<li><a href="../products?p_cate2=furniture">furniture</a></li>	<!-- 가구 -->									
-									<li><a href="../products?p_cate2=pottery">pottery</a></li>		<!-- 도자기 -->		
-									<li><a href="../products?p_cate2=lamp">lamp</a></li>			<!-- 조명 -->									
+									<li><a href="./products?p_cate2=furniture">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="./products?p_cate2=pottery">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="./products?p_cate2=lamp">lamp</a></li>			<!-- 조명 -->									
 								</ul>
 							</li>															
-							<li><a href="../products?p_cate1=candle_diffuser">Candle / Diffuser</a>
+							<li><a href="./products?p_cate1=candle_diffuser">Candle / Diffuser</a>
 								<ul>
-									<li><a href="../products?p_cate2=candle">candle</a></li>			<!-- 양초 -->										
-									<li><a href="../products?p_cate2=diffuser">diffuser</a></li>			<!-- 디퓨저 -->
-									<li><a href="../products?p_cate2=aromatic oils">aromatic oils</a></li>	<!-- 아로마오일 -->									
+									<li><a href="./products?p_cate2=candle">candle</a></li>			<!-- 양초 -->										
+									<li><a href="./products?p_cate2=diffuser">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="./products?p_cate2=aromatic oils">aromatic oils</a></li>	<!-- 아로마오일 -->									
 								</ul>		
 								</li>	
-							<li><a href="../products?p_cate1=art_fancy">Art / Fancy</a>
+							<li><a href="./products?p_cate1=art_fancy">Art / Fancy</a>
 								<ul>									
-									<li><a href="../products?p_cate2=picture">picture</a></li>		<!-- 사진 -->
-									<li><a href="../products?p_cate2=fancy">fancy</a></li>		<!-- 문구 -->
-									<li><a href="../products?p_cate2=paper">paper</a></li>		<!-- 페이퍼 -->
+									<li><a href="./products?p_cate2=picture">picture</a></li>		<!-- 사진 -->
+									<li><a href="./products?p_cate2=fancy">fancy</a></li>		<!-- 문구 -->
+									<li><a href="./products?p_cate2=paper">paper</a></li>		<!-- 페이퍼 -->
 								</ul>
 							</li>							
-							<li><a href="../products?p_cate1=jewellery">Jewellery</a>
+							<li><a href="./products?p_cate1=jewellery">Jewellery</a>
 								<ul>									
-									<li><a href="../products?p_cate2=earring">earring</a></li>		<!-- 귀걸이 -->
-									<li><a href="../products?p_cate2=necklace">necklace</a></li>		<!-- 목걸이 -->
-									<li><a href="../products?p_cate2=ring">ring</a></li>			<!-- 반지 -->
+									<li><a href="./products?p_cate2=earring">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="./products?p_cate2=necklace">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="./products?p_cate2=ring">ring</a></li>			<!-- 반지 -->
 								</ul>
 							</li>
-							<li><a href="../products">Event</a></li>
+							<li><a href="./products">Event</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -135,11 +138,11 @@
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">개인 정보 수정</a></label>
+									href="sellermypage_updateinfo?s_id=${s_login_id }">개인 정보 수정</a></label>
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">회원 탈퇴</a></label>
+									href="sellermypage_drop?s_id=${s_login_id }">회원 탈퇴</a></label>
 							</div>
 							
 							<hr>

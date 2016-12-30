@@ -58,7 +58,7 @@ td {
 				<td>
 				<c:forEach var="list" items="${cartlist }">
 				<label><img style="width: 200px; height: 100px;" src=" ${list.p_img }"/></label>
-				<label>${list.o_cont }</label>
+				<label> 선택옵션: ${list.o_cont }</label>
 				</c:forEach>
 				</td>
 			</tr>
