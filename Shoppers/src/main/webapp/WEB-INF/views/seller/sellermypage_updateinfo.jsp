@@ -70,10 +70,21 @@ input.radio {
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.jsp">Login</a></li>		
+							<!-- ------------------셀러 입장 시작 - 수용이가 수정할 때 참고할 부분---------------------- -->
+							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+								<li><a href="sellermypage">My Page</a></li>
+								<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li>
+								<!-- 마이홈은 판매자홈 말하는거임 -->
+							</c:if>
+							<c:if test="${empty s_login_id && empty b_login_id }">
+								<c:url value="login" var="login" />
+								<li><a href="${login}">Login</a></li>	
+							</c:if>
+							<c:if test="${not empty s_login_id || not empty b_login_id }">
+								<!-- 세션에 로그인 정보가 있는 경우 -->
+								<c:url value="../logout" var="logout" />
+								<li><a href="${logout }">Logout</a></li>		
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -85,24 +96,35 @@ input.radio {
 					<a href="/shop/buyer/main" class="logo pull-left"><img src="<c:url value='/resources/themes/images//logo.png" class="site_logo'/>" alt=""></a>
 					<nav id="menu" class="pull-right">
 						<ul>
-							<li><a href="./products.html">Woman</a>					
+							<li><a href="./products?p_cate1=home_deco">Home / Deco</a>					
 								<ul>
-									<li><a href="./products.html">Lacinia nibh</a></li>									
-									<li><a href="./products.html">Eget molestie</a></li>
-									<li><a href="./products.html">Varius purus</a></li>									
+									<li><a href="./products?p_cate2=furniture">furniture</a></li>	<!-- 가구 -->									
+									<li><a href="./products?p_cate2=pottery">pottery</a></li>		<!-- 도자기 -->		
+									<li><a href="./products?p_cate2=lamp">lamp</a></li>			<!-- 조명 -->									
 								</ul>
 							</li>															
-							<li><a href="./products.html">Man</a></li>			
-							<li><a href="./products.html">Sport</a>
+							<li><a href="./products?p_cate1=candle_diffuser">Candle / Diffuser</a>
+								<ul>
+									<li><a href="./products?p_cate2=candle">candle</a></li>			<!-- 양초 -->										
+									<li><a href="./products?p_cate2=diffuser">diffuser</a></li>			<!-- 디퓨저 -->
+									<li><a href="./products?p_cate2=aromatic oils">aromatic oils</a></li>	<!-- 아로마오일 -->									
+								</ul>		
+								</li>	
+							<li><a href="./products?p_cate1=art_fancy">Art / Fancy</a>
 								<ul>									
-									<li><a href="./products.html">Gifts and Tech</a></li>
-									<li><a href="./products.html">Ties and Hats</a></li>
-									<li><a href="./products.html">Cold Weather</a></li>
+									<li><a href="./products?p_cate2=picture">picture</a></li>		<!-- 사진 -->
+									<li><a href="./products?p_cate2=fancy">fancy</a></li>		<!-- 문구 -->
+									<li><a href="./products?p_cate2=paper">paper</a></li>		<!-- 페이퍼 -->
 								</ul>
 							</li>							
-							<li><a href="./products.html">Hangbag</a></li>
-							<li><a href="./products.html">Best Seller</a></li>
-							<li><a href="./products.html">Top Seller</a></li>
+							<li><a href="./products?p_cate1=jewellery">Jewellery</a>
+								<ul>									
+									<li><a href="./products?p_cate2=earring">earring</a></li>		<!-- 귀걸이 -->
+									<li><a href="./products?p_cate2=necklace">necklace</a></li>		<!-- 목걸이 -->
+									<li><a href="./products?p_cate2=ring">ring</a></li>			<!-- 반지 -->
+								</ul>
+							</li>
+							<li><a href="./products">Event</a></li>
 						</ul>
 					</nav>
 				</div>
