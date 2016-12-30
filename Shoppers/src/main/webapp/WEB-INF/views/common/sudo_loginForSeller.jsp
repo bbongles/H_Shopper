@@ -283,13 +283,13 @@
 					</h4>
 					<!-- ---------------------- -->
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a href="#buyerLogin" data-toggle="tab">구매자
+						<li class=""><a href="#buyerLogin" data-toggle="tab">구매자
 								로그인</a></li>
-						<li class=""><a href="#sellerLogin" data-toggle="tab">판매자
+						<li class="active"><a href="#sellerLogin" data-toggle="tab">판매자
 								로그인</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade active in" id="buyerLogin">
+						<div class="tab-pane fade" id="buyerLogin">
 							<form action="buyer/login" method="post">
 								<input type="hidden" name="next" value="/">
 								<fieldset>
@@ -313,16 +313,15 @@
 											name="query" value="<%=request.getQueryString()%>" />
 										<hr>
 										<p class="reset">
-											구매자 <a tabindex="4" href="buyer/findID"
-												title="Recover your username or password">아이디</a>/<a tabindex="4" href="buyer/findpw"
-												title="Recover your username or password">비밀번호 찾기</a>
+											구매자 <a tabindex="4" href="#"
+												title="Recover your username or password">아이디/비밀번호 찾기</a>
 										</p>
 									</div>
 								</fieldset>
 							</form>
 
 						</div>
-						<div class="tab-pane fade" id="sellerLogin">
+						<div class="tab-pane fade active in" id="sellerLogin">
 							<form action="seller/login" method="post" id="loginBuyerOrSeller">
 								<input type="hidden" name="next" value="/">
 								<fieldset>
@@ -345,9 +344,8 @@
 											type="submit" value="판매자 로그인">
 										<hr>
 										<p class="reset">
-											판매자 <a tabindex="4" href="seller/findID"
-												title="Recover your username or password">아이디</a>/<a tabindex="4" href="seller/findpw"
-												title="Recover your username or password">비밀번호 찾기</a>
+											판매자 <a tabindex="4" href="#"
+												title="Recover your username or password">아이디/비밀번호 찾기</a>
 										</p>
 									</div>
 								</fieldset>

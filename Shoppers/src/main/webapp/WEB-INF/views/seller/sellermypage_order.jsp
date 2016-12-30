@@ -41,8 +41,11 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
+							<!-- ------------------셀러 입장 시작 - 수용이가 수정할 때 참고할 부분---------------------- -->
 							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
-							<li><a href="../mypage/sellermypage">My Page</a></li>
+								<li><a href="sellermypage">My Page</a></li>
+								<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li>
+								<!-- 마이홈은 판매자홈 말하는거임 -->
 							</c:if>
 							<c:if test="${empty s_login_id && empty b_login_id }">
 								<c:url value="login" var="login" />

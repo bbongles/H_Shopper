@@ -112,7 +112,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="<c:url value='/resources/build/imgur.min.js'/>"></script>
-    <script>
+
+<script>
 $(function() {
 	$("select[name=p_cate1]").change(function() {
 		var temp = $("select[name=p_cate2]");
@@ -147,27 +148,29 @@ $(function() {
 	});
 });
 
+
 //옵션 양식 추가 및 삭제
 $(function() {
 	$('#addOption').click(function() {
-		$('#optionTable > tbody:last').append('<tr><td><input id="opTable1" class="detail_i" type="text" name="o_title" placeholder="옵션제목" /></td>'
-							+ '<td><input id="opTable2" class="detail_i" type="text" name="o_cont" placeholder="옵션내용" /></td>'
-							+ '<td><input id="opTable3" type="number" name="o_stock" placeholder="옵션재고" value="0" /></td></tr>');
+			$('#optionTable > tbody:last').append('<tr id="removableTr"><td><input id="opTable1" class="detail_i" type="text" name="o_title" placeholder="옵션제목" /></td>'
+					+ '<td><input id="opTable2" class="detail_i" type="text" name="o_cont" placeholder="옵션내용" /></td>'
+					+ '<td><input id="opTable3" type="number" name="o_stock" placeholder="옵션재고" value="0" /></td></tr>');	
 	});
-
+	
 	$('#delOption').click(function() {
-		$('#optionTable > tbody:last > tr:last').remove();
+			$('#optionTable > tbody:last > tr:last').remove();
+
 	});
 
 });
 
 
 
-var y = 1;
+/* var y = 1; */
 // 이미지 양식 추가 및 삭제
 $(function() {
+	var y = $('#asdf').val();
 	$('#addImage').click(function() {
-		
 		y++;		
 			$('.append').append('<div class="plus" ><div class="form-inline"><input class="input-xlarge" type="text" class="i_set" id="'+ y + '_img" name="i_img" placeholder="상세 이미지"/>'
 					+'<input id="btn'+ y +'" class="btn" data-btn="'+y+'" type="button" value="파일첨부"  onclick="layer_open(\'layer1\');return false;"></div><div>'
@@ -175,10 +178,11 @@ $(function() {
 	});
 	
 	$('#delImage').click(function() {
-		if(y >= 2) {
+		if(y > 1) {
 			y--;
 			/* $('#imageTable > tbody:last > tr:last').remove(); */
-			$('.plus:last').remove();
+			$('.form-inline:last').remove();
+			$('.input-xlarge:last').remove();
 		};
 	});
 });
@@ -279,7 +283,7 @@ var x=0;
 	   $("#btn_insert").click(function() {
 		  if (confirm("정말 등록하시겠습니까?") == true) {
 			  //$("#pRegister").submit();
-			  $("#pRegister").find('[type="submit"]').trigger('click');
+			  $("#pUpdate").find('[type="submit"]').trigger('click');
 		  } 
 	   });
 	   $("#btn_reset").click(function() {
@@ -432,7 +436,7 @@ var x=0;
 				src="<c:url value='/resources/themes/images/pageBanner.png' />"
 				alt="New products">
 			<h4>
-				<span>Product Register</span>
+				<span>Product Update</span>
 			</h4>
 		</section>
 		<section class="main-content">
@@ -451,15 +455,15 @@ var x=0;
 					
 							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse"
-									data-parent="#accordion2" href="#collapseOne">Register Product</a>
+									data-parent="#accordion2" href="#collapseOne">Update Product</a>
 							</div>
 							<div id="collapseOne" class="accordion-body in collapse">
 								<div class="accordion-inner">
 									<div class="row-fluid">
-									<h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
+									<h4 class="title"><span class="text"><strong>Update</strong> Form</span></h4>
 									
 									<!-- <form action="b_register_result" method="post" id="fileForm1" role="form">** submit -->
-									<form id="pRegister" action="pRegister" method="post">		<!-- TODO : ****** -->
+									<form id="pUpdate" action="pUpdate" method="post">		<!-- TODO : ****** -->
 									
 										<!-- ######################################## -->
 										<!-- 왼쪽 -->
@@ -468,6 +472,8 @@ var x=0;
 											
 											
 											<!-- hidden type으로 입력될 값들... 판매자 이름은 로그인 정보와 합친 후 수정  -->
+											<!-- 상품 번호 -->
+											<input type="hidden" name="p_no" value="${productVO.p_no}" />
 											<!-- 판매자 이름 -->
 											<input type="hidden" name="s_id" value="${s_login_id}" />
 											<!-- 관심상품 -->
@@ -483,13 +489,99 @@ var x=0;
 												<div class="controls">
 													<select name="p_cate1" class="input-xlarge">
 														<option value="none">--------</option>
+														
+														<c:if test="${productVO.p_cate1 eq 'home_deco' }">														
+														<option value="home_deco" selected>홈/데코</option>
+														<option value="candle_diffuser" >캔들/디퓨저</option>
+														<option value="art_fancy" >아트/팬시</option>
+														<option value="jewellery" >쥬얼리</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'candle_diffuser' }">
+														<option value="home_deco">홈/데코</option>
+														<option value="candle_diffuser" selected>캔들/디퓨저</option>
+														<option value="art_fancy" >아트/팬시</option>
+														<option value="jewellery" >쥬얼리</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'art_fancy' }">
 														<option value="home_deco">홈/데코</option>
 														<option value="candle_diffuser">캔들/디퓨저</option>
-														<option value="art_fancy">아트/팬시</option>
-														<option value="jewellery">쥬얼리</option>
+														<option value="art_fancy" selected>아트/팬시</option>
+														<option value="jewellery" >쥬얼리</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'jewellery' }">
+														<option value="home_deco">홈/데코</option>
+														<option value="candle_diffuser" >캔들/디퓨저</option>
+														<option value="art_fancy" >아트/팬시</option>
+														<option value="jewellery" selected>쥬얼리</option>
+														</c:if>
+
 													</select> <br/>
 													<select name="p_cate2" class="input-xlarge">
 														<option value="none">--------</option>
+														
+														<c:if test="${productVO.p_cate1 eq 'home_deco' and productVO.p_cate2 eq 'furniture'}">
+														<option value="furniture" selected>가구</option>
+														<option value="pottery">도자기</option>
+														<option value="lamp">조명</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'home_deco' and productVO.p_cate2 eq 'pottery'}">
+														<option value="furniture">가구</option>
+														<option value="pottery" selected>도자기</option>
+														<option value="lamp">조명</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'home_deco' and productVO.p_cate2 eq 'lamp'}">
+														<option value="furniture">가구</option>
+														<option value="pottery">도자기</option>
+														<option value="lamp" selected>조명</option>
+														</c:if>
+														
+														<c:if test="${productVO.p_cate1 eq 'candle_diffuser' and productVO.p_cate2 eq 'candle'}">
+														<option value="candle" selected>캔들</option>
+														<option value="diffuser">디퓨저</option>
+														<option value="aromatic oils">아로마오일</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'candle_diffuser' and productVO.p_cate2 eq 'diffuser'}">
+														<option value="candle">캔들</option>
+														<option value="diffuser" selected>디퓨저</option>
+														<option value="aromatic oils">아로마오일</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'candle_diffuser' and productVO.p_cate2 eq 'aromatic oils'}">
+														<option value="candle">캔들</option>
+														<option value="diffuser">디퓨저</option>
+														<option value="aromatic oils" selected>아로마오일</option>
+														</c:if>
+														
+														<c:if test="${productVO.p_cate1 eq 'art_fancy' and productVO.p_cate2 eq 'picture'}">
+														<option value="picture" selected>사진</option>
+														<option value="fancy">문구</option>
+														<option value="paper">페이퍼</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'art_fancy' and productVO.p_cate2 eq 'fancy'}">
+														<option value="picture">사진</option>
+														<option value="fancy" selected>문구</option>
+														<option value="paper">페이퍼</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'art_fancy' and productVO.p_cate2 eq 'paper'}">
+														<option value="picture">사진</option>
+														<option value="fancy">문구</option>
+														<option value="paper" selected>페이퍼</option>
+														</c:if>
+														
+														<c:if test="${productVO.p_cate1 eq 'jewellery' and productVO.p_cate2 eq 'earring'}">
+														<option value="earring" selected>귀걸이</option>
+														<option value="necklace">목걸이</option>
+														<option value="ring">반지</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'jewellery' and productVO.p_cate2 eq 'necklace'}">
+														<option value="earring">귀걸이</option>
+														<option value="necklace" selected>목걸이</option>
+														<option value="ring">반지</option>
+														</c:if>
+														<c:if test="${productVO.p_cate1 eq 'jewellery' and productVO.p_cate2 eq 'ring'}">
+														<option value="earring">귀걸이</option>
+														<option value="necklace">목걸이</option>
+														<option value=ring selected>반지</option>
+														</c:if>
 													</select>
 													<!-- <input class="input-xlarge" type="text" name="b_name" id="txt"
 														required placeholder="홍길동" /> -->
@@ -501,7 +593,7 @@ var x=0;
 											<div class="control-group">
 												<label for="p_name">작품명</label> 
 												<div class="controls">
-													<input class="input-xlarge" type="text" name="p_name" required />
+													<input class="input-xlarge" type="text" name="p_name" value=${productVO.p_name } required />
 												</div>
 											</div><!-- ### 완료 ###-->
 											<!-- -------------------------------------------------------------- -->
@@ -509,7 +601,7 @@ var x=0;
 											 <div class="control-group">
 											 	<label for="p_price">작품가격</label> 
 											 	<div class="controls">
-											 		<input class="input-xlarge" type="number" name="p_price" required />
+											 		<input class="input-xlarge" type="number" name="p_price" value=${productVO.p_price } required />
 												</div>
 											 </div><!-- ### 완료 ###-->
 											 
@@ -518,7 +610,7 @@ var x=0;
 											 <div class="control-group">
 												<label for="p_stock">재고량</label> <!-- TODO -->
 												<div class="controls">
-													<input class="input-xlarge" type="number" name="p_stock" required />
+													<input class="input-xlarge" type="number" name="p_stock" value=${productVO.p_stock } required />
 												</div> <!-- TODO :  -->
 											 </div><!-- ### 완료 ###-->
 
@@ -528,7 +620,7 @@ var x=0;
 											<div class="control-group">
 												<label for="b_phone">할인율</label>
 												<div class="controls">
-													<input class="input-xlarge" type="number" name="p_dis_rate" value="0" />
+													<input class="input-xlarge" type="number" name="p_dis_rate" value=${productVO.p_dis_rate } />
 												</div>
 											</div>
 											
@@ -553,12 +645,36 @@ var x=0;
 												<div class="controls input-xlarge form-inline">	<!-- **** -->
 													
 													<table id="optionTable">
-														<tr>
+														<c:if test="${empty optionList }">
+														<tr id="defaultTr">
 															<td><input id="opTable1" class="detail_i" type="text" name="o_title" placeholder="옵션제목" /></td>
-															<td><input id="opTable2" class="detail_i" type="text" name="o_cont" placeholder="옵션내용" /></td>
-															<td><input id="opTable3" type="number" name="o_stock" placeholder="옵션재고" value="0" /></td>
+															<td><input id="opTable2" class="detail_i" type="text" name="o_cont"  placeholder="옵션내용" /></td>
+															<td><input id="opTable3" type="number" name="o_stock"  value="0" placeholder="옵션재고" /></td>
 														</tr>
-														<tbody></tbody>
+														</c:if>
+														
+														<c:if test="${not empty optionList }">
+														<c:forEach var="oList" items="${optionList }" end="0">
+														<tr id="defaultTr">
+															<td><input id="opTable1" class="detail_i" type="text" name="o_title" value=${oList.o_title } placeholder="옵션제목" /></td>
+															<td><input id="opTable2" class="detail_i" type="text" name="o_cont"  value=${oList.o_cont } placeholder="옵션내용" /></td>
+															<td><input id="opTable3" type="number" name="o_stock"  value=${oList.o_stock } placeholder="옵션재고" /></td>
+														</tr>
+														</c:forEach>
+														</c:if>
+														
+														<tbody>
+														<c:if test="${not empty optionList }">
+														<c:forEach var="oList" items="${optionList }" begin="1">
+														<tr id="removableTr">
+															<td><input id="opTable1" class="detail_i" type="text" name="o_title" value=${oList.o_title } placeholder="옵션제목" /></td>
+															<td><input id="opTable2" class="detail_i" type="text" name="o_cont"  value=${oList.o_cont } placeholder="옵션내용" /></td>
+															<td><input id="opTable3" type="number" name="o_stock"  value=${oList.o_stock } placeholder="옵션재고" /></td>
+														</tr>
+														</c:forEach>
+														</c:if>
+														</tbody>
+														
 													</table>
 													<button id="addOption" class="btn" type="button">옵션추가</button>
 													<button id="delOption" class="btn" type="button">옵션삭제</button>
@@ -580,7 +696,7 @@ var x=0;
 																	
 													<!-- <label>대표 이미지</label><br/> -->
 													<div class="form-inline">
-														<input class="input-xlarge" type="text" class="i_set" id="0_img" name="p_img" placeholder="메인 이미지 " required/>
+														<input class="input-xlarge" type="text" class="i_set" id="0_img" name="p_img" value=${productVO.p_img } placeholder="메인 이미지 " required/>
 														
 														<!-- **레이어 팝업** -->
 	
@@ -618,9 +734,10 @@ var x=0;
 													<br/>
 											<div class="control-group parent" id="target">
 											 	<label >상세 이미지</label>
-												
+											 	<input type="hidden" id="asdf" value="${imgListSize}" />
 												<div class="controls append">		
-													<div class="form-inline">
+													<c:if test="${empty imageList }">
+														<div class="form-inline">
 														<input class="input-xlarge" type="text" class="i_set btn" id="1_img" name="i_img" placeholder="상세 이미지"/>
 														
 														<input id="btn1" type="button" data-btn="1" class="btn" value="파일첨부"  onclick="layer_open('layer1');return false;">
@@ -628,10 +745,34 @@ var x=0;
 	
 														<!-- **레이어 팝업** -->
 													</div>
+													
 													<div>
 														<textarea class="input-xlarge" rows="5" cols="65" class="i_set" name="i_cont" placeholder="이미지에 대한 설명을 넣어주세요..."> </textarea>
 													</div>
-												
+													</c:if>
+													
+													
+													
+													<c:if test="${not empty imageList }">
+													
+													<c:forEach var="iList" items="${imageList }">	
+														<div class="form-inline">
+															<input class="input-xlarge" type="text" class="i_set btn" id="1_img" name="i_img" value=${iList.i_img } placeholder="상세 이미지"/>
+														
+															<input id="btn1" type="button" data-btn="1" class="btn" value="파일첨부"  onclick="layer_open('layer1');return false;">
+															<!-- **레이어 팝업** -->
+	
+															<!-- **레이어 팝업** -->
+														</div>
+													
+														<div>
+															<textarea class="input-xlarge" rows="5" cols="65" class="i_set" name="i_cont" placeholder="이미지에 대한 설명을 넣어주세요...">${iList.i_cont }</textarea>
+														</div>
+														
+													</c:forEach>
+													
+													</c:if>
+													
 												<!-- 
 													<table id="imageTable"  >
 													 	<tbody>
@@ -660,10 +801,10 @@ var x=0;
 													 -->
 													
 												</div>
+												
 												<button id="addImage" type="button">추가</button>
 													<button id="delImage" type="button">삭제</button>
 											 </div>
-											 
 											 
 											<br>
 										</div>

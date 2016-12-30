@@ -109,9 +109,9 @@ p {
 							<li><a href="">My Page</a></li>
 							<li><a href="">Cart</a></li>
 						</c:if>
-						<!-- ------------------셀러 입장시작------------------------------- -->
+						<!-- ------------------셀러 입장 시작------------------------------- -->
 						<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
-							<li><a href="">My Page</a></li>
+							<li><a href="sellermypage">My Page</a></li>
 							<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li>
 							<!-- 마이홈은 판매자홈 말하는거임 -->
 						</c:if>

@@ -41,10 +41,12 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-								<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
-							<li><a href="../seller/sellermypage">My Page</a></li>
-							<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li>
-							</c:if>	
+							<!-- ------------------셀러 입장 시작 - 수용이가 수정할 때 참고할 부분---------------------- -->
+							<c:if test="${not empty s_login_id and s_login_id ne 'admin'}">
+								<li><a href="sellermypage">My Page</a></li>
+								<li><a href="sellerHome?s_id=${s_login_id}">My Home</a></li>
+								<!-- 마이홈은 판매자홈 말하는거임 -->
+							</c:if>
 							<c:if test="${empty s_login_id && empty b_login_id }">
 								<c:url value="login" var="login" />
 								<li><a href="${login}">Login</a></li>	
@@ -137,11 +139,11 @@
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">개인 정보 수정</a></label>
+									href="sellermypage_updateinfo?s_id=${s_login_id }">개인 정보 수정</a></label>
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="#">회원 탈퇴</a></label>
+									href="sellermypage_drop?s_id=${s_login_id }">회원 탈퇴</a></label>
 							</div>
 							
 						</fieldset>

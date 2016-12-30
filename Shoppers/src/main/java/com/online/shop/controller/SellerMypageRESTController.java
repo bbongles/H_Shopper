@@ -41,7 +41,7 @@ public class SellerMypageRESTController {
 	public ResponseEntity<List<CartandBuy>> readOrder(@PathVariable("id") String s_id){
 		logger.info("s_id = " + s_id);
 		List<CartandBuy> list = sellerservice.orderList(s_id);
-		logger.info("List.count : " + list.get(0).getCount());
+
 		
 		ResponseEntity<List<CartandBuy>> entity = null;
 		if (list != null){
@@ -80,7 +80,7 @@ public class SellerMypageRESTController {
 	public ResponseEntity<List<CartandBuy>> readComplete(@PathVariable("id") String s_id){
 		logger.info("s_id = " + s_id);
 		List<CartandBuy> list = sellerservice.completeList(s_id);
-		logger.info("List.count : " + list.get(0).getCount());
+
 		
 		ResponseEntity<List<CartandBuy>> entity = null;
 		if (list != null){
@@ -106,7 +106,7 @@ public class SellerMypageRESTController {
 	public ResponseEntity<List<ProductVO>> readProductAccList(@PathVariable("id") String s_id){
 		logger.info("s_id = " + s_id);
 		List<ProductVO> list = sellerservice.accList(s_id);
-		logger.info("List.count : " + list.get(0).getCount());
+
 		
 		ResponseEntity<List<ProductVO>> entity = null;
 		if (list != null){
@@ -119,7 +119,7 @@ public class SellerMypageRESTController {
 	public ResponseEntity<List<ProductVO>> readProductAccAllList(@PathVariable("id") String s_id){
 		logger.info("s_id = " + s_id);
 		List<ProductVO> list = sellerservice.accAllList(s_id);
-		logger.info("List.count : " + list.get(0).getCount());
+
 		
 		ResponseEntity<List<ProductVO>> entity = null;
 		if (list != null){

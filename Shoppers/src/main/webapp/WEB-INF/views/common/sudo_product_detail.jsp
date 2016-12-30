@@ -200,7 +200,7 @@
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
 				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->	
-					<form id="frm" action="/shop/cart/insertCart"> <!-- 태훈 수정 -->
+					<form id="frm" action="/shop/buyer/insertCart"> <!-- 태훈 수정 -->
 						<!-- 김태훈 -->
 						<input type="hidden" name="p_no" value="${productVO.p_no }" />    
     					<input type="hidden" name="s_id" value="${productVO.s_id }" />
@@ -836,7 +836,7 @@
 	    	 
 	    	 // 김태훈 바로주문 코드
 		    $('#directOrder').click(function(){
-				$('#frm').attr('action', '/shop/cart/insertCertForDirect');
+				$('#frm').attr('action', '/shop/buyer/insertCartForDirect');
 				$('#frm').attr('method', 'get');
 				$('#frm').submit();
 		    });

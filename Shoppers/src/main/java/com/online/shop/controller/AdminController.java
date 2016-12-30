@@ -239,8 +239,7 @@ public class AdminController {
 
 		if (result==1){
 			logger.info("승인 업데이트 성공");
-			List<SellerVO> list = sellerservice.read();
-			logger.info(list.get(s_no) + " - > 승인번호 : " + list.get(s_no).getS_acc());
+			
 			response.getWriter().print(1);	
 		}	
 			

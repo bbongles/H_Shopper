@@ -53,16 +53,6 @@
 		</interceptor>
 		
 		<interceptor>
-			<mapping path=""/> <!--/member/login-post : 로그인 인터셉터 -->
-			<beans:ref bean="LoginInterceptor"/>
-		</interceptor>
-		
-		<!-- <interceptor>
-			<mapping path="/shop/login"/> /board/register : Auth 인터셉터
-			<beans:ref bean="AuthInterceptor"/>
-		</interceptor> -->
-		
-		<interceptor>
 			<mapping path="/buyer/readyForBill"/>
 			<beans:ref bean="OrderInterceptor"/>
 		</interceptor>
@@ -98,7 +88,7 @@
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/buyer/insertCertForDirect"/>
+			<mapping path="/buyer/insertCartForDirect"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
@@ -112,13 +102,8 @@
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
-		<!-- <interceptor>
-			<mapping path="/admin/admin_mypage"/>
-			<beans:ref bean="AuthInterceptor"/>
-		</interceptor> -->
-		
 		<interceptor>
-			<mapping path="/mypage/buyermypage"/>
+			<mapping path="/buyer/buyermypage"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
@@ -126,6 +111,7 @@
 			<mapping path="/mypage/sellermypage"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
+		
 		
 		
 		

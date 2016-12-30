@@ -121,19 +121,21 @@ input.radio {
 				<div class="span5 sp"> 
 				
 					<h3 class="title">
-						<span class="text"><strong>구매</strong> 정보</span>
+						<span class="text"><strong>판매</strong> 정보</span>
 					</h3>
 					<form action="#" method="post">
 						<input type="hidden" name="next" value="/">
 						<fieldset>
 							<div class="control-group">
-								<label class="control-label"><a href="buyermypage_orderlist" id="test">주문 배송 조회</a></label>
+								<label class="control-label"><a href="sellermypage_order" id="test">주문 요청 조회</a></label>
 
 							</div>
 							<div class="control-group">
-								<label class="control-label"><a href="buyermypage_completelist">구매 내역</a></label>
+								<label class="control-label"><a href="sellermypage_complete">판매 내역</a></label>
 							</div>
-							
+							<div class="control-group">
+								<label class="control-label"><a href="sellermypage_product">상품 등록 내역</a></label>
+							</div>
 							</fieldset>
 							
 							
@@ -147,7 +149,7 @@ input.radio {
 							</div>
 							<div class="control-group">
 								<label class="control-label"><a
-									href="buyermypage_drop?b_id=${b_login_id }">회원 탈퇴</a></label>
+									href="sellermypage_drop?s_id=${s_login_id }">회원 탈퇴</a></label>
 							</div>
 							
 							<hr>
@@ -161,13 +163,13 @@ input.radio {
 					</h3>
 					
 					<div class = "firstdiv">
-						<label for="b_id_first">아이디</label> 
-						<input required name="b_id_first" type="text" class="input-xlarge"
-						minlength="4" maxlength="16" id="b_id_first" value="${buyerInfo.b_id }" readonly/>
+						<label for="s_id_first">아이디</label> 
+						<input required name="s_id_first" type="text" class="input-xlarge"
+						minlength="4" maxlength="16" id="s_id_first" value="${sellerInfo.s_id }" readonly/>
 											
-						<label for="b_pw_first">비밀번호 입력</label> 
-						<input required name="b_pw_first" type="password" class="input-xlarge"
-						minlength="4" maxlength="16" id="b_pw_first" style="font-family: verdana" placeholder="비밀번호" />
+						<label for="s_pw_first">비밀번호 입력</label> 
+						<input required name="s_pw_first" type="password" class="input-xlarge"
+						minlength="4" maxlength="16" id="s_pw_first" style="font-family: verdana" placeholder="비밀번호" />
 						<br/>
 						
 						<button type="button" id="btnfirst">확인</button>
@@ -199,7 +201,7 @@ input.radio {
 												<label>이름</label> 
 												<div class="controls">
 													<input class="input-xlarge" type="text" name="b_name" id="b_id"
-														readonly value="${buyerInfo.b_id }"/>
+														readonly value="${sellerInfo.s_id }"/>
 												</div>
 											</div><!-- ### 완료 ###-->
 											 
@@ -225,7 +227,7 @@ input.radio {
 													<span id="b_duplicationCheckResult"></span> 
 												</label> 
 												 	<div class="controls">
-													 	<input required type="password" class="input-xlarge" value="${buyerInfo.b_pw }"
+													 	<input required type="password" class="input-xlarge" value="${sellerInfo.s_pw }"
 															minlength="4" maxlength="16" id="origin_b_pwd" placeholder="기존 비밀번호" style="font-family: verdana" />
 													</div>
 												 </div><!-- ### 완료 ###-->
@@ -258,7 +260,7 @@ input.radio {
 												<div class="controls">
 												 <input required type="number" name="b_phone" id="phone"
 													class="input-xlarge" maxlength="28" 
-													value="${buyerInfo.b_phone }"
+													value="${sellerInfo.s_phone }"
 													placeholder="( - )은 빼고 입력하세요. ex) 01012345424" />
 												</div>
 											</div>
@@ -269,13 +271,13 @@ input.radio {
 												<label class="birth-lbl" for="b_birth">생년월일</label>
 												<div class="controls">
 													<input class="input-xlarge" required type="date" name="b_birth"
-													 value="${buyerInfo.b_birth }" readonly />
+													 value="${sellerInfo.s_birth }" readonly />
 												</div>
 											</div>										 
 											<!-- -------------------------------------------------------------- -->
 											<div id="orginEmail">
 											<label for="">기존 이메일 주소</label>
-											<input type="email" id="origin_email" name="b_email" value="${buyerInfo.b_email }" readonly />
+											<input type="email" id="origin_email" name="b_email" value="${sellerInfo.s_email }" readonly />
 											<button type="button" id="btnEmailUpdate" >이메일 변경</button>
 											</div>
 											<div class="control-group emailclass" >
@@ -311,14 +313,14 @@ input.radio {
 											<div class="control-group">
 												<label for="b_zip">주소</label>
 												<div class="controls">
-													<input class="input-xlarge" type="text" name="b_zip" value="${buyerInfo.b_zip }"
+													<input class="input-xlarge" type="text" name="b_zip" value="${sellerInfo.s_zip }"
 														id="b_postcode" placeholder="우편번호를 찾으려면 클릭하세요"
 														onclick="b_execDaumPostcode()" required> <br/>
-													<input class="input-xlarge" type="text" name="b_addr1" value="${buyerInfo.b_addr1 }"
+													<input class="input-xlarge" type="text" name="b_addr1" value="${sellerInfo.s_addr1 }"
 														id="b_address" placeholder="지번 / 도로명주소"
 														readonly="readonly" required><br/> 
 														<label for="b_address2" >상세주소</label>
-													<input class="input-xlarge" type="text" name="b_addr2" value="${buyerInfo.b_addr2 }"
+													<input class="input-xlarge" type="text" name="b_addr2" value="${sellerInfo.s_addr2 }"
 														id="b_address2" placeholder="나머지 상세 주소" required>
 												</div>
 											</div>
@@ -387,7 +389,7 @@ input.radio {
 				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
 			</section>
 	</div>
-	<input type="text" value="${b_login_id}" id="b_login_id">
+	<input type="text" value="${s_login_id}" id="b_login_id">
 	
 
 </body>
@@ -402,18 +404,18 @@ $(document).ready(function() {
 	getCompleteList();
 	
 	$('#btnfirst').click(function() {
-		var b_pw = $("#b_pw_first").val();
-		var b_id = $('#b_id_first').val();
+		var s_pw = $("#s_pw_first").val();
+		var s_id = $('#s_id_first').val();
 		$.ajax({
 			type : 'post',
-			url : 'b_checkpw',
+			url : 's_checkpw',
 			headers:{
 	             'Content-Type': 'application/json',
 	             'X-HTTP-Method-Override': 'POST'
 	         },
 			data : JSON.stringify({
-				b_pw: b_pw,
-				b_id: b_id,
+				s_pw: s_pw,
+				s_id: s_id,
 	         }),
 			success : function(result) {
 				if (result == 1) {
@@ -553,18 +555,18 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 	$("#origin_b_pwd").change(function() {
-		var b_pw = $("#origin_b_pwd").val();
-		var b_id = $('#b_id').val();
+		var s_pw = $("#origin_b_pwd").val();
+		var s_id = $('#b_id').val();
 		$.ajax({
 			type : 'post',
-			url : 'b_checkpw',
+			url : 's_checkpw',
 			headers:{
 	             'Content-Type': 'application/json',
 	             'X-HTTP-Method-Override': 'POST'
 	         },
 			data : JSON.stringify({
-				b_pw: b_pw,
-				b_id: b_id,
+				s_pw: s_pw,
+				s_id: s_id,
 	         }),
 			success : function(result) {
 				if (result == 1) {
@@ -585,43 +587,43 @@ $(document).ready(function() {
 	});
 	
 	$('#btnsubmitupdate').click(function() {
-		var b_id = $('#b_id').val();
-		var b_pw;
+		var s_id = $('#b_id').val();
+		var s_pw;
 		
 		if($("#b_pass2").val() == "") {
-			b_pw = $("#origin_b_pwd").val();
+			s_pw = $("#origin_b_pwd").val();
 		} else {
-			b_pw = $("#b_pass2").val();
+			s_pw = $("#b_pass2").val();
 		}
 		
-		var b_phone = $('#phone').val();
+		var s_phone = $('#phone').val();
 		
-		var b_email;
+		var s_email;
 		
 		if($('#b_email2').val() =="") {
-			b_email = $('#origin_email').val();
+			s_email = $('#origin_email').val();
 		} else if ($('#origin_email').val() ==""&&$('#b_email2').val() !=""){
-			b_email = $('#b_email2').val();
+			s_email = $('#b_email2').val();
 		}
-		var b_zip = $('#b_postcode').val();
-		var b_addr1 =$('#b_address').val();
-		var b_addr2 = $('#b_address2').val();
+		var s_zip = $('#b_postcode').val();
+		var s_addr1 =$('#b_address').val();
+		var s_addr2 = $('#b_address2').val();
 		
 		$.ajax({
 			type : 'post',
-			url : 'buyermypage_updateinfo',
+			url : 'sellermypage_updateinfo',
 			headers:{
 	             'Content-Type': 'application/json',
 	             'X-HTTP-Method-Override': 'POST'
 	         },
 			data : JSON.stringify({
-				b_id: b_id,
-				b_pw: b_pw,
-				b_phone: b_phone,
-				b_email: b_email,
-				b_zip:b_zip,
-				b_addr1:b_addr1,
-				b_addr2:b_addr2
+				s_id: s_id,
+				s_pw: s_pw,
+				s_phone: s_phone,
+				s_email: s_email,
+				s_zip:s_zip,
+				s_addr1:s_addr1,
+				s_addr2:s_addr2
 	         }),
 			success : function(result) {
 				if (result == 1) {
@@ -642,7 +644,7 @@ $(document).ready(function() {
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="<c:url value='/resources/css/updateinfojs.js?ver=201612131425' />"></script>
+<script src="<c:url value='/resources/css/updateinfojs.js?ver=201612131424' />"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 

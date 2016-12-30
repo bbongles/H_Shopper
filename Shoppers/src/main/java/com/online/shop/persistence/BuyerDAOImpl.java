@@ -123,6 +123,7 @@ public class BuyerDAOImpl implements BuyerDAO{
 		return sqlSession.selectList(NAMESPACEM + ".selectByBuyCompleteMain2", b_id);
 	}
 	
+	
 	@Override
 	public int updateBuyerInfo(BuyerVO vo) {
 		System.out.println("imple vo");
@@ -131,4 +132,26 @@ public class BuyerDAOImpl implements BuyerDAO{
 		return result;
 	}
 	
+	@Override
+	public int deleteBuyer(String b_id) {
+		return sqlSession.delete(NAMESPACE+".delete-buyer", b_id);
+	}
+	
+	@Override
+	public BuyerVO findId(BuyerVO vo) {
+		System.out.println("findId");
+		BuyerVO result = sqlSession.selectOne(NAMESPACE+".buyer-find-id", vo);
+		System.out.println(result.getB_id());
+		return  result;
+	}
+	
+	@Override
+	public BuyerVO findPw(BuyerVO vo) {
+		return sqlSession.selectOne(NAMESPACE+".buyer-find-pw", vo);
+	}
+	
+	@Override
+	public int updatepw(BuyerVO vo) {
+		return sqlSession.update(NAMESPACE+".update-buyer-pw", vo);
+	}
 }

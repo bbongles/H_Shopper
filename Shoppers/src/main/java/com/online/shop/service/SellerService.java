@@ -2,6 +2,7 @@ package com.online.shop.service;
 
 import java.util.List;
 
+import com.online.shop.domain.BuyerVO;
 import com.online.shop.domain.CartandBuy;
 import com.online.shop.domain.ImageVO;
 import com.online.shop.domain.OptionVO;
@@ -82,6 +83,15 @@ public interface SellerService {
 		
 		public abstract List<ProductVO> accAllList(String s_id);
 		
+		public abstract int updateSellerInfo(SellerVO vo);
 		
+		public abstract int deleteSeller(String s_id);
+		
+		//판매자 아이디 찾기
+		public abstract SellerVO findId(SellerVO vo);
+		//판매자 비밀번호 찾기
+		public abstract SellerVO findPw(SellerVO vo);
+		//판매자 비밀번호 재설정
+		public abstract int updatePw(SellerVO vo);
 	
 } // end interface SellerService
