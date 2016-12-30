@@ -447,12 +447,16 @@
 													<td><fmt:formatDate value="${list.rev_reg }"
 														pattern="yyyy년 MM월 dd일" />&emsp;&emsp;</td>
 												</tr>		
-												
+												<c:if test="${list.rev_reply eq 0 }">
 												<tr class ="revReply" modData="${state.index }">
-													<th style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
-														onMouseout="this.style.color='black';">한줄답글</th>
-				
+													<th>한줄답글</th>
+												</c:if>
+												
 				<c:if test="${list.rev_reply eq 1 }">
+					<tr class ="revReply" modData="${state.index }">
+						<th style="text-decoration: underline;" onMouseover="this.style.color='blue';" 
+							onMouseout="this.style.color='black';">한줄답글</th>
+				
 					<td>
 						<c:forEach var="listr" items="${listReply}">
 						<c:if test="${list.rev_no eq listr.rev_no }">
@@ -770,8 +774,8 @@
 		<!-- 김태훈 백버튼 리프레시 -->
 		<input type="hidden" id="refreshed" value="no" style="display: none">
 		<script src="<c:url value='/resources/themes/js/common.js' />"></script>
-		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121559' />"></script>
-		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121551' />"></script>
+		<script src="<c:url value='/resources/css/tabqnajs.js?ver=201612121550' />"></script>
+		<script src="<c:url value='/resources/css/tabrevjs.js?ver=201612121552' />"></script>
 		<script>
 			$(function () {
 				$('#myTab a:first').tab('show');
